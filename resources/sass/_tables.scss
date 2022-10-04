@@ -1,0 +1,102 @@
+.sale {
+    font-size: 22px;
+    color: rgb(153, 153, 153);
+  }
+  
+  .tableContrainer {
+    height: 600px;
+    overflow-y: scroll;
+  }
+  
+  .table {
+  
+    box-shadow: 0 4px 4px rgba(204, 197, 185, 0.5);
+    border-radius: $border-radius-extreme;
+    .but-co{
+      background-color: #6b8beb;
+      box-shadow: 0 2px 2px rgba(204, 197, 185, 0.26);
+      font-size: 14px;
+      color: rgb(255, 255, 255);
+    }
+    .but-co:hover{
+      background-color: #fd6161;
+      color: rgb(255, 255, 255);
+   }
+
+  
+  }
+  
+  
+  thead {
+    color: aliceblue;
+    background-color: #3b66e7;
+    font-size: 17px;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    
+  
+  }
+  
+  tbody {
+  
+    background-color: white;
+    color: rgb(29, 50, 117);
+    font-weight: $font-weight-semi;
+  
+    tr:hover {
+      background-color: rgb(219, 227, 255);
+    }
+  
+  
+  }
+  
+  
+  tfoot {
+  
+    tr>th,
+    tr>td {
+      border-top: 1px solid $table-line-color;
+      box-shadow: 0 2px 2px rgba(204, 197, 185, 0.5);
+  
+    }
+  
+  }
+  
+  thead th {
+    border-bottom: 1px solid $table-line-color;
+    border-top: 0;
+  }
+  
+  >thead>tr>th {
+    border-bottom-width: 0;
+  
+  }
+   
+ 
+  
+  
+  
+  
+  /* width */
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(128, 128, 128, 0.514);
+    border-radius: 8px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #2f5be049;
+    border-radius: 8px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3b66e7;
+  }
+  
