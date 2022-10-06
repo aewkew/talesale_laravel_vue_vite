@@ -16,8 +16,12 @@
             <b-dropdown-item >Profile</b-dropdown-item>
             <b-dropdown-item >Sign Out</b-dropdown-item>
           </b-nav-item-dropdown>
+          
         </div>
       </div>
+            
+      
+
     </div>
   </nav>
 </template>

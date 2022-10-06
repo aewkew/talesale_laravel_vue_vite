@@ -1,12 +1,10 @@
 <template>
     <div class="container">
-          <Search></Search>
-        
-
+        <Search></Search>
         <div class="sale">List Product</div>
 
         <div class="tableContrainer">
-            <table class="table ">
+            <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">Code product</th>
@@ -26,7 +24,10 @@
                         <td>{{ item.Color }}</td>
                         <td>{{ item.price }}</td>
                         <td>
-                            <button class="but-co btn btn-primary"  type="button">
+                            <button
+                                class="but-co btn "
+                                type="button"
+                            >
                                 <i class="bi bi-plus"></i>
                             </button>
                         </td>
@@ -34,11 +35,17 @@
                 </tbody>
             </table>
         </div>
+     
+       
+
+
+  
+
     </div>
 </template>
 <script>
-import Card from '../components/Cards/Card.vue';
-import Search from './shop/search.vue';
+import Card from "../components/Cards/Card.vue";
+import Search from "./shop/search.vue";
 export default {
     name: "Shop",
     data() {
@@ -159,7 +166,7 @@ export default {
             ],
         };
     },
-    components: { Card, Search }
+    components: { Card, Search },
 };
 </script>
 <style></style>

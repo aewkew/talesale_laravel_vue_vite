@@ -37,7 +37,8 @@ const routes = [
             path: '/invoice',
             name: 'Invoice',
             component: Invoice
-        }
+        },
+      
     ];
 
 const router =  createRouter({ 
