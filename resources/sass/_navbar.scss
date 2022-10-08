@@ -1,0 +1,71 @@
+.nav {
+    .nav-item {
+  
+      .nav-link:hover,
+      .nav-link:focus {
+        background-color: transparent;
+      }
+    }
+  }
+  
+  .navbar {
+    height: 7%;
+    border: $none;
+    font-size: $font-size-base;
+    padding: 15;
+    box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.15);
+  
+  
+    >.contaniner,
+    >.contaniner-fluid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+  
+    }
+  
+  }
+  
+  .navbar-brand {
+    display: inline-block;
+    font-weight: $font-weight-semi;
+    font-size: $font-size-base;
+    color: rgb(90, 89, 89);
+    text-transform: uppercase;
+    line-height: inherit;
+    white-space: nowrap;
+  
+  }
+  
+  .navbar-nav {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+  
+    .nav-link {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  
+  
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      position: relative;
+    }
+  
+    
+  }
+  
+  .navbar-collapse {
+    flex-basis: 100%;
+    flex-grow: 1;
+    // For always expanded or extra full navbars, ensure content aligns itself
+    // properly vertically. Can be easily overridden with flex utilities.
+    align-items: center;
+  }
+  

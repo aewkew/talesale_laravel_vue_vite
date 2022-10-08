@@ -1,0 +1,20 @@
+// Fonts
+@import url('https://fonts.bunny.net/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+//body
+@import 'misc';
+
+//components
+@import 'sidebar-main';
+@import 'navbar';
+@import 'content';
+@import 'card';
+@import 'date';
+
+@import 'tables.scss';
