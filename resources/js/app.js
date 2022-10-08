@@ -6,5 +6,7 @@ import sidebar from './components/Sidebar/sidebar.vue'
 import router from './router.js';
 import * as bootstrap from 'bootstrap';
 
+
+
 createApp(App).use(router).mount('#app')
 createApp(sidebar).use(router).mount('#sidebar')
