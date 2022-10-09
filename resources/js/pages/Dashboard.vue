@@ -4,7 +4,8 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Code product</th>
+                        <th scope="col">Code product ขอลองหน่อยจิ
+                        </th>
                         <th scope="col">Product</th>
                         <th scope="col">Description</th>
                         <th scope="col">price</th>
