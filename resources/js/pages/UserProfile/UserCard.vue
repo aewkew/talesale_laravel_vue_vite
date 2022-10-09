@@ -1,7 +1,6 @@
 <template >
     <div class="card">
         <div class="card-body card-user">
-
             <div class="row datapro "> 
                 <div class="col">
 
@@ -29,7 +28,7 @@
                 </div>
 
                 <div class="col ">
-                    <button class="btn but-co" type="submit">Add</button>
+                    <button class="btn but-co" type="submit">Edit</button>
                 </div>
 
             </div>
