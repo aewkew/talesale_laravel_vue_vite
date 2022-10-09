@@ -1,6 +1,6 @@
 <template>
-    <div class="card shopCard">
-        <div class="card-body">
+    <div id="search" class="card">
+        <div class="card-body shopCard">
             <div class="row">
                 <div class="col">
                     <div class="input-group">
@@ -21,10 +21,10 @@
                         >
                         <select class="form-select" id="inputGroupSelect01">
                             <option selected>Choose...</option>
-                            <option value="1">Red</option>
-                            <option value="2">Blue</option>
-                            <option value="3">Black</option>
-                            <option value="3">Yellow</option>
+                            <option value="Red">Red</option>
+                            <option value="Blue">Blue</option>
+                            <option value="Black">Black</option>
+                            <option value="Yellow">Yellow</option>
                         </select>
                     </div>
                 </div>
@@ -53,22 +53,33 @@
                         </div>
 
                         <div class="col">
-                            <button type="button" class="btn but-co">
-                                <i
+                            <button
+                                type="button"
+                                class="btn but-co"
+                                data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop"
+                            >
+                            <i
                                     class="bi bi-basket"
                                     style="font-size: 1.4rem"
                                 ></i>
                             </button>
+                          
+                          
                         </div>
-                        
                     </div>
                 </div>
             </div>
         </div>
+        <Add></Add>
+
     </div>
 </template>
 <script>
 import Add from "./add.vue";
-export default { components: { Add } };
+export default {
+    name: "search",
+    components: { Add },
+};
 </script>
 <style></style>

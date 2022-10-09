@@ -4,7 +4,7 @@
     background-color: white;
     margin-bottom: 10px;
     position: relative;
-    z-index: 1;    
+    // z-index: 1;    
     border: none;
     background-color: #2f5be0;
     text-align: center;
@@ -12,15 +12,26 @@
     
       
 
-       label{ 
-        background-color: #6b8beb;
-        color: aliceblue;
-       }
+      
 
        .date{
         font-weight: 200;
        }
        
+       .shopCard{
+        label{ 
+            background-color: #6b8beb;
+            color: aliceblue;
+           }
+        .but-co:hover{
+            background-color: #fd6161;
+            color: rgb(255, 255, 255);
+         }
+
+         
+        
+
+       }
 
        .card-user{
            
@@ -45,6 +56,8 @@
          
 
        }
+
+      
 
 }
 

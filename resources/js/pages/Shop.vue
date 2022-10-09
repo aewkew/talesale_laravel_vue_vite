@@ -1,6 +1,8 @@
 <template>
     <div class="container">
+        
         <Search></Search>
+
         <div class="sale">List Product</div>
 
         <div class="tableContrainer">
@@ -26,8 +28,7 @@
                         <td>
                             <button
                                 class="but-co btn "
-                                type="button"
-                            >
+                                type="button">
                                 <i class="bi bi-plus"></i>
                             </button>
                         </td>
@@ -36,10 +37,8 @@
             </table>
         </div>
      
-       
 
-
-  
+   
 
     </div>
 </template>

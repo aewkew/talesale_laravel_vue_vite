@@ -1,23 +1,16 @@
-
 .wrapper .sidebar {
+    width: 260px;
+    display: block;
+    font-weight: 250;
+    background-size: cover;
+    background-position: center center;
+    background-color: $bg-side;
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
-    z-index: 1;
-    background-size: cover;
-    background-position: center center;
-    background-color: $bg-side;
-  
-    .sidebar-wrapper {
-      position: relative;
-      height: 100%;
-      overflow-y: auto;
-      overflow-x: hidden;
-      width: 260px;
-      z-index: 2; 
-    }
-  
+    
+
     .sidebar-blackground {
       position: absolute;
       z-index: 1;
@@ -28,16 +21,18 @@
       left: 0;
       background-size: cover;
       background-position: center center;
+
+      .sidebar-wrapper {
+        position: relative;
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        width: 260px;
+        z-index: 2; 
+      }
+      
       
     }
-  
-  }
-  
-  
-  .wrapper .sidebar {
-    width: 260px;
-    display: block;
-    font-weight: 250;
    
     .logo {
       height: 7%;
@@ -65,7 +60,6 @@
   
           img {
             max-width: 32px;
-  
           }
         }
         span{
@@ -116,7 +110,7 @@
   
   .main-panel {
     position: relative;
-    z-index: 2;
+    //z-index: 1;
     float: right;
     width: $sidebar-width;
     min-height: 100%;
