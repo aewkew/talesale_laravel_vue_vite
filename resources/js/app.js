@@ -8,5 +8,11 @@ import * as bootstrap from 'bootstrap';
 
 
 
+
 createApp(App).use(router).mount('#app')
 createApp(sidebar).use(router).mount('#sidebar')
+
+/*
+app.use(VueAxios, axios)
+app.provide('axios', app.config.globalProperties.axios)
+*/

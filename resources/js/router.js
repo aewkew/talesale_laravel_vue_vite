@@ -7,8 +7,6 @@ import Tablelist from './pages/TableList.vue';
 import Userprofile from './pages/UserProfile.vue';
 import Invoice from './pages/invoice.vue'; 
 
-
-
 const routes = [
         {
             path: '/',
@@ -39,8 +37,7 @@ const routes = [
             path: '/invoice',
             name: 'Invoice',
             component: Invoice
-        },
-      
+        }
     ];
 
 const router =  createRouter({ 
@@ -50,7 +47,3 @@ const router =  createRouter({
 });
 
 export default router;
-
-    
-    
-

@@ -8,10 +8,9 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    public function get_all_product(){
+    public function product()
+    {
         $products = Product::all();
-        return response() ->json([
-            'products' => $ $products
-        ],200);
+        return response()->json($products);
     }
 }

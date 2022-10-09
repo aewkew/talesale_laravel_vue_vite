@@ -20,6 +20,7 @@ import Add from "./pages/shop/add.vue";
 export default {
     name: "App",
     components: { Corelayout, Content, TopNavbar, Add },
+  
 };
 </script>
 <style></style>
