@@ -2,13 +2,13 @@
     <div class="card">
         <div class="card-body card-user">
 
-            <div class="row "> 
+            <div class="row datapro "> 
                 <div class="col">
 
                 </div>
 
                 <div class="col"> 
-                    <div>NickName </div>
+                    <div class="headname">NickName </div>
                     <div class="dataname">Aewkew </div>  
                 </div>
 
@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="col">
-                    <div>Tel.</div>
+                    <div class="headname">Tel.</div>
                     <div class="dataname" >087-78979879</div>
                 </div>
 

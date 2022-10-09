@@ -23,11 +23,22 @@
        
 
        .card-user{
-          .dataname{
-            font-weight: $font-weight-bold;
-            font-size: 19px;
-            color: #eeeeee;
-          }
+           
+        .datapro{
+            .headname{
+                text-align:left;
+                font-size: 13px;
+                color: #8da7f3;
+            }
+            .dataname{
+                text-align:left;
+                font-weight: $font-weight-bold;
+                font-size: 19px;
+                color: #eeeeee;
+              }
+
+        } 
+         
 
        }
 
