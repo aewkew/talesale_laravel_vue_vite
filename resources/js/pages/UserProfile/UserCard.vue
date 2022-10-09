@@ -1,32 +1,35 @@
 <template >
     <div class="card">
-        <div class="card-body">
+        <div class="card-body card-user">
 
-            <div class="row"> 
+            <div class="row "> 
                 <div class="col">
 
                 </div>
 
                 <div class="col"> 
-                   Aewkew
-                   
+                    <div>NickName </div>
+                    <div class="dataname">Aewkew </div>  
                 </div>
 
                 <div class="col">
-                    @hotmail.com
+                    <div class="headname" >FullName</div>
+                    <div class="dataname" >Konrawee Juntasoot </div>
                 </div>
 
                 <div class="col">
-                      Konrawee Juntasoot 
-                 
+                    <div class="headname">Email</div>
+                    <div class="dataname" >@hotmail.com</div>
+                    
                 </div>
 
                 <div class="col">
-                    087-78979879
+                    <div>Tel.</div>
+                    <div class="dataname" >087-78979879</div>
                 </div>
 
-                <div class="col">
-                    <button class="btn btn-primary" type="submit">Button</button>
+                <div class="col ">
+                    <button class="btn but-co" type="submit">Add</button>
                 </div>
 
             </div>

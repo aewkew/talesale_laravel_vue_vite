@@ -53,7 +53,6 @@ export default {
             .then((res) => (this.data = res.data))
         }
     }
-
 }
 </script>
 <style >
