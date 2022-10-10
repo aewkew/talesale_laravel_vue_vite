@@ -23,16 +23,11 @@
                 </div>
                 <div class="modal-body">
 
-                  
-                
-
                     <div class="row">
+                        <label for="staticBackdropLabel" class="form-label" > Brand </label>
                         <div class="input-group">
-                            <select
-                                class="form-select"
-                                id="staticBackdropLabel"
-                            >
-                                <option selected>Brand</option>
+                            <select class="form-select" id="staticBackdropLabel">
+                                <option selected>Choose Brand</option>
                                 <option value="canon">Canon</option>
                                 <option value="epson">Epson</option>
                                 <option value="Hp">Hp</option>
@@ -42,9 +37,10 @@
                     </div>
 
                     <div class="row">
+                        <label for="inputGroupSelect01" class="form-label" > Color </label>
                         <div class="input-group">
                             <select class="form-select" id="inputGroupSelect01">
-                                <option selected>Color</option>
+                                <option selected>Choose Color</option>
                                 <option value="Yellow">Yellow</option>
                                 <option value="Blue">Blue</option>
                                 <option value="Black">Black</option>
@@ -52,6 +48,22 @@
                             </select>
                         </div>
                     </div>
+
+                    <div class="row"> 
+                        <label for="inputprice" class="form-label" > Price </label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="inputprice">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-group"> 
+                            <input class="form-control">
+                        </div>
+
+                    </div>
+
+
                 </div>
                 <div class="modal-footer">
                     <button

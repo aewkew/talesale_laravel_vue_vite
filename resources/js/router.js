@@ -7,7 +7,6 @@ import Tablelist from './pages/TableList.vue';
 import Userprofile from './pages/UserProfile.vue';
 import Invoice from './pages/invoice.vue'; 
 
-import Search from './pages/shop/search.vue';
 
 const routes = [
         {
