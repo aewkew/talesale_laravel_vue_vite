@@ -9,10 +9,6 @@
     background-color: #2f5be0;
     text-align: center;
 
-    
-      
-
-      
 
        .date{
         font-weight: 200;
@@ -28,8 +24,6 @@
             color: rgb(255, 255, 255);
          }
 
-         
-        
 
        }
 
@@ -56,6 +50,46 @@
          
 
        }
+
+    .add{
+        text-align: left;
+
+        .modal-header{
+            background-color: #2f5be0;
+
+            .modal-title{
+                color: #eeeeee;
+                font-size: 22;
+                font-weight: $font-weight-bold;
+                
+            }
+
+        }
+
+        .modal-body{
+            .row{
+                margin-top: 0.5rem;
+            }
+            label{
+                font-size: 16;
+                font-weight: $font-weight-bold;
+            }
+            .subre{
+                .sub{
+                  text-align: right ;
+                }
+                .res{
+                    text-align: left ;
+                }
+            }
+
+        }
+
+        .modal-footer{
+            background-color: #2f5be0;
+
+        }
+    }   
 
       
 

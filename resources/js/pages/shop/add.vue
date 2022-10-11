@@ -1,18 +1,17 @@
 <template>
-    <div
-        class="modal fade add"
+    <div class="modal fade add"
         id="staticBackdrop"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
         tabindex="-1"
         aria-labelledby="staticBackdropLabel"
-        aria-hidden="true"
-    >
+        aria-hidden="true" >
         <div class="modal-dialog">
+
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">
-                        Modal title
+                    <h1 class="modal-title " id="staticBackdropLabel">
+                        Add Product
                     </h1>
                     <button
                         type="button"
@@ -21,9 +20,9 @@
                         aria-label="Close"
                     ></button>
                 </div>
-                <div class="modal-body">
 
-                    <div class="row">
+                <div class="modal-body">
+                    <div class="row ">
                         <label for="staticBackdropLabel" class="form-label" > Brand </label>
                         <div class="input-group">
                             <select class="form-select" id="staticBackdropLabel">
@@ -52,29 +51,28 @@
                     <div class="row"> 
                         <label for="inputprice" class="form-label" > Price </label>
                         <div class="input-group">
-                            <input type="number" class="form-control" id="inputprice">
+                            <input  class="form-control" id="inputprice">
                         </div>
                     </div>
 
                     <div class="row">
+                        <label for="inputvalue"  class="form-label" > Value </label>
                         <div class="input-group"> 
-                            <input class="form-control">
+                            <input type="number" class="form-control" id="inputvalue">
                         </div>
-
                     </div>
 
+                    <div class="row subre"> 
+                        <div class="col sub"> <button type="submit" class="btn btn-primary">Submit</button> </div>
+                        <div class="col res"> <button type="reset" class="btn btn-danger">reset</button> </div>
+                        
+                    </div>
 
                 </div>
+
                 <div class="modal-footer">
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-bs-dismiss="modal"
-                    >
-                        Close
-                    </button>
-                    <button type="button" class="btn btn-primary">
-                        Understood
+                    <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal" >
+                       Close
                     </button>
                 </div>
             </div>

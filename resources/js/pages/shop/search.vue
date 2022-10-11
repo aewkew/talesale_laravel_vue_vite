@@ -1,7 +1,9 @@
 <template>
     <div id="search" class="card">
+
         <div class="card-body shopCard">
             <div class="row">
+
                 <div class="col">
                     <div class="input-group">
                         <input
@@ -16,9 +18,7 @@
 
                 <div class="col-auto">
                     <div class="input-group">
-                        <label class="input-group-text" for="inputGroupSelect01"
-                            >Color</label
-                        >
+                        <label class="input-group-text" for="inputGroupSelect01">Color</label>
                         <select class="form-select" id="inputGroupSelect01">
                             <option selected>Choose...</option>
                             <option value="Red">Red</option>
@@ -47,7 +47,11 @@
                 <div class="col-auto">
                     <div class="row">
                         <div class="col">
-                            <button type="button" class="btn but-co">
+                            <button type="button" 
+                                    class="btn but-co"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#staticBackdrop"
+                                    >
                                 Add
                             </button>
                         </div>
@@ -56,8 +60,7 @@
                             <button
                                 type="button"
                                 class="btn but-co"
-                                data-bs-toggle="modal"
-                                data-bs-target="#staticBackdrop"
+                               
                             >
                             <i
                                     class="bi bi-basket"
@@ -71,6 +74,7 @@
                 </div>
             </div>
         </div>
+
         <Add></Add>
 
     </div>
