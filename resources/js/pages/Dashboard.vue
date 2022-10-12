@@ -4,7 +4,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Code product </th>
+                        <th scope="col">Code product เทสนะอิว กริ้วๆ</th>
                         <th scope="col">Product</th>
                         <th scope="col">Description</th>
                         <th scope="col">price</th>
@@ -18,7 +18,7 @@
                         <td>{{ item.name }}</td>
                         <td>{{ item.description }}</td>
                         <td>{{ item.price }}</td>
-              
+
                         <td>
                             <button
                                 class="but-co btn "
@@ -44,7 +44,7 @@ export default {
         };
     },
     created(){
-        this.getData(); 
+        this.getData();
     },
     methods: {
         getData() {
@@ -56,5 +56,5 @@ export default {
 }
 </script>
 <style >
-    
+
 </style>
