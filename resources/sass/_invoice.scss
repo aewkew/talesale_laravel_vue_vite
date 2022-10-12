@@ -1,3 +1,46 @@
+.exprint{
+    display: inline-block;
+    margin-bottom: 5;
+    
+    .btn{
+        font-size: 15;
+        margin: 2;
+       
+        i{
+            margin-right: 1;
+        }
+    }
+    .but-co:hover{
+        background-color: #fd6161;
+    }
+
+
+}
 .invoice-title h2, .invoice-title h3 {
     display: inline-block;
+}
+
+.invoice{
+    min-height: 680px;
+    background-color: white;
+    position: relative;
+    .invoice-data{
+        padding: 60;
+        .logo-invoice{
+            margin-bottom: 10;
+             img {
+              max-width: 70px;
+            }
+          }
+       .company{
+        font-size: 1rem;
+        font-weight: 800;
+       }   
+       .company-address{
+
+       }
+
+    }
+    
+    
 }

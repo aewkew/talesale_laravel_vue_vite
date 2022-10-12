@@ -20,13 +20,11 @@
                         <td>{{ item.price }}</td>
 
                         <td>
-                            <button
-                                class="but-co btn "
-                                type="button"
-                            >
+                            <button class="but-co btn" type="button">
                                 <i class="bi bi-plus"></i>
                             </button>
                         </td>
+
                     </tr>
                 </tbody>
             </table>
