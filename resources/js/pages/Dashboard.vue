@@ -1,5 +1,7 @@
 <template>
     <div>
+        <a href="Inklist" class="btn btn-success" > Create Product</a>
+        <br> <br>
         <div class="tableContrainer">
             <table class="table">
                 <thead>
@@ -14,7 +16,7 @@
 
                 <tbody>
                     <tr v-for="item in data" v-bind:key="item.productId">
-                        <th scope="row"></th>
+                        <th scope="row"> {{ item.id }}</th>
                         <td>{{ item.name }}</td>
                         <td>{{ item.description }}</td>
                         <td>{{ item.price }}</td>

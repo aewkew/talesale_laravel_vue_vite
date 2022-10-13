@@ -1,4 +1,9 @@
 <template>
+
+            <div>
+                <a href="{{ route('companies.create') }}" class="btn btn-success"> Create Inks</a>
+                <br> <br>
+            </div>
     <div>
         <div class="tableContrainer">
             <table class="table">
@@ -12,10 +17,10 @@
                 </thead>
 
                 <tbody>
-                    <tr v-for="item in data" v-bind:key="item.inkId">
-                        <td>{{ item.ink_id }}</td>
-                        <td>{{ item.ink_name }}</td>
-                        <td>{{ item.ink_price }}</td>
+                    <tr v-for="inks in data" v-bind:key="inks.inkId">
+                        <td>{{ inks.ink_id }}</td>
+                        <td>{{ inks.ink_name }}</td>
+                        <td>{{ inks.ink_price }}</td>
 
                         <td>
                             <button class="but-co btn" type="button">
@@ -45,7 +50,7 @@ export default {
     methods: {
         getData() {
             axios
-            .get("http://127.0.0.1:8000/api/inks")
+            .get("http://127.0.0.1:8000/api/Inklist")
             .then((res) => (this.data = res.data))
         }
     }
