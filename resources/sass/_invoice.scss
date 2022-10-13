@@ -3,6 +3,7 @@
     margin-bottom: 5;
     
     .btn{
+        background-color: #2f5be0;
         font-size: 15;
         margin: 2;
        
@@ -42,6 +43,23 @@
        .invoice-number{
         text-align: right;
        }
+
+
+       .bill{
+        margin-top: 2rem;
+         .bill-name{
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+         }
+       .bill-data{
+        
+       }
+       .data-invoice{
+        text-align: right;
+       }
+        
+       }
+       
 
     }
     
