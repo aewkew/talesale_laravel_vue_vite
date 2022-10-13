@@ -4,20 +4,18 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Code product </th>
-                        <th scope="col">Product</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">price</th>
+                        <th scope="col">Ink_ID  </th>
+                        <th scope="col">Ink's Name</th>
+                        <th scope="col">Price</th>
                         <th scope="col">Add</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    <tr v-for="item in data" v-bind:key="item.productId">
-                        <th scope="row"></th>
-                        <td>{{ item.name }}</td>
-                        <td>{{ item.description }}</td>
-                        <td>{{ item.price }}</td>
+                    <tr v-for="item in data" v-bind:key="item.inkId">
+                        <td>{{ item.ink_id }}</td>
+                        <td>{{ item.ink_name }}</td>
+                        <td>{{ item.ink_price }}</td>
 
                         <td>
                             <button class="but-co btn" type="button">
@@ -35,7 +33,7 @@
 <script>
 import axios from 'axios';
 export default {
-    name: 'Dashboard',
+    name: 'Inklist',
     data() {
         return{
           data: [],
@@ -47,7 +45,7 @@ export default {
     methods: {
         getData() {
             axios
-            .get("http://127.0.0.1:8000/api/products")
+            .get("http://127.0.0.1:8000/api/inks")
             .then((res) => (this.data = res.data))
         }
     }
