@@ -17,8 +17,12 @@
 
 
 }
+.invoice-title{
+     text-align: right;
+}
 .invoice-title h2, .invoice-title h3 {
     display: inline-block;
+   
 }
 
 .invoice{
@@ -55,13 +59,23 @@
         
        }
        .data-invoice{
+        margin-top: 1rem;
         text-align: right;
        }
         
        }
+
+       .table-invoice{
+        margin-top: 1rem;
+       }
+
+      .sum-total{
+        margin-top: 0.5rem;
+      }
        
 
     }
+
     
     
 }
