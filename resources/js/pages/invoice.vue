@@ -135,7 +135,7 @@
                                 <div class="col-5"><span>฿ 669.6 </span></div>
                             </div>
                             <div class="row sum-total">
-                                <div class="col-7 ">Total Amount</div>
+                                <div class="col-7  sum-total-head ">Total Amount</div>
                                 <div class="col-5">฿ 720</div>
                             </div>
                         </div>

@@ -67,11 +67,29 @@
 
        .table-invoice{
         margin-top: 1rem;
+        
        }
+         .total-invoice{
 
-      .sum-total{
-        margin-top: 0.5rem;
-      }
+             .data-total{
+               font-weight: 400;
+            }
+            .data-sub{
+               font-weight: 400;
+            }
+             .sum-total{
+              margin-top: 0.5rem;
+              font-size: 16;
+              .sum-total-head{
+                font-weight: 800;
+               
+              }
+            }
+            
+    
+  }
+
+      
        
 
     }
