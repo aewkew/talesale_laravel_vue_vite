@@ -2,6 +2,44 @@
     <div>
         <a href="Inklist" class="btn btn-success" > Create Product</a>
         <br> <br>
+
+         <div class="container"> 
+        <div class="row "> 
+             <div class="card">
+                <div class="card-body">
+                    <div class="row ">
+                        <label for="inputnickname" class="form-label text-white fs-3"  > product </label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="inputnickname" >
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label for="inputfullname" class="form-label text-white fs-3" > Description </label>
+                        <div class="input-group">
+                            <input type="text"  class="form-control" id="inputfullname" >
+                        </div>
+                    </div>
+
+                    <div class="row"> 
+                        <label for="inputprice" class="form-label text-white fs-3" > price </label>
+                        <div class="input-group">
+                            <input  class="form-control" id="inputprice">
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="row subre"> 
+                        <div class="col sub"> <button type="submit" class="btn btn-primary">Submit</button> </div>
+                        <div class="col res"> <button type="reset" class="btn btn-danger">reset</button> </div>
+                        
+                    </div>
+                </div> 
+             </div>
+        </div>
+    </div>
+
         <div class="tableContrainer">
             <table class="table">
                 <thead>

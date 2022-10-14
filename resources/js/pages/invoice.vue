@@ -128,11 +128,11 @@
                         <div class="total-invoice">
                             <div class="row">
                                 <div class="col-7 data-total">Sub Total</div>
-                                <div class="col-5"><span>฿ 720</span></div>
+                                <div class="col-5"><span>฿ 669.6 </span></div>
                             </div>
                             <div class="row">
                                 <div class="col-7 data-sub">Tax(7%)</div>
-                                <div class="col-5"><span>฿ 669.6 </span></div>
+                                <div class="col-5"><span>฿ 50.4  </span></div>
                             </div>
                             <div class="row sum-total">
                                 <div class="col-7  sum-total-head ">Total Amount</div>

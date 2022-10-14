@@ -28,17 +28,22 @@
                 </div>
 
                 <div class="col ">
-                    <button class="btn but-co" type="submit">Edit</button>
+                    <button type="button"
+                                class="btn but-co"
+                                data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop"
+                    
+                    >Edit</button>
                 </div>
-
             </div>
-
         </div>
+        <EditfileForm></EditfileForm>
     </div>
 </template>
 <script>
+import EditfileForm from './EditfileForm.vue';
 export default {
-    
+    components: { EditfileForm }
 }
 </script>
 <style >
