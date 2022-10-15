@@ -41,7 +41,7 @@
                                 <i class="bi bi-pencil"></i>
                             </button>
 
-                            
+                            <Toedit></Toedit>
                         </td>
 
                         <td> 
@@ -58,6 +58,7 @@
 </template>
 <script>
 import axios from "axios";
+import Toedit from "./toedit.vue";
 export default {
     name: "edit",
     data() {
@@ -75,6 +76,7 @@ export default {
                 .then((res) => (this.data = res.data));
         },
     },
+    components: { Toedit }
 };
 </script>
 <style></style>
