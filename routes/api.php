@@ -7,14 +7,16 @@ use App\Http\Controllers\customercontroller;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\InkController;
 
-//Route::get('get_all_customer', [customercontroller::class,'get_all_customer']);
-
+//get 
 Route::get('/products', [ProductController::class,'product']);
 Route::get('/inks', [InkController::class,'inks']);
 
 
-// save Product
+// save 
 Route::post('/addproduct', [ProductController::class,'addproduct']);
+
+// edit
+Route::get('/editproduct/{id}', [ProductController::class,'editproduct']);
 
 
 Route::middleware('auth:sanctum')->get('/', function (Request $request) {

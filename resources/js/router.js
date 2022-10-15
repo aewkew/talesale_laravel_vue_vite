@@ -8,7 +8,10 @@ import Userprofile from './pages/UserProfile.vue';
 import Invoice from './pages/invoice.vue';
 import Inklist from './pages/Inklist.vue';
 
+//Test
 import create  from './pages/create.vue';
+import edit from './pages/edit.vue';
+import toedit from './pages/toedit';
 
 
 const routes = [
@@ -52,7 +55,18 @@ const routes = [
             name: 'create',
             component: create
 
+        },
+        {
+            path: '/edit',
+            name: 'edit',
+            component: edit
+        },
+        {
+            path: '/toedit/:id?',
+            name: 'toedit',
+            component: toedit
         }
+
 
     ];
 

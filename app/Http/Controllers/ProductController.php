@@ -20,9 +20,12 @@ class ProductController extends Controller
         $products->name = $request->name;
         $products->description = $request->description;
         $products->price = $request->price;
-        $products->save();
-     
-        
+        $products->save(); 
+    }
+
+    public function editproduct($id){
+        $products = Product::find($id);
+        return response()->json($products);
     }
     
 
