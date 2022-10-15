@@ -8,6 +8,8 @@ import Userprofile from './pages/UserProfile.vue';
 import Invoice from './pages/invoice.vue';
 import Inklist from './pages/Inklist.vue';
 
+import create  from './pages/create.vue';
+
 
 const routes = [
         {
@@ -44,6 +46,12 @@ const routes = [
             path: '/Inklist',
             name: 'Inklist',
             component: Inklist
+        },
+        {
+            path: '/create',
+            name: 'create',
+            component: create
+
         }
 
     ];

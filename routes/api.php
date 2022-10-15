@@ -13,6 +13,10 @@ Route::get('/products', [ProductController::class,'product']);
 Route::get('/inks', [InkController::class,'inks']);
 
 
+// save Product
+Route::post('/addproduct', [ProductController::class,'addproduct']);
+
+
 Route::middleware('auth:sanctum')->get('/', function (Request $request) {
     return $request->user();
 });
