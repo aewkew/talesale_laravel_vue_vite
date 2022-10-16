@@ -23,10 +23,14 @@ class ProductController extends Controller
         $products->save(); 
     }
 
-    public function editproduct($id){
+    public function edit($id){  
         $products = Product::find($id);
-        return response()->json($products);
+        return view('edit',compact('id'));
+       
     }
+
+   
     
+
 
 }

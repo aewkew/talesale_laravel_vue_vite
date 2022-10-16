@@ -29,19 +29,19 @@
                                 <i class="bi bi-plus"></i>
                             </button>
                         </td>
-                        <td>
+                        <td >
 
                             <!-- Button trigger modal -->
                             <button
                                 class="but-co btn"
                                 type="button"
                                 data-bs-toggle="modal"
-                                data-bs-target="#exampleModal"
+                                data-bs-target="#ModalEdit"
                             >
                                 <i class="bi bi-pencil"></i>
                             </button>
 
-                            <Toedit></Toedit>
+                            <Toedit ></Toedit>
                         </td>
 
                         <td> 
@@ -54,11 +54,13 @@
                 </tbody>
             </table>
         </div>
+
     </div>
 </template>
 <script>
 import axios from "axios";
 import Toedit from "./toedit.vue";
+
 export default {
     name: "edit",
     data() {
@@ -75,6 +77,7 @@ export default {
                 .get("http://127.0.0.1:8000/api/products")
                 .then((res) => (this.data = res.data));
         },
+        
     },
     components: { Toedit }
 };
