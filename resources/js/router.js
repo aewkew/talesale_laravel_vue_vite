@@ -11,7 +11,7 @@ import Inklist from './pages/Inklist.vue';
 //Test
 import create  from './pages/create.vue';
 import edit from './pages/edit.vue';
-// import toedit from './pages/toedit';
+import toedit from './pages/toedit.vue';
 
 
 const routes = [
@@ -61,6 +61,12 @@ const routes = [
             name: 'edit',
             component: edit
         },
+        {
+            path: '/toedit/:id',
+            name: 'toedit',
+            component: toedit,
+            props:true
+        }
        
 
 

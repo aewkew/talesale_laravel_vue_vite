@@ -1,8 +1,9 @@
 <template>
     <!-- Modal -->
     <div
+       data-toggle="modal" 
         class="modal fade"
-        id="ModalEdit"
+       id="EditModal"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -11,7 +12,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">
-                        Edit product
+                        Edit product 
                     </h1>
                     <button
                         type="button"
@@ -20,73 +21,56 @@
                         aria-label="Close"
                     ></button>
                 </div>
+
                 <div class="modal-body">
-                 
-                        <div class="row">
-                            <label
-                                for="inputnickname"
-                                class="form-label text-blue fs-3"
-                            >
-                                product
-                            </label>
-                            <div class="input-group">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="inputnickname"
-                                    v-model="name"
-                                />
-                            </div>
-                        </div>
 
+                    <div class="form-group">
                         <div class="row">
-                            <label
-                                for="inputfullname"
-                                class="form-label text-blue fs-3"
-                            >
-                                Description
+                            <label for="name" class="form-label text-blue fs-3">
+                                product {{ info }}
                             </label>
-                            <div class="input-group">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="inputfullname"
-                                    v-model="description"
-                                />
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <label
-                                for="inputprice"
-                                class="form-label text-blue fs-3"
-                            >
-                                price
-                            </label>
-                            <div class="input-group">
-                                <input
-                                    class="form-control"
-                                    id="inputprice"
-                                    v-model="price"
-                                />
-                            </div>
+                            <input
+                                type="text"
+                                class="form-control"
+                                v-model="name"
+                                name="name"
+                                id="name"
+                            />
                         </div>
+                    </div>
 
-                        <div class="row">
-                            <div class="col">
-                                <button type="submit" class="btn btn-primary"
-                                @click="updateproduct(item.id)"
-                                >
-                                    Submit
-                                </button>
-                            </div>
-                            <div class="col">
-                                <button type="reset" class="btn btn-danger">
-                                    reset
-                                </button>
-                            </div>
+                    <div class="row">
+                        <label
+                            for="description"
+                            class="form-label text-blue fs-3"
+                        >
+                            Description
+                        </label>
+                        <div class="form-group">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="description"
+                                v-model="description"
+                                description="description"
+                            />
                         </div>
-               
+                    </div>
+
+                    <div class="row">
+                        <label for="price" class="form-label text-blue fs-3">
+                            price
+                        </label>
+                        <div class="form-group">
+                            <input
+                                class="form-control"
+                                id="price"
+                                v-model="price"
+                                price="price"
+                            />
+                        </div>
+                    </div>
                 </div>
 
                 <div class="modal-footer">
@@ -97,8 +81,12 @@
                     >
                         Close
                     </button>
-                    <button type="submit" class="btn btn-primary">
-                        Save changes
+                    <button
+                        @click="updateProduct"
+                        type="button"
+                        class="btn btn-primary"
+                    >
+                        Update
                     </button>
                 </div>
             </div>
@@ -107,33 +95,8 @@
 </template>
 <script>
 import axios from "axios";
-
-
 export default {
-    name: "toedit",
-    data() {
-        return {
-            item:{
-            id:0,
-            name: '',
-            description: '',
-            price: '', 
-            }
-            
-        };
-    },
-
-    methods: {
-        
-    },
-    mounted(){
-            axios.put('http://127.0.0.1:8000/api/editproduct/'+id).then(response=>{
-                      console.log(response)
-                   
-                    });
-                      
-       
-    }
+    
 };
 </script>
 <style></style>

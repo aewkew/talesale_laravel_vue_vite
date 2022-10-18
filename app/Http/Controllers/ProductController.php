@@ -22,11 +22,17 @@ class ProductController extends Controller
         $products->price = $request->price;
         $products->save(); 
     }
-
-    public function edit($id){  
-        $products = Product::find($id);
-        return view('edit',compact('id'));
-       
+ 
+    
+    public function editproduct(Request $request, $id)
+    {  
+        $products=Product::find($id);
+        $products->name = $request->name;
+        $products->description = $request->description;
+        $products->price = $request->price;
+        $products->save(); 
+        return  $products;
+      
     }
 
    

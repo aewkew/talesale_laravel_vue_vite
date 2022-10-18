@@ -94,9 +94,9 @@ export default {
         addproduct() {
             axios
                 .post("http://127.0.0.1:8000/api/addproduct", {
-                    name: this.name,
-                    description: this.description,
-                    price: this.price,
+                    name:this.name,
+                    description:this.description,
+                    price:this.price
                 })
                 .then(function (response) {
                     console.log(response);

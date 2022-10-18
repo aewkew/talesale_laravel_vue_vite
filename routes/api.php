@@ -16,7 +16,7 @@ Route::get('/inks', [InkController::class,'inks']);
 Route::post('/addproduct', [ProductController::class,'addproduct']);
 
 // edit
-Route::put('/editproduct/{id}', [ProductController::class,'editproduct']);
+Route::put('/editproduct/${id}', [ProductController::class,'editproduct']);
 
 
 Route::middleware('auth:sanctum')->get('/', function (Request $request) {
