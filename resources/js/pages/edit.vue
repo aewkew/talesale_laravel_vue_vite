@@ -15,87 +15,98 @@
                         <th scope="col">Delete</th>
                     </tr>
                 </thead>
-              
-                <tbody>
-                    
-                    <tr v-for="item in data" v-bind:key="item.productId">
-                        <th>{{ item.id }}</th>
-                        <td>{{ item.name }}</td>
-                        <td>{{ item.description }}</td>
-                        <td>{{ item.price }}</td>
-                        <td>{{ item.created_at }}</td>
-                        <td>{{ item.updated_at }}</td>
-                        <td>
-                            <button class="but-co btn" type="button" @click="addProduct"  > 
-                                <i class="bi bi-plus"></i>
-                            </button>
+
+                <tbody v-for="item in products" :key="item.id">
+                    <tr>
+                        <td scope="row">{{ item.id }}</td>
+                        <td scope="row">{{ item.name }}</td>
+                        <td scope="row">{{ item.description }}</td>
+                        <td scope="row">{{ item.price }}</td>
+                        <td scope="row">{{ item.created_at }}</td>
+                        <td scope="row">{{ item.updated_at }}</td>
+                        <td><button class="but-co btn" type="button">
+                                <i class="bi bi-plus"></i></button>
                         </td>
                         <td>
                             <!-- Button trigger modal -->
                             <button
                                 class="but-co btn"
-                                @click="onEdit(item.id)"
                                 data-bs-toggle="modal"
-                                 data-bs-target="#EditModal"
+                                data-bs-target="#EditModal"
                             >
                                 <i class="bi bi-pencil"></i>
                             </button>
-                            <Toedit ></Toedit>
+                            <Toedit></Toedit>
                         </td>
 
                         <td>
                             <button
                                 class="but-co btn"
-                                type="button"
-                              
+                                @click.prevent="deleteProduct(item.id)"
                             >
                                 <i class="bi bi-trash"></i>
                             </button>
-
                         </td>
                     </tr>
-                  
                 </tbody>
-           
             </table>
         </div>
     </div>
 </template>
 <script>
 import axios from "axios";
-import router from "../router";
 import Toedit from "./toedit.vue";
 
-const onEdit = (id) => {
-    router.push('./toedit/'+id)
-}
 export default {
     name: "edit",
-    props:['foo'],
+    components: { Toedit },
+
     data() {
         return {
-            data: [],
-            editProduct:{} 
-        }
+            products: Array,
+        };
     },
     created() {
         this.getData();
     },
     methods: {
+        async getData() {
+            let url = 'http://127.0.0.1:8000/api/products';
+            await axios
+                .get(url)
+                .then((response) => {
+                    this.products = response.data.products;
+                    console.log(this.products);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+        async deleteProduct(id) {
+      
+            let url = `http://127.0.0.1:8000/api/deleteProduct/${id}`;
+            await axios.delete(url).then(response =>{
+                if(response.data.code == 200) {
+                     alert(response.message);
+                     this.getData();
+                }  
+            }).catch(error =>{
+                console.log(error);
+            } );
+        },
 
-        getData() {
+        /* getData() {
+           
             axios
                 .get("http://127.0.0.1:8000/api/products")
                 .then((res) => (this.data = res.data));
-        },
-
-        editProduct(){
-            console.log(item.id)
-           
-        },
- 
+                
+        }, */
     },
-    components: { Toedit },
+    mounted() {
+        console.log("Contact List Component Mounted");
+        
+    },
 };
 </script>
 <style></style>

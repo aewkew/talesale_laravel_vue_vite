@@ -8,15 +8,16 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\InkController;
 
 //get 
-Route::get('/products', [ProductController::class,'product']);
-Route::get('/inks', [InkController::class,'inks']);
-
+Route::get('products', [ProductController::class,'products']);
 
 // save 
-Route::post('/addproduct', [ProductController::class,'addproduct']);
+Route::post('addproduct', [ProductController::class,'addproduct']);
 
 // edit
-Route::put('/editproduct/${id}', [ProductController::class,'editproduct']);
+Route::put('editproduct', [ProductController::class,'editproduct']);
+
+// Delete
+Route::delete('deleteProduct/{id}',[ProductController::class,'deleteProduct']);
 
 
 Route::middleware('auth:sanctum')->get('/', function (Request $request) {

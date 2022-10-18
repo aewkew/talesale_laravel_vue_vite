@@ -4,63 +4,48 @@
             <div class="row">
                 <div class="card">
                     <div class="card-body">
+                        <div class="alert alert-danger mt-4" v-if="errors.length" > 
+                            <ul class="mb-0">
+                                <li v-for="(error,index) in errors" :key="index"> 
+                                    {{ error}}
+                                </li>
+                            </ul>
+                        </div>
+
+                     <form @submit.prevent="addproduct">
                         <div class="row">
-                            <label
-                                for="inputnickname"
-                                class="form-label text-white fs-3"
-                            >
-                                product
-                            </label>
-                            <div class="input-group">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="inputnickname"
-                                    v-model="name"
+                            <label  class="form-label text-white fs-3"> product</label>
+                            <div class="form-group">
+                                <input type="text" class="form-control"
+                                    v-model="product.name"
                                 />
                             </div>
                         </div>
 
                         <div class="row">
-                            <label
-                                for="inputfullname"
-                                class="form-label text-white fs-3"
-                            >
-                                Description
-                            </label>
-                            <div class="input-group">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="inputfullname"
-                                    v-model="description"
+                            <label  class="form-label text-white fs-3" > Description </label>
+                            <div class="form-group">
+                                <input  type="text" class="form-control"
+                            
+                                    v-model="product.description"
                                 />
                             </div>
                         </div>
 
                         <div class="row">
-                            <label
-                                for="inputprice"
-                                class="form-label text-white fs-3"
-                            >
-                                price
-                            </label>
-                            <div class="input-group">
-                                <input
-                                    class="form-control"
-                                    id="inputprice"
-                                    v-model="price"
+                            <label  class="form-label text-white fs-3"> price </label>
+                            <div class="form-group">
+                                <input class="form-control" 
+                
+                                    v-model="product.price"
                                 />
                             </div>
                         </div>
 
                         <div class="row subre">
                             <div class="col sub">
-                                <button
-                                    type="submit"
-                                    class="btn btn-primary"
-                                     @click="addproduct"
-                                >
+                                <button type="submit" class="btn btn-primary"
+                                     >
                                     Submit
                                 </button>
                             </div>
@@ -69,9 +54,8 @@
                                     reset
                                 </button>
                             </div>
-                            
                         </div>
-              
+                    </form>
                     </div>
                 </div>
             </div>
@@ -85,25 +69,59 @@ export default {
     name: "create",
     data() {
         return {
-            name: "",
-            description: "",
-            price: "",
+            product: {},
+            name: '',
+            description: '',
+            price: '',
+            errors:[]
         };
     },
     methods: {
-        addproduct() {
+       async addproduct() {
+            this.errors =[];
+            if(!this.product.name){
+                this.errors.push("Name is required")
+            }
+            if(!this.product.description){
+                this.errors.push("Description is required")
+            }
+            if(!this.product.price){
+                this.errors.push("Price is required")
+            }
+
+            if(!this.errors.length){
+                let formData = new FormData();
+                formData.append('name', this.product.name);
+                formData.append('description', this.product.description);
+                formData.append('price', this.product.price);
+                let url = 'http://127.0.0.1:8000/api/addproduct';
+                await axios.post(url, formData).then((response) =>{
+                    console.log(response);
+                    if(response.status == 200){
+                      
+                       alert(response.data.message)
+                    }else {
+                        console.log('error');
+                    }
+                }).catch(error=> {
+                    this.errors.push(error.response);
+                });
+
+            }
+
+            /*
             axios
                 .post("http://127.0.0.1:8000/api/addproduct", {
-                    name:this.name,
-                    description:this.description,
-                    price:this.price
+                    name: this.name,
+                    description: this.description,
+                    price: this.price,
                 })
                 .then(function (response) {
                     console.log(response);
                 })
                 .catch(function (error) {
                     console.log(error);
-                });
+                }); */
         },
     },
 };

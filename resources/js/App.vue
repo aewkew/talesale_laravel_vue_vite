@@ -20,6 +20,24 @@ import Add from "./pages/shop/add.vue";
 export default {
     name: "App",
     components: { Corelayout, Content, TopNavbar, Add },
+    data() {
+        return {
+            data: [
+            ],
+           
+        }
+    },
+    created() {
+        this.getData();
+    },
+    methods: {
+        getData() {
+            axios
+                .get("http://127.0.0.1:8000/api/products")
+                .then((res) => (this.data = res.data));
+                
+        },
+    }
   
 };
 </script>
