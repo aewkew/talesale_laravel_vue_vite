@@ -44,8 +44,7 @@
 
                         <div class="row subre">
                             <div class="col sub">
-                                <button type="submit" class="btn btn-primary"
-                                     >
+                                <button type="submit" class="btn btn-primary" >
                                     Submit
                                 </button>
                             </div>

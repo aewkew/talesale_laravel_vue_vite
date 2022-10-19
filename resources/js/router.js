@@ -7,13 +7,15 @@ import Tablelist from './pages/TableList.vue';
 import Userprofile from './pages/UserProfile.vue';
 import Invoice from './pages/invoice.vue';
 import Inklist from './pages/Inklist.vue';
+import Login from './pages/Login.vue';
+import register from './pages/register.vue';
+
 
 //Test
 import create  from './pages/create.vue';
 import edit from './pages/edit.vue';
 import toedit from './pages/toedit.vue';
 import editProduct from './pages/editProduct.vue'
-
 
 const routes = [
         {
@@ -78,7 +80,18 @@ const routes = [
             path: '/edit/editProduct/:id?',
             name: 'editProduct',
             component: editProduct ,
-        }
+        },
+
+        {
+            path: '/Login',
+            name:'Login',
+            component: Login ,
+        },
+        {
+            path: '/register',
+            name:'register',
+            component: register ,
+        },
        
 
 
