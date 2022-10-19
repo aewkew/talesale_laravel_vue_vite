@@ -12,7 +12,7 @@
                             </ul>
                         </div>
 
-                     <form @submit.prevent="addproduct">
+                     <form @submit.prevent="updateProduct">
                         <div class="row">
                             <label  class="form-label text-white fs-3"> product</label>
                             <div class="form-group">
@@ -66,7 +66,7 @@
 import axios from "axios";
 
 export default {
-    name: "create",
+    name: "editProduct",
     data() {
         return {
             product: {},
@@ -76,8 +76,19 @@ export default {
             errors:[]
         };
     },
+    created (){
+      this.getProductById();
+    },
     methods: {
-       async addproduct() {
+       async getProductById() {
+            let url = `http://127.0.0.1:8000/api/getproduct/${this.
+            $route.params.id}`;
+            await axios.get(url).then(response => {
+                console.log(response);
+               this.product =response.data;
+            });
+       },
+       async updateProduct() {
             this.errors =[];
             if(!this.product.name){
                 this.errors.push("Name is required")
@@ -94,11 +105,10 @@ export default {
                 formData.append('name', this.product.name);
                 formData.append('description', this.product.description);
                 formData.append('price', this.product.price);
-                let url = 'http://127.0.0.1:8000/api/addproduct';
+                let url = `http://127.0.0.1:8000/api/updateProduct/${this.$route.params.id}`;
                 await axios.post(url, formData).then((response) =>{
                     console.log(response);
                     if(response.status == 200){
-                      
                        alert(response.data.message)
                     }else {
                         console.log('error');
@@ -112,6 +122,9 @@ export default {
            
         },
     },
+    mounted: function() {
+        console.log('Edit Product');
+    }
 };
 </script>
 <style></style>

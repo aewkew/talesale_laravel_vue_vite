@@ -27,23 +27,16 @@
                         <td><button class="but-co btn" type="button">
                                 <i class="bi bi-plus"></i></button>
                         </td>
-                        <td>
-                            <!-- Button trigger modal -->
-                            <button
-                                class="but-co btn"
-                                data-bs-toggle="modal"
-                                data-bs-target="#EditModal"
-                            >
-                                <i class="bi bi-pencil"></i>
-                            </button>
-                            <Toedit></Toedit>
+                        <td> <router-link :to="{ name: 
+                            'editProduct', params:{ id:item.id} }" class="but-co btn" ><i class="bi bi-pencil"></i></router-link> 
+                                
+                          
                         </td>
 
                         <td>
                             <button
                                 class="but-co btn"
-                                @click.prevent="deleteProduct(item.id)"
-                            >
+                                @click.prevent="deleteProduct(item.id)">
                                 <i class="bi bi-trash"></i>
                             </button>
                         </td>

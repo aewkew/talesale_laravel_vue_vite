@@ -30,19 +30,13 @@ class ProductController extends Controller
            'message' => 'product Create Success ',
             'code' => 200
        ]);
-        
-       
     }
  
     
-    public function editproduct(Request $request, $id)
-    {  
+    public function getproduct($id){  
         $products=Product::find($id);
-        $products->name = $request->name;
-        $products->description = $request->description;
-        $products->price = $request->price;
-        $products->update(); 
-          
+        return response()->json($products);
+       
     }
 
     public function deleteProduct($id) {
@@ -59,8 +53,16 @@ class ProductController extends Controller
          }
     }
 
-   
-    
-
+    public function updateProduct($id, Request $request){
+        $products= Product::where('id', $id)->first();
+        $products->name          = $request->name;
+        $products->description   = $request->description;
+        $products->price         = $request->price;
+        $products->save();
+        return response()->json([
+           'message' => 'product Update Success ',
+           'code' => 200
+       ]);
+    }
 
 }
