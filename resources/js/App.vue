@@ -1,15 +1,21 @@
 <template>
     <div id="app">
-        <!-- Sidebar -->
-        <Corelayout />
+        <div class="Login" v-if="isLoggedIn">
+            <!-- Sidebar -->
+            <Corelayout />
 
-        <!-- Content -->
-        <div class="main-panel">
-            <TopNavbar></TopNavbar>
-            <div class="content">
-                <router-view></router-view>
+            <!-- Content -->
+            <div class="main-panel">
+                <TopNavbar></TopNavbar>
+                <div class="content">
+                    
+                </div>
             </div>
         </div>
+        <div class="Login" v-else>
+             
+        </div>
+        <router-view></router-view>
     </div>
 </template>
 <script>
@@ -17,28 +23,40 @@ import Corelayout from "./layouts/corelayout.vue";
 import Content from "./layouts/Content.vue";
 import TopNavbar from "./layouts/topNavbar.vue";
 import Add from "./pages/shop/add.vue";
+import Home from "./pages/Home.vue";
 export default {
     name: "App",
-    components: { Corelayout, Content, TopNavbar, Add },
+    components: { Corelayout, Content, TopNavbar, Add, Home },
     data() {
         return {
-            data: [
-            ],
-           
+           isLoggedIn:false,
         }
     },
     created() {
-        this.getData();
+       if(window.Laravel.isLoggedin){
+        this.isLoggedIn = true
+       }
     },
     methods: {
-        getData() {
-            axios
-                .get("http://127.0.0.1:8000/api/products")
-                .then((res) => (this.data = res.data));
-                
-        },
+        logout(e) {
+            e.preventDefault();
+            this.$axios.get('/sanctum/csrf-cookie').then(response => {
+                this.$axios.post('/api/logout')
+                .then(response => {
+                    if(response.data.success){
+                        window.location.href ="/"
+                    }else {
+                        console.log(response);
+                    }  
+                }) 
+                .catch(function (error) {
+                     console.error(error);
+                });
+                   
+            })
+        }
     }
-  
+   
 };
 </script>
 <style></style>
