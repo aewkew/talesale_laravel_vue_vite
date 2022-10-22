@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <div class="Login" v-if="isLoggedIn">
+        <div  v-if="isLoggedIn">
             <!-- Sidebar -->
             <Corelayout />
 
@@ -8,14 +8,14 @@
             <div class="main-panel">
                 <TopNavbar></TopNavbar>
                 <div class="content">
-                    
+                    <router-view></router-view>
                 </div>
             </div>
         </div>
-        <div class="Login" v-else>
+        <div v-else>
              
         </div>
-        <router-view></router-view>
+        
     </div>
 </template>
 <script>

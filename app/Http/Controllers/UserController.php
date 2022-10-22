@@ -8,14 +8,15 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Support\Facades\Session;
 
+
 class UserController extends Controller
 {
 
-  public function users(){
-    $users = User::all();
+  public function user(){
+    $user = User::all();
     return response()->json(
         [
-        'users' => $users,
+         'user' => $user,
          'message' => 'User',
          'code' => 200
     ]
@@ -28,7 +29,7 @@ class UserController extends Controller
         'email' => $request->email,
         'password' => $request->password
        ];
-       if(Auth::attempt($credentials )) {
+       if(Auth::attempt($credentials)) {
          $succes = true;
          $message = "User login successfully";
        }else {
@@ -41,26 +42,39 @@ class UserController extends Controller
        ];
         
        return response()->json($response);
+    } 
+
+
+    public function register_user(Request $request){
+              
+      try {
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        $success = true;
+        $message = "User register successfully";
+
+    } catch (\Illuminate\Database\QueryException $ex) {
+        $success = false;
+        $message = $ex->getMessage();
     }
 
+    $response = [
+        'success' => $success,
+        'message' => $message
+    ];
 
-
-
-    public function register(Request $request){
-       
-            $user = new User();
-            $user->name = $request->name;
-            $user->name = $request->email;
-            $user->password = Hash::make($request->password);
-            $user->save();
-            return response()->json([
-              'message' => 'product Create Success ',
-               'code' => 200
-          ]);
+    return response()->json($response);
     }
       
 
-       public function logout()
+
+
+/*
+       public function logout_user()
     {
          try{
            Session::flush();
@@ -78,5 +92,5 @@ class UserController extends Controller
           return response()->json($response);
     }
 
-    
+    */
 }
