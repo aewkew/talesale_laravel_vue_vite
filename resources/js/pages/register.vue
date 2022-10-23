@@ -9,19 +9,19 @@
       
                              <div class="form-group">
                               <label for="name" > Name </label>
-                              <input type="text" class="form-control" name="name" v-model=" name">
+                              <input type="text" class="form-control" name="name" v-model="name">
                             
                               </div>
 
                               <div class="form-group">
                               <label for="email" > Email </label>
-                              <input type="text" class="form-control" name="email" v-model=" email">
+                              <input type="text" class="form-control" name="email" v-model="email">
                         
                               </div>
 
                               <div class="form-group">
                               <label for="password" > Password </label>
-                              <input type="password" class="form-control" name="password" v-model=" password">
+                              <input type="password" class="form-control" name="password" v-model="password">
                        
                               </div>
 
@@ -59,7 +59,6 @@ export default {
                 password: "",
                 error: null
             
-    
         }
     },
     methods: {
@@ -67,7 +66,7 @@ export default {
              e.preventDefault()
                 if(this.password.length > 0) {
                    await axios.get('./cofig/sanctum/csrf-cookie').then(response => {
-                         axios.post('http://127.0.0.1:8000/api/register_user', {
+                         axios.post('http://127.0.0.1:8000/api/register_user',{
                             name: this.name,
                             email: this.email,
                             password: this.password
