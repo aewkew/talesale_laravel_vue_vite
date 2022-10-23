@@ -42,7 +42,7 @@ export default {
                     axios.post('/api/logout')
                     .then(response => {
                         if(response.data.success) {
-                            window.location.href = "/"
+                            window.location.href = "/login"
                         } else {
                             console.log(response);
                         }
