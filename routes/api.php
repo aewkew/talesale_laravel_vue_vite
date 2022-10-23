@@ -25,7 +25,7 @@ Route::delete('deleteProduct/{id}',[ProductController::class,'deleteProduct']);
 //register&login
 Route::post('login', [UserController::class, 'login']);
 Route::post('register_user', [UserController::class, 'register_user']);
-Route::post('logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
+Route::post('logout_user', [UserController::class, 'logout_user'])->middleware('auth::sanctum');
 
 /*
 

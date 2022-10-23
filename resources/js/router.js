@@ -7,9 +7,9 @@ import Tablelist from './pages/TableList.vue';
 import Userprofile from './pages/UserProfile.vue';
 import Invoice from './pages/invoice.vue';
 import Inklist from './pages/Inklist.vue';
+import login from './pages/login.vue';
 import register from './pages/register.vue';
 import home from './pages/Home.vue';
-import login from './pages/login.vue'
 
 
 //Test
@@ -19,9 +19,13 @@ import toedit from './pages/toedit.vue';
 import editProduct from './pages/editProduct.vue'
 
 const routes = [
- 
+    {
+        path: '/',
+        name: 'home',
+        component: home
+    },
         {
-            path: '/',
+            path: '/Dashboard',
             name: 'Dashboard',
             component: Dashboard
         },
@@ -84,17 +88,15 @@ const routes = [
             component: editProduct ,
         },
 
-       
-        {
-            path: '/register',
-            name:'register',
-            component: register ,
-        },
         {
             path: '/login',
             name:'login',
             component: login ,
-
+        },
+        {
+            path: '/register',
+            name:'register',
+            component: register ,
         },
        
 

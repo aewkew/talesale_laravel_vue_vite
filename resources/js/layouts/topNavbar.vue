@@ -14,7 +14,7 @@
             </template>
 
             <b-dropdown-item >Profile</b-dropdown-item>
-            <a class="nav-item nav-link" style="cursor: pointer;" @click="logout">Logout</a>
+            <b-dropdown-item >Sign Out</b-dropdown-item>
           </b-nav-item-dropdown>
           
         </div>
@@ -26,31 +26,7 @@
 </template>
 <script>
 export default {
-    data() {
-      return {
-        
-      }
-    },
-    methods: {
-      async logout(e) {
-            e.preventDefault();
-            await axios.get('/sanctum/csrf-cookie').then(response => {
-                   axios.post('http://127.0.0.1:8000/api/logout')
-                .then(response => {
-                    if(response.data.success){
-                        window.location.href ="/Home"
-                    }else {
-                        console.log(response);
-                    }  
-                }) 
-                .catch(function (error) {
-                     console.error(error);
-                });
-                   
-            })
-        }
-
-    }
+    
 }
 </script>
 <style >
