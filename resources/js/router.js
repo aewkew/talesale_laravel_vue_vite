@@ -19,14 +19,14 @@ import toedit from './pages/toedit.vue';
 import editProduct from './pages/editProduct.vue'
 
 const routes = [
-    {
+    {   
         path: '/',
         name: 'home',
         component: home
     },
         {
-            path: '/Dashboard',
-            name: 'Dashboard',
+            path: '/dashboard',
+            name: 'dashboard',
             component: Dashboard
         },
         {

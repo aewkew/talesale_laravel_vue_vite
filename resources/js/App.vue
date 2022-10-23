@@ -8,12 +8,13 @@
             <div class="main-panel">
                 <TopNavbar></TopNavbar>
                 <div class="content">
-                    <router-view></router-view>
+                    <router-view></router-view> 
                 </div>
             </div>
         </div>
+
         <div v-else>
-            <router-view></router-view>
+            <router-view></router-view> 
         </div>
         
     </div>
@@ -22,11 +23,11 @@
 import Corelayout from "./layouts/corelayout.vue";
 import Content from "./layouts/Content.vue";
 import TopNavbar from "./layouts/topNavbar.vue";
-import Add from "./pages/shop/add.vue";
 import Home from "./pages/Home.vue";
+
 export default {
     name: "App",
-    components: { Corelayout, Content, TopNavbar, Add, Home },
+    components: { Corelayout, Content, TopNavbar, Home },
     data() {
         return {
            isLoggedIn:false,
@@ -40,7 +41,7 @@ export default {
     methods: {
         logout(e) {
             e.preventDefault();
-            this.$axios.get('/sanctum/csrf-cookie').then(response => {
+            this.$axios.get('./cofig/sanctum/csrf-cookie').then(response => {
                 this.$axios.post('/api/logout')
                 .then(response => {
                     if(response.data.success){

@@ -11,17 +11,17 @@ use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
-
+ 
   public function user(){
     $user = User::all();
     return response()->json(
         [
-         'user' => $user,
+         'users' => $user,
          'message' => 'User',
          'code' => 200
     ]
 );
-}
+} 
     
     public function login(Request $request)
     {
@@ -73,7 +73,7 @@ class UserController extends Controller
 
 
 
-/*
+
        public function logout_user()
     {
          try{
@@ -92,5 +92,5 @@ class UserController extends Controller
           return response()->json($response);
     }
 
-    */
+    
 }

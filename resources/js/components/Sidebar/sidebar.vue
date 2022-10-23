@@ -14,7 +14,7 @@
 
             <ul class="nav">
                 <li class="nav-item">
-                        <router-link class="nav-link" to="/">
+                        <router-link class="nav-link" to="/dashboard">
                             <span> <i class="bi bi-bar-chart-line"></i> </span>
                             <span class="text"> Dashboard </span>
                         </router-link>
