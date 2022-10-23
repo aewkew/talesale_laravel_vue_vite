@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
-
+  /*
   public function user(){
     $user = User::all();
     return response()->json(
@@ -19,9 +19,8 @@ class UserController extends Controller
          'user' => $user,
          'message' => 'User',
          'code' => 200
-    ]
-);
-}
+        ]);
+      } */
     
     public function login(Request $request)
     {
@@ -45,8 +44,8 @@ class UserController extends Controller
     } 
 
 
-    public function register_user(Request $request){
-              
+    public function register_user(Request $request)
+    {       
       try {
         $user = new User();
         $user->name = $request->name;
@@ -57,10 +56,10 @@ class UserController extends Controller
         $success = true;
         $message = "User register successfully";
 
-    } catch (\Illuminate\Database\QueryException $ex) {
+      } catch (\Illuminate\Database\QueryException $ex) {
         $success = false;
         $message = $ex->getMessage();
-    }
+      }
 
     $response = [
         'success' => $success,
@@ -68,29 +67,24 @@ class UserController extends Controller
     ];
 
     return response()->json($response);
+
+  }
+
+  public function logout()
+  {
+    try {
+      Session::flush();
+      $success = true;
+      $message = "Logout successfully";
+    } catch (\Illuminate\Database\QueryException $ex){
+      $success = false;
+      $message = $ex->getMessage();
     }
-      
+    $response = [
+      'success' => $success,
+      'message' => $message
+  ];
+  return response()->json($response);
+   }
 
-
-
-/*
-       public function logout_user()
-    {
-         try{
-           Session::flush();
-           $succes = true;
-           $message = "Logout success";
-         }catch (\Illuminate\Database\QueryException $ex) {
-              $succes  = false;
-              $message = $ex->getMessage();
-         }
-         $response = [
-            'success' => $succes,
-            'message' => $message
-          ];
-           
-          return response()->json($response);
-    }
-
-    */
 }

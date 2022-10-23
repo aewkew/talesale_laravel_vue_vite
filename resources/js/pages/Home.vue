@@ -1,14 +1,14 @@
 <template >
     <div>
-      <Login></Login>
-        
+      
+        <login></login>
     </div>
 </template>
 <script>
-import Login from './login.vue';
+import login from './login.vue';
 
 export default {
-    components: { Login }
+    components: { login }
 }
 </script>
 <style >

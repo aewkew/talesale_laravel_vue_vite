@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+
         <div  v-if="isLoggedIn">
             <!-- Sidebar -->
             <Corelayout />
@@ -12,7 +13,10 @@
                 </div>
             </div>
         </div>
+        
         <div v-else>
+            <router-view></router-view>
+            <Home></Home>
              
         </div>
         
@@ -38,13 +42,13 @@ export default {
        }
     },
     methods: {
-        logout(e) {
+      async logout_user(e) {
             e.preventDefault();
-            this.$axios.get('/sanctum/csrf-cookie').then(response => {
-                this.$axios.post('/api/logout')
+            await axios.get('/sanctum/csrf-cookie').then(response => {
+                   axios.post('http://127.0.0.1:8000/api/logout')
                 .then(response => {
                     if(response.data.success){
-                        window.location.href ="/"
+                        window.location.href ="/home"
                     }else {
                         console.log(response);
                     }  
