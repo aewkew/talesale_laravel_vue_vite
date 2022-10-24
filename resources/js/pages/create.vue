@@ -25,20 +25,14 @@
                         <div class="row">
                             <label  class="form-label text-white fs-3" > Brand </label>
                             <div class="form-group">
-                                <input  type="text" class="form-control"
-                            
-                                    v-model="brand"
-                                />
+                                <input  type="text" class="form-control" v-model="brand"/>   
                             </div>
                         </div>
 
                         <div class="row">
                             <label  class="form-label text-white fs-3" > Color </label>
                             <div class="form-group">
-                                <input  type="text" class="form-control"
-                            
-                                    v-model="color"
-                                />
+                                <input  type="text" class="form-control" v-model="color"/>  
                             </div>
                         </div>
 
@@ -46,10 +40,7 @@
                         <div class="row">
                             <label  class="form-label text-white fs-3"> price </label>
                             <div class="form-group">
-                                <input class="form-control" 
-                
-                                    v-model="price"
-                                />
+                                <input class="form-control" v-model="price" />                                  
                             </div>
                         </div>
 
@@ -74,13 +65,14 @@
     </div>
 </template>
 <script>
+
 import axios from "axios";
 
 export default {
     name: "create",
     data() {
         return {
-          
+            product: {},
             name: '',
             brand: '',
             color: '',
@@ -138,6 +130,6 @@ export default {
         }
         next();
     }
-};
+}; 
 </script>
 <style></style>

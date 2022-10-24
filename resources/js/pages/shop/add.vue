@@ -4,7 +4,7 @@
         data-bs-backdrop="static"
         data-bs-keyboard="false"
         tabindex="-1"
-        aria-labelledby="staticBackdropLabel"
+     
         aria-hidden="true" >
         <div class="modal-dialog">
 
@@ -22,56 +22,54 @@
                 </div>
 
                 <div class="modal-body">
+                    <form @submit.prevent="addproduct">
+                    <div class="row ">
+                        <label for="staticBackdropLabel" class="form-label" > Name product</label>
+                            <div class="form-group">
+                                <input type="text" class="form-control"  v-model="name"  />
+                            </div>
+                    </div>
                     <div class="row ">
                         <label for="staticBackdropLabel" class="form-label" > Brand </label>
                         <div class="input-group">
-                            <select class="form-select" id="staticBackdropLabel">
-                                <option selected>Choose Brand</option>
-                                <option value="canon">Canon</option>
-                                <option value="epson">Epson</option>
-                                <option value="Hp">Hp</option>
-                                <option value="Brother">Brother</option>
-                            </select>
+                            <input  type="text" class="form-control" v-model="brand"/>
                         </div>
                     </div>
 
                     <div class="row">
                         <label for="inputGroupSelect01" class="form-label" > Color </label>
                         <div class="input-group">
-                            <select class="form-select" id="inputGroupSelect01">
-                                <option selected>Choose Color</option>
-                                <option value="Yellow">Yellow</option>
-                                <option value="Blue">Blue</option>
-                                <option value="Black">Black</option>
-                                <option value="Red">Red</option>
-                            </select>
+                            <div class="form-group">
+                                <input  type="text" class="form-control" v-model="color"/>  
+                            </div>
                         </div>
                     </div>
 
                     <div class="row"> 
                         <label for="inputprice" class="form-label" > Price </label>
-                        <div class="input-group">
-                            <input  class="form-control" id="inputprice">
-                        </div>
+                        <div class="form-group">
+                                <input class="form-control" v-model="price" />                                  
+                            </div>
                     </div>
 
-                    <div class="row">
+                    <!--<div class="row">
                         <label for="inputvalue"  class="form-label" > Value </label>
                         <div class="input-group"> 
                             <input type="number" class="form-control" id="inputvalue">
                         </div>
-                    </div>
+                    </div>-->
 
                     <div class="row subre"> 
                         <div class="col sub"> <button type="submit" class="btn btn-primary">Submit</button> </div>
                         <div class="col res"> <button type="reset" class="btn btn-danger">reset</button> </div>
                         
                     </div>
+                </form>
 
                 </div>
 
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal" >
+                    <button  class="btn btn-secondary" data-bs-dismiss="modal" >
                        Close
                     </button>
                 </div>
@@ -80,6 +78,83 @@
     </div>
 </template>
 <script>
-export default {};
+import axios from "axios";
+export default {
+    name: "add",
+     
+    data() {
+        return {
+            product: {},
+            name: '',
+            brand: '',
+            color: '',
+            price: '',
+            errors:[]
+        };
+    },
+    created() {
+        this.getData();
+    },
+    methods: {
+         async getData() {
+            let url = "/api/products";
+            await axios
+                .get(url)
+                .then((response) => {
+                    this.products = response.data.products;
+                    console.log(this.products);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+       async addproduct() {
+
+            this.errors =[];
+            if(!this.name){
+                this.errors.push("Name is required")
+            }
+            if(!this.brand){
+                this.errors.push("Brand is required")
+            }
+            if(!this.color){
+                this.errors.push("Color is required")
+            }
+            if(!this.price){
+                this.errors.push("Price is required")
+            }
+
+            if(!this.errors.length){
+                let formData = new FormData();
+                formData.append('name', this.name);
+                formData.append('brand', this.brand);
+                formData.append('color', this.color);
+                formData.append('price', this.price);
+             
+                await axios.post('/api/addproduct', formData).then((response) =>{
+                    console.log(response);
+                    if(response.status == 200){
+                      
+                       alert(response.data.message)
+                    }else {
+                        console.log('error');
+                    }
+                }).catch(error=> {
+                    this.errors.push(error.response);
+                });
+
+            }
+    
+
+            
+
+           
+        },
+    }, 
+    mounted() {
+        console.log("ADD Product List Component Mounted");
+    },
+  
+};
 </script>
-<style></style>
+

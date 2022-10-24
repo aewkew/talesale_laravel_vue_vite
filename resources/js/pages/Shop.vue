@@ -1,6 +1,5 @@
 <template>
     <div class="container">
-        
         <Search></Search>
 
         <div class="sale">List Product</div>
@@ -9,56 +8,56 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col-auto">Code product</th>
-                        <th scope="col-auto">Name</th>
-                        <th scope="col-auto">Brand</th>
-                        <th scope="col-auto">Color</th>
-                        <th scope="col-auto">price</th>
-                        <th scope="col-auto">Add</th>
+                        <th scope="col-1">Code</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Brand</th>
+                        <th scope="col">Color</th>
+                        <th scope="col">price</th>
+                        <th scope="col">Add</th>
+                        <th scope="col">Delete</th>
                     </tr>
                 </thead>
 
                 <tbody v-for="item in products" :key="item.id">
-                    <tr >
+                    <tr>
                         <th>{{ item.id }}</th>
                         <td>{{ item.name }}</td>
                         <td>{{ item.brand }}</td>
                         <td>{{ item.color }}</td>
                         <td>{{ item.price }}</td>
                         <td>
-                            <button
-                                class="but-co btn "
-                                type="button">
+                            <button class="but-co btn" type="button">
                                 <i class="bi bi-plus"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <button class="but-co btn"  @click.prevent="deleteProduct(item.id)">
+                                <i class="bi bi-trash"></i>
                             </button>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-     
-
-   
-
     </div>
 </template>
 <script>
-import Card from "../components/Cards/Card.vue";
 import Search from "./shop/search.vue";
 export default {
     name: "Shop",
-    components: { Card, Search },
+    components: { Search },
     data() {
         return {
             products: Array,
+           
         };
     },
     created() {
         this.getData();
     },
-    methods:{
-        async getData(){
-            let url = '/api/products';
+    methods: {
+        async getData() {
+            let url = "/api/products";
             await axios
                 .get(url)
                 .then((response) => {
@@ -68,14 +67,24 @@ export default {
                 .catch((error) => {
                     console.log(error);
                 });
-        }
-
+        },
+        async deleteProduct(id) {
+      
+      let url = `/api/deleteProduct/${id}`;
+      await axios.delete(url).then(response =>{
+          if(response.data.code == 200) {
+               alert(response.message);
+               this.getData();
+          }  
+      }).catch(error =>{
+          console.log(error);
+      } );
+  },
+      
     },
     mounted() {
-        console.log("Contact List Component Mounted");
-        
+        console.log("Product List Component Mounted");
     },
-   
 };
 </script>
 <style></style>

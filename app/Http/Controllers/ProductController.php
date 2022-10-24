@@ -7,6 +7,7 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
+    /*
      public function index(){
         $product = Product::all()->toArray(); 
         return response()->json(
@@ -15,10 +16,10 @@ class ProductController extends Controller
              'message' => 'Product',
              'code' => 200
         ]
-    );
+    ); 
     return array_reverse($product);
-     }
-     /*
+     }  */
+     
     public function products(){
         $product = Product::all();
         return response()->json(
@@ -28,7 +29,7 @@ class ProductController extends Controller
              'code' => 200
         ]
     );
-    }    */
+    }    
 
     public function addproduct(Request $request)
     {    

@@ -10,7 +10,8 @@ import Inklist from './pages/Inklist.vue';
 import login from './pages/login.vue';
 import register from './pages/register.vue';
 import home from './pages/Home.vue';
-
+import add from './pages/shop/add.vue'
+import search from './pages/shop/search.vue'
 
 //Test
 import create  from './pages/create.vue';
@@ -97,6 +98,17 @@ const routes = [
             path: '/register',
             name:'register',
             component: register ,
+        },
+
+        {
+            path: '/add',
+            name:'add',
+            component: add ,
+        },
+        {
+            path: '/search',
+            name:'search',
+            component: search ,
         },
        
 
