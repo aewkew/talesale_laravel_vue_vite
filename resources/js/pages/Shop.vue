@@ -9,21 +9,21 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Code product</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Brand</th>
-                        <th scope="col">Color</th>
-                        <th scope="col">price</th>
-                        <th scope="col">Add</th>
+                        <th scope="col-auto">Code product</th>
+                        <th scope="col-auto">Name</th>
+                        <th scope="col-auto">Brand</th>
+                        <th scope="col-auto">Color</th>
+                        <th scope="col-auto">price</th>
+                        <th scope="col-auto">Add</th>
                     </tr>
                 </thead>
 
-                <tbody>
-                    <tr v-for="(item, i) in items" :key="i" :to="item.to">
-                        <th scope="row">{{ item.Code_Product }}</th>
-                        <td>{{ item.Date }}</td>
-                        <td>{{ item.Brand }}</td>
-                        <td>{{ item.Color }}</td>
+                <tbody v-for="item in products" :key="item.id">
+                    <tr >
+                        <th>{{ item.id }}</th>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.brand }}</td>
+                        <td>{{ item.color }}</td>
                         <td>{{ item.price }}</td>
                         <td>
                             <button
@@ -47,125 +47,35 @@ import Card from "../components/Cards/Card.vue";
 import Search from "./shop/search.vue";
 export default {
     name: "Shop",
+    components: { Card, Search },
     data() {
         return {
-            items: [
-                {
-                    Code_Product: "13287",
-                    Date: "2022-08-24",
-                    Brand: "HP",
-                    Color: "Blue",
-                    price: "115",
-                },
-                {
-                    Code_Product: "13288",
-                    Date: "2022-08-24",
-                    Brand: "HP",
-                    Color: "Blue",
-                    price: "115",
-                },
-                {
-                    Code_Product: "13289",
-                    Date: "2022-08-24",
-                    Brand: "HP",
-                    Color: "Blue",
-                    price: "115",
-                },
-                {
-                    Code_Product: "13289",
-                    Date: "2022-08-24",
-                    Brand: "HP",
-                    Color: "Blue",
-                    price: "115",
-                },
-                {
-                    Code_Product: "13289",
-                    Date: "2022-08-24",
-                    Brand: "HP",
-                    Color: "Blue",
-                    price: "115",
-                },
-                {
-                    Code_Product: "13289",
-                    Date: "2022-08-24",
-                    Brand: "HP",
-                    Color: "Blue",
-                    price: "115",
-                },
-                {
-                    Code_Product: "13289",
-                    Date: "2022-08-24",
-                    Brand: "HP",
-                    Color: "Blue",
-                    price: "115",
-                },
-                {
-                    Code_Product: "13289",
-                    Date: "2022-08-24",
-                    Brand: "HP",
-                    Color: "Blue",
-                    price: "115",
-                },
-                {
-                    Code_Product: "13289",
-                    Date: "2022-08-24",
-                    Brand: "HP",
-                    Color: "Blue",
-                    price: "115",
-                },
-                {
-                    Code_Product: "13289",
-                    Date: "2022-08-24",
-                    Brand: "HP",
-                    Color: "Blue",
-                    price: "115",
-                },
-                {
-                    Code_Product: "13289",
-                    Date: "2022-08-24",
-                    Brand: "HP",
-                    Color: "Blue",
-                    price: "115",
-                },
-                {
-                    Code_Product: "13289",
-                    Date: "2022-08-24",
-                    Brand: "HP",
-                    Color: "Blue",
-                    price: "115",
-                },
-                {
-                    Code_Product: "13289",
-                    Date: "2022-08-24",
-                    Brand: "HP",
-                    Color: "Blue",
-                    price: "115",
-                },
-                {
-                    Code_Product: "13289",
-                    Date: "2022-08-24",
-                    Brand: "HP",
-                    Color: "Blue",
-                    price: "115",
-                },
-                {
-                    Code_Product: "13289",
-                    Date: "2022-08-24",
-                    Brand: "HP",
-                    Color: "Blue",
-                    price: "115",
-                },
-                {
-                    Code_Product: "13289",
-                    Date: "2022-08-24",
-                    Brand: "HP",
-                    Color: "Blue",
-                    price: "115",
-                },
-            ],
+            products: Array,
         };
     },
-    components: { Card, Search },
+    created() {
+        this.getData();
+    },
+    methods:{
+        async getData(){
+            let url = '/api/products';
+            await axios
+                .get(url)
+                .then((response) => {
+                    this.products = response.data.products;
+                    console.log(this.products);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+
+    },
+    mounted() {
+        console.log("Contact List Component Mounted");
+        
+    },
+   
 };
 </script>
 <style></style>

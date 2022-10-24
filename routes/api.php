@@ -11,6 +11,8 @@ use App\Http\Controllers\UserController;
 Route::get('products', [ProductController::class,'products']);
 Route::get('user', [UserController::class,'user']);
 
+
+
 // save 
 Route::post('addproduct', [ProductController::class,'addproduct']);
 
@@ -31,3 +33,9 @@ Route::post('logout', [UserController::class, 'logout']);
 Route::middleware('auth:sanctum')->get('/', function (Request $request) {
     return $request->user();
 });  */
+
+Route::group(['prefix' => 'posts','middleware' => 'auth:sanctum'], function() {
+    Route::get('/', [PostsController::class,'index']);
+    Route::get('products', [ProductController::class,'products']);
+   
+});

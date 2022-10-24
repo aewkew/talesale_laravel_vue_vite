@@ -14,30 +14,41 @@
 
                      <form @submit.prevent="addproduct">
                         <div class="row">
-                            <label  class="form-label text-white fs-3"> product</label>
+                            <label  class="form-label text-white fs-3">Name product</label>
                             <div class="form-group">
                                 <input type="text" class="form-control"
-                                    v-model="product.name"
+                                    v-model="name"
                                 />
                             </div>
                         </div>
 
                         <div class="row">
-                            <label  class="form-label text-white fs-3" > Description </label>
+                            <label  class="form-label text-white fs-3" > Brand </label>
                             <div class="form-group">
                                 <input  type="text" class="form-control"
                             
-                                    v-model="product.description"
+                                    v-model="brand"
                                 />
                             </div>
                         </div>
+
+                        <div class="row">
+                            <label  class="form-label text-white fs-3" > Color </label>
+                            <div class="form-group">
+                                <input  type="text" class="form-control"
+                            
+                                    v-model="color"
+                                />
+                            </div>
+                        </div>
+
 
                         <div class="row">
                             <label  class="form-label text-white fs-3"> price </label>
                             <div class="form-group">
                                 <input class="form-control" 
                 
-                                    v-model="product.price"
+                                    v-model="price"
                                 />
                             </div>
                         </div>
@@ -69,33 +80,39 @@ export default {
     name: "create",
     data() {
         return {
-            product: {},
+          
             name: '',
-            description: '',
+            brand: '',
+            color: '',
             price: '',
             errors:[]
         };
     },
     methods: {
        async addproduct() {
+
             this.errors =[];
-            if(!this.product.name){
+            if(!this.name){
                 this.errors.push("Name is required")
             }
-            if(!this.product.description){
-                this.errors.push("Description is required")
+            if(!this.brand){
+                this.errors.push("Brand is required")
             }
-            if(!this.product.price){
+            if(!this.color){
+                this.errors.push("Color is required")
+            }
+            if(!this.price){
                 this.errors.push("Price is required")
             }
 
             if(!this.errors.length){
                 let formData = new FormData();
-                formData.append('name', this.product.name);
-                formData.append('description', this.product.description);
-                formData.append('price', this.product.price);
-                let url = 'http://127.0.0.1:8000/api/addproduct';
-                await axios.post(url, formData).then((response) =>{
+                formData.append('name', this.name);
+                formData.append('brand', this.brand);
+                formData.append('color', this.color);
+                formData.append('price', this.price);
+             
+                await axios.post('/api/addproduct', formData).then((response) =>{
                     console.log(response);
                     if(response.status == 200){
                       
@@ -108,10 +125,19 @@ export default {
                 });
 
             }
+    
+
+            
 
            
         },
     },
+    beforeRouteEnter(to, from, next) {
+        if (!window.Laravel.isLoggedin) {
+            window.location.href = "/";
+        }
+        next();
+    }
 };
 </script>
 <style></style>
