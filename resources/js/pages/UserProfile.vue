@@ -2,6 +2,8 @@
     <div class="container">
         <UserCard> </UserCard>
 
+
+
         <div class="sale">User list</div>
 
         <div class="tableContrainer">
@@ -43,7 +45,18 @@
 import UserCard from './UserProfile/UserCard.vue';
 export default {
     name: "Userprofile",
-    components: { UserCard }
+    components: { UserCard },
+    data() {
+
+    },
+    created() {
+        if (window.Laravel.user) {
+            this.name = window.Laravel.user.name
+        } 
+        if (window.Laravel.isLoggedin) {
+                this.isLoggedIn = true
+            }
+    },
 }
 </script>
 <style >

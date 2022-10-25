@@ -8,12 +8,12 @@
 
                 <div class="col"> 
                     <div class="headname">NickName </div>
-                    <div class="dataname">Aewkew </div>  
+                    <div class="dataname">{{name}}</div>  
                 </div>
 
                 <div class="col">
                     <div class="headname" >FullName</div>
-                    <div class="dataname" >Konrawee Juntasoot </div>
+                    <div class="dataname" >{{email}} </div>
                 </div>
 
                 <div class="col">
@@ -43,7 +43,18 @@
 <script>
 import EditfileForm from './EditfileForm.vue';
 export default {
-    components: { EditfileForm }
+    components: { EditfileForm },
+    data(){
+
+    },
+    created() {
+        if (window.Laravel.user) {
+            this.name = window.Laravel.user.name
+        } 
+        if (window.Laravel.isLoggedin) {
+                this.isLoggedIn = true
+            }
+    },
 }
 </script>
 <style >

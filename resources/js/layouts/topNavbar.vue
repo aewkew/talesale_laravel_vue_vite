@@ -6,9 +6,9 @@
       <div class="collapse navbar-collapse">
         <div class="navbar-nav ml-auto">
             <div class="row">
-       
-            <div class="col">Profile:{{name}}</div>
-            <div class="col">  <a style="cursor: pointer;" @click="logout">Logout</a> </div>
+            <router-link :to="{name:'Userprofile',params:{id:id}}"> <div class="col">Profile:{{name}}</div></router-link>
+           
+            <div class="col">  <a style="cursor: pointer;" @click="logout">Logout</a></div>
             </div>
          
         </div>
@@ -24,6 +24,7 @@ export default {
     data() {
         return {
             name: null,
+            email: null,
             isLoggedIn: false,
         }
     },
