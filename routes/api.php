@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CompanyController;
 
 //get 
 
@@ -22,14 +23,20 @@ Route::delete('deleteProduct/{id}',[ProductController::class,'deleteProduct']);
 Route::get('customers', [CustomerController::class,'customers']);
 Route::post('addcustomers', [CustomerController::class,'addcustomers']);
 Route::get('getcustomers/{id}', [CustomerController::class,'getcustomers']);
+Route::post('updateCustomer/{id}', [CustomerController::class,'updateCustomer']);
 Route::delete('deleteCustomer/{id}',[CustomerController::class,'deleteCustomer']);
 
+//company
+Route::get('companies', [CompanyController::class,'companies']);
+Route::post('addCompanies', [CompanyController::class,'addCompanies']);
+Route::get('getCompanies/{id}', [CompanyController::class,'getCompanies']);
+Route::post('updateCompany/{id}', [CompanyController::class,'updateCompany']);
+Route::delete('deleteCompany/{id}', [CompanyController::class,'deleteCompany']);
 
 
 
 // user
 Route::get('user', [UserController::class,'user']);
-
 
 
 

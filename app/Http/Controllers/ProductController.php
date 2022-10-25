@@ -54,10 +54,8 @@ class ProductController extends Controller
             'message' => $message
         ];
 
-
         return response()->json($response);
-          
-       
+
     }
  
     
