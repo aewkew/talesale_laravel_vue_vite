@@ -8,7 +8,7 @@
             <div class="row">
             <router-link :to="{name:'Userprofile',params:{id:id}}"> <div class="col">Profile:{{name}}</div></router-link>
            
-            <div class="col">  <a style="cursor: pointer;" @click="logout">Logout</a></div>
+            <div class="col">  <a style="cursor: pointer;" @click="logout">Logout </a></div>
             </div>
          
         </div>
@@ -31,6 +31,7 @@ export default {
     created() {
         if (window.Laravel.user) {
             this.name = window.Laravel.user.name
+            this.email = window.Laravel.user.email
         } 
         if (window.Laravel.isLoggedin) {
                 this.isLoggedIn = true

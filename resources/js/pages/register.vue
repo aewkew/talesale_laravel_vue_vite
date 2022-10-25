@@ -16,6 +16,16 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group row">
+                                    <label for="name" class="col-sm-4 col-form-label text-md-right" >Phone</label >           
+                                     <div class="col-md-8">
+                                        <input
+                                        class="form-control" name="phone" v-model="phone"
+                                        />
+                                    </div>
+                                </div>
+
+
                                 <div class="form-group row mt-1">
                                     <label class="col-sm-4 col-form-label text-md-right" for="email">E-Mail Address</label >                                   
                                     <div class="col-md-8">
@@ -75,6 +85,7 @@ export default {
     data() {
         return {
                 name: "",
+                phone:"",
                 email: "",
                 password: "",
                 error: null
@@ -88,6 +99,7 @@ export default {
                 await axios.get('/sanctum/csrf-cookie').then((response) => {
                      axios.post('/api/register_user',{
                             name: this.name,
+                            phone: this.phone,
                             email: this.email,
                             password: this.password
                         })
