@@ -3,27 +3,35 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Customercontroller;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 
 //get 
 
-Route::get('user', [UserController::class,'user']);
+//product
 Route::get('/', [PostsController::class,'index']);
 Route::get('products', [ProductController::class,'products']);
-
-
-// save 
-
 Route::post('addproduct', [ProductController::class,'addproduct']);
-
-// edit
 Route::get('getproduct/{id}', [ProductController::class,'getproduct']);
 Route::post('updateProduct/{id}', [ProductController::class,'updateProduct']);
-
-// Delete
 Route::delete('deleteProduct/{id}',[ProductController::class,'deleteProduct']);
+
+
+//customer 
+Route::get('customers', [CustomerController::class,'customers']);
+Route::post('addcustomers', [CustomerController::class,'addcustomers']);
+Route::get('getcustomers/{id}', [CustomerController::class,'getcustomers']);
+Route::delete('deleteCustomer/{id}',[CustomerController::class,'deleteCustomer']);
+
+
+
+
+// user
+Route::get('user', [UserController::class,'user']);
+
+
+
 
 //register&login
 Route::post('login', [UserController::class, 'login']);

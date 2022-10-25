@@ -10,8 +10,9 @@ import Inklist from './pages/Inklist.vue';
 import login from './pages/login.vue';
 import register from './pages/register.vue';
 import home from './pages/Home.vue';
-import add from './pages/shop/add.vue'
-import search from './pages/shop/search.vue'
+import add from './pages/shop/add.vue';
+import search from './pages/shop/search.vue';
+import add_customer from './pages/shop/add_customer.vue'
 
 //Test
 import create  from './pages/create.vue';
@@ -109,6 +110,11 @@ const routes = [
             path: '/search',
             name:'search',
             component: search ,
+        },
+        {
+            path: '/add_customer',
+            name:'add_customer',
+            component: add_customer ,
         },
        
 

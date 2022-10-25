@@ -1,32 +1,38 @@
 <template >
     <div class="container">
         <SeachTable></SeachTable>
-        <div class="sale">Tablelist</div>
+        <div class="sale">List Customer</div>
 
         <div class="tableContrainer">
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Date</th>
+                        <th scope="col">ID</th>
+                        
+                        <th scope="col">Company</th>
                         <th scope="col">Customer</th>
-                        <th scope="col">Tel</th>
-                        <th scope="col">Employee</th>
-                        <th scope="col">Invoid</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Invoice</th>
+                        <th scope="col">Delete</th>
                     </tr>
                 </thead>
 
-                <tbody>
-                    <tr v-for="(item, i) in items" :key="i" :to="item.to">
-                        <th scope="row">{{ item.Date }}</th>
-                        <td>{{ item.Customer }}</td>
-                        <td>{{ item.tel}}</td>
-                        <td>{{ item.employee }}</td>
+                <tbody v-for="item in customers" :key="item.id">
+                    <tr >
+                        <td>{{ item.id }}</td>
+                        <td></td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.address }}</td>
+                        <td>{{ item.phone}}</td>
+                        <td>{{ item.created_at}}</td>
                         <td>
-                            <button
-                                class="but-co btn "
-                                type="button"
-                            >
-                            {{ item.Invoid }} 
+                            <button class="but-co btn " type="button"> null </button>
+                        </td>
+                        <td>
+                          <button class="but-co btn"  @click.prevent="deleteCustomer(item.id)">
+                                <i class="bi bi-trash"></i>
                             </button>
                         </td>
                     </tr>
@@ -37,117 +43,52 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
 import SeachTable from './TableList/seachTable.vue';
+
 export default {
     name: "Tablelist",
     components: { SeachTable },
 
-  data() {
-    return {
-      items: [
-        {
-          Date: "2022-08-27",
-          Customer: "Aew",
-          tel: "0876186637",
-          employee: "Tiger Kung",
-          Invoid: "1562488",
+    data() {
+        return {
+            customers: Array,
+           
+        };
+    },
+    created() {
+        this.getData();
+    },
+    methods: {
+        async getData() {
+            let url = "/api/customers";
+            await axios
+                .get(url)
+                .then((response) => {
+                    this.customers = response.data.customers;
+                    console.log(this.customers);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         },
-        {
-          Date: "2022-08-27",
-          Customer: "Aew",
-          tel: "0876186637",
-          employee: "Tiger Kung",
-          Invoid: "1562488",
-        },
-        {
-          Date: "2022-08-27",
-          Customer: "Aew",
-          tel: "0876186637",
-          employee: "Tiger Kung",
-          Invoid: "1562488",
-        },
-        {
-          Date: "2022-08-27",
-          Customer: "Aew",
-          tel: "0876186637",
-          employee: "Tiger Kung",
-          Invoid: "1562488",
-        },
-        {
-          Date: "2022-08-27",
-          Customer: "Aew",
-          tel: "0876186637",
-          employee: "Tiger Kung",
-          Invoid: "1562488",
-        },
-        {
-          Date: "2022-08-27",
-          Customer: "Aew",
-          tel: "0876186637",
-          employee: "Tiger Kung",
-          Invoid: "1562488",
-        },
-        {
-          Date: "2022-08-27",
-          Customer: "Aew",
-          tel: "0876186637",
-          employee: "Tiger Kung",
-          Invoid: "1562488",
-        },
-        {
-          Date: "2022-08-27",
-          Customer: "Aew",
-          tel: "0876186637",
-          employee: "Tiger Kung",
-          Invoid: "1562488",
-        },
-        {
-          Date: "2022-08-27",
-          Customer: "Aew",
-          tel: "0876186637",
-          employee: "Tiger Kung",
-          Invoid: "1562488",
-        },
-        {
-          Date: "2022-08-27",
-          Customer: "Aew",
-          tel: "0876186637",
-          employee: "Tiger Kung",
-          Invoid: "1562488",
-        },
-        {
-          Date: "2022-08-27",
-          Customer: "Aew",
-          tel: "0876186637",
-          employee: "Tiger Kung",
-          Invoid: "1562488",
-        },
-        {
-          Date: "2022-08-27",
-          Customer: "Aew",
-          tel: "0876186637",
-          employee: "Tiger Kung",
-          Invoid: "1562488",
-        },
-        {
-          Date: "2022-08-27",
-          Customer: "Aew",
-          tel: "0876186637",
-          employee: "Tiger Kung",
-          Invoid: "1562488",
-        },
-
-        {
-          Date: "2022-08-27",
-          Customer: "Aew",
-          tel: "0876186637",
-          employee: "Tiger Kung",
-          Invoid: "1562488",
-        }
-
-      ]
-    }
-  }
+        async deleteCustomer(id) {
+      
+      let url = `/api/deleteCustomer/${id}`;
+      await axios.delete(url).then(response =>{
+          if(response.data.code == 200) {
+               alert(response.message);
+               this.getData();
+          }  
+      }).catch(error =>{
+          console.log(error);
+      } );
+  },
+      
+    },
+    mounted() {
+        console.log("Product List Component Mounted");
+    },
    
 };
 </script>

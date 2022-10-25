@@ -32,8 +32,7 @@
                 <div class="col-auto">
                     <div class="input-group">
                         <label class="input-group-text" for="inputGroupSelect01"
-                            >Brand</label
-                        >
+                            >Brand</label >                     
                         <select class="form-select" id="inputGroupSelect01">
                             <option selected>Choose...</option>
                             <option value="1">Canon</option>
@@ -44,6 +43,20 @@
                     </div>
                 </div>
 
+                <div class="col-auto"> 
+                    <div class="row">
+                        <div class="col">
+                            <button type="button"
+                                class="btn but-co"
+                                data-bs-toggle="modal"
+                                data-bs-target="#CustomerModel"> 
+                                <i class="bi bi-person-plus-fill"  style="font-size: 1.4rem"></i>
+                            </button>
+                            
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-auto">
                     <div class="row">
                         <div class="col">
@@ -51,9 +64,21 @@
                                 type="button"
                                 class="btn but-co"
                                 data-bs-toggle="modal"
-                                data-bs-target="#staticBackdrop"
-                            >
+                                data-bs-target="#staticBackdrop">
+                            
                                 Add
+                            </button>
+                           
+                        </div>
+
+                        <div class="col">
+                            <button type="button" class="btn but-co"
+                                data-bs-toggle="modal"
+                                data-bs-target="#CompanyModel"> 
+                                <i
+                                    class="bi bi-building"
+                                    style="font-size: 1.4rem"
+                                ></i>
                             </button>
                         </div>
 
@@ -71,13 +96,16 @@
         </div>
 
         <Add></Add>
+        <Add_customer></Add_customer>
+      
     </div>
 </template>
 <script>
 import Add from "./add.vue";
+import Add_customer from "./add_customer.vue";
 export default {
     name: "search",
-    components: { Add },
+    components: { Add, Add_customer },
 };
 </script>
 <style></style>

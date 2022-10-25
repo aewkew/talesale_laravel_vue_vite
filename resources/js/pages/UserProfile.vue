@@ -12,10 +12,9 @@
                     <tr>
                         <th scope="col">Id Customer</th>
                         <th scope="col">Customer name</th>
-                        <th scope="col">Personel name</th>
+                        <th scope="col">Employee name</th>
                         <th scope="col">Date</th>
                         <th scope="col">Details</th>
-
                     </tr>
                 </thead>
 
