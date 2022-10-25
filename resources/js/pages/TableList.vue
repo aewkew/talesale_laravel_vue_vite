@@ -8,13 +8,13 @@
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        
                         <th scope="col">Company</th>
                         <th scope="col">Customer</th>
                         <th scope="col">Address</th>
                         <th scope="col">Phone</th>
                         <th scope="col">Date</th>
                         <th scope="col">Invoice</th>
+                        <th scope="col">Edit</th>
                         <th scope="col">Delete</th>
                     </tr>
                 </thead>
@@ -31,6 +31,11 @@
                             <button class="but-co btn " type="button"> null </button>
                         </td>
                         <td>
+                            <button class="but-co btn"  
+                                data-bs-toggle="modal"
+                                data-bs-target="#EditCusModel" > <i class="bi bi-pencil-fill"></i>  </button>
+                        </td>
+                        <td>
                           <button class="but-co btn"  @click.prevent="deleteCustomer(item.id)">
                                 <i class="bi bi-trash"></i>
                             </button>
@@ -39,16 +44,17 @@
                 </tbody>
             </table>
         </div>
-
+       <Editcustomer></Editcustomer>
     </div>
 </template>
 <script>
 import axios from 'axios';
+import Editcustomer from './Customer/editcustomer.vue';
 import SeachTable from './TableList/seachTable.vue';
 
 export default {
     name: "Tablelist",
-    components: { SeachTable },
+    components: { SeachTable, Editcustomer },
 
     data() {
         return {
@@ -72,8 +78,7 @@ export default {
                     console.log(error);
                 });
         },
-        async deleteCustomer(id) {
-      
+        async deleteCustomer(id) {  
       let url = `/api/deleteCustomer/${id}`;
       await axios.delete(url).then(response =>{
           if(response.data.code == 200) {
@@ -87,7 +92,7 @@ export default {
       
     },
     mounted() {
-        console.log("Product List Component Mounted");
+        console.log("Read Customer List Component Mounted");
     },
    
 };

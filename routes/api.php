@@ -39,7 +39,6 @@ Route::delete('deleteCompany/{id}', [CompanyController::class,'deleteCompany']);
 Route::get('user', [UserController::class,'user']);
 
 
-
 //register&login
 Route::post('login', [UserController::class, 'login']);
 Route::post('register_user', [UserController::class, 'register_user']);

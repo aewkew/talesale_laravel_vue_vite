@@ -5,12 +5,15 @@
         <div class="row">
             <div class="col">
                 <div class="exprint">
-                    <button type="button" class="btn but-co">
+
+                    <button type="button" class="btn but-co"  onclick="print()" value="invoice" >
                         <i class="bi bi-printer"></i> Print
                     </button>
-                    <button type="button" class="btn but-co">
+
+                    <button class="btn but-co" @click="downloadPDF">
                         <i class="bi bi-file-earmark-pdf"></i>Export
                     </button>
+
                 </div>
             </div>
             <div class="col">
@@ -24,8 +27,9 @@
         <hr />
 
         <!-- Invoice   -->
+       
 
-        <div class="invoice">
+        <div class="invoice pdf" id="invoice">
             <div class="invoice-data">
                 <div class="row">
                     <div class="col">
@@ -143,11 +147,24 @@
                 </div>
             </div>
         </div>
+  
     </div>
 </template>
 <script>
+
 export default {
     name: "Invoice",
+    data(){
+        return{
+
+        }
+    },
+
+   methods: {
+         
+  
+   }
+    
 };
 </script>
 <style></style>

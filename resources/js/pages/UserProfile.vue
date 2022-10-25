@@ -2,8 +2,6 @@
     <div class="container">
         <UserCard> </UserCard>
 
-
-
         <div class="sale">User list</div>
 
         <div class="tableContrainer">

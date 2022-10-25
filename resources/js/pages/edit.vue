@@ -28,9 +28,7 @@
                                 <i class="bi bi-plus"></i></button>
                         </td>
                         <td> <router-link :to="{ name: 
-                            'editProduct', params:{ id:item.id} }" class="but-co btn" ><i class="bi bi-pencil"></i></router-link> 
-                                
-                          
+                            'editProduct', params:{ id:item.id} }" class="but-co btn" ><i class="bi bi-pencil"></i></router-link>   
                         </td>
 
                         <td>

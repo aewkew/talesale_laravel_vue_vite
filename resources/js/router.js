@@ -1,25 +1,29 @@
 import { createWebHistory , createRouter} from 'vue-router';
 
+//Pages
 import Dashboard from './pages/Dashboard.vue';
 import Shop from './pages/Shop.vue';
 import Notifications from './pages/Notifications.vue';
 import Tablelist from './pages/TableList.vue';
 import Userprofile from './pages/UserProfile.vue';
+
 import Invoice from './pages/invoice.vue';
 import Inklist from './pages/Inklist.vue';
+//Login&Register
 import login from './pages/login.vue';
 import register from './pages/register.vue';
 import home from './pages/Home.vue';
+//Component
 import add from './pages/shop/add.vue';
 import search from './pages/shop/search.vue';
 import add_customer from './pages/shop/add_customer.vue';
 import add_company from './pages/shop/add_company.vue';
-
+import editcustomer from './pages/Customer/editcustomer.vue';
 //Test
 import create  from './pages/create.vue';
 import edit from './pages/edit.vue';
 import toedit from './pages/toedit.vue';
-import editProduct from './pages/editProduct.vue'
+import editProduct from './pages/editProduct.vue';
 
 const routes = [
     {   
@@ -121,6 +125,11 @@ const routes = [
             path: '/add_company',
             name:'add_company',
             component: add_company ,
+        },
+        {
+            path: '/editcustomer',
+            name:'editcustomer',
+            component: editcustomer ,
         },
        
 
