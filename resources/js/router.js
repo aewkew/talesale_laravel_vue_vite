@@ -47,7 +47,7 @@ const routes = [
             component: Notifications
         },
         {
-            path: '/TableList',
+            path: '/TableList/:id?',
             name: 'TableList',
             component: Tablelist
         },

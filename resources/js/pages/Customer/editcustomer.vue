@@ -1,7 +1,7 @@
 <template>
      <div data-toggle="modal fade add" 
         class="modal fade"
-        id="EditCusModel"
+        id="customer"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
         tabindex="-1"
@@ -11,7 +11,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title " id="staticBackdropLabel">
-                        Edit company
+                        Edit company 
                     </h1>
                     <button
                         type="button"
@@ -22,25 +22,25 @@
                 </div>
 
                 <div class="modal-body">
-                    <form @submit.prevent="editcompany">
+                    <form @submit.prevent="editcustomer">
                     <div class="row ">
-                        <label for="staticBackdropLabel" class="form-label" >Company Name</label>
+                        <label for="staticBackdropLabel" class="form-label" >Customer Name</label>
                             <div class="form-group">
-                                <input type="text" class="form-control"  v-model="name"  />
+                                <input type="text" class="form-control"  v-model="customer.name"  />
                             </div>
                     </div>
                     <div class="row ">
-                        <label for="staticBackdropLabel" class="form-label" >Company Address</label>
+                        <label for="staticBackdropLabel" class="form-label" >Customer Address</label>
                         <div class="input-group">
-                            <input  type="text" class="form-control"  v-model="address"/>
+                            <input  type="text" class="form-control"  v-model="customer.address"/>
                         </div>
                     </div>
 
                     <div class="row">
-                        <label for="inputGroupSelect01" class="form-label" >Company Phone  </label>
+                        <label for="inputGroupSelect01" class="form-label" >Customer  Phone  </label>
                         <div class="input-group">
                             <div class="form-group">
-                                <input  type="text" class="form-control"  v-model="phone" />  
+                                <input  type="text" class="form-control"  v-model="customer.phone" />  
                             </div>
                         </div>
                     </div>
@@ -86,10 +86,54 @@ export default {
       
     },
     created (){
-    
+        this.getProductById();
     },
     methods: {
+        async getProductById() {
+            let url = `/api/getcustomers/${this.
+            $route.params.id}`;
+            await axios.get(url).then(response => {
+                console.log(response);
+               this.customer = response.data;
+            });
+       },
+       async editcustomer() {
+            this.errors =[];
+            if(!this.customer.name){
+                this.errors.push("Name is required")
+            }
+            if(!this.customer.address){
+                this.errors.push("Description is required")
+            }
+            if(!this.customer.phone){
+                this.errors.push("Price is required")
+            }
+
+            if(!this.errors.length){
+                let formData = new FormData();
+                formData.append('name', this.customer.name);
+                formData.append('address', this.customer.address);
+                formData.append('phone', this.customer.phone);
+                let url = `/api/updateCustomer/${this.$route.params.id}`;
+                await axios.post(url, formData).then((response) =>{
+                    console.log(response);
+                    if(response.status == 200){
+                       alert(response.data.message)
+                    }else {
+                        console.log('error');
+                    }
+                }).catch(error=> {
+                    this.errors.push(error.response);
+                });
+
+            }
+
+           
+        },
        
+    },
+    mounted: function() {
+        console.log('Edit Customer');
     }
 }
 </script>

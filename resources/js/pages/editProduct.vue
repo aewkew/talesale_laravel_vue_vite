@@ -26,7 +26,6 @@
                             <label  class="form-label text-white fs-3" > Description </label>
                             <div class="form-group">
                                 <input  type="text" class="form-control"
-                            
                                     v-model="product.description"
                                 />
                             </div>
@@ -36,7 +35,6 @@
                             <label  class="form-label text-white fs-3"> price </label>
                             <div class="form-group">
                                 <input class="form-control" 
-                
                                     v-model="product.price"
                                 />
                             </div>
