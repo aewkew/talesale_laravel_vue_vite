@@ -155,7 +155,7 @@ export default {
             
             errors: [],
             editcustomerData:{
-name: "",
+            name: "",
             address: "",
             phone: "",
             },
@@ -196,6 +196,7 @@ name: "",
         
         editcustomer(customer) {
             this.editcustomerData = customer;
+            
         },
         updateCustomer(){
             this.errors =[];
