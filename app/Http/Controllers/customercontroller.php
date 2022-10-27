@@ -50,13 +50,8 @@ class CustomerController extends Controller
 
     public function getcustomers($id){  
         $customer=Customer::find($id);
-      //  return response()->json($customer);
-        return response()->json(
-            [
-             'customers' => $customer,
-             'message' => 'Customer',
-             'code' => 200
-            ]);
+        return response()->json($customer);
+       
     }
     
     public function deleteCustomer($id) {
@@ -85,6 +80,6 @@ class CustomerController extends Controller
        'code' => 200
    ]);
 }
-    
+
  
 }

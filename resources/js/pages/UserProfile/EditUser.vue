@@ -1,5 +1,5 @@
-<template>
-    <div>
+<template lang="">
+   <div>
         <div class="container">
             <div class="row">
                 <div class="card">
@@ -68,75 +68,11 @@
     </div>
 </template>
 <script>
-import axios from "axios";
-
 export default {
-    name: "editProduct",
-    data() {
-        return {
-            product: {},
-            name: '',
-            brand: '',
-            color: '',
-            price: '',
-            errors:[]
-        };
-    },
-    created (){
-      this.getProductById();
-    },
-    methods: {
-        
-       async getProductById() {
-            let url = `http://127.0.0.1:8000/api/getproduct/${this.
-            $route.params.id}`;
-            await axios.get(url).then(response => {
-                console.log(response);
-                this.product =response.data;
-            });
-       },
-
-       async updateProduct() {
-            this.errors =[];
-            if(!this.product.name){
-                this.errors.push("Name is required")
-            }
-            if(!this.product.brand){
-                this.errors.push("Description is required")
-            }
-            if(!this.product.color){
-                this.errors.push("Price is required")
-            }
-            if(!this.product.price){
-                this.errors.push("Price is required")
-            }
-
-            if(!this.errors.length){
-                let formData = new FormData();
-                formData.append('name', this.product.name);
-                formData.append('brand', this.product.brand);
-                formData.append('color', this.product.color);
-                formData.append('price', this.product.price);
-                let url = `/api/updateProduct/${this.$route.params.id}`;
-                await axios.post(url, formData).then((response) =>{
-                    console.log(response);
-                    if(response.status == 200){
-                       alert(response.data.message)
-                    }else {
-                        console.log('error');
-                    }
-                }).catch(error=> {
-                    this.errors.push(error.response);
-                });
-
-            }
-
-           
-        },
-    },
-    mounted: function() {
-        console.log('Edit Product');
-    }
-};
+    name:"EditUser",
+    
+}
 </script>
-<style></style>
+<style lang="">
+    
+</style>

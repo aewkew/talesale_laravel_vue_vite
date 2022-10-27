@@ -37,12 +37,13 @@ Route::delete('deleteCompany/{id}', [CompanyController::class,'deleteCompany']);
 
 // user
 Route::get('user', [UserController::class,'user']);
-
+Route::get('userid/{id}', [UserController::class,'userid']);
 
 //register&login
 Route::post('login', [UserController::class, 'login']);
 Route::post('register_user', [UserController::class, 'register_user']);
 Route::post('logout', [UserController::class, 'logout'])->middleware('auth:sanctum'); 
+Route::post('editUser/{id}', [UserController::class,'editUser']);
 
 
 

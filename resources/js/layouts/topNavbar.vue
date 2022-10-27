@@ -1,21 +1,29 @@
-<template >
+<template > 
+
  <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-      <a class="navbar-brand">Dashboard </a>
-
       <div class="collapse navbar-collapse">
-        <div class="navbar-nav ml-auto">
-            <div class="row">
-            <router-link :to="{name:'Userprofile',params:{id:id}}"> <div class="col">Profile:{{name}}</div></router-link>
-           
-            <div class="col">  <a style="cursor: pointer;" @click="logout">Logout </a></div>
-            </div>
-         
-        </div>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" >Dashboard </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" ><router-link :to="{name:'Userprofile',params:{id:id}}"> <div class="col">Profile:{{name}}</div></router-link></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="cursor: pointer;" @click="logout" > Logout </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" ></a>
+            </li>
+        </ul>
+            
+        
       </div>
     </div>
   </nav>
             
+
 </template>
 <script>
 import axios from 'axios'

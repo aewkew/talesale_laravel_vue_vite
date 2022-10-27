@@ -3,10 +3,11 @@
         <div  v-if="isLoggedIn">
             <!-- Sidebar -->
             <Corelayout />
-
+              
+           
             <!-- Content -->
             <div class="main-panel">
-                <TopNavbar></TopNavbar>
+                 <TopNavbar></TopNavbar>
                 <div class="content">
                     <router-view></router-view> 
                 </div>

@@ -13,6 +13,7 @@ import Inklist from './pages/Inklist.vue';
 import login from './pages/login.vue';
 import register from './pages/register.vue';
 import home from './pages/Home.vue';
+import EditUser from './pages/UserProfile/EditUser.vue';
 //Component
 import add from './pages/shop/add.vue';
 import search from './pages/shop/search.vue';
@@ -47,14 +48,23 @@ const routes = [
             component: Notifications
         },
         {
-            path: '/TableList/:id?',
+            path: '/TableList',
             name: 'TableList',
             component: Tablelist
         },
          {
             path: '/UserProfile',
             name: 'Userprofile',
-            component: Userprofile
+            component: Userprofile,
+            children: [
+                {
+                    path: '/EditUser/:id?',
+                    name:'EditUser',
+                    component: EditUser ,
+                },
+               
+
+            ]
         },
         {
             path: '/invoice',
@@ -127,7 +137,7 @@ const routes = [
             component: add_company ,
         },
         {
-            path: '/editcustomer',
+            path: '/TableList/editcustomer/:id?',
             name:'editcustomer',
             component: editcustomer ,
         },

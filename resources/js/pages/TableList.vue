@@ -33,96 +33,9 @@
                             </button>
                         </td>
                         <td>
-                            <button  class="but-co btn" @click="editcustomer(item)" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                     <i class="bi bi-pencil"></i>
-                            </button>
+                            <router-link :to="{ name: 
+                            'editcustomer', params:{ id:item.id} }" class="but-co btn" ><i class="bi bi-pencil"></i></router-link>   
 
-                            <!-- Modal -->
-                            <div
-                                class="modal fade"
-                                id="exampleModal"
-                                tabindex="-1"
-                                aria-labelledby="exampleModalLabel"
-                                aria-hidden="true"
-                                ref="EditCustomer"
-                            >
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5
-                                                class="modal-title"
-                                                id="exampleModalLabel"
-                                            >
-                                                Modal title
-                                            </h5>
-                                            <button
-                                                type="button"
-                                                class="btn-close"
-                                                data-bs-dismiss="modal"
-                                                aria-label="Close"
-                                            ></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form @submit.prevent="updateCustomer">
-                        <div class="row">
-                            <label  class="form-label text-black fs-5"> Customer Name</label>
-                            <div class="form-group">
-                                <input type="text" class="form-control" 
-                                    v-model="editcustomerData.name"
-                                />
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <label  class="form-label text-black fs-5" > Customer Address</label>
-                            <div class="form-group">
-                                <input  type="text" class="form-control"
-                                    v-model="editcustomerData.address"
-                                />
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <label  class="form-label text-black fs-5"> Customer Phone </label>
-                            <div class="form-group">
-                                <input class="form-control" 
-                                    v-model="editcustomerData.phone"
-                                />
-                            </div>
-                        </div>
-
-                        <div class="row subre">
-                            <div class="col sub">
-                                <button type="submit" class="btn btn-primary" >
-                                    Submit
-                                </button>
-                            </div>
-                            <div class="col res">
-                                <button type="reset" class="btn btn-danger">
-                                    reset
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button
-                                                type="button"
-                                                class="btn btn-secondary"
-                                                data-bs-dismiss="modal"
-                                            >
-                                                Close
-                                            </button>
-                                            <button
-                                                type="button"
-                                                class="btn btn-primary"
-                                            >
-                                                Save changes
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </td>
                         <td>
                             <button
@@ -151,14 +64,6 @@ export default {
     data() {
         return {
             customers: Array,
-            customer: {},
-            
-            errors: [],
-            editcustomerData:{
-            name: "",
-            address: "",
-            phone: "",
-            },
         };
     },
     created() {
@@ -193,43 +98,8 @@ export default {
                     console.log(error);
                 });
         },
-        
-        editcustomer(customer) {
-            this.editcustomerData = customer;
-            
-        },
-        updateCustomer(){
-            this.errors =[];
-            if(!this.editcustomerData.name){
-                this.errors.push("Name is required")
-            }
-            if(!this.editcustomerData.address){
-                this.errors.push("Description is required")
-            }
-            if(!this.editcustomerData.phone){
-                this.errors.push("Price is required")
-            }
 
-            if(!this.errors.length){
-                let formData = new FormData();
-                formData.append('name', this.editcustomerData.name);
-                formData.append('address', this.editcustomerData.address);
-                formData.append('pone', this.editcustomerData.phone);
-                let url = `api/updateCustomer/${this.editcustomerData.id}`;
-                 axios.post(url, formData).then((response) =>{
-                    console.log(response);
-                    if(response.status == 200){
-                       alert(response.data.message)
-                    }else {
-                        console.log('error');
-                    }
-                }).catch(error=> {
-                    this.errors.push(error.response);
-                });
-
-            }
-
-        }
+   
         
     },
 

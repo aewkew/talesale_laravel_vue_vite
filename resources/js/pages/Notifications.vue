@@ -20,7 +20,6 @@
                         <td>{{ item.Customer }}</td>
                         <td>{{ item.tel}}</td>
                         <td>{{ item.employee }}</td>
-        
                         <td>
                             <button
                                 class="but-co btn "
@@ -43,107 +42,7 @@ export default {
 
     data() {
     return {
-      items: [
-        {
-          Date: "2022-08-27",
-          Customer: "Aew",
-          tel: "0876186637",
-          employee: "Tiger Kung",
-          Invoid: "1562481",
-        },
-        {
-          Date: "2022-08-27",
-          Customer: "Aew",
-          tel: "0876186637",
-          employee: "Tiger Kung",
-          Invoid: "1562482",
-        },
-        {
-          Date: "2022-08-27",
-          Customer: "Aew",
-          tel: "0876186637",
-          employee: "Tiger Kung",
-          Invoid: "1562483",
-        },
-        {
-          Date: "2022-08-27",
-          Customer: "Aew",
-          tel: "0876186637",
-          employee: "Tiger Kung",
-          Invoid: "1562484",
-        },
-        {
-          Date: "2022-08-27",
-          Customer: "Aew",
-          tel: "0876186637",
-          employee: "Tiger Kung",
-          Invoid: "1562485",
-        },
-        {
-          Date: "2022-08-27",
-          Customer: "Aew",
-          tel: "0876186637",
-          employee: "Tiger Kung",
-          Invoid: "1562488",
-        },
-        {
-          Date: "2022-08-27",
-          Customer: "Aew",
-          tel: "0876186637",
-          employee: "Tiger Kung",
-          Invoid: "1562488",
-        },
-        {
-          Date: "2022-08-27",
-          Customer: "Aew",
-          tel: "0876186637",
-          employee: "Tiger Kung",
-          Invoid: "1562488",
-        },
-        {
-          Date: "2022-08-27",
-          Customer: "Aew",
-          tel: "0876186637",
-          employee: "Tiger Kung",
-          Invoid: "1562488",
-        },
-        {
-          Date: "2022-08-27",
-          Customer: "Aew",
-          tel: "0876186637",
-          employee: "Tiger Kung",
-          Invoid: "1562488",
-        },
-        {
-          Date: "2022-08-27",
-          Customer: "Aew",
-          tel: "0876186637",
-          employee: "Tiger Kung",
-          Invoid: "1562488",
-        },
-        {
-          Date: "2022-08-27",
-          Customer: "Aew",
-          tel: "0876186637",
-          employee: "Tiger Kung",
-          Invoid: "1562488",
-        },
-        {
-          Date: "2022-08-27",
-          Customer: "Aew",
-          tel: "0876186637",
-          employee: "Tiger Kung",
-          Invoid: "1562488",
-        },
-
-        {
-          Date: "2022-08-27",
-          Customer: "Aew",
-          tel: "0876186637",
-          employee: "Tiger Kung",
-          Invoid: "1562488",
-        },
-      ],
+      
     };
   },
     

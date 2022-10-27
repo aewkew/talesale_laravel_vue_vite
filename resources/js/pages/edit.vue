@@ -50,7 +50,6 @@ import Toedit from "./toedit.vue";
 
 export default {
     name: "edit",
-    components: { Toedit },
 
     data() {
         return {
@@ -86,13 +85,7 @@ export default {
             } );
         },
 
-        /* getData() {
-           
-            axios
-                .get("http://127.0.0.1:8000/api/products")
-                .then((res) => (this.data = res.data));
-                
-        }, */
+  
     },
     mounted() {
         console.log("Contact List Component Mounted");

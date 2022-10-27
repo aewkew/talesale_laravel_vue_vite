@@ -70,10 +70,7 @@ class UserController extends Controller
 
     return response()->json($response);
     }
-      
-
-
-
+    
 
        public function logout()
     {
@@ -92,6 +89,23 @@ class UserController extends Controller
            
           return response()->json($response);
     }
-
+   
+   
     
+    public function userid($id){
+      $user = User::find($id);
+        return response()->json($user);
+    }
+
+    public function editUser($id, Request $request) {
+      $user= User::where('id', $id)->first();
+      $user->name          = $request->name;
+      $user->email       = $request->email ;
+      $user->phone        = $request->phone;
+      $user->save();
+      return response()->json([
+         'message' => 'product Update Success ',
+         'code' => 200
+     ]);
+    }
 }
