@@ -4,21 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    /*
+    
      public function index(){
-        $product = Product::all()->toArray(); 
-        return response()->json(
-            [
-             'products' => $product,
-             'message' => 'Product',
-             'code' => 200
-        ]
-    ); 
-    return array_reverse($product);
-     }  */
+       $product = DB::table('products')->get();
+       return view('product.index',['products' => $product]);
+     }  
+
      
     public function products(){
         $product = Product::all();
@@ -35,9 +30,10 @@ class ProductController extends Controller
     {    
         try{
             $product=new Product();
+            $product->product_id    = $request->product_id;
             $product->name          = $request->name;
             $product->brand         = $request->brand;
-            $product->color        = $request->color;
+            $product->color         = $request->color;
             $product->price         = $request->price;
             $product->save();
 
@@ -81,12 +77,13 @@ class ProductController extends Controller
     }
 
     public function updateProduct($id, Request $request){
-        $products= Product::where('id', $id)->first();
-        $products->name          = $request->name;
-        $products->brand         = $request->brand;
-        $products->color         = $request->color;
-        $products->price         = $request->price;
-        $products->save();
+        $product= Product::where('id', $id)->first();
+        $product->product_id    = $request->product_id;
+        $product->name          = $request->name;
+        $product->brand         = $request->brand;
+        $product->color         = $request->color;
+        $product->price         = $request->price;
+        $product->save();
         return response()->json([
            'message' => 'product Update Success ',
            'code' => 200

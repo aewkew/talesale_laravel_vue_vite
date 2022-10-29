@@ -23,8 +23,9 @@ class CustomerController extends Controller
     {    
         try{
             $customer=new Customer();
+           // $customer->customer_id   = $request->customer_id;
             $customer->name          = $request->name;
-            $customer->company_id	 = $request->company_id	;
+           // $customer->company_id	 = $request->company_id	;
             $customer->address       = $request->address;
             $customer->phone         = $request->phone;
             $customer->save();

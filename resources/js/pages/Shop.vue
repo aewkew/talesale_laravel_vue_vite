@@ -20,7 +20,7 @@
 
                 <tbody v-for="item in products" :key="item.id">
                     <tr>
-                        <th>{{ item.id }}</th>
+                        <th>{{ item.product_id }}</th>
                         <td>{{ item.name }}</td>
                         <td>{{ item.brand }}</td>
                         <td>{{ item.color }}</td>

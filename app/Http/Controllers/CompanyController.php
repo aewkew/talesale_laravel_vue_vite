@@ -22,6 +22,7 @@ class CompanyController extends Controller
     {    
         try{
             $company=new company();
+           // $company->company_id         = $request->company_id;
             $company->company_name          = $request->company_name;
             $company->company_phone         = $request->company_phone;
             $company->company_address       = $request->company_address;

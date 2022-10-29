@@ -8,6 +8,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompanyController;
 
+use App\Http\Controllers\HistoryDealingController;
+
 //get 
 
 //product
@@ -45,6 +47,11 @@ Route::post('register_user', [UserController::class, 'register_user']);
 Route::post('logout', [UserController::class, 'logout'])->middleware('auth:sanctum'); 
 Route::post('editUser/{id}', [UserController::class,'editUser']);
 
+//Join
+
+Route::get('hisdeal',[HistoryDealingController::class,'hisdeal']);
+
+Route::get('subquery-join',[HistoryDealingController::class,'subqueryJoin']);
 
 
 

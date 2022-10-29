@@ -16,12 +16,12 @@
                     </tr>
                 </thead>
 
-                <tbody>
-                    <tr v-for="item in data" v-bind:key="item.productId">
+                <tbody  v-for="item in history_dealings" :key="item.id">
+                    <tr >
                         <th scope="row"></th>
-                        <td>{{ item.name }}</td>
-                        <td>{{ item.description }}</td>
-                        <td>{{ item.price }}</td>
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.user_id }}</td>
+                        <td>{{ item.customer_id }}</td>
               
                         <td>
                             <button
@@ -39,11 +39,15 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
 import UserCard from './UserProfile/UserCard.vue';
 export default {
     name: "Userprofile",
     components: { UserCard },
     data() {
+        return {
+            history_dealings: Array,
+        }
 
     },
     created() {
@@ -53,6 +57,21 @@ export default {
         if (window.Laravel.isLoggedin) {
                 this.isLoggedIn = true
             }
+            this.getData();
+    },
+    methods: {
+        async getData() {
+            let url ="/api/hisdeal";
+            await axios
+            .get(url)
+            .then((response) => {
+                    this.history_dealings = response.data.history_dealings;
+                    console.log(this.history_dealings);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
     },
 }
 </script>

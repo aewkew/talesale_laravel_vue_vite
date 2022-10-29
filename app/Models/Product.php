@@ -7,10 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {    
-   
-    
    protected $table = 'products';
   /*   protected $primarykey = 'id';  */
-    protected $fillable = ['name', 'brand', 'color', 'price'];
+    protected $fillable = ['product_id','name', 'brand', 'color', 'price'];
     use HasFactory;
+
+  public function history_dealings(){
+    
+  }
+
 }

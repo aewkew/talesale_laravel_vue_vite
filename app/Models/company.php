@@ -9,5 +9,5 @@ class company extends Model
 {
     use HasFactory;
     protected $table = 'companies';
-    protected $fillable= ['company_name','company_phone','company_address'];
+    protected $fillable= ['company_id','company_name','company_phone','company_address'];
 }

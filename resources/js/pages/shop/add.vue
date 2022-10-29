@@ -30,6 +30,12 @@
                             </div>
                     </div>
                     <div class="row ">
+                        <label for="staticBackdropLabel" class="form-label" >product id</label>
+                            <div class="form-group">
+                                <input type="text" class="form-control"  v-model="product_id"  />
+                            </div>
+                    </div>
+                    <div class="row ">
                         <label for="staticBackdropLabel" class="form-label" > Brand </label>
                         <div class="input-group">
                             <input  type="text" class="form-control" v-model="brand"/>
@@ -85,6 +91,7 @@ export default {
     data() {
         return {
             product: {},
+            product_id:'',
             name: '',
             brand: '',
             color: '',
@@ -114,6 +121,9 @@ export default {
             if(!this.name){
                 this.errors.push("Name is required")
             }
+            if(!this.product_id){
+                this.errors.push("Product ID is required")
+            }
             if(!this.brand){
                 this.errors.push("Brand is required")
             }
@@ -127,6 +137,7 @@ export default {
             if(!this.errors.length){
                 let formData = new FormData();
                 formData.append('name', this.name);
+                formData.append('product_id', this.product_id);
                 formData.append('brand', this.brand);
                 formData.append('color', this.color);
                 formData.append('price', this.price);
