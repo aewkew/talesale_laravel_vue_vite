@@ -23,7 +23,7 @@ class HistoryDealingController extends Controller
    public function innerJoin(){
         $result = DB::table('products')
         ->join('history_dealings','products.id','=','history_dealings.product_id')
-        ->select('products.name')
+        ->select('products.product_name')
         ->get();
         return response()->json(
             [
