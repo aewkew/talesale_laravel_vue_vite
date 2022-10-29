@@ -18,7 +18,7 @@
 
                 <tbody  v-for="item in history_dealings" :key="item.id">
                     <tr >
-                        <th scope="row">{{ item.name }}</th>
+                        <th scope="row">{{ item.product_name}}</th>
                         <td>{{  }}</td>
                         <td>{{  }}</td>
                         <td>{{ }}</td>

@@ -33,6 +33,20 @@ class HistoryDealingController extends Controller
         ]);
 
      }  
+
+     public function innerJoinhis(){
+        $result = DB::table('history_dealings')
+        ->join('customers.id','history_dealings','=','history_dealings.customer_id')
+        ->select('products.product_name')
+        ->get();
+        return response()->json(
+            [
+             'history_dealings' => $result,
+             'message' => 'historyDealing',
+             'code' => 200
+        ]);
+
+     }  
     
 
 

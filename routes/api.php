@@ -54,6 +54,7 @@ Route::post('editUser/{id}', [UserController::class,'editUser']);
 Route::get('hisdeal',[HistoryDealingController::class,'hisdeal']);
 
 Route::get('iner-join',[HistoryDealingController::class,'innerJoin']);
+Route::get('iner-join_his',[HistoryDealingController::class,'innerJoinhis']);
 
 
 
