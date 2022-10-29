@@ -136,11 +136,11 @@ export default {
 
             if(!this.errors.length){
                 let formData = new FormData();
-                formData.append('name', this.name);
+                formData.append('product_name', this.name);
                 formData.append('product_id', this.product_id);
-                formData.append('brand', this.brand);
-                formData.append('color', this.color);
-                formData.append('price', this.price);
+                formData.append('product_brand', this.brand);
+                formData.append('product_color', this.color);
+                formData.append('product_price', this.price);
              
                 await axios.post('/api/addproduct', formData).then((response) =>{
                     console.log(response);

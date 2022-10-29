@@ -17,7 +17,7 @@
                             <label  class="form-label text-white fs-3">Name</label>
                             <div class="form-group">
                                 <input type="text" class="form-control" 
-                                    v-model="customer.name"
+                                    v-model="customer.customer_name"
                                 />
                             </div>
                         </div>
@@ -25,7 +25,7 @@
                             <label  class="form-label text-white fs-3"> Address </label>
                             <div class="form-group">
                                 <input type="text" class="form-control"
-                                    v-model="customer.address"
+                                    v-model="customer.customer_address"
                                 />
                             </div>
                         </div>
@@ -34,7 +34,7 @@
                             <label  class="form-label text-white fs-3"> Phone </label>
                             <div class="form-group">
                                 <input class="form-control" 
-                                    v-model="customer.phone"
+                                    v-model="customer.customer_phone"
                                 />
                             </div>
                         </div>
@@ -66,9 +66,9 @@ export default {
     data() {
         return {
             customer: {},
-            name: '',
-            address: '',
-            phone: '',
+            customer_name: '',
+            customer_address: '',
+            customer_phone: '',
             errors:[]
         };
     },
@@ -86,21 +86,21 @@ export default {
         },
         async updateCustomer(){
             this.errors =[];
-            if(!this.customer.name){
+            if(!this.customer.customer_name){
                 this.errors.push("customer is required")
             }
-            if(!this.customer.address){
+            if(!this.customer.customer_address){
                 this.errors.push("address is required")
             }
-            if(!this.customer.phone){
+            if(!this.customer.customer_phone){
                 this.errors.push("phone is required")
             }
 
             if(!this.errors.length){
                 let formData = new FormData();
-                formData.append('name', this.customer.name);
-                formData.append('address', this.customer.address);
-                formData.append('phone', this.customer.phone);
+                formData.append('customer_name', this.customer.customer_name);
+                formData.append('customer_address', this.customer.customer_address);
+                formData.append('customer_phone', this.customer.customer_phone);
                 let url = `/api/updateCustomer/${this.$route.params.id}`;
                 await axios.post(url, formData).then((response) =>{
                     console.log(response);

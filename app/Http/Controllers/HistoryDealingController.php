@@ -20,19 +20,19 @@ class HistoryDealingController extends Controller
     );
 }
 
-    public function subqueryJoin(){
-          $subjectData = DB::table('history_dealings')->select('product_id', 'name as sujectName');
-          $result = DB::table('products')
-          ->joinSub($subjectData,'subjectData', function($join){
-              $join->on('products.id','=','subjectData.product_id');
-          })->get();
-          return response()->json(
+   public function innerJoin(){
+        $result = DB::table('products')
+        ->join('history_dealings','products.id','=','history_dealings.product_id')
+        ->select('products.name')
+        ->get();
+        return response()->json(
             [
              'history_dealings' => $result,
              'message' => 'historyDealing',
              'code' => 200
-            ]);
-    }
+        ]);
+
+     }  
     
 
 

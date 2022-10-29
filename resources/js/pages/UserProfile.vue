@@ -18,10 +18,10 @@
 
                 <tbody  v-for="item in history_dealings" :key="item.id">
                     <tr >
-                        <th scope="row"></th>
-                        <td>{{ item.id }}</td>
-                        <td>{{ item.user_id }}</td>
-                        <td>{{ item.customer_id }}</td>
+                        <th scope="row">{{ item.name }}</th>
+                        <td>{{  }}</td>
+                        <td>{{  }}</td>
+                        <td>{{ }}</td>
               
                         <td>
                             <button
@@ -46,7 +46,7 @@ export default {
     components: { UserCard },
     data() {
         return {
-            history_dealings: Array,
+         history_dealings: Array,
         }
 
     },
@@ -57,11 +57,25 @@ export default {
         if (window.Laravel.isLoggedin) {
                 this.isLoggedIn = true
             }
-            this.getData();
+        //this.getData();
+        this.getJoin();
     },
     methods: {
-        async getData() {
-            let url ="/api/hisdeal";
+       /* async getData() {
+            let url = "/api/hisdeal";
+            await axios
+                .get(url)
+                .then((response) => {
+                    this.history_dealings = response.data.history_dealings;
+                    console.log(this.history_dealings);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },*/
+
+        async getJoin() {
+            let url ="/api/iner-join";
             await axios
             .get(url)
             .then((response) => {
@@ -72,6 +86,9 @@ export default {
                     console.log(error);
                 });
         }
+    },
+    mounted() {
+        console.log("history_dealings List Component Mounted");
     },
 }
 </script>

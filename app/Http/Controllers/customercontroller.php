@@ -24,10 +24,10 @@ class CustomerController extends Controller
         try{
             $customer=new Customer();
            // $customer->customer_id   = $request->customer_id;
-            $customer->name          = $request->name;
+            $customer->customer_name          = $request->customer_name;
            // $customer->company_id	 = $request->company_id	;
-            $customer->address       = $request->address;
-            $customer->phone         = $request->phone;
+            $customer->customer_address       = $request->customer_address;
+            $customer->customer_phone         = $request->customer_phone;
             $customer->save();
 
             $success = true;
@@ -71,10 +71,10 @@ class CustomerController extends Controller
 
    public function updateCustomer($id, Request $request){
     $customer= Customer::where('id', $id)->first();
-    $customer->name          = $request->name;
-    $customer->company_id	 = $request->company_id	;
-    $customer->address       = $request->address;
-    $customer->phone         = $request->phone;
+    $customer->customer_name          = $request->customer_name;
+   // $customer->company_id	           = $request->company_id;
+    $customer->customer_address       = $request->customer_address;
+    $customer->customer_phone         = $request->customer_phone;
     $customer->save();
     return response()->json([
        'message' => 'Customer Update Success ',

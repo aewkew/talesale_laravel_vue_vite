@@ -20,6 +20,8 @@ Route::get('getproduct/{id}', [ProductController::class,'getproduct']);
 Route::post('updateProduct/{id}', [ProductController::class,'updateProduct']);
 Route::delete('deleteProduct/{id}',[ProductController::class,'deleteProduct']);
 
+//Route::get('iner-join', [ProductController::class,'innerJoin']);
+
 
 //customer 
 Route::get('customers', [CustomerController::class,'customers']);
@@ -51,7 +53,7 @@ Route::post('editUser/{id}', [UserController::class,'editUser']);
 
 Route::get('hisdeal',[HistoryDealingController::class,'hisdeal']);
 
-Route::get('subquery-join',[HistoryDealingController::class,'subqueryJoin']);
+Route::get('iner-join',[HistoryDealingController::class,'innerJoin']);
 
 
 

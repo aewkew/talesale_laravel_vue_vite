@@ -8,11 +8,15 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    
-     public function index(){
-       $product = DB::table('products')->get();
-       return view('product.index',['products' => $product]);
-     }  
+    /*
+     public function innerJoin(){
+        $result = DB::table('products')
+        ->join('history_dealings','products.id','=','history_dealings.product_id')
+        ->select('products.name')
+        ->get();
+        return $result;
+
+     }  */
 
      
     public function products(){
@@ -31,10 +35,10 @@ class ProductController extends Controller
         try{
             $product=new Product();
             $product->product_id    = $request->product_id;
-            $product->name          = $request->name;
-            $product->brand         = $request->brand;
-            $product->color         = $request->color;
-            $product->price         = $request->price;
+            $product->product_name  = $request->product_name;
+            $product->product_brand = $request->product_brand;
+            $product->product_color = $request->product_color;
+            $product->product_price = $request->product_price;
             $product->save();
 
             $success = true;
@@ -79,10 +83,10 @@ class ProductController extends Controller
     public function updateProduct($id, Request $request){
         $product= Product::where('id', $id)->first();
         $product->product_id    = $request->product_id;
-        $product->name          = $request->name;
-        $product->brand         = $request->brand;
-        $product->color         = $request->color;
-        $product->price         = $request->price;
+        $product->product_name          = $request->product_name;
+        $product->product_brand         = $request->product_brand;
+        $product->product_color         = $request->product_color;
+        $product->product_price         = $request->product_price;
         $product->save();
         return response()->json([
            'message' => 'product Update Success ',

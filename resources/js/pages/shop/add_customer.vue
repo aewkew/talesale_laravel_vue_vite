@@ -110,9 +110,9 @@ export default {
        
             if(!this.errors.length){
                 let formData = new FormData();
-                formData.append('name', this.name);
-                formData.append('address', this.address);
-                formData.append('phone', this.phone);
+                formData.append('customer_name', this.name);
+                formData.append('customer_address', this.address);
+                formData.append('customer_phone', this.phone);
              
                 await axios.post('/api/addcustomers', formData).then((response) =>{
                     console.log(response);

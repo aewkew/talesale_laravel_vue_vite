@@ -21,10 +21,10 @@
                 <tbody v-for="item in products" :key="item.id">
                     <tr>
                         <th>{{ item.product_id }}</th>
-                        <td>{{ item.name }}</td>
-                        <td>{{ item.brand }}</td>
-                        <td>{{ item.color }}</td>
-                        <td>{{ item.price }}</td>
+                        <td>{{ item.product_name }}</td>
+                        <td>{{ item.product_brand }}</td>
+                        <td>{{ item.product_color }}</td>
+                        <td>{{ item.product_price }}</td>
                         <td>
                             <button class="but-co btn" type="button">
                                 <i class="bi bi-plus"></i>

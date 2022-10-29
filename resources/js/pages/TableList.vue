@@ -21,11 +21,11 @@
 
                 <tbody v-for="item in customers" :key="item.id">
                     <tr>
-                        <td>{{ item.product_id }}</td>
                         <td></td>
-                        <td>{{ item.name }}</td>
-                        <td>{{ item.name }}</td>
-                        <td>{{ item.phone }}</td>
+                        <td></td>
+                        <td>{{ item.customer_name}}</td>
+                        <td>{{ item.customer_address}}</td>
+                        <td>{{ item.customer_phone }}</td>
                         <td>{{ item.created_at }}</td>
                         <td>
                             <button class="but-co btn" type="button">

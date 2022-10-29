@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('comapny_id');
             $table->string('customer_id');
-            $table->string('name');
-            $table->string('address');
-            $table->string('phone');
+            $table->string('customer_name');
+            $table->string('customer_address');
+            $table->string('customer_phone');
             $table->timestamps();
         });
     }
