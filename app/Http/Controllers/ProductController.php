@@ -93,4 +93,20 @@ class ProductController extends Controller
            'code' => 200
        ]);
     }
+      
+    public function search(Request $request){
+        $product = Product::where('product_color','LIKE','%'.$request->keyword.'%')->get();
+        return response()->json($product);
+    
+    }
+
+
+
+    
+    public function selectProduct(){
+        $products = Product::where('product_color')->get();
+        return response()->json($products);
+    }
+    
+    
 }

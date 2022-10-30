@@ -1,8 +1,114 @@
 <template>
     <div class="container">
-        <Search></Search>
+      
+        <div class="card">
+            <div class="card-body shopCard">
+                <div class="row">
+                    <div class="col">
+                        <input
+                            type="text"
+                            v-model="keyword"
+                            class="form-control"
+                            placeholder="Search Color"
+                        />
+                    </div>
 
-        <div class="sale">List Product</div>
+                    <div class="col-auto">
+                        <div class="input-group">
+                            <label
+                                class="input-group-text"
+                                for="inputGroupSelect01"
+                                >Brand</label
+                            >
+                            <select class="form-select" id="">
+                                <option value="" selected>Choose...</option>
+                                <option>Red</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-auto">
+                        <div class="input-group">
+                            <label class="input-group-text" for="product"
+                                >Color</label
+                            >
+                            <select class="form-select" id="inputGroupSelect01">
+                                <option selected>Choose...</option>
+                                <option>Red</option>
+                                <option>Blue</option>
+                                <option>Black</option>
+                                <option>Yellow</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-auto">
+                        <div class="row">
+                            <div class="col">
+                                <button
+                                    type="button"
+                                    class="btn but-co"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#CustomerModel"
+                                >
+                                    <i
+                                        class="bi bi-person-plus-fill"
+                                        style="font-size: 1.4rem"
+                                    ></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-auto">
+                        <div class="row">
+                            <div class="col">
+                                <button
+                                    type="button"
+                                    class="btn but-co"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#staticBackdrop"
+                                >
+                                    Add
+                                </button>
+                            </div>
+
+                            <div class="col">
+                                <button
+                                    type="button"
+                                    class="btn but-co"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#CompanyModel"
+                                >
+                                    <i
+                                        class="bi bi-building"
+                                        style="font-size: 1.4rem"
+                                    ></i>
+                                </button>
+                            </div>
+
+                            <div class="col">
+                                <button type="button" class="btn but-co">
+                                    <i
+                                        class="bi bi-basket"
+                                        style="font-size: 1.4rem"
+                                    ></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <Add></Add>
+        <Add_customer></Add_customer>
+        <Add_company></Add_company>
+       
+
+        <div class="row">
+            <div class="col"><div class="sale">List Product</div></div>
+            <div class="col"></div>
+        </div>
 
         <div class="tableContrainer">
             <table class="table">
@@ -31,7 +137,10 @@
                             </button>
                         </td>
                         <td>
-                            <button class="but-co btn"  @click.prevent="deleteProduct(item.id)">
+                            <button
+                                class="but-co btn"
+                                @click.prevent="deleteProduct(item.id)"
+                            >
                                 <i class="bi bi-trash"></i>
                             </button>
                         </td>
@@ -42,18 +151,27 @@
     </div>
 </template>
 <script>
-import Search from "./shop/search.vue";
+import axios from "axios";
+
+import Add from "./shop/add.vue";
+import Add_customer from "./shop/add_customer.vue";
+import Add_company from "./shop/add_company.vue";
 export default {
     name: "Shop",
-    components: { Search },
+    components: {  Add, Add_customer ,Add_company },
     data() {
         return {
-            products: Array,
-           
+            products: {},
+            keyword: null,
         };
     },
     created() {
         this.getData();
+    },
+    watch: {
+        keyword() {
+            this.getResult();
+        },
     },
     methods: {
         async getData() {
@@ -69,18 +187,26 @@ export default {
                 });
         },
         async deleteProduct(id) {
-      
-      let url = `/api/deleteProduct/${id}`;
-      await axios.delete(url).then(response =>{
-          if(response.data.code == 200) {
-               alert(response.message);
-               this.getData();
-          }  
-      }).catch(error =>{
-          console.log(error);
-      } );
-  },
-      
+            let url = `/api/deleteProduct/${id}`;
+            await axios
+                .delete(url)
+                .then((response) => {
+                    if (response.data.code == 200) {
+                        alert(response.message);
+                        this.getData();
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+        async getResult() {
+            let url = "/api/search";
+            await axios
+                .get(url, { params: { keyword: this.keyword } })
+                .then((res) => (this.products = res.data))
+                .catch((error) => {});
+        },
     },
     mounted() {
         console.log("Product List Component Mounted");

@@ -19,6 +19,7 @@ Route::post('addproduct', [ProductController::class,'addproduct']);
 Route::get('getproduct/{id}', [ProductController::class,'getproduct']);
 Route::post('updateProduct/{id}', [ProductController::class,'updateProduct']);
 Route::delete('deleteProduct/{id}',[ProductController::class,'deleteProduct']);
+Route::get('search',[ProductController::class,'search']);
 
 //Route::get('iner-join', [ProductController::class,'innerJoin']);
 

@@ -36,8 +36,10 @@ class HistoryDealingController extends Controller
 
      public function innerJoinhis(){
         $result = DB::table('history_dealings')
-        ->join('customers.id','history_dealings','=','history_dealings.customer_id')
-        ->select('products.product_name')
+        ->join('users','users.id','=','history_dealings.user_id')
+        ->join('products','products.id','=','history_dealings.product_id')
+        ->join('customers','customers.id','=','history_dealings.customer_id')
+        ->select('products.product_name','users.name','customers.customer_name')
         ->get();
         return response()->json(
             [
@@ -47,6 +49,7 @@ class HistoryDealingController extends Controller
         ]);
 
      }  
+
     
 
 

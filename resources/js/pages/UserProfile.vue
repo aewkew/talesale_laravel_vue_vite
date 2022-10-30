@@ -19,8 +19,8 @@
                 <tbody  v-for="item in history_dealings" :key="item.id">
                     <tr >
                         <th scope="row">{{ item.product_name}}</th>
-                        <td>{{  }}</td>
-                        <td>{{  }}</td>
+                        <td>{{ item.name  }}</td>
+                        <td>{{ item.customer_name }}</td>
                         <td>{{ }}</td>
               
                         <td>
@@ -75,7 +75,7 @@ export default {
         },*/
 
         async getJoin() {
-            let url ="/api/iner-join";
+            let url ="/api/iner-join_his";
             await axios
             .get(url)
             .then((response) => {
