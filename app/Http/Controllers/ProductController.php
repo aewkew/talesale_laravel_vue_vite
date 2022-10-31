@@ -94,12 +94,21 @@ class ProductController extends Controller
        ]);
     }
       
-    public function search(Request $request){
-        $product = Product::where('product_color','LIKE','%'.$request->keyword.'%')->get();
+    public function search_color(Request $request){
+        $product = Product::where('product_color','LIKE','%'.$request->keyword_color.'%')->get();
         return response()->json($product);
     
     }
-
+    public function search_brand(Request $request){
+        $product = Product::where('product_brand','LIKE','%'.$request->keyword_brand.'%')->get();
+        return response()->json($product);
+    
+    }
+    public function search_id(Request $request){
+        $product = Product::where('product_id','LIKE','%'.$request->keyword_brand.'%')->get();
+        return response()->json($product);
+    
+    }
 
 
     

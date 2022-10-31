@@ -7,9 +7,17 @@
                     <div class="col">
                         <input
                             type="text"
-                            v-model="keyword"
+                            v-model="keyword_color"
                             class="form-control"
                             placeholder="Search Color"
+                        />
+                    </div>
+                    <div class="col">
+                        <input
+                            type="text"
+                            v-model="keyword_brand"
+                            class="form-control"
+                            placeholder="Search Brand"
                         />
                     </div>
 
@@ -162,16 +170,21 @@ export default {
     data() {
         return {
             products: {},
-            keyword: null,
+            keyword_color: null,
+            keyword_brand: null,
         };
     },
     created() {
         this.getData();
     },
     watch: {
-        keyword() {
-            this.getResult();
+        keyword_color() {
+            this.getColor();
+            
         },
+        keyword_brand(){
+            this.getBrand();
+        }
     },
     methods: {
         async getData() {
@@ -200,14 +213,22 @@ export default {
                     console.log(error);
                 });
         },
-        async getResult() {
-            let url = "/api/search";
-            await axios
-                .get(url, { params: { keyword: this.keyword } })
+        async getColor() {
+            let url = "/api/search_color";
+              await axios
+                .get(url, { params: { keyword_color: this.keyword_color } })
                 .then((res) => (this.products = res.data))
                 .catch((error) => {});
         },
+        async getBrand(){
+            let url = "/api/search_brand";
+              await axios
+                 .get(url, { params: { keyword_brand: this.keyword_brand } })
+                 .then((res) => (this.products = res.data))
+                 .catch((error) => {});
+        }
     },
+
     mounted() {
         console.log("Product List Component Mounted");
     },
