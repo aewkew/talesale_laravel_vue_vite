@@ -105,7 +105,7 @@ class ProductController extends Controller
     
     }
     public function search_id(Request $request){
-        $product = Product::where('product_id','LIKE','%'.$request->keyword_brand.'%')->get();
+        $product = Product::where('product_id','LIKE','%'.$request->keyword_id.'%')->get();
         return response()->json($product);
     
     }

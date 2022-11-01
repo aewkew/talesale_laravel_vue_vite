@@ -7,11 +7,21 @@
                     <div class="col">
                         <input
                             type="text"
+                            v-model="keyword_id"
+                            class="form-control"
+                            placeholder="Search ID"
+                        />
+                    </div>
+
+                    <div class="col">
+                        <input
+                            type="text"
                             v-model="keyword_color"
                             class="form-control"
                             placeholder="Search Color"
                         />
                     </div>
+
                     <div class="col">
                         <input
                             type="text"
@@ -172,6 +182,7 @@ export default {
             products: {},
             keyword_color: null,
             keyword_brand: null,
+            keyword_id: null,
         };
     },
     created() {
@@ -184,7 +195,11 @@ export default {
         },
         keyword_brand(){
             this.getBrand();
+        },
+        keyword_id(){
+            this.getId();
         }
+        
     },
     methods: {
         async getData() {
@@ -226,6 +241,13 @@ export default {
                  .get(url, { params: { keyword_brand: this.keyword_brand } })
                  .then((res) => (this.products = res.data))
                  .catch((error) => {});
+        },
+        async getId(){
+            let url = "/api/search_id";
+              await axios 
+                   .get(url, { params: { keyword_id: this.keyword_id }})
+                   .then((res) => (this.products = res.data))
+                   .catch((error) => {});
         }
     },
 
