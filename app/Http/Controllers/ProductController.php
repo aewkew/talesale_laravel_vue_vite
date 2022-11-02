@@ -110,11 +110,22 @@ class ProductController extends Controller
     
     }
 
-
-    
     public function selectProduct(){
         $products = Product::where('product_color')->get();
         return response()->json($products);
+    }
+
+    
+    public function addCart($id)
+    {
+        $product=Product::find($id);
+     
+     return response()->json(
+        [
+         'products' => $product,
+         'message' => 'Product',
+         'code' => 200
+    ]);
     }
     
     

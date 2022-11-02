@@ -6,12 +6,14 @@ import sidebar from './components/Sidebar/sidebar.vue'
 import router from './router.js';
 import * as bootstrap from 'bootstrap';
 
+import store from './store.js';
 
 
 
 
-createApp(App).use(router).mount('#app')
+createApp(App).use(router).use(store).mount('#app')
 createApp(sidebar).use(router).mount('#sidebar')
+
 
 /*
 app.use(VueAxios, axios)

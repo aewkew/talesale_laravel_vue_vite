@@ -20,12 +20,19 @@
         
     </div>
 </template>
+
 <script>
 import Corelayout from "./layouts/corelayout.vue";
 import Content from "./layouts/Content.vue";
 import TopNavbar from "./layouts/topNavbar.vue";
 import Home from "./pages/Home.vue";
 
+import { useStore } from 'vuex'
+import { computed } from 'vue'
+const store = useStore()
+const stack = computed(() => {
+    return store.state.stack
+})
 export default {
     name: "App",
     components: { Corelayout, Content, TopNavbar, Home },
