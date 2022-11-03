@@ -91,22 +91,25 @@
                             </div>
 
                             <div class="col">
-                                <div class="btn-group">
+                                <div class="dropdown">
                                     <button type="button" class="btn btn-danger dropdown-toggle" 
-                                    data-bs-toggle="dropdown" aria-expanded="false">  Cart ({{ $store.state.cartCount }})</button>
- 
-                                     
-                                    <ul class="dropdown-menu" v-if="$store.state.cart.length > 0">
-                                           <li
-                                               ><a class="dropdown-item"  v-for="item in $store.state.cart" 
-                                              :key="item.id">  {{ item.product_name }} x{{ item.quantity }} - {{ $item.product_price }}</a>  
+                                    data-bs-toggle="dropdown" aria-expanded="false">  Cart {{ $store.state.cartCount }}</button>
+                                    <ul class="dropdown-menu" >
+                                           <li  
+                                               ><a v-for="item in $store.state.cart" 
+                                              :key="item.id" class="dropdown-item"  > {{ item.product_name}}  x{{ item.quantity}} ฿{{ item.totalPrice }}  
+                                                    <span class=" btn btn-danger btn-sm" @click.prevent="removeFromCart(item)">X</span>
+                                                </a>  
                           
                                            </li>
-                                           <li><a class="dropdown-item" href="#">  Total:  </a></li>
-                                             <li><hr class="dropdown-divider"></li>
-                                         <li><a class="dropdown-item" href="#">Check out</a></li>
+                                           <li><a class="dropdown-item" href="#">  Total: {{ totalPrice }} </a></li>
+                                             <!-- <li><hr class="dropdown-divider"></li> -->
+
+                                         <li> 
+                                          
+                                        </li>
                                      </ul>                                 
-                                   
+                                
                                    
                                 </div>
                                   
@@ -174,6 +177,7 @@ import Add_company from "./shop/add_company.vue";
 
 
 export default {
+    
     name: "Shop",
     components: { Add, Add_customer, Add_company },
     data() {
@@ -182,9 +186,6 @@ export default {
             keyword_color: null,
             keyword_brand: null,
             keyword_id: null,
-
-       
-
         }
         
     },
@@ -214,15 +215,7 @@ export default {
             this.getId();
         },
     },
-    computed:{
-        totalPrice(){
-            let total =0;
-            for (let item of this.$store.state.cart){
-                total += item.totalPrice;
-            }
-            return total.toFixed(2);
-        }
-    },
+    
     methods: {
         
         async getData() {
@@ -238,8 +231,12 @@ export default {
                 });
         },
 
-        addToCart(item){
-            this.$store.commit('addToCart', item);
+        async addToCart(item){
+            this.$store.commit('addToCart', item)
+        },
+        async removeFromCart(item){
+            this.$store.commit('removeFromCart', item);
+            
         },
 
         async deleteProduct(id) {
@@ -281,11 +278,22 @@ export default {
                 .catch((error) => {});
         },
     },
-   
+    computed: {
+    totalPrice() {
+        let total = 0;
 
+        for (let item of this.$store.state.cart) {
+            total += item.totalPrice;
+        }
+
+        return total.toFixed(2);
+    }},
+
+   
     mounted() {
         console.log("Product List Component Mounted");
     },
+
 };
 </script>
 <style></style>

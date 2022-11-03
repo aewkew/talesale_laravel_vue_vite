@@ -153,7 +153,7 @@
 <script>
 
 export default {
-    name: "Invoice",
+    name: "invoice",
     data(){
         return{
 

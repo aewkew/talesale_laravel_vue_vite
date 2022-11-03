@@ -42,6 +42,14 @@ const routes = [
             name: 'Shop',
             component: Shop
         },
+
+        {
+            path: '/Invoice',
+            name: 'invoice',
+            component: Invoice,
+            
+        },
+
         {
             name: 'Notifications',
             path: '/Notifications',
@@ -66,11 +74,7 @@ const routes = [
 
             ]
         },
-        {
-            path: '/invoice',
-            name: 'Invoice',
-            component: Invoice
-        },
+      
         {
             path: '/Inklist',
             name: 'Inklist',

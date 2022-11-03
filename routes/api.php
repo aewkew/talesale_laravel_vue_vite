@@ -25,6 +25,7 @@ Route::get('search_color',[ProductController::class,'search_color']);
 Route::get('search_brand',[ProductController::class,'search_brand']);
 Route::get('search_id',[ProductController::class,'search_id']);
 //cart product
+
 Route::post('addCart', [ProductController::class,'addCart']);
 
 //Route::get('iner-join', [ProductController::class,'innerJoin']);
