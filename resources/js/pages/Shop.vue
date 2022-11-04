@@ -104,9 +104,8 @@
                                            </li>
                                            <li><a class="dropdown-item" href="#">  Total: {{ totalPrice }} </a></li>
                                              <!-- <li><hr class="dropdown-divider"></li> -->
-
-                                         <li> 
-                                          
+                                         <li class="nav-item"> 
+                                            <router-link to="">check</router-link>
                                         </li>
                                      </ul>                                 
                                 
