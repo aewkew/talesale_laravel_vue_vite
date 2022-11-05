@@ -105,7 +105,7 @@
                                            <li><a class="dropdown-item" href="#">  Total: {{ totalPrice }} </a></li>
                                              <!-- <li><hr class="dropdown-divider"></li> -->
                                          <li class="nav-item"> 
-                                            <router-link to="">check</router-link>
+                                            <router-link :to="{name:'invoice'}">check out</router-link>
                                         </li>
                                      </ul>                                 
                                 
