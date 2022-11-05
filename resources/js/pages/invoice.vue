@@ -19,7 +19,7 @@
             <div class="col">
                 <div class="invoice-title">
                     <h2>Invoice</h2>
-                    <h3 class="pull-right">Order # 12345</h3>
+                    <h3 class="pull-right">Order # 12345  Cart {{ $store.state.cartCount }}  </h3>  
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@
         <!-- Invoice   -->
        
 
-        <div class="invoice pdf" id="invoice">
+        <div class="invoice pdf" id="invoice" >
             <div class="invoice-data">
                 <div class="row">
                     <div class="col">
@@ -97,50 +97,38 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Cannon Yellow</td>
-                                    <td>Ink Cannon Yellow</td>
-                                    <td>2</td>
-                                    <td>120</td>
-                                    <td>240</td>
+                                <tr v-for="item in $store.state.cart" 
+                                              :key="item.id" >
+                                    <th scope="row"></th>
+                                    <td>{{item.product_name}}</td>
+                                    <td>{{item.product_id}}</td>
+                                    <td>{{item.quantity}}</td>
+                                    <td>{{item.product_price}}</td>
+                                    <td>{{item.totalPrice}}</td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Cannon Black</td>
-                                    <td>Ink Cannon Black</td>
-                                    <td>2</td>
-                                    <td>120</td>
-                                    <td>240</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Cannon Blue</td>
-                                    <td>Ink Cannon Blue</td>
-                                    <td>2</td>
-                                    <td>120</td>
-                                    <td>240</td>
-                                </tr>
+                               
                             </tbody>
-                        </table>
+                        </table> 
+                        <div> </div>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-8"></div>
                     <div class="col">
-                        <div class="total-invoice">
+                        <div class="total-invoice" 
+                                              >
                             <div class="row">
                                 <div class="col-7 data-total">Sub Total</div>
-                                <div class="col-5"><span>฿ 669.6 </span></div>
+                                <div class="col-5"><span>฿ {{SubTotal}} </span></div>
                             </div>
                             <div class="row">
                                 <div class="col-7 data-sub">Tax(7%)</div>
-                                <div class="col-5"><span>฿ 50.4  </span></div>
+                                <div class="col-5"><span>฿ {{TaxTotal}} </span></div>
                             </div>
                             <div class="row sum-total">
                                 <div class="col-7  sum-total-head ">Total Amount</div>
-                                <div class="col-5">฿ 720</div>
+                                <div class="col-5" >{{ totalPrice }}  ฿ </div>
                             </div>
                         </div>
                     </div>
@@ -158,6 +146,37 @@ export default {
         return{
 
         }
+    },
+    computed:{
+      cart(){
+        return this.$store.state.cart
+      },
+      
+      totalPrice: function(){
+        let total = 0;
+        for (let item of this.$store.state.cart) {
+            total += item.totalPrice;
+        }
+        return total;
+        
+      },
+      TaxTotal: function(){
+        let total = 0;
+        for (let item of this.$store.state.cart) {
+           total +=  item.totalPrice * (7/100)
+        }
+         
+        return total.toFixed(2);
+      },
+
+      SubTotal:function(){
+        let total =0;
+        for (let item of this.$store.state.cart) {
+            total += ( item.totalPrice - (item.totalPrice * (7/100))  )
+          
+        }
+        return total.toFixed(2);
+      }
     },
 
    methods: {

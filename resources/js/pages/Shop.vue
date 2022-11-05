@@ -105,7 +105,7 @@
                                            <li><a class="dropdown-item" href="#">  Total: {{ totalPrice }} </a></li>
                                              <!-- <li><hr class="dropdown-divider"></li> -->
                                          <li class="nav-item"> 
-                                            <router-link :to="{name:'invoice'}">check out</router-link>
+                                            <router-link  :to="{name:'invoice' ,params:{ item:$store.state.cart }}">check out</router-link>
                                         </li>
                                      </ul>                                 
                                 
@@ -217,6 +217,7 @@ export default {
     
     methods: {
         
+        
         async getData() {
             let url = "/api/products";
             await axios
@@ -231,11 +232,17 @@ export default {
         },
 
         async addToCart(item){
-            this.$store.commit('addToCart', item)
+            this.$store.commit('addToCart', item);
+           
         },
         async removeFromCart(item){
             this.$store.commit('removeFromCart', item);
             
+        },
+        async sevecart(){
+            let data = {
+                  cart: JSON.stringify(this.$store.state.cart)
+                     }
         },
 
         async deleteProduct(id) {

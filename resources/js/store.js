@@ -42,6 +42,7 @@ const store = createStore({
         }
       
     },
+
     saveCart(state) {
         window.localStorage.setItem('cart', JSON.stringify(state.cart));
         window.localStorage.setItem('cartCount', state.cartCount);
@@ -50,4 +51,4 @@ const store = createStore({
     
 })
 
-export default store;
+export default store ;
