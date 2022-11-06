@@ -5,21 +5,26 @@
         <div class="row">
             <div class="col">
                 <div class="exprint">
-
-                    <button type="button" class="btn but-co"  onclick="print()" value="invoice" >
+                    <button
+                        type="button"
+                        class="btn but-co"
+                        @click="printInvoice()"
+                        value="invoice"
+                    >
                         <i class="bi bi-printer"></i> Print
                     </button>
 
                     <button class="btn but-co" @click="downloadPDF">
                         <i class="bi bi-file-earmark-pdf"></i>Export
                     </button>
-
                 </div>
             </div>
             <div class="col">
                 <div class="invoice-title">
                     <h2>Invoice</h2>
-                    <h3 class="pull-right">Order # 12345  Cart {{ $store.state.cartCount }}  </h3>  
+                    <h3 class="pull-right">
+                        Order # 12345 Cart {{ $store.state.cartCount }}
+                    </h3>
                 </div>
             </div>
         </div>
@@ -27,9 +32,8 @@
         <hr />
 
         <!-- Invoice   -->
-       
 
-        <div class="invoice pdf" id="invoice" >
+        <div class="invoice" id="invoice">
             <div class="invoice-data">
                 <div class="row">
                     <div class="col">
@@ -97,93 +101,97 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="item in $store.state.cart" 
-                                              :key="item.id" >
+                                <tr
+                                    v-for="item in $store.state.cart"
+                                    :key="item.id"
+                                >
                                     <th scope="row"></th>
-                                    <td>{{item.product_name}}</td>
-                                    <td>{{item.product_id}}</td>
-                                    <td>{{item.quantity}}</td>
-                                    <td>{{item.product_price}}</td>
-                                    <td>{{item.totalPrice}}</td>
+                                    <td>{{ item.product_name }}</td>
+                                    <td>{{ item.product_id }}</td>
+                                    <td>{{ item.quantity }}</td>
+                                    <td>{{ item.product_price }}</td>
+                                    <td>{{ item.totalPrice }}</td>
                                 </tr>
-                               
                             </tbody>
-                        </table> 
-                        <div> </div>
+                        </table>
+                        <div></div>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-8"></div>
                     <div class="col">
-                        <div class="total-invoice" 
-                                              >
+                        <div class="total-invoice">
                             <div class="row">
                                 <div class="col-7 data-total">Sub Total</div>
-                                <div class="col-5"><span>฿ {{SubTotal}} </span></div>
+                                <div class="col-5">
+                                    <span>฿ {{ SubTotal }} </span>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-7 data-sub">Tax(7%)</div>
-                                <div class="col-5"><span>฿ {{TaxTotal}} </span></div>
+                                <div class="col-5">
+                                    <span>฿ {{ TaxTotal }} </span>
+                                </div>
                             </div>
                             <div class="row sum-total">
-                                <div class="col-7  sum-total-head ">Total Amount</div>
-                                <div class="col-5" >{{ totalPrice }}  ฿ </div>
+                                <div class="col-7 sum-total-head">
+                                    Total Amount
+                                </div>
+                                <div class="col-5">{{ totalPrice }} ฿</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <button type="button" class="btn but-co" @click="printInvoice">
+                <i class="bi bi-printer"></i> Print
+            </button>
         </div>
-  
     </div>
 </template>
 <script>
-
 export default {
     name: "invoice",
-    data(){
-        return{
 
-        }
+    data() {
+        return {};
     },
-    computed:{
-      cart(){
-        return this.$store.state.cart
-      },
-      
-      totalPrice: function(){
-        let total = 0;
-        for (let item of this.$store.state.cart) {
-            total += item.totalPrice;
-        }
-        return total;
-        
-      },
-      TaxTotal: function(){
-        let total = 0;
-        for (let item of this.$store.state.cart) {
-           total +=  item.totalPrice * (7/100)
-        }
-         
-        return total.toFixed(2);
-      },
+    computed: {
+        cart() {
+            return this.$store.state.cart;
+        },
 
-      SubTotal:function(){
-        let total =0;
-        for (let item of this.$store.state.cart) {
-            total += ( item.totalPrice - (item.totalPrice * (7/100))  )
-          
-        }
-        return total.toFixed(2);
-      }
+        totalPrice: function () {
+            let total = 0;
+            for (let item of this.$store.state.cart) {
+                total += item.totalPrice;
+            }
+            return total;
+        },
+        TaxTotal: function () {
+            let total = 0;
+            for (let item of this.$store.state.cart) {
+                total += item.totalPrice * (7 / 100);
+            }
+
+            return total.toFixed(2);
+        },
+
+        SubTotal: function () {
+            let total = 0;
+            for (let item of this.$store.state.cart) {
+                total += item.totalPrice - item.totalPrice * (7 / 100);
+            }
+            return total.toFixed(2);
+        },
     },
 
-   methods: {
-         
-  
-   }
-    
+    methods: {
+        printInvoice: function () {
+            window.print();
+        },
+    },
 };
 </script>
 <style></style>

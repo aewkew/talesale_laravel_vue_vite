@@ -1,99 +1,115 @@
-.exprint{
+.exprint {
     display: inline-block;
     margin-bottom: 5;
-    
-    .btn{
+
+    .btn {
         background-color: #2f5be0;
         font-size: 15;
         margin: 2;
-       
-        i{
+
+        i {
             margin-right: 1;
         }
     }
-    .but-co:hover{
+
+    .but-co:hover {
         background-color: #fd6161;
     }
 
 
 }
-.invoice-title{
-     text-align: right;
-}
-.invoice-title h2, .invoice-title h3 {
-    display: inline-block;
-   
+
+.invoice-title {
+    text-align: right;
 }
 
-.invoice{
+.invoice-title h2,
+.invoice-title h3 {
+    display: inline-block;
+
+}
+
+
+
+.invoice {
+
     min-height: 680px;
     background-color: white;
     position: relative;
-    .invoice-data{
+
+    .invoice-data {
         padding: 60;
-        .logo-invoice{
+
+        .logo-invoice {
             margin-bottom: 10;
-             img {
-              max-width: 70px;
+
+            img {
+                max-width: 70px;
             }
-          }
-       .company{
-        font-size: 1rem;
-        font-weight: 800;
-       }   
-       .company-address{
+        }
 
-       }
-       .invoice-number{
-        text-align: right;
-       }
-
-
-       .bill{
-        margin-top: 2rem;
-         .bill-name{
+        .company {
+            font-size: 1rem;
             font-weight: 800;
-            margin-bottom: 0.5rem;
-         }
-       .bill-data{
-        
-       }
-       .data-invoice{
-        margin-top: 1rem;
-        text-align: right;
-       }
-        
-       }
+        }
 
-       .table-invoice{
-        margin-top: 1rem;
-        
-       }
-         .total-invoice{
+        .company-address {}
 
-             .data-total{
-               font-weight: 400;
-            }
-            .data-sub{
-               font-weight: 400;
-            }
-             .sum-total{
-              margin-top: 0.5rem;
-              font-size: 16;
-              .sum-total-head{
+        .invoice-number {
+            text-align: right;
+        }
+
+
+        .bill {
+            margin-top: 2rem;
+
+            .bill-name {
                 font-weight: 800;
-               
-              }
+                margin-bottom: 0.5rem;
             }
-            
-    
-  }
 
-      
-       
+            .bill-data {}
+
+            .data-invoice {
+                margin-top: 1rem;
+                text-align: right;
+            }
+
+        }
+
+        .table-invoice {
+            margin-top: 1rem;
+
+        }
+
+        .total-invoice {
+
+            .data-total {
+                font-weight: 400;
+            }
+
+            .data-sub {
+                font-weight: 400;
+            }
+
+            .sum-total {
+                margin-top: 0.5rem;
+                font-size: 16;
+
+                .sum-total-head {
+                    font-weight: 800;
+
+                }
+            }
+
+
+        }
+
+
+
 
     }
 
-    
-    
+
+
 }
