@@ -19,13 +19,14 @@
                     </tr>
                 </thead>
 
-                <tbody v-for="item in customers" :key="item.id">
+                <tbody v-for="item in invoices" :key="item.id">
                     <tr>
+                        <td>{{item.date }}</td>
+                        <td v-if="item.customer">{{ item.customer.customer_name}}</td>
+                        <td v-else></td>
+                        <td>{{item.number }}</td>
+                        
                         <td></td>
-                        <td></td>
-                        <td>{{ item.customer_name}}</td>
-                        <td>{{ item.customer_address}}</td>
-                        <td>{{ item.customer_phone }}</td>
                         <td>{{ item.created_at }}</td>
                         <td>
                             <button class="but-co btn" type="button">
@@ -72,34 +73,19 @@ export default {
 
     methods: {
         async getData() {
-            let url = "/api/customers";
+            let url = "/api/invoices";
             await axios
                 .get(url)
                 .then((response) => {
-                    this.customers = response.data.customers;
-                    console.log(this.customers);
+                    this.invoices = response.data.invoices;
+                    console.log(this.invoices);
                 })
                 .catch((error) => {
                     console.log(error);
                 });
         },
 
-        async deleteCustomer(id) {
-            let url = `/api/deleteCustomer/${id}`;
-            await axios
-                .delete(url)
-                .then((response) => {
-                    if (response.data.code == 200) {
-                        alert(response.message);
-                        this.getData();
-                    }
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        },
-
-   
+        
         
     },
 

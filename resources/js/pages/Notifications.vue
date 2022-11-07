@@ -14,18 +14,18 @@
                     </tr>
                 </thead>
 
-                <tbody>
-                    <tr v-for="(item, i) in items" :key="i" :to="item.to">
-                        <th scope="row">{{ item.Date }}</th>
-                        <td>{{ item.Customer }}</td>
-                        <td>{{ item.tel}}</td>
-                        <td>{{ item.employee }}</td>
+                <tbody v-for="item in customers" :key="item.id">
+                    <tr>
+                        <th scope="row">{{item.created_at}} </th>
+                        <td>{{ item.customer_name }}</td>
+                        <td> </td>
+                        <td>{{ item.customer_phone }}</td>
                         <td>
                             <button
                                 class="but-co btn "
                                 type="button"
                             >
-                            {{ item.Invoid }}
+                           
                             </button>
                         </td>
                     </tr>
@@ -41,10 +41,50 @@ export default {
     name: "Notifications",
 
     data() {
-    return {
-      
-    };
-  },
+        return {
+            customers: Array,
+        };
+    },
+    created() {
+        this.getData();
+    },
+
+    methods: {
+        async getData() {
+            let url = "/api/customers";
+            await axios
+                .get(url)
+                .then((response) => {
+                    this.customers = response.data.customers;
+                    console.log(this.customers);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+
+        async deleteCustomer(id) {
+            let url = `/api/deleteCustomer/${id}`;
+            await axios
+                .delete(url)
+                .then((response) => {
+                    if (response.data.code == 200) {
+                        alert(response.message);
+                        this.getData();
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+
+   
+        
+    },
+
+    mounted() {
+        console.log("Read Customer List Component Mounted");
+    },
     
 }
 </script>

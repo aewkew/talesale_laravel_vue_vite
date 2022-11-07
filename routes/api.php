@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\InvoiceController;
 
 use App\Http\Controllers\HistoryDealingController;
 
@@ -45,6 +46,8 @@ Route::get('getCompanies/{id}', [CompanyController::class,'getCompanies']);
 Route::post('updateCompany/{id}', [CompanyController::class,'updateCompany']);
 Route::delete('deleteCompany/{id}', [CompanyController::class,'deleteCompany']);
 
+//invoice
+Route::get('invoices', [InvoiceController::class,'invoices']);
 
 
 // user
