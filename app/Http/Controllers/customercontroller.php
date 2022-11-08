@@ -80,7 +80,12 @@ class CustomerController extends Controller
        'message' => 'Customer Update Success ',
        'code' => 200
    ]);
-}
+    }
+
+    public function searchCustomer(Request $request){
+      $customer = Customer::where('customer_name','LIKE','%'.$request->keyword_cus.'%')->get();
+      return response()->json($customer);
+     }
 
  
 }

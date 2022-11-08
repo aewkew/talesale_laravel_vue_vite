@@ -68,19 +68,38 @@
                                 <div class="bill-name">BILL TO</div>
                             </div>
                             <div class="col">
-                                <div class="bill-data">
+                                <div class="bill-data" >
+                                    <select  class="selectpicker"  
+                                        :options="cus_options" v-model="customer_id" >
+                                      <option disabled> Select customer </option>
+                                        <option  v-for="customer in customers" :key="customer.id">{{ customer.customer_name}} 
+                                             <div >{{ customer.customer_address}}  </div>
+                                        </option>
+                                         
+                                    </select>
+                                     <div class="address"><span text="customer_id"> {{customer_id}} </span> </div>
+                                  
+                                       
+                                    <!-- 
                                     Tiger kung <br />
                                     Jungti kung Comp <br />
                                     Sansai Chaingmai 50210 <br />
-                                    06-46166415 , Jungti_ger_kung@hitmill.com
+                                    06-46166415 , Jungti_ger_kung@hitmill.com-->
                                 </div>
                             </div>
 
                             <div class="col">
                                 <div class="data-invoice">
-                                    Invoice Date : 10/14/2022 <br />
+                                        Date:
+                                      <input id="date" placeholder="dd-mm-yyyy" type="date" class="input" v-model="date" /> <br>
+                                       Date_due: 
+                                      <input id="due_date" type="date" class="input" v-model="due_date"/> <br/>
+                                       Terms: 
+                                       <input type="text" class="input" v-model="terms_and_conditions" /> 
+                                    
+                                  <!--  Date : 10/14/2022  <br />
                                     Terms : Due on Receipt <br />
-                                    Due Date : 10/05/2016
+                                    Due Date : 10/05/2016 --> 
                                 </div>
                             </div>
                         </div>
@@ -144,18 +163,29 @@
                     </div>
                 </div>
             </div>
-            <button type="button" class="btn but-co" @click="printInvoice">
-                <i class="bi bi-printer"></i> Print
-            </button>
+           
         </div>
+          <button type="button" class="btn but-co" @click="saveInvoice">
+                <i class="bi bi-printer"></i> Save
+          </button>
+         <button type="button" class="btn but-co" @click="hidden"> Hidden </button>
     </div>
 </template>
 <script>
+import axios from "axios";
+
 export default {
     name: "invoice",
 
     data() {
-        return {};
+        return {
+            customer_id:'',
+            cus_options:[],
+         
+        };
+    },
+    created() {
+        this.getCus();
     },
     computed: {
         cart() {
@@ -191,6 +221,21 @@ export default {
         printInvoice: function () {
             window.print();
         },
+        async getCus() {
+            let url = "/api/customers";
+            await axios
+                .get(url)
+                .then((response) => {
+                    this.customers = response.data.customers;
+                    console.log(this.customers);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+        hidden(){
+
+        }
     },
 };
 </script>
