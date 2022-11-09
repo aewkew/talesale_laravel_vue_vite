@@ -48,6 +48,7 @@ Route::delete('deleteCompany/{id}', [CompanyController::class,'deleteCompany']);
 
 //invoice
 Route::get('invoices', [InvoiceController::class,'invoices']);
+Route::post('add_invoice', [InvoiceController::class,'add_invoice']);
 
 
 // user

@@ -20,7 +20,7 @@
                 </div>
 
                 <div class="modal-body">
-                    <form @submit.prevent="addcustomer">
+                <form @submit.prevent="addcustomer">
                     <div class="row ">
                         <label for="exampleModalLabel" class="form-label" > Name Customer </label>
                             <div class="form-group">
@@ -72,6 +72,7 @@
 export default { 
     data() {
         return {
+           
             customer: {},
             name: '',
             address: '',
