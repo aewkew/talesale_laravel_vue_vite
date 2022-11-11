@@ -21,8 +21,16 @@ class invoice extends Model
                            'total',
                             ];
    
-                            public function customer(){
-                                return $this->belongsTo(Customer::class);
+    public function customer(){
+        return $this->belongsTo(Customer::class);
+                }
+                
+        public function definition(){
+                                return [
+                                    'key' => 'invoice',
+                                    'prefix' => 'INV-',
+                                    'value' => 20000
+                                ];
                             }
 
 }

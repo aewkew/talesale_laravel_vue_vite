@@ -4,6 +4,7 @@
             <div class="card-body shopCard">
                 <div class="row">
                     <div class="col">
+                       
                         <input
                             type="text"
                             v-model="keyword_id"
@@ -13,37 +14,36 @@
                     </div>
 
                     <div class="col">
-                        <input
-                            type="text"
-                            v-model="keyword_color"
-                            class="form-control"
-                            placeholder="Search Color"
-                        />
+                        <div class="input-group"><label class="input-group-text" for="product"
+                                >Color</label
+                            > 
+                        <select class="form-select" v-model="keyword_color">
+                                    <option selected value="">All Color</option>
+                                    <option value="Red">Red</option>
+                                    <option value="Blue">Blue</option>
+                                    <option value="Black">Black</option>
+                                    <option value="Yellow">Yellow</option>
+                            </select>
+                        </div>
+                       
                     </div>
 
                     <div class="col">
-                        <input
-                            type="text"
-                            v-model="keyword_brand"
-                            class="form-control"
-                            placeholder="Search Brand"
-                        />
+
+                      
+                        <div class="input-group"><label class="input-group-text" for="product">Brand</label> 
+                                
+                           
+                        <select class="form-select" v-model="keyword_brand">
+                                    <option selected value="">All Brand </option>
+                                    <option value="Epson">Epson</option>
+                                    <option value="Brother">Brother</option>
+                                  
+                            </select></div> 
+
+
                     </div>
 
-                    <div class="col-auto">
-                        <div class="input-group">
-                            <label class="input-group-text" for="product"
-                                >Color</label
-                            >
-                            <select class="form-select" id="inputGroupSelect01">
-                                <option selected>Choose...</option>
-                                <option>Red</option>
-                                <option>Blue</option>
-                                <option>Black</option>
-                                <option>Yellow</option>
-                            </select>
-                        </div>
-                    </div>
 
                     <div class="col-auto">
                         <div class="row">
@@ -185,6 +185,7 @@ export default {
             keyword_color: null,
             keyword_brand: null,
             keyword_id: null,
+           // se_color:'',
         }
         
     },

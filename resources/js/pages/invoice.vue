@@ -39,9 +39,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="logo-invoice">
-                            <img
-                                src="https://seeklogo.com/images/B/Burger_King-logo-67A54F414B-seeklogo.com.png"
-                            />
+                            <img src="https://seeklogo.com/images/B/Burger_King-logo-67A54F414B-seeklogo.com.png"/>
                         </div>
                         <div class="row">
                             <div class="company">
@@ -58,7 +56,7 @@
                     <div class="col">
                         <div class="invoice-number">
                             <div>INVOICE</div>
-                            <div>INV-</div>
+                            <div><input class="input form-control" v-model="number" />INV-</div>
                         </div>
                     </div>
                 </div>
@@ -70,7 +68,7 @@
                             </div>
                             <div class="col-4">
                                 <div class="bill-data" >
-                                    <select name="" id=""  class="form-select input form-control" v-model="CustomerID" >
+                                    <select  class="form-select input form-control" v-model="CustomerID" >
                                     <option disabled value=""> Select customer</option>
                                         <option :value="customer.id" v-for="customer in customers" :key="customer.id" > 
                                             {{ customer.customer_name}}</option> 
@@ -125,12 +123,12 @@
                                     v-for="item in $store.state.cart"
                                     :key="item.id"
                                 >
-                                    <th scope="row" ><input class="input form-control"  type="hidden" v-model="id"/>{{item.id }}</th>
+                                    <th scope="row" ><input class="input form-control"  type="hidden" />{{item.id }}</th>
                                     <td>{{ item.product_name }}</td>
                                     <td>{{ item.product_id }}</td>
-                                    <td><input class="input form-control"  type="hidden" v-model="quantity" />{{ item.quantity }}</td>
+                                    <td><input class="input form-control"  type="hidden"  />{{ item.quantity }}</td>
                                     <td>{{ item.product_price }}</td>
-                                    <td><input class="input form-control"  type="hidden" v-model="totalPrice" />{{ item.totalPrice }}</td>
+                                    <td><input class="input form-control"  type="hidden"  />{{ item.totalPrice }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -167,11 +165,7 @@
                
             </form>
             </div>
-        </div>
-        
-       
-   
-          
+        </div>   
     </div>
 </template>
 <script>
@@ -185,12 +179,14 @@ export default {
     data() {
         return {
           customers:{},
+          CustomerID: '',
           date:'',
           due_date:'',
           terms_and_conditions:'',
           SubTotal:'',
           TaxTotal:'',
           totalPrice:'',
+          number:'',
        
           errors:[],
         };
@@ -269,15 +265,15 @@ export default {
         async onSave(){
              let url = "/api/add_invoice";
              let formData = new FormData();
-                formData.append('invoice_items',(id));
-                formData.append('customer_id', CustomerID);
+                formData.append('number',this.number);
+                formData.append('customer_id', this.CustomerID);
                 formData.append('date', this.date);
                 formData.append('due_date', this.due_date);
                // formData.append('reference', this.color);
                 formData.append('terms_and_conditions', this.terms_and_conditions);
                 formData.append('sub_total', this.SubTotal);
                 formData.append('tax_total', this.TaxTotal);
-                //formData.append('discount', this.price);
+                // formData.append('discount', this.price);
                 formData.append('total', this.totalPrice);
 
                 await axios.post(url, formData).then((response) =>{

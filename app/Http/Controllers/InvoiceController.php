@@ -7,6 +7,7 @@ use App\Models\invoice;
 use App\Models\Counter;
 use App\Models\invoiceItem;
 
+
 class InvoiceController extends Controller
 {
     // 
@@ -23,8 +24,50 @@ class InvoiceController extends Controller
     }    
           
     public function add_invoice(Request $request){
+        // $counter = Counter::where('key','invoice')->first();
+
+        // $invoice = invoice::orderBy('id','DESC')->first();
+        //  if($invoice){
+        //     $invoice =$invoice->id+1;
+        //     $counters = $counter->value + $invoice;
+        //  }else{
+        //     $counters = $counter->value;
+        //  }
+         
+
+        try{
+            $invoice=new invoice();
+            $invoice->number      = $request->number;
+            $invoice->customer_id = $request->customer_id;
+            $invoice->date        = $request->date;
+            $invoice->due_date    = $request->due_date;
+            $invoice->reference   = $request->reference;
+            $invoice->sub_total   = $request->sub_total;
+            $invoice->tax_total   = $request->tax_total;
+            $invoice->total       = $request->total;
+            $invoice->terms_and_conditions = $request->terms_and_conditions;
+
+            $success = true;
+            $message = "Add Invoice successfully";
+            
+
+        }catch(\Illuminate\Database\QueryException $ex) {
+            $success = false;
+            $message = $ex->getMessage();
+        }
+        $response = [
+            'success' => $success,
+            'message' => $message
+        ];
+        return response()->json($response);
+
+        
+        
+    }  
+    public function test_invoice(Request $request){
 
         $invoiceitem = $request->input("invoice_item");
+        
         
         $invoicedata['sub_total'] =$request->input("subtotal");
         $invoicedata['total'] = $request->input("total");
@@ -48,11 +91,12 @@ class InvoiceController extends Controller
         }
         
     }  
+         
+
     
-
-
     public function create_invoice(Request $request){
      $counter = Counter::where('key','invoice')->first();
+
      $random = Counter::where('key','invoice')->first();
            
       $invoice = invoice::orderBy('id', 'DESC')->first();
