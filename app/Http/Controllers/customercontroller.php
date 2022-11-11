@@ -18,6 +18,15 @@ class CustomerController extends Controller
     );
     }    
 
+    public function all_customer(){
+        $customer = Customer::orderBy('id','DESC')->get();
+        return response()->json([
+            'customers' => $customer,
+            'message' => 'All_Customer',
+            'code' => 200
+        ]);
+    }
+
     
     public function addcustomers(Request $request)
     {    

@@ -35,7 +35,7 @@
    
         <div class="invoice" id="invoice">
             <div class="invoice-data">
-                <form @submit.prevent="addInvoice">
+                <form @submit.prevent="onSave">
                 <div class="row">
                     <div class="col">
                         <div class="logo-invoice">
@@ -70,9 +70,12 @@
                             </div>
                             <div class="col-4">
                                 <div class="bill-data" >
-                                    <select  class="form-select input form-control" v-model="customer.id" >
-                                        <option  v-for="customer in customers" :key="customer.id">{{ customer.customer_name}}</option>  
-                                    </select>                          
+                                    <select name="" id=""  class="form-select input form-control" v-model="CustomerID" >
+                                    <option disabled value=""> Select customer</option>
+                                        <option :value="customer.id" v-for="customer in customers" :key="customer.id" > 
+                                            {{ customer.customer_name}}</option> 
+                                    </select>  
+                                                         
                                     <!-- 
                                     Tiger kung <br />
                                     Jungti kung Comp <br />
@@ -122,12 +125,12 @@
                                     v-for="item in $store.state.cart"
                                     :key="item.id"
                                 >
-                                    <th scope="row" ><input class="input form-control"  type="hidden" v-model="item.id "/>{{item.id }}</th>
+                                    <th scope="row" ><input class="input form-control"  type="hidden" v-model="id"/>{{item.id }}</th>
                                     <td>{{ item.product_name }}</td>
                                     <td>{{ item.product_id }}</td>
-                                    <td><input class="input form-control"  type="hidden" v-model="item.quantity" />{{ item.quantity }}</td>
+                                    <td><input class="input form-control"  type="hidden" v-model="quantity" />{{ item.quantity }}</td>
                                     <td>{{ item.product_price }}</td>
-                                    <td><input class="input form-control"  type="hidden" v-model="item.totalPrice" />{{ item.totalPrice }}</td>
+                                    <td><input class="input form-control"  type="hidden" v-model="totalPrice" />{{ item.totalPrice }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -161,10 +164,11 @@
                     </div>
                 </div>
                 <button type="submit" class="btn but-co">Save</button>
+               
             </form>
             </div>
         </div>
-       
+        
        
    
           
@@ -178,11 +182,17 @@ export default {
    
     name: "invoice",
 
-
     data() {
         return {
-            customer:{},
-            
+          customers:{},
+          date:'',
+          due_date:'',
+          terms_and_conditions:'',
+          SubTotal:'',
+          TaxTotal:'',
+          totalPrice:'',
+       
+          errors:[],
         };
     },
     created() {
@@ -236,7 +246,7 @@ export default {
         },
         async getCus() {
            
-            let url = "/api/customers";
+            let url = "/api/all_customer";
             await axios
                 .get(url)
                 .then((response) => {
@@ -248,24 +258,30 @@ export default {
                     console.log(error);
                 });
         },
-        async addInvoice() {
-            let formData = new FormData();
-                formData.append('number', this.user.id);
-                formData.append('customer_id ', this.customer_id);
+        async CreateIn(){
+            let url = "/api/create_invoice";
+             await axios .get(url).then(()=>{
+                this.invoices = response.data.invoices;
+                    console.log(this.customers);
+             })
+           
+        },
+        async onSave(){
+             let url = "/api/add_invoice";
+             let formData = new FormData();
+                formData.append('invoice_items',(id));
+                formData.append('customer_id', CustomerID);
                 formData.append('date', this.date);
                 formData.append('due_date', this.due_date);
+               // formData.append('reference', this.color);
                 formData.append('terms_and_conditions', this.terms_and_conditions);
                 formData.append('sub_total', this.SubTotal);
                 formData.append('tax_total', this.TaxTotal);
+                //formData.append('discount', this.price);
                 formData.append('total', this.totalPrice);
 
-                formData.append('product_id', this.item.id);
-                formData.append('quantity', this.item.quantity);
-                formData.append('unit_price', this.item.totalPrice);
-
-            let url = "/api/add_invoice";
-             await axios.post(url, formData).then((response)=>{
-                console.log(response);
+                await axios.post(url, formData).then((response) =>{
+                    console.log(response);
                     if(response.status == 200){
                       
                        alert(response.data.message)
@@ -274,10 +290,12 @@ export default {
                     }
                 }).catch(error=> {
                     this.errors.push(error.response);
-             });
-               
+                });
         }
-        
+       
+    },
+    mounted() {
+        console.log('');
     },
   
 };
