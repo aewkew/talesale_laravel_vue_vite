@@ -33,7 +33,7 @@
 
         <!-- Invoice   -->
    
-        <div class="invoice" id="invoice">
+        <div class="invoice" id="invoice" >
             <div class="invoice-data">
                 <form @submit.prevent="onSave">
                 <div class="row">
@@ -56,7 +56,8 @@
                     <div class="col">
                         <div class="invoice-number">
                             <div>INVOICE</div>
-                            <div><input class="input form-control" v-model="number" />INV-</div>
+                          
+
                         </div>
                     </div>
                 </div>
@@ -171,14 +172,15 @@
 <script>
 import axios from "axios";
 
-
 export default {
    
     name: "invoice",
+   
 
     data() {
         return {
           customers:{},
+          inv:{},
           CustomerID: '',
           date:'',
           due_date:'',
@@ -187,7 +189,9 @@ export default {
           TaxTotal:'',
           totalPrice:'',
           number:'',
-       
+
+          
+          
           errors:[],
         };
     },
@@ -241,7 +245,6 @@ export default {
             window.print();
         },
         async getCus() {
-           
             let url = "/api/all_customer";
             await axios
                 .get(url)
@@ -254,14 +257,21 @@ export default {
                     console.log(error);
                 });
         },
+        
         async CreateIn(){
             let url = "/api/create_invoice";
-             await axios .get(url).then(()=>{
-                this.invoices = response.data.invoices;
-                    console.log(this.customers);
-             })
+            await axios
+                .get(url)
+                .then((response) => {
+                   
+                this.from = response.data.form;
+                    console.log(this.from);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
            
-        },
+        }, 
         async onSave(){
              let url = "/api/add_invoice";
              let formData = new FormData();
@@ -287,13 +297,14 @@ export default {
                 }).catch(error=> {
                     this.errors.push(error.response);
                 });
-        }
+        },
+        
        
     },
     mounted() {
-        console.log('');
-    },
-  
+        console.log();
+        
+    }
 };
 </script>
 <style></style>

@@ -16,7 +16,7 @@ class InvoiceController extends Controller
 
         return response()->json(
             [
-             'products' => $invoice,
+             'invoice' => $invoice,
              'message' => 'Invoice',
              'code' => 200
         ]
@@ -24,15 +24,8 @@ class InvoiceController extends Controller
     }    
           
     public function add_invoice(Request $request){
-        // $counter = Counter::where('key','invoice')->first();
 
-        // $invoice = invoice::orderBy('id','DESC')->first();
-        //  if($invoice){
-        //     $invoice =$invoice->id+1;
-        //     $counters = $counter->value + $invoice;
-        //  }else{
-        //     $counters = $counter->value;
-        //  }
+       
          
 
         try{
@@ -64,36 +57,8 @@ class InvoiceController extends Controller
         
         
     }  
-    public function test_invoice(Request $request){
+       
 
-        $invoiceitem = $request->input("invoice_item");
-        
-        
-        $invoicedata['sub_total'] =$request->input("subtotal");
-        $invoicedata['total'] = $request->input("total");
-        $invoicedata['customer_id'] = $request->input("customer_id");
-        $invoicedata['number'] = $request->input("number");
-        $invoicedata['date'] = $request->input("date");
-        $invoicedata['due_date'] = $request->input("due_date");
-        $invoicedata['discount'] = $request->input("discount");
-        $invoicedata['reference'] = $request->input("reference");
-        $invoicedata['terms_and_conditions'] = $request->input("terms_and_conditions");
-
-        $invoice = invoice::create($invoicedata);
-
-        foreach (json_decode($invoiceitem) as $item){
-             $itemdata['product_id'] = $item->id;
-             $itemdata['invoice_id'] = $invoice->id;
-             $itemdata['quantity'] = $item->quantity;
-             $itemdata['unit_price'] = $item->unit_price;
-
-             invoiceItem::create($itemdata);
-        }
-        
-    }  
-         
-
-    
     public function create_invoice(Request $request){
      $counter = Counter::where('key','invoice')->first();
 
@@ -124,6 +89,10 @@ class InvoiceController extends Controller
                 ]
             ]
         ];
-        return response()->json($formData);
+        return response()->json([
+            'form' => $formData,
+            'message' => 'Creinvoice',
+            'code' => 200
+        ]);
     }
 }
