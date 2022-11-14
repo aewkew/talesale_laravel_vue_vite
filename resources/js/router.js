@@ -25,6 +25,9 @@ import create  from './pages/create.vue';
 import edit from './pages/edit.vue';
 import toedit from './pages/toedit.vue';
 import editProduct from './pages/editProduct.vue';
+import invoiceTs from './pages/invoiceTs.vue';
+import invoiceCart from './pages/invoiceCart.vue';
+
 
 const routes = [
     {   
@@ -40,11 +43,13 @@ const routes = [
         {
             path: '/Shop',
             name: 'Shop',
-            component: Shop
+            component: Shop,
+            
         },
 
         {
-            path: '/Shop/Invoice',
+          
+            path: '/invoice',
             name: 'invoice',
             component: Invoice,
             
@@ -145,6 +150,18 @@ const routes = [
             name:'editcustomer',
             component: editcustomer ,
         },
+
+        {
+            path: '/invoiceTs',
+            name:'invoiceTs',
+            component: invoiceTs ,
+        },
+        {
+            path: '/invoiceCart',
+            name:'invoiceCart',
+            component: invoiceCart ,
+        },
+       
        
 
 

@@ -1,104 +1,6 @@
-<script setup>
-import axios from "axios";
-
-import { onMounted, ref } from "vue";
- 
-let form = ref([])
-let allcustomers = ref([])
-let customer_id = ref([])
-let item = ref([])
-
-  
-    onMounted(async () =>{
-        indexForm()
-        getAllCustomers()
-      
-    }) 
-  
-
-  const indexForm = async () => {
-     let response = await axios.get('/api/create_invoice')
-     //console.log('form', response.data)
-      form.value =response.data
-  }
-  const getAllCustomers = async () => {
-     let response =await axios.get('/api/customers')
-     // console.log('response', response)
-       allcustomers.value = response.data.customers
-  }
-  
-  const onSave = () => {
-        const formData = new FormData()
-       // formData.append('invoice_item',JSON.stringify(cart))
-        formData.append('customer_id', customer_id)
-        formData.append('date',form.data)
-        formData.append('due_date',form.due_date)
-        formData.append('number',form.number)
-        formData.append('reference',form.reference)
-        formData.append('discount',form.discount)
-        formData.append('subtotal',form.subtotal)
-        formData.append('total',form.total)
-        formData.append('terms_and_conditions',form.terms_and_conditions)
-
-        axios.post("/api/add_invoice", formData)
-       
-  }
-
-</script>
-
-<script>
-  export default {
-    created() {
-        if (window.Laravel.user) {
-            this.id = window.Laravel.user.id;
-            this.name = window.Laravel.user.name;
-            this.email = window.Laravel.user.email;
-            this.phone = window.Laravel.user.phone;
-        } 
-        if (window.Laravel.isLoggedin) {
-                this.isLoggedIn = true
-            }
-       
-    },
-    computed: {
-        cart() {
-            return this.$store.state.cart;
-        },
-
-        totalPrice: function () {
-            let total = 0;
-            for (let item of this.$store.state.cart) {
-                total += item.totalPrice;
-            }
-            return total;
-        },
-        TaxTotal: function () {
-            let total = 0;
-            for (let item of this.$store.state.cart) {
-                total += item.totalPrice * (7 / 100);
-            }
-
-            return total.toFixed(2);
-        },
-
-        SubTotal: function () {
-            let total = 0;
-            for (let item of this.$store.state.cart) {
-                total += item.totalPrice - item.totalPrice * (7 / 100);
-            }
-            return total.toFixed(2);
-        },
-    },
-
-  
-  }
-      
-</script>
-<style></style>
-
-
-<template>
-    <div class="container">
+<template >
+    <div>
+        <div class="container">
         <!-- Hedeline -->
 
         <div class="row">
@@ -155,9 +57,7 @@ let item = ref([])
                     <div class="col">
                         <div class="invoice-number">
                             <div>INVOICE</div>
-                           <div><input type="text" class="input form-control" v-model="form.number" /></div>
-                           <div>Reference </div>
-                            <input type="text" class="input form-control" v-model="form.reference">
+                           <div> </div>
 
                         </div>
                     </div>
@@ -170,9 +70,9 @@ let item = ref([])
                             </div>
                             <div class="col-4">
                                 <div class="bill-data" >
-                                    <select  class="form-select input form-control" v-model="customer_id" >
+                                    <select  class="form-select input form-control" v-model="CustomerID" >
                                     <option disabled value=""> Select customer</option>
-                                        <option :value="customer.id"  v-for="customer in allcustomers" :key="customer.id" > 
+                                        <option :value="customer.id" v-for="customer in customers" :key="customer.id" > 
                                             {{ customer.customer_name}}</option> 
                                     </select>  
                                                          
@@ -189,16 +89,16 @@ let item = ref([])
 
                                        <div class="row"> 
                                         <label  class="col-sm-2 col-form-label" >Date: </label>
-                                        <div class="col">  <input id="date" placeholder="dd-mm-yyyy" type="date" class="form-control input" v-model="form.date" /></div>
+                                        <div class="col">  <input id="date" placeholder="dd-mm-yyyy" type="date" class="form-control input" v-model="date" /></div>
                                        </div>
                                        
                                        <div class="row"> 
                                          <label  class="col-sm-2 col-form-label">Date_due: </label>
-                                         <div class="col"><input id="due_date" placeholder="dd-mm-yyyy"  type="date" class="form-control input" v-model="form.due_date"/>  </div>
+                                         <div class="col"><input id="due_date" placeholder="dd-mm-yyyy"  type="date" class="form-control input" v-model="due_date"/>  </div>
                                        </div>
                                        <div class="row">
                                           <label class="col-sm-2 col-form-label">Terms: </label>
-                                          <div class="col"> <input type="text" class="form-control input" v-model="form.terms_and_conditions" />  </div>
+                                          <div class="col"> <input type="text" class="form-control input" v-model="terms_and_conditions" />  </div>
                                        </div>
                                       
                                 </div>
@@ -223,7 +123,7 @@ let item = ref([])
                             <tbody>
                                 <tr
                                     v-for="item in $store.state.cart"
-                                    :key="item.id" :v-model="listCart"
+                                    :key="item.id"
                                 >
                                     <th scope="row" ><input class="input form-control"  type="hidden" />{{item.id }}</th>
                                     <td>{{ item.product_name }}</td>
@@ -269,4 +169,140 @@ let item = ref([])
             </div>
         </div>   
     </div>
+        
+    </div>
 </template>
+<script>
+export default {
+    data() {
+        return {
+          customers:{},
+          CustomerID: '',
+          date:'',
+          due_date:'',
+          terms_and_conditions:'',
+          SubTotal:'',
+          TaxTotal:'',
+          totalPrice:'',
+          number:'',
+          
+          errors:[],
+        };
+    },
+    created() {
+        if (window.Laravel.user) {
+            this.id = window.Laravel.user.id;
+            this.name = window.Laravel.user.name;
+            this.email = window.Laravel.user.email;
+            this.phone = window.Laravel.user.phone;
+        } 
+        if (window.Laravel.isLoggedin) {
+                this.isLoggedIn = true
+            }
+        //this.getData();
+
+
+        this.getCus();
+    },
+    computed: {
+        cart() {
+            return this.$store.state.cart;
+        },
+
+        totalPrice: function () {
+            let total = 0;
+            for (let item of this.$store.state.cart) {
+                total += item.totalPrice;
+            }
+            return total;
+        },
+        TaxTotal: function () {
+            let total = 0;
+            for (let item of this.$store.state.cart) {
+                total += item.totalPrice * (7 / 100);
+            }
+
+            return total.toFixed(2);
+        },
+
+        SubTotal: function () {
+            let total = 0;
+            for (let item of this.$store.state.cart) {
+                total += item.totalPrice - item.totalPrice * (7 / 100);
+            }
+            return total.toFixed(2);
+        },
+    },
+
+    methods: {
+        printInvoice: function () {
+            window.print();
+        },
+        async getCus() {
+            let url = "/api/all_customer";
+            await axios
+                .get(url)
+                .then((response) => {
+                   // allcustomers.value = response.data.customers;
+                this.customers = response.data.customers;
+                    console.log(this.customers);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+        
+        async CreateIn(){
+            let url = "/api/create_invoice";
+            await axios
+                .get(url)
+                .then((response) => {
+                   
+                this.from = response.data.form;
+                    console.log(this.from);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+           
+        }, 
+        async onSave(){
+             let url = "/api/add_invoice";
+             let formData = new FormData();
+                //formData.append('number',this.number);
+                formData.append('customer_id', this.CustomerID);
+                formData.append('date', this.date);
+                formData.append('due_date', this.due_date);
+               // formData.append('reference', this.color);
+                formData.append('terms_and_conditions', this.terms_and_conditions);
+                formData.append('sub_total', this.SubTotal);
+                formData.append('tax_total', this.TaxTotal);
+                // formData.append('discount', this.price);
+                formData.append('total', this.totalPrice);
+
+                await axios.post(url, formData).then((response) =>{
+                    console.log(response);
+                    if(response.status == 200){
+                      
+                       alert(response.data.message)
+                    }else {
+                        console.log('error');
+                    }
+                }).catch(error=> {
+                    this.errors.push(error.response);
+                });
+        },
+        
+        
+       
+    },
+    mounted() {
+        console.log();
+        
+    }
+    
+}
+</script>
+<style >
+    
+</style>

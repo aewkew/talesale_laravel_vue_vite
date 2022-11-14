@@ -24,43 +24,32 @@ class InvoiceController extends Controller
     }    
           
     public function add_invoice(Request $request){
-        $counter = Counter::where('key','invoice')->first();
-        $invpre = invoice::orderBy('id', 'DESC')->first();
-             if($invpre){
-                $invpre= $invpre->id+1;
-                $counters = $counter->value + $invpre;
-             }else{
-           $counters = $counter->value;
+         $invoiceitem = $request->input("invoice_item");
 
-             }
+         $invoicedata['sub_total'] = $request->input("subtotal");
+         $invoicedata['total'] = $request->input("total");
+         $invoicedata['customer_id'] = $request->input("customer_id");
+         $invoicedata['number'] = $request->input("number");
+         $invoicedata['date'] = $request->input("date");
+         $invoicedata['due_date'] = $request->input("due_date");
+         $invoicedata['discount'] = $request->input("discount");
+         $invoicedata['reference'] = $request->input("reference");
+         $invoicedata['terms_and_conditions	'] = $request->input("terms_and_conditions");
+
+         $invoice = invoice::create($invoicedata);
+
+         foreach (json_decode($invoiceitem) as $item){
+            $itemdata['product_id'] = $item->id;
+            $itemdata['invoice_id'] = $invoice->id;
+            $itemdata['quantity'] = $item->quantity;
+            $itemdata['unit_price'] = $item->unit_price;
+           
+            invoiceItem::create($itemdata);
+
+         }
+         return response()->json($invoice);
 
 
-        try{
-            $invoice=new invoice();
-            $invoice->number      = $request->number.$counters;
-            $invoice->customer_id = $request->customer_id;
-            $invoice->date        = $request->date;
-            $invoice->due_date    = $request->due_date;
-            $invoice->reference   = $request->reference;
-            $invoice->sub_total   = $request->sub_total;
-            $invoice->tax_total   = $request->tax_total;
-            $invoice->total       = $request->total;
-            $invoice->terms_and_conditions = $request->terms_and_conditions;
-            $success = true;
-            $message = "Add Invoice successfully";
-            
-
-        }catch(\Illuminate\Database\QueryException $ex) {
-            $success = false;
-            $message = $ex->getMessage();
-        }
-        $response = [
-            'success' => $success,
-            'message' => $message
-        ];
-        return response()->json($response);
-
-        
         
     }  
        

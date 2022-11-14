@@ -49,9 +49,9 @@
                 </li>
 
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/invoice">
+                    <router-link class="nav-link" to="/invoiceTs">
                         <span> <i class="bi bi-receipt"></i> </span>
-                        <span class="text"> Invoice </span>
+                        <span class="text"> invoiceTs </span>
                     </router-link>
                 </li>
             </ul>
