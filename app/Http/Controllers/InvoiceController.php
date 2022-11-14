@@ -24,13 +24,20 @@ class InvoiceController extends Controller
     }    
           
     public function add_invoice(Request $request){
+        $counter = Counter::where('key','invoice')->first();
+        $invpre = invoice::orderBy('id', 'DESC')->first();
+             if($invpre){
+                $invpre= $invpre->id+1;
+                $counters = $counter->value + $invpre;
+             }else{
+           $counters = $counter->value;
 
-       
-         
+             }
+
 
         try{
             $invoice=new invoice();
-            $invoice->number      = $request->number;
+            $invoice->number      = $request->number.$counters;
             $invoice->customer_id = $request->customer_id;
             $invoice->date        = $request->date;
             $invoice->due_date    = $request->due_date;
@@ -39,7 +46,6 @@ class InvoiceController extends Controller
             $invoice->tax_total   = $request->tax_total;
             $invoice->total       = $request->total;
             $invoice->terms_and_conditions = $request->terms_and_conditions;
-
             $success = true;
             $message = "Add Invoice successfully";
             
@@ -89,10 +95,6 @@ class InvoiceController extends Controller
                 ]
             ]
         ];
-        return response()->json([
-            'form' => $formData,
-            'message' => 'Creinvoice',
-            'code' => 200
-        ]);
+        return response()->json($formData);
     }
 }

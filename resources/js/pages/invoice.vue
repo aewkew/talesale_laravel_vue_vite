@@ -180,7 +180,6 @@ export default {
     data() {
         return {
           customers:{},
-          inv:{},
           CustomerID: '',
           date:'',
           due_date:'',
@@ -275,7 +274,7 @@ export default {
         async onSave(){
              let url = "/api/add_invoice";
              let formData = new FormData();
-                formData.append('number',this.number);
+                //formData.append('number',this.number);
                 formData.append('customer_id', this.CustomerID);
                 formData.append('date', this.date);
                 formData.append('due_date', this.due_date);
