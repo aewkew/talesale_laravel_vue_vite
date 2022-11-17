@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\invoice;
 use App\Models\Counter;
 use App\Models\invoiceItem;
-
+use Illuminate\Support\Facades\DB;
+use Symfony\Component\Console\Input\Input;
 
 class InvoiceController extends Controller
 {
@@ -24,32 +25,47 @@ class InvoiceController extends Controller
     }    
           
     public function add_invoice(Request $request){
-         $invoiceitem = $request->input("invoice_item");
+         try{
+            $invoice=new invoice();
+            $invoice->number       = $request->number;
+            $invoice->customer_id  = $request->customer_id;
+            $invoice->date         = $request->date;
+            $invoice->due_date     = $request->due_date;
+            $invoice->terms_and_conditions  = $request->terms_and_conditions;
+            $invoice->sub_total    = $request->sub_total;
+            $invoice->tax_total    = $request->tax_total;
+            $invoice->total        = $request->total;
+            $invoice->save();
+            $invoices =invoice::orderBy('id','desc')->take(1)->get();
+   
+             $invoiceitem = new invoiceItem();
+             $invoiceitem->invoice_id  = $invoices[0]->id;
+             $invoiceitem->product_id = $request->product_id;
+             $invoiceitem->unit_price = $request->unit_price;
+             $invoiceitem->quantity = $request->quantity;
+             $invoiceitem->save(); 
+               
+            $success = true;
+            $message = '';
+            
 
-         $invoicedata['sub_total'] = $request->input("subtotal");
-         $invoicedata['total'] = $request->input("total");
-         $invoicedata['customer_id'] = $request->input("customer_id");
-         $invoicedata['number'] = $request->input("number");
-         $invoicedata['date'] = $request->input("date");
-         $invoicedata['due_date'] = $request->input("due_date");
-         $invoicedata['discount'] = $request->input("discount");
-         $invoicedata['reference'] = $request->input("reference");
-         $invoicedata['terms_and_conditions	'] = $request->input("terms_and_conditions");
+           // $message = 'Invoice & itemId Success';
+          //  echo("<script>Console.log($invoices)</script>");
 
-         $invoice = invoice::create($invoicedata);
+        
 
-         foreach (json_decode($invoiceitem) as $item){
-            $itemdata['product_id'] = $item->id;
-            $itemdata['invoice_id'] = $invoice->id;
-            $itemdata['quantity'] = $item->quantity;
-            $itemdata['unit_price'] = $item->unit_price;
-           
-            invoiceItem::create($itemdata);
+        }catch (\Illuminate\Database\QueryException $ex) {
+            $success = false;
+            $message = $ex->getMessage();
+        }
+        $response = [
+            'success' => $success,
+            'message' => $message
+        ];
 
-         }
-         return response()->json($invoice);
-
-
+        return response()->json($response);
+       
+   
         
     }  
        
@@ -69,7 +85,6 @@ class InvoiceController extends Controller
         $formData =[
             'number' => $counter->prefix.$counters,
             'customer_id' => null,
-            'customer' => null,
             'date' => date('Y-m-d'),
             'due-date'=> null,
             'reference'=>null,
@@ -86,4 +101,7 @@ class InvoiceController extends Controller
         ];
         return response()->json($formData);
     }
+
+
+
 }

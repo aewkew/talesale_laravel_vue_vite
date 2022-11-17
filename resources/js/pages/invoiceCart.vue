@@ -57,7 +57,7 @@
                     <div class="col">
                         <div class="invoice-number">
                             <div>INVOICE</div>
-                           <div> </div>
+                           <div> <input id="number" type="text" class="form-control input" v-model="form.number"/>{{form.number}} </div>
 
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                                        </div>
                                        <div class="row">
                                           <label class="col-sm-2 col-form-label">Terms: </label>
-                                          <div class="col"> <input type="text" class="form-control input" v-model="terms_and_conditions" />  </div>
+                                          <div class="col"> <input id="terms_and_conditions" type="text" class="form-control input" v-model="terms_and_conditions" />  </div>
                                        </div>
                                       
                                 </div>
@@ -267,9 +267,26 @@ export default {
            
         }, 
         async onSave(){
-             let url = "/api/add_invoice";
-             let formData = new FormData();
-                //formData.append('number',this.number);
+            this.errors =[];
+            if(!this.name){
+                this.errors.push("Name is required")
+            }
+            if(!this.product_id){
+                this.errors.push("Product ID is required")
+            }
+            if(!this.brand){
+                this.errors.push("Brand is required")
+            }
+            if(!this.color){
+                this.errors.push("Color is required")
+            }
+            if(!this.price){
+                this.errors.push("Price is required")
+            }
+
+            if(!this.errors.length){
+                let formData = new FormData();
+                formData.append('number',this.from.number);
                 formData.append('customer_id', this.CustomerID);
                 formData.append('date', this.date);
                 formData.append('due_date', this.due_date);
@@ -279,7 +296,7 @@ export default {
                 formData.append('tax_total', this.TaxTotal);
                 // formData.append('discount', this.price);
                 formData.append('total', this.totalPrice);
-
+                let url = "/api/add_invoice";
                 await axios.post(url, formData).then((response) =>{
                     console.log(response);
                     if(response.status == 200){
@@ -291,6 +308,10 @@ export default {
                 }).catch(error=> {
                     this.errors.push(error.response);
                 });
+
+            }
+             
+           
         },
         
         
