@@ -115,7 +115,11 @@ export default {
         async newInvoice() {
             let form = await axios.get("/api/create_invoice");
              console.log("form", form.data);
-             
+
+             let data = {
+                cart: JSON.stringify(this.$store.state.cart),
+            };
+            console.log("cart", data.cart);
 
         }
     },

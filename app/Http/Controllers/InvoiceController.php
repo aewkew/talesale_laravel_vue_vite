@@ -26,6 +26,7 @@ class InvoiceController extends Controller
           
     public function add_invoice(Request $request){
          try{
+        
             $invoice=new invoice();
             $invoice->number       = $request->number;
             $invoice->customer_id  = $request->customer_id;
@@ -37,22 +38,34 @@ class InvoiceController extends Controller
             $invoice->total        = $request->total;
             $invoice->save();
             $invoices =invoice::orderBy('id','desc')->take(1)->get();
+            
+
+            $invoiceitem=new invoiceItem();
+            $invoiceitem->invoice_id  = $request->$invoices[0]->id;
+            $invoiceitem->product_id = $request->product_id;
+            $invoiceitem->unit_price = $request->unit_price;
+            $invoiceitem->quantity = $request->quantity;  
+            $invoiceitem->save();
+
+              /*
+            $invoiceitems = new invoiceItem();
+             foreach($invoiceitems as $invoiceItem){
+                $sell = new invoiceItem;
+                $sell->invoice_id  = $invoices[0]->id;
+                $sell->product_id = $invoiceItem->product_id;
+                $sell->unit_price = $invoiceItem->unit_price;
+                $sell->quantity = $invoiceItem->quantity;  
+                $sell->save();
+
+             }*/
+            
    
-             $invoiceitem = new invoiceItem();
-             $invoiceitem->invoice_id  = $invoices[0]->id;
-             $invoiceitem->product_id = $request->product_id;
-             $invoiceitem->unit_price = $request->unit_price;
-             $invoiceitem->quantity = $request->quantity;
-             $invoiceitem->save(); 
-               
             $success = true;
             $message = '';
             
-
            // $message = 'Invoice & itemId Success';
           //  echo("<script>Console.log($invoices)</script>");
-
-        
+    
 
         }catch (\Illuminate\Database\QueryException $ex) {
             $success = false;
@@ -65,9 +78,12 @@ class InvoiceController extends Controller
 
         return response()->json($response);
        
-   
         
     }  
+    public function invoiceItem(Request $request){
+
+    }
+
        
 
     public function create_invoice(Request $request){

@@ -49,7 +49,7 @@ const routes = [
 
         {
           
-            path: '/invoice',
+            path: '/Shop/invoice',
             name: 'invoice',
             component: Invoice,
             

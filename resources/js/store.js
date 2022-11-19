@@ -7,6 +7,9 @@ let cartCount = window.localStorage.getItem('cartCount');
 const store = createStore({
     
     state: {
+        cart: [],
+        cartCount: 0,
+        
         cart: cart ? JSON.parse(cart) : [],
         cartCount: cartCount ? parseInt(cartCount) : 0,
     },
