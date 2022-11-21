@@ -206,6 +206,37 @@ const indexForm = async () => {
                                               
                                             </td>
                                         </tr>
+                                       
+                                       
+                                        <tr v-for="(item2,i) in cart"   :key="item2.id"
+                                            
+                                            
+                                               >
+                                            <th scope="row">
+                                                {{ item2.id }} 
+
+                                                <input  :value="item2.id"/>
+                                               
+                                   
+                                         
+                                          />
+                                            </th>
+                                            <td>{{ item2.product_name }}</td>
+                                            <td>{{ item2.product_id }}</td>
+                                            <td>{{ item2.quantity }} 
+                                         
+                                               
+                                            </td>
+                                            <td>{{ item2.product_price }}</td>
+                                            <td>{{ item2.totalPrice }}
+                                             
+                                              
+                                            </td>
+
+                                             </tr>
+                              
+                             
+
                                     </tbody>
                                 </table>
                                 <div></div>
@@ -266,10 +297,16 @@ export default {
             due_date: "",
             date: "",
             terms_and_conditions: "",
+            cart:{},
+            cart:[
+           
+            ],
+       
             errors: [],
 
         };
     },
+
     created() {
         if (window.Laravel.user) {
             this.id = window.Laravel.user.id;
@@ -286,7 +323,10 @@ export default {
     },
     computed: {
         cart() {
+
             return this.$store.state.cart;
+      
+          
         },
 
         TotalPrice: function () {
@@ -312,12 +352,16 @@ export default {
             }
             return total.toFixed(2);
         },
-        Cart: function (){
-            
-        }
+      
     },
 
     methods: {
+        cart(){
+            for (i in cart){
+                console.log(i.id);
+            }
+        },
+       
         printInvoice: function () {
             window.print();
         },
@@ -336,7 +380,7 @@ export default {
         },
         
 
-        async onSave() {
+        async onSave(cart) {
           
             let formData = new FormData();
             formData.append("number", this.form.number);
@@ -349,14 +393,22 @@ export default {
             formData.append("tax_total", this.TaxTotal);
             // formData.append('discount', this.price);
             formData.append("total", this.TotalPrice);
+           
+          //   formData.append("product_id",this.item2.id);
+           // formData.append("unit_price",this.item2.totalPrice);
+           // formData.append("quantity",this.quantity); 
+            
+             /*
+            this.$store.state.cart.forEach((cart)=>{
+                formData.append("product_id",this.cart.id);
+            }) */
+         
           
-      
-            for (let item of this.$store.state.cart ){
                 
-                formData.append("product_id",item.id);
-                formData.append('unit_price',item.totalPrice);
-                formData.append('quantity',item.quantity);
-            }
+              
+          
+                
+   
   
        
          
