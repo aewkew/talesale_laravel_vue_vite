@@ -194,48 +194,29 @@ const indexForm = async () => {
                                             :key="item.id"
                                         >
                                             <th scope="row">
-                                                {{ item.id }} 
+                                                {{ item.id }}
                                             </th>
                                             <td>{{ item.product_name }}</td>
                                             <td>{{ item.product_id }}</td>
-                                            <td>{{ item.quantity }} 
-                                               
-                                            </td>
+                                            <td>{{ item.quantity }}</td>
                                             <td>{{ item.product_price }}</td>
-                                            <td>{{ item.totalPrice }}
-                                              
-                                            </td>
+                                            <td>{{ item.totalPrice }}</td>
                                         </tr>
-                                       
-                                       
-                                        <tr v-for="(item2,i) in cart"   :key="item2.id"
-                                            
-                                            
-                                               >
-                                            <th scope="row">
-                                                {{ item2.id }} 
 
-                                                <input  :value="item2.id"/>
-                                               
-                                   
-                                         
-                                          />
-                                            </th>
+                                        <div class="input form-control" > 
+                                        <tr
+                                            v-for="(item2, i) in cart"
+                                            :key="item2.id"  
+                                        >
+                                            <th scope="row" :value="item2.id" :v-model="idprod">{{ item2.id }} </th>
+                                           
                                             <td>{{ item2.product_name }}</td>
                                             <td>{{ item2.product_id }}</td>
-                                            <td>{{ item2.quantity }} 
-                                         
-                                               
-                                            </td>
+                                            <td :value="item2.quantity">{{ item2.quantity }}</td>
                                             <td>{{ item2.product_price }}</td>
-                                            <td>{{ item2.totalPrice }}
-                                             
-                                              
-                                            </td>
-
-                                             </tr>
-                              
-                             
+                                            <td :value="item2.totalPrice">{{ item2.totalPrice }}</td>
+                                        </tr>
+                                    </div>
 
                                     </tbody>
                                 </table>
@@ -286,10 +267,7 @@ const indexForm = async () => {
     </div>
 </template>
 <script>
-
 export default {
-    
-
     data() {
         return {
             customers: {},
@@ -297,13 +275,11 @@ export default {
             due_date: "",
             date: "",
             terms_and_conditions: "",
-            cart:{},
-            cart:[
-           
-            ],
-       
-            errors: [],
+            carts: {},
+            cart: [],
+            idprod:"",
 
+            errors: [],
         };
     },
 
@@ -323,10 +299,7 @@ export default {
     },
     computed: {
         cart() {
-
             return this.$store.state.cart;
-      
-          
         },
 
         TotalPrice: function () {
@@ -352,16 +325,15 @@ export default {
             }
             return total.toFixed(2);
         },
-      
     },
 
     methods: {
-        cart(){
-            for (i in cart){
+        cart() {
+            for (i in cart) {
                 console.log(i.id);
             }
         },
-       
+
         printInvoice: function () {
             window.print();
         },
@@ -378,10 +350,8 @@ export default {
                     console.log(error);
                 });
         },
-        
 
         async onSave(cart) {
-          
             let formData = new FormData();
             formData.append("number", this.form.number);
             formData.append("customer_id", this.CustomerID);
@@ -393,29 +363,19 @@ export default {
             formData.append("tax_total", this.TaxTotal);
             // formData.append('discount', this.price);
             formData.append("total", this.TotalPrice);
-           
-          //   formData.append("product_id",this.item2.id);
-           // formData.append("unit_price",this.item2.totalPrice);
-           // formData.append("quantity",this.quantity); 
-            
-             /*
+
+             formData.append("product_id",this.idprod);
+            // formData.append("unit_price",this.item2.totalPrice);
+            // formData.append("quantity",this.quantity);
+
+            /*
             this.$store.state.cart.forEach((cart)=>{
                 formData.append("product_id",this.cart.id);
             }) */
-         
-          
-                
-              
-          
-                
-   
-  
-       
-         
 
             let url = "/api/add_invoice";
             await axios
-                .post(url,formData)
+                .post(url, formData)
                 .then((response) => {
                     console.log(response);
                     if (response.status == 200) {
@@ -427,9 +387,6 @@ export default {
                 .catch((error) => {
                     this.errors.push(error.response);
                 });
-
-
-
         },
     },
     mounted() {
