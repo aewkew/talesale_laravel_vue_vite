@@ -26,7 +26,7 @@ class InvoiceController extends Controller
           
     public function add_invoice(Request $request){
          try{
-        
+
             $invoice=new invoice();
             $invoice->number       = $request->number;
             $invoice->customer_id  = $request->customer_id;
@@ -38,27 +38,41 @@ class InvoiceController extends Controller
             $invoice->total        = $request->total;
             $invoice->save();
             $invoices =invoice::orderBy('id','desc')->take(1)->get();
-            
+             /*
+            $invoiceitem=new invoiceItem();  
+            $invoiceitem->invoice_id  = $request->$invoices[0]->id;
+            $invoiceitem =  json_decode(request('product_id'));
+            $invoiceitem = json_decode(request('unit_price')); 
+            $invoiceitem =  json_decode(request('quantity'));
 
+            $invoiceitem->save();   
+            
+                   /*
+            $invoiceitem= $request->input("invoice_item");
+            foreach ( $invoiceitem as $item){
+                $itemdata['product_id'] = $item->id;
+                $itemdata['invoice_id'] = $item->$invoices[0]->id;
+                $itemdata['unit_price'] = $item->unit_price; 
+                $itemdata['quantity'] = $request->quantity; 
+                invoiceItem::create($itemdata);
+            } */
+
+            $invoiceitem=new invoiceItem(); 
+            $invoiceitem->invoice_id  = $request->$invoices[0]->id;
+            $invoiceitem->product_id = $request->product_id;
+            $invoiceitem->unit_price = $request->unit_price; 
+            $invoiceitem->quantity = $request->quantity;  
+            $invoiceitem->save(); 
+             
+      
+            /*
             $invoiceitem=new invoiceItem();
             $invoiceitem->invoice_id  = $request->$invoices[0]->id;
             $invoiceitem->product_id = $request->product_id;
-            $invoiceitem->unit_price = $request->unit_price;
+            $invoiceitem->unit_price = $request->unit_price; 
             $invoiceitem->quantity = $request->quantity;  
-            $invoiceitem->save();
+            $invoiceitem->save(); */
 
-              /*
-            $invoiceitems = new invoiceItem();
-             foreach($invoiceitems as $invoiceItem){
-                $sell = new invoiceItem;
-                $sell->invoice_id  = $invoices[0]->id;
-                $sell->product_id = $invoiceItem->product_id;
-                $sell->unit_price = $invoiceItem->unit_price;
-                $sell->quantity = $invoiceItem->quantity;  
-                $sell->save();
-
-             }*/
-            
    
             $success = true;
             $message = '';
@@ -80,7 +94,43 @@ class InvoiceController extends Controller
        
         
     }  
+
     public function invoiceItem(Request $request){
+        try{
+
+            $invoices =invoice::orderBy('id','desc')->take(1)->get();
+             
+            $invoiceitem=new invoiceItem();  
+            $invoiceitem->invoice_id  = $request->$invoices[0]->id;
+            $invoiceitem =  json_decode(request('product_id'));
+            $invoiceitem = json_decode(request('unit_price')); 
+            $invoiceitem =  json_decode(request('quantity'));
+            $invoiceitem->save();  
+
+             /*
+            $invoiceitem=new invoiceItem();
+            $invoiceitem->invoice_id  = $request->$invoices[0]->id;
+            $invoiceitem->product_id = $request->product_id;
+            $invoiceitem->unit_price = $request->unit_price; 
+            $invoiceitem->quantity = $request->quantity;  
+            $invoiceitem->save(); */
+
+            $success = true;
+            $message = '';
+            
+           // $message = 'Invoice & itemId Success';
+          //  echo("<script>Console.log($invoices)</script>");
+    
+
+        }catch (\Illuminate\Database\QueryException $ex) {
+            $success = false;
+            $message = $ex->getMessage();
+        }
+        $response = [
+            'success' => $success,
+            'message' => $message
+        ];
+        return response()->json($response);
 
     }
 

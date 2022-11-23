@@ -54,6 +54,8 @@ Route::get('create_invoice', [InvoiceController::class,'create_invoice']);
 Route::get('all_customer', [CustomerController::class,'all_customer']);
 Route::post('test_invoice', [InvoiceController::class,'test_invoice']);
 
+Route::post('invoiceItem', [InvoiceController::class,'invoiceItem']);
+
 
 
 

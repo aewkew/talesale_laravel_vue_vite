@@ -7,13 +7,16 @@ let cartCount = window.localStorage.getItem('cartCount');
 const store = createStore({
     
     state: {
-        cart: [],
-        cartCount: 0,
+      //  cart: [],
+      //  cartCount: 0,
         
         cart: cart ? JSON.parse(cart) : [],
         cartCount: cartCount ? parseInt(cartCount) : 0,
     },
+    getters:{
+        cart: state => state.cart
 
+    },
     mutations: {
         addToCart(state, item){
            // console.log(item.product_name)
@@ -43,14 +46,18 @@ const store = createStore({
                  state.cart.splice(index, 1);
             }
         }
+        
       
     },
+
+    actions:{
 
     saveCart(state) {
         window.localStorage.setItem('cart', JSON.stringify(state.cart));
         window.localStorage.setItem('cartCount', state.cartCount);
+        this.commit('saveCart');
     },
-    
+    }
     
 })
 

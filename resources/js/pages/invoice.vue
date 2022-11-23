@@ -1,17 +1,23 @@
 <script setup>
 import axios from "axios";
+
 import { onMounted, ref } from "vue";
 
-let form = ref([]);
+let form = ref([])
+
+
 onMounted(async () => {
     indexForm();
 });
+
 
 const indexForm = async () => {
     let response = await axios.get("/api/create_invoice");
     //console.log('form', response.data)
     form.value = response.data;
 };
+
+
 </script>
 
 <template>
@@ -41,7 +47,7 @@ const indexForm = async () => {
                         <h2>Invoice</h2>
                         <h3 class="pull-right">
                             Order # {{ form.number }} Cart
-                            {{ $store.state.cartCount }}
+                            {{ $store.state.cartCount }} 
                         </h3>
                     </div>
                 </div>
@@ -53,7 +59,7 @@ const indexForm = async () => {
 
             <div class="invoice" id="invoice">
                 <div class="invoice-data">
-                    <form @submit.prevent="onSave">
+                    <form @submit.prevent="saveCart(cart)">
                         <div class="row">
                             <div class="col">
                                 <div class="logo-invoice">
@@ -189,35 +195,21 @@ const indexForm = async () => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr
-                                            v-for="item in $store.state.cart"
-                                            :key="item.id"
-                                        >
-                                            <th scope="row">
-                                                {{ item.id }}
+                                      
+                                        <tr v-for="item in cart" :key="item.id" >
+                                            <th scope="row" > {{item.id }} 
+                                                <input type="text" id="product_id" class="form-control input" v-model="item.id" />
                                             </th>
                                             <td>{{ item.product_name }}</td>
                                             <td>{{ item.product_id }}</td>
-                                            <td>{{ item.quantity }}</td>
+                                            <td> {{ item.quantity }}
+                                                <input type="text" id="quantity" class="form-control input" v-model="item.quantity"/>
+                                            </td>
                                             <td>{{ item.product_price }}</td>
-                                            <td>{{ item.totalPrice }}</td>
-                                        </tr>
-
-                                        <div class="input form-control" > 
-                                        <tr
-                                            v-for="(item2, i) in cart"
-                                            :key="item2.id"  
-                                        >
-                                            <th scope="row" :value="item2.id" :v-model="idprod">{{ item2.id }} </th>
-                                           
-                                            <td>{{ item2.product_name }}</td>
-                                            <td>{{ item2.product_id }}</td>
-                                            <td :value="item2.quantity">{{ item2.quantity }}</td>
-                                            <td>{{ item2.product_price }}</td>
-                                            <td :value="item2.totalPrice">{{ item2.totalPrice }}</td>
-                                        </tr>
-                                    </div>
-
+                                            <td >{{ item.totalPrice }} 
+                                                <input type="text" id="unit_price" class="form-control input" v-model="item.totalPrice"/>
+                                            </td> 
+                                        </tr> 
                                     </tbody>
                                 </table>
                                 <div></div>
@@ -267,6 +259,7 @@ const indexForm = async () => {
     </div>
 </template>
 <script>
+
 export default {
     data() {
         return {
@@ -275,11 +268,14 @@ export default {
             due_date: "",
             date: "",
             terms_and_conditions: "",
-            carts: {},
-            cart: [],
-            idprod:"",
 
+            item:{
+                id:'',
+                quantity:'',
+                totalPrice:''
+            },
             errors: [],
+            Prod:""
         };
     },
 
@@ -296,10 +292,13 @@ export default {
         //this.getData();
         this.getCus();
         this.$store.state.cart;
+        this.$store.getters.cart;
     },
     computed: {
         cart() {
             return this.$store.state.cart;
+            
+            
         },
 
         TotalPrice: function () {
@@ -328,11 +327,7 @@ export default {
     },
 
     methods: {
-        cart() {
-            for (i in cart) {
-                console.log(i.id);
-            }
-        },
+      
 
         printInvoice: function () {
             window.print();
@@ -351,32 +346,31 @@ export default {
                 });
         },
 
-        async onSave(cart) {
-            let formData = new FormData();
+        async saveCart(cart) {
+         //  let listcart = {cart: JSON.stringify(this.$store.state.cart)  }
+
+            let formData = new FormData()
             formData.append("number", this.form.number);
             formData.append("customer_id", this.CustomerID);
             formData.append("date", this.date);
             formData.append("due_date", this.due_date);
-            // formData.append('reference', this.color);
+
             formData.append("terms_and_conditions", this.terms_and_conditions);
             formData.append("sub_total", this.SubTotal);
             formData.append("tax_total", this.TaxTotal);
-            // formData.append('discount', this.price);
+
             formData.append("total", this.TotalPrice);
-
-             formData.append("product_id",this.idprod);
-            // formData.append("unit_price",this.item2.totalPrice);
-            // formData.append("quantity",this.quantity);
-
-            /*
-            this.$store.state.cart.forEach((cart)=>{
-                formData.append("product_id",this.cart.id);
-            }) */
+               /*
+            formData.append("product_id", this.itemcart.id);
+            formData.append("quantity", this.itemcart.quantity);
+            formData.append("unit_price", this.itemcart.totalPrice);  */
 
             let url = "/api/add_invoice";
             await axios
-                .post(url, formData)
+                .post(url,formData)
+                cart
                 .then((response) => {
+                 
                     console.log(response);
                     if (response.status == 200) {
                         alert(response.data.message);
@@ -386,7 +380,8 @@ export default {
                 })
                 .catch((error) => {
                     this.errors.push(error.response);
-                });
+                });     
+            
         },
     },
     mounted() {
