@@ -18,6 +18,9 @@ const indexForm = async () => {
 };
 
 
+
+
+
 </script>
 
 <template>
@@ -198,16 +201,16 @@ const indexForm = async () => {
                                       
                                         <tr v-for="item in cart" :key="item.id" >
                                             <th scope="row" > {{item.id }} 
-                                                <input type="text" id="product_id" class="form-control input" v-model="item.id" />
+                                                <input type="text" id="product_id" class="form-control input" :value="product_id=item.id" />
                                             </th>
                                             <td>{{ item.product_name }}</td>
                                             <td>{{ item.product_id }}</td>
                                             <td> {{ item.quantity }}
-                                                <input type="text" id="quantity" class="form-control input" v-model="item.quantity"/>
+                                                <input type="text" id="quantity" class="form-control input" :value="quantity=item.quantity"/>
                                             </td>
                                             <td>{{ item.product_price }}</td>
                                             <td >{{ item.totalPrice }} 
-                                                <input type="text" id="unit_price" class="form-control input" v-model="item.totalPrice"/>
+                                                <input type="text" id="unit_price" class="form-control input" :value="unit_price=item.totalPrice"/>
                                             </td> 
                                         </tr> 
                                     </tbody>
@@ -268,15 +271,21 @@ export default {
             due_date: "",
             date: "",
             terms_and_conditions: "",
-
-            item:{
+   const:{},
+            /*item:{
                 id:'',
                 quantity:'',
-                totalPrice:''
-            },
+                unit_price:''
+            }, */
+
+            product_id:'',
+                quantity:'',
+                unit_price:'',
+
             errors: [],
             Prod:""
         };
+    
     },
 
     created() {
@@ -293,13 +302,18 @@ export default {
         this.getCus();
         this.$store.state.cart;
         this.$store.getters.cart;
+
+        console.log(JSON.stringify(this.$store.state.cart));
+        
+       
+        
     },
     computed: {
         cart() {
             return this.$store.state.cart;
-            
-            
+   
         },
+        
 
         TotalPrice: function () {
             let total = 0;
@@ -324,6 +338,7 @@ export default {
             }
             return total.toFixed(2);
         },
+        
     },
 
     methods: {
@@ -346,7 +361,7 @@ export default {
                 });
         },
 
-        async saveCart(cart) {
+        async saveCart() {
          //  let listcart = {cart: JSON.stringify(this.$store.state.cart)  }
 
             let formData = new FormData()
@@ -360,6 +375,12 @@ export default {
             formData.append("tax_total", this.TaxTotal);
 
             formData.append("total", this.TotalPrice);
+
+            
+         //  formData.append("product_id",JSON.stringify(this.product_id));
+         //  formData.append("quantity",JSON.stringify(this.quantity));
+        //   formData.append("unit_price", JSON.stringify(this.unit_price)); 
+
                /*
             formData.append("product_id", this.itemcart.id);
             formData.append("quantity", this.itemcart.quantity);
@@ -368,7 +389,6 @@ export default {
             let url = "/api/add_invoice";
             await axios
                 .post(url,formData)
-                cart
                 .then((response) => {
                  
                     console.log(response);

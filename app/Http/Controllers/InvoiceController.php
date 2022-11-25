@@ -26,7 +26,8 @@ class InvoiceController extends Controller
           
     public function add_invoice(Request $request){
          try{
-
+          
+         
             $invoice=new invoice();
             $invoice->number       = $request->number;
             $invoice->customer_id  = $request->customer_id;
@@ -37,48 +38,49 @@ class InvoiceController extends Controller
             $invoice->tax_total    = $request->tax_total;
             $invoice->total        = $request->total;
             $invoice->save();
-            $invoices =invoice::orderBy('id','desc')->take(1)->get();
-             /*
+            $invoices =invoice::orderBy('id','desc')->take(1)->get();  
+
+
+              /*
+             
             $invoiceitem=new invoiceItem();  
             $invoiceitem->invoice_id  = $request->$invoices[0]->id;
             $invoiceitem =  json_decode(request('product_id'));
             $invoiceitem = json_decode(request('unit_price')); 
             $invoiceitem =  json_decode(request('quantity'));
 
-            $invoiceitem->save();   
-            
-                   /*
+            $invoiceitem->save();    */
+               
+/*
             $invoiceitem= $request->input("invoice_item");
+
             foreach ( $invoiceitem as $item){
                 $itemdata['product_id'] = $item->id;
-                $itemdata['invoice_id'] = $item->$invoices[0]->id;
+               // $itemdata['invoice_id'] = $item->$invoices[0]->id;
                 $itemdata['unit_price'] = $item->unit_price; 
-                $itemdata['quantity'] = $request->quantity; 
+                $itemdata['quantity'] = $item->quantity; 
                 invoiceItem::create($itemdata);
-            } */
+            }   */
 
+            
+            
             $invoiceitem=new invoiceItem(); 
             $invoiceitem->invoice_id  = $request->$invoices[0]->id;
-            $invoiceitem->product_id = $request->product_id;
+            //$invoiceitem->invoice_id  = $request->$invoice->id;  
+           
+           $invoiceitem->product_id = $request->product_id;
             $invoiceitem->unit_price = $request->unit_price; 
-            $invoiceitem->quantity = $request->quantity;  
-            $invoiceitem->save(); 
+           $invoiceitem->quantity = $request->quantity;  
+            $invoiceitem->save();   
              
       
-            /*
-            $invoiceitem=new invoiceItem();
-            $invoiceitem->invoice_id  = $request->$invoices[0]->id;
-            $invoiceitem->product_id = $request->product_id;
-            $invoiceitem->unit_price = $request->unit_price; 
-            $invoiceitem->quantity = $request->quantity;  
-            $invoiceitem->save(); */
-
+      
    
             $success = true;
             $message = '';
             
            // $message = 'Invoice & itemId Success';
-          //  echo("<script>Console.log($invoices)</script>");
+           //  echo("<script>Console.log($invoices)</script>");
     
 
         }catch (\Illuminate\Database\QueryException $ex) {
@@ -96,41 +98,36 @@ class InvoiceController extends Controller
     }  
 
     public function invoiceItem(Request $request){
-        try{
+       
 
-            $invoices =invoice::orderBy('id','desc')->take(1)->get();
+            $invoiceitem =$request->input("invoice_item");
+
+            $invoicedata['subtotal'] = $request->input("subtotal");
+            $invoicedata['number'] = $request->input("number");
+            $invoicedata['customer_id'] = $request->input("customer_id");
+            $invoicedata['date'] = $request->input("date");
+            $invoicedata['due_date'] = $request->input("due_date");
+            $invoicedata['terms_and_conditions'] = $request->input("terms_and_conditions");
+            $invoicedata['tax_total'] = $request->input("tax_total");
+            $invoicedata['total'] = $request->input("total");
+
+            $invoice = invoice::create($invoicedata);
              
-            $invoiceitem=new invoiceItem();  
-            $invoiceitem->invoice_id  = $request->$invoices[0]->id;
-            $invoiceitem =  json_decode(request('product_id'));
-            $invoiceitem = json_decode(request('unit_price')); 
-            $invoiceitem =  json_decode(request('quantity'));
-            $invoiceitem->save();  
+            foreach (json_decode($invoiceitem) as $item){
+                $itemdata['product_id'] = $item->id;
 
-             /*
-            $invoiceitem=new invoiceItem();
-            $invoiceitem->invoice_id  = $request->$invoices[0]->id;
-            $invoiceitem->product_id = $request->product_id;
-            $invoiceitem->unit_price = $request->unit_price; 
-            $invoiceitem->quantity = $request->quantity;  
-            $invoiceitem->save(); */
+                $itemdata['invoice_id'] = $invoice->id;
 
-            $success = true;
-            $message = '';
-            
-           // $message = 'Invoice & itemId Success';
-          //  echo("<script>Console.log($invoices)</script>");
-    
+                $itemdata['quantity'] =  $item->quantity;
+                $itemdata['unit_price'] =  $item->unit_price;
+              
+                invoiceItem::create($itemdata);
 
-        }catch (\Illuminate\Database\QueryException $ex) {
-            $success = false;
-            $message = $ex->getMessage();
-        }
-        $response = [
-            'success' => $success,
-            'message' => $message
-        ];
-        return response()->json($response);
+            }
+ 
+
+
+
 
     }
 

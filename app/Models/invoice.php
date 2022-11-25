@@ -24,13 +24,9 @@ class invoice extends Model
     public function customer(){
         return $this->belongsTo(Customer::class);
                 }
-                
-        public function definition(){
-                                return [
-                                    'key' => 'invoice',
-                                    'prefix' => 'INV-',
-                                    'value' => 20000
-                                ];
+    
+                            public function invoice(){
+                                return $this->hasMany(invoice::class, 'id','invoice_id');
                             }
 
 }
