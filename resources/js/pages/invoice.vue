@@ -58,7 +58,7 @@ const indexForm = async () => {
 
             <div class="invoice" id="invoice">
                 <div class="invoice-data">
-                    <form @submit.prevent="saveCart(cart)">
+                    <form @submit.prevent="saveCart()">
                         <div class="row">
                             <div class="col">
                                 <div class="logo-invoice">
@@ -195,7 +195,7 @@ const indexForm = async () => {
                                     </thead>
                                     <tbody>
                                       
-                                        <tr v-for="item in cart" :key="item.id" >
+                                        <tr v-for="item in $store.state.cart" :key="item.id" >
                                             <th scope="row" > {{item.id }} 
                                                 <input type="text" id="product_id" class="form-control input" :value="product_id=item.id" />
                                             </th>
@@ -270,7 +270,7 @@ export default {
             terms_and_conditions: "",
    
             item:{
-                id:'',
+                product_id:'',
                 quantity:'',
                 unit_price:''
             }, 
@@ -281,7 +281,8 @@ export default {
                 unit_price:'', */
 
             errors: [],
-            Prod:""
+            Prod:"",
+            multi_cart :[]
         };
     
     },
@@ -299,13 +300,10 @@ export default {
         //this.getData();
         this.getCus();
         this.$store.state.cart;
+
         this.$store.getters.cart;
 
-        let cart = {
-             "name" : "aew",
-             "Lastname" : "kew",
-             "email" : "geeg2102@gormail.com"
-        }
+      
 
         let data = JSON.stringify(this.$store.state.cart);
         let toData = JSON.parse(data);
@@ -376,9 +374,8 @@ export default {
 
         async saveCart() {
          //  let listcart = {cart: JSON.stringify(this.$store.state.cart)  }
-         let data2 = JSON.stringify(this.$store.state.cart);
+        // let data2 = JSON.stringify(this.$store.state.cart);
         // let toData =JSON.parse(data); 
-         
             let formData = new FormData()
             formData.append("number", this.form.number);
             formData.append("customer_id", this.CustomerID);
@@ -402,21 +399,23 @@ export default {
          //  formData.append("quantity",JSON.stringify(this.quantity));
         //   formData.append("unit_price", JSON.stringify(this.unit_price)); 
   
-               /*
-            formData.append("product_id", this.itemcart.id);
-            formData.append("quantity", this.itemcart.quantity);
-            formData.append("unit_price", this.itemcart.totalPrice);  */
             
-            let data = {cart: JSON.stringify(this.$store.state.cart) }
-            url = "/api/add_invoice";
+
+            formData.append("product_id", this.product_id);
+            formData.append("quantity", this.quantity);
+            formData.append("unit_price", this.unit_price);  
+            formData.append("cart_data", JSON.stringify(this.$store.state.cart));  
+            // let data = {cart: JSON.stringify(this.$store.state.cart) }
+           let url = '/api/add_invoice';   
             await axios
-                .post(url,formData,data)
-                .then((response) => {
+             .post(url,formData)
+                .then(async(response) => {
                     console.log(response);
-                    if (response.status == 200) {
+                    if (response.data.message == "success") {
                         alert(response.data.message);
-                    } else {
-                        console.log("error");
+                        await this.saveMultiCart()
+                    } else if (response.data.success == "false"){
+                        alert("data is duppicate")
                     }
                 })
                 .catch((error) => {
@@ -424,6 +423,42 @@ export default {
                 });     
             
         },
+        async saveMultiCart(){
+            this.multi_cart = this.$store.state.cart;
+            var cart = this.$store.state.cart
+            for(let i = 0;i<=cart.length;i++ ){
+            var payload = {
+             id : cart[i].id,
+             product_id : cart[i].product_id,
+             unit_price : cart[i].totalPrice,
+             quantity : cart[i].quantity,
+             invoice_id : this.form.number
+            }
+            var config = {
+            method: 'post',
+            url: '/api/add_multi_invoice',
+            headers: { 
+                'Content-Type': 'application/json'
+            },
+            data : payload
+            };
+          
+            axios(config)
+            .then(function (response) {
+                console.log(response);
+                    if (response.status == 200) {
+                       status = "success"
+                    } else {
+                        console.log("error");
+                    }
+            })
+            .catch(function (error) {
+                this.errors.push(error.response);
+            });
+
+            }
+        }
+      
     },
     mounted() {
         console.log('Hi')

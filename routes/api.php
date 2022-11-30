@@ -56,6 +56,9 @@ Route::post('test_invoice', [InvoiceController::class,'test_invoice']);
 
 Route::post('invoiceItem', [InvoiceController::class,'invoiceItem']);
 
+Route::post('add_multi_invoice', [InvoiceController::class,'add_multi_invoice']);
+
+
 
 
 

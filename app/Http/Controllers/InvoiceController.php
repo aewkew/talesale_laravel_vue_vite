@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\invoice;
 use App\Models\Counter;
 use App\Models\invoiceItem;
+use Illuminate\Console\View\Components\Alert;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\Console\Input\Input;
 
@@ -26,8 +27,7 @@ class InvoiceController extends Controller
           
     public function add_invoice(Request $request){
          try{
-          
-         
+ 
             $invoice=new invoice();
             $invoice->number       = $request->number;
             $invoice->customer_id  = $request->customer_id;
@@ -41,7 +41,7 @@ class InvoiceController extends Controller
 
            //$invoices =invoice::orderBy('id','desc')->take(1)->get();  
 
- 
+                /*
            $cart = json_decode(request('cart'));
             foreach($cart as $item){
                 $invoiceitem=new invoiceItem();
@@ -49,7 +49,7 @@ class InvoiceController extends Controller
                 $invoiceitem->unit_price = $request->$item['totalPrice'];
                 $invoiceitem->quantity = $request->$item['quantity'];
                 $invoiceitem->save();
-            } 
+            }  */
 
              /*
           // $invoiceitem->invoice_id  = $request->$invoices[0]->id;
@@ -72,24 +72,25 @@ class InvoiceController extends Controller
                 $itemdata['unit_price'] = $item->unit_price; 
                 $itemdata['quantity'] = $item->quantity; 
                 invoiceItem::create($itemdata);
-            }   */
-
+            }   
 
            
-            
-            $invoiceitem=new invoiceItem(); 
+                
+            $invoiceitem=new invoiceItem; 
           //  $invoiceitem->invoice_id  = $request->$invoices[0]->id;
             //$invoiceitem->invoice_id  = $request->$invoice->id;  
            $invoiceitem->product_id = $request->product_id;
             $invoiceitem->unit_price = $request->unit_price; 
            $invoiceitem->quantity = $request->quantity;  
-            $invoiceitem->save();     
+            $invoiceitem->save();     */
              
       
       
    
             $success = true;
-            $message = '';
+            $message = "success" ;
+
+            
             
            // $message = 'Invoice & itemId Success';
            //  echo("<script>Console.log($invoices)</script>");
@@ -97,7 +98,7 @@ class InvoiceController extends Controller
     
 
         }catch (\Illuminate\Database\QueryException $ex) {
-            $success = false;
+            $success = "false";
             $message = $ex->getMessage();
         }
         $response = [
@@ -109,6 +110,36 @@ class InvoiceController extends Controller
        
         
     }  
+    public function add_multi_invoice(Request $request){
+        try{
+
+                $invoiceitem=new invoiceItem; 
+                // $invoiceitem->invoice_id  = $request->$invoices[0]->id;
+                //$invoiceitem->invoice_id  = $request->$invoice->id;  
+                $invoiceitem->invoice_id = $request->invoice_id;
+                $invoiceitem->product_id = $request->product_id;
+                $invoiceitem->unit_price = $request->unit_price; 
+                $invoiceitem->quantity = $request->quantity;  
+                $invoiceitem->save();  
+                
+                
+            $success = true;
+            $message = "Success" ;
+
+   
+       }catch (\Illuminate\Database\QueryException $ex) {
+           $success = false;
+           $message = $ex->getMessage();
+       }
+       $response = [
+           'success' => $success,
+           'message' => $message
+       ];
+
+       return response()->json($response);
+      
+       
+   } 
 
     public function invoiceItem(Request $request){
        
