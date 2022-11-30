@@ -38,23 +38,35 @@ class InvoiceController extends Controller
             $invoice->tax_total    = $request->tax_total;
             $invoice->total        = $request->total;
             $invoice->save();
-            $invoices =invoice::orderBy('id','desc')->take(1)->get();  
 
+           //$invoices =invoice::orderBy('id','desc')->take(1)->get();  
 
-              /*
-             
-            $invoiceitem=new invoiceItem();  
-            $invoiceitem->invoice_id  = $request->$invoices[0]->id;
+ 
+           $cart = json_decode(request('cart'));
+            foreach($cart as $item){
+                $invoiceitem=new invoiceItem();
+                $invoiceitem->product_id = $request->$item['id'];
+                $invoiceitem->unit_price = $request->$item['totalPrice'];
+                $invoiceitem->quantity = $request->$item['quantity'];
+                $invoiceitem->save();
+            } 
+
+             /*
+          // $invoiceitem->invoice_id  = $request->$invoices[0]->id;
             $invoiceitem =  json_decode(request('product_id'));
             $invoiceitem = json_decode(request('unit_price')); 
             $invoiceitem =  json_decode(request('quantity'));
-
             $invoiceitem->save();    */
+
+
+         /*   $invoiceitem = json_decode(request('cart'));
+            $invoiceitem->save();*/ 
                
-/*
+            /*
+            
             $invoiceitem= $request->input("invoice_item");
 
-            foreach ( $invoiceitem as $item){
+            foreach (json_decode($invoiceitem) as $item){
                 $itemdata['product_id'] = $item->id;
                // $itemdata['invoice_id'] = $item->$invoices[0]->id;
                 $itemdata['unit_price'] = $item->unit_price; 
@@ -62,16 +74,16 @@ class InvoiceController extends Controller
                 invoiceItem::create($itemdata);
             }   */
 
-            
+
+           
             
             $invoiceitem=new invoiceItem(); 
-            $invoiceitem->invoice_id  = $request->$invoices[0]->id;
+          //  $invoiceitem->invoice_id  = $request->$invoices[0]->id;
             //$invoiceitem->invoice_id  = $request->$invoice->id;  
-           
            $invoiceitem->product_id = $request->product_id;
             $invoiceitem->unit_price = $request->unit_price; 
            $invoiceitem->quantity = $request->quantity;  
-            $invoiceitem->save();   
+            $invoiceitem->save();     
              
       
       
@@ -81,6 +93,7 @@ class InvoiceController extends Controller
             
            // $message = 'Invoice & itemId Success';
            //  echo("<script>Console.log($invoices)</script>");
+             // echo("<script>Console.log($cart)</script>");
     
 
         }catch (\Illuminate\Database\QueryException $ex) {

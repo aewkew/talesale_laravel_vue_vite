@@ -5,7 +5,6 @@ import { onMounted, ref } from "vue";
 
 let form = ref([])
 
-
 onMounted(async () => {
     indexForm();
 });
@@ -16,9 +15,6 @@ const indexForm = async () => {
     //console.log('form', response.data)
     form.value = response.data;
 };
-
-
-
 
 
 </script>
@@ -264,6 +260,7 @@ const indexForm = async () => {
 <script>
 
 export default {
+    
     data() {
         return {
             customers: {},
@@ -271,16 +268,17 @@ export default {
             due_date: "",
             date: "",
             terms_and_conditions: "",
-   const:{},
-            /*item:{
+   
+            item:{
                 id:'',
                 quantity:'',
                 unit_price:''
-            }, */
-
-            product_id:'',
+            }, 
+            
+                 /*
+            id:'',
                 quantity:'',
-                unit_price:'',
+                unit_price:'', */
 
             errors: [],
             Prod:""
@@ -303,18 +301,34 @@ export default {
         this.$store.state.cart;
         this.$store.getters.cart;
 
-        console.log(JSON.stringify(this.$store.state.cart));
-        
+        let cart = {
+             "name" : "aew",
+             "Lastname" : "kew",
+             "email" : "geeg2102@gormail.com"
+        }
+
+        let data = JSON.stringify(this.$store.state.cart);
+        let toData = JSON.parse(data);
+
+         
+
        
-        
+
+        console.log('test',data);
+        console.log('test2',toData);
+        console.log('testPre',toData[0].id + toData[0].product_brand);
+
+        for(let i=0; i<toData.length; i++){
+            console.log('testPre2',toData[i].id + toData[i].product_brand);
+        }
+
+    
     },
     computed: {
         cart() {
-            return this.$store.state.cart;
-   
+           return this.$store.state.cart;
         },
         
-
         TotalPrice: function () {
             let total = 0;
             for (let item of this.$store.state.cart) {
@@ -342,8 +356,7 @@ export default {
     },
 
     methods: {
-      
-
+        
         printInvoice: function () {
             window.print();
         },
@@ -363,34 +376,42 @@ export default {
 
         async saveCart() {
          //  let listcart = {cart: JSON.stringify(this.$store.state.cart)  }
-
+         let data2 = JSON.stringify(this.$store.state.cart);
+        // let toData =JSON.parse(data); 
+         
             let formData = new FormData()
             formData.append("number", this.form.number);
             formData.append("customer_id", this.CustomerID);
             formData.append("date", this.date);
             formData.append("due_date", this.due_date);
-
             formData.append("terms_and_conditions", this.terms_and_conditions);
             formData.append("sub_total", this.SubTotal);
             formData.append("tax_total", this.TaxTotal);
-
             formData.append("total", this.TotalPrice);
 
-            
+              //append('product_id',this.id);
+              
+                
+         
+           // console.log('testPre2',toData[i].id + toData[i].product_brand); 
+           // formData.append("product_id", this.toData[i].id);
+           
+
+    
          //  formData.append("product_id",JSON.stringify(this.product_id));
          //  formData.append("quantity",JSON.stringify(this.quantity));
         //   formData.append("unit_price", JSON.stringify(this.unit_price)); 
-
+  
                /*
             formData.append("product_id", this.itemcart.id);
             formData.append("quantity", this.itemcart.quantity);
             formData.append("unit_price", this.itemcart.totalPrice);  */
-
-            let url = "/api/add_invoice";
+            
+            let data = {cart: JSON.stringify(this.$store.state.cart) }
+            url = "/api/add_invoice";
             await axios
-                .post(url,formData)
+                .post(url,formData,data)
                 .then((response) => {
-                 
                     console.log(response);
                     if (response.status == 200) {
                         alert(response.data.message);
@@ -405,7 +426,8 @@ export default {
         },
     },
     mounted() {
-        console.log();
+        console.log('Hi')
+        
     },
 };
 </script>
