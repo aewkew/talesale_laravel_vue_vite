@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('follow_dealings', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('product_id');
+            $table->integer('invoice_id');
             $table->integer('customer_id');
             $table->enum('status',['paid','arrears']);
             $table->timestamps();

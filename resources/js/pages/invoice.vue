@@ -90,6 +90,7 @@ const indexForm = async () => {
                                             class="form-control input"
                                             v-model="form.number"
                                         />
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -375,6 +376,7 @@ export default {
             formData.append("sub_total", this.SubTotal);
             formData.append("tax_total", this.TaxTotal);
             formData.append("total", this.TotalPrice);
+            formData.append("user_id", this.id);
               //append('product_id',this.id);
            // console.log('testPre2',toData[i].id + toData[i].product_brand); 
            // formData.append("product_id", this.toData[i].id);

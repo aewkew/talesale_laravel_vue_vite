@@ -11,13 +11,13 @@ use App\Models\Customer;
 
 class historyDealing extends Model
 {
-    use HasFactory;
+   
     protected $table = 'history_dealings';
-     protected $fillable = ['product_id', 'user_id', 'customer_id'];
+     protected $fillable = ['invoice_id', 'user_id', 'customer_id'];
 
-    
+     use HasFactory;
     public function products(){
-        return $this->hasMany(Product::class, 'product_id','id');
+        return $this->hasMany(Product::class, 'invoice_id','id');
     }
    
     public function customers() {

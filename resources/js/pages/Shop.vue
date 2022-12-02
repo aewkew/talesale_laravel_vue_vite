@@ -161,26 +161,28 @@ export default {
                             <label class="input-group-text" for="product"
                                 >Color</label
                             >
-                            <select class="form-select" v-model="keyword_color">
-                                <option selected value="">All Color</option>
+                            <select class="form-select" v-model="keyword_color" aria-label="Default select example">
+                                <option  selected value="" >All Color</option>
                                 <option value="Red">Red</option>
                                 <option value="Blue">Blue</option>
                                 <option value="Black">Black</option>
                                 <option value="Yellow">Yellow</option>
                             </select>
+                            
                         </div>
                     </div>
 
                     <div class="col">
                         <div class="input-group">
-                            <label class="input-group-text" for="product"
-                                >Brand</label
-                            >
-
+                            <label class="input-group-text" for="product">Brand</label >
                             <select class="form-select" v-model="keyword_brand">
-                                <option selected value="">All Brand</option>
+                          
+                                <option  selected value="">All Brand</option>
+                                <option value="Canon">Canon</option>
                                 <option value="Epson">Epson</option>
                                 <option value="Brother">Brother</option>
+                                <option value="Hp">Hp</option>
+                               
                             </select>
                         </div>
                     </div>

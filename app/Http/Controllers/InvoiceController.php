@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\invoice;
 use App\Models\Counter;
 use App\Models\invoiceItem;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Console\View\Components\Alert;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\Console\Input\Input;
@@ -33,6 +35,7 @@ class InvoiceController extends Controller
             $invoice->customer_id  = $request->customer_id;
             $invoice->date         = $request->date;
             $invoice->due_date     = $request->due_date;
+            $invoice->user_id       = $request->user_id;
             $invoice->terms_and_conditions  = $request->terms_and_conditions;
             $invoice->sub_total    = $request->sub_total;
             $invoice->tax_total    = $request->tax_total;
@@ -116,6 +119,7 @@ class InvoiceController extends Controller
                 $invoiceitem=new invoiceItem; 
                 // $invoiceitem->invoice_id  = $request->$invoices[0]->id;
                 //$invoiceitem->invoice_id  = $request->$invoice->id;  
+                //$invoiceitem->user_id = $request->user_id;
                 $invoiceitem->invoice_id = $request->invoice_id;
                 $invoiceitem->product_id = $request->product_id;
                 $invoiceitem->unit_price = $request->unit_price; 

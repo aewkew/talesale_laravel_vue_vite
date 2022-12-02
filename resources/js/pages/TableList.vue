@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <SeachTable></SeachTable>
-        <div class="sale">List Customer</div>
+        <div class="sale">History Dealing Customer</div>
 
         <div class="tableContrainer">
             <table class="table">
@@ -14,6 +14,7 @@
                         <th scope="col">Phone</th>
                         <th scope="col">Date</th>
                         <th scope="col">Invoice</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Edit</th>
                         <th scope="col">Delete</th>
                     </tr>

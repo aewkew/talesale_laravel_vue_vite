@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('history_dealings', function (Blueprint $table) {
             $table->id();
-            $table->integer('product_id');
+            $table->integer('invoice_id');
             $table->integer('user_id');
             $table->integer('customer_id');
             $table->timestamps();

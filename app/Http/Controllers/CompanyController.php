@@ -29,7 +29,7 @@ class CompanyController extends Controller
             $company->save();
 
             $success = true;
-            $message = "Add Product successfully";
+            $message = "Sign Company successfully";
     
 
         }catch (\Illuminate\Database\QueryException $ex) {

@@ -34,7 +34,7 @@ class CustomerController extends Controller
             $customer=new Customer();
            // $customer->customer_id   = $request->customer_id;
             $customer->customer_name          = $request->customer_name;
-           // $customer->company_id	 = $request->company_id	;
+            $customer->company_id	 = $request->company_id	;
             $customer->customer_address       = $request->customer_address;
             $customer->customer_phone         = $request->customer_phone;
             $customer->save();

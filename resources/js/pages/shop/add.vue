@@ -37,18 +37,38 @@
                     </div>
                     <div class="row ">
                         <label for="staticBackdropLabel" class="form-label" > Brand </label>
+                        <div class="form-group">
+                             <select class="form-select" v-model="brand">
+                                <option value="Canon">Canon</option>
+                                <option value="Epson">Epson</option>
+                                <option value="Brother">Brother</option>
+                                <option value="Hp">Hp</option>
+                            </select>
+                        </div>
+                       
+                      <!--
                         <div class="input-group">
                             <input  type="text" class="form-control" v-model="brand"/>
-                        </div>
+                        </div> -->
                     </div>
 
                     <div class="row">
                         <label for="inputGroupSelect01" class="form-label" > Color </label>
+                        <div class="form-group"> 
+                             <select class="form-select" v-model="color">
+                            <option value="Blue">Blue</option>
+                            <option value="Yellow">Yellow</option>
+                            <option value="Red">Red</option>
+                            <option value="Black">Black</option>
+                        </select>
+                        </div>
+                       
+                        <!-- 
                         <div class="input-group">
                             <div class="form-group">
                                 <input  type="text" class="form-control" v-model="color"/>  
                             </div>
-                        </div>
+                        </div>-->
                     </div>
 
                     <div class="row"> 
