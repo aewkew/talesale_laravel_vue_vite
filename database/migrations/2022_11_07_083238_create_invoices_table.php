@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('number')->unique();
             $table->string('customer_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->date('date');
             $table->date('due_date');
             $table->string('reference')->nullable();
@@ -25,7 +26,7 @@ return new class extends Migration
             $table->double('tax_total');
             $table->double('discount')->default(0);
             $table->double('total');
-            $table->timestamps();
+            $table->timestamps(); 
         });
     }
 

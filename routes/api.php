@@ -58,10 +58,6 @@ Route::post('invoiceItem', [InvoiceController::class,'invoiceItem']);
 
 Route::post('add_multi_invoice', [InvoiceController::class,'add_multi_invoice']);
 
-
-
-
-
 // user
 Route::get('user', [UserController::class,'user']);
 Route::get('userid/{id}', [UserController::class,'userid']);
@@ -75,12 +71,8 @@ Route::post('editUser/{id}', [UserController::class,'editUser']);
 //Join
 
 Route::get('hisdeal',[HistoryDealingController::class,'hisdeal']);
-
 Route::get('iner-join',[HistoryDealingController::class,'innerJoin']);
 Route::get('iner-join_his',[HistoryDealingController::class,'innerJoinhis']);
-
-
-
 
 
 Route::middleware('auth:sanctum')->get('/', function (Request $request) {

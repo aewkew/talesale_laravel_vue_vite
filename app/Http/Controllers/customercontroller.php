@@ -40,7 +40,7 @@ class CustomerController extends Controller
             $customer->save();
 
             $success = true;
-            $message = "Add Product successfully";
+            $message = "Sign Up Customer successfully";
     
 
         }catch (\Illuminate\Database\QueryException $ex) {

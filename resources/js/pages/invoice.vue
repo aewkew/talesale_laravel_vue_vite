@@ -150,6 +150,7 @@ const indexForm = async () => {
                                                     >Date_due:
                                                 </label>
                                                 <div class="col">
+                                                    
                                                     <input
                                                         id="due_date"
                                                         placeholder="dd-mm-yyyy"
@@ -197,16 +198,17 @@ const indexForm = async () => {
                                       
                                         <tr v-for="item in $store.state.cart" :key="item.id" >
                                             <th scope="row" > {{item.id }} 
-                                                <input type="text" id="product_id" class="form-control input" :value="product_id=item.id" />
+                                            <!--     <input type="text" id="product_id" class="form-control input" :value="product_id=item.id" />-->
                                             </th>
                                             <td>{{ item.product_name }}</td>
                                             <td>{{ item.product_id }}</td>
                                             <td> {{ item.quantity }}
-                                                <input type="text" id="quantity" class="form-control input" :value="quantity=item.quantity"/>
+                                                <!--   <input type="text" id="quantity" class="form-control input" :value="quantity=item.quantity"/>-->  
                                             </td>
                                             <td>{{ item.product_price }}</td>
                                             <td >{{ item.totalPrice }} 
-                                                <input type="text" id="unit_price" class="form-control input" :value="unit_price=item.totalPrice"/>
+                                                <!--  <input type="text" id="unit_price" class="form-control input" :value="unit_price=item.totalPrice"/>    -->
+                                               
                                             </td> 
                                         </tr> 
                                     </tbody>
@@ -250,7 +252,10 @@ const indexForm = async () => {
                                 </div>
                             </div>
                         </div>
+                        
                         <button type="submit" class="btn but-co">Save</button>
+                                                    
+                                              
                     </form>
                 </div>
             </div>
@@ -260,7 +265,6 @@ const indexForm = async () => {
 <script>
 
 export default {
-    
     data() {
         return {
             customers: {},
@@ -274,12 +278,6 @@ export default {
                 quantity:'',
                 unit_price:''
             }, 
-            
-                 /*
-            id:'',
-                quantity:'',
-                unit_price:'', */
-
             errors: [],
             Prod:"",
             multi_cart :[]
@@ -300,25 +298,17 @@ export default {
         //this.getData();
         this.getCus();
         this.$store.state.cart;
-
+        /*
         this.$store.getters.cart;
-
-      
-
         let data = JSON.stringify(this.$store.state.cart);
         let toData = JSON.parse(data);
-
-         
-
-       
-
         console.log('test',data);
         console.log('test2',toData);
         console.log('testPre',toData[0].id + toData[0].product_brand);
 
         for(let i=0; i<toData.length; i++){
             console.log('testPre2',toData[i].id + toData[i].product_brand);
-        }
+        } */
 
     
     },
@@ -385,22 +375,12 @@ export default {
             formData.append("sub_total", this.SubTotal);
             formData.append("tax_total", this.TaxTotal);
             formData.append("total", this.TotalPrice);
-
               //append('product_id',this.id);
-              
-                
-         
            // console.log('testPre2',toData[i].id + toData[i].product_brand); 
            // formData.append("product_id", this.toData[i].id);
-           
-
-    
-         //  formData.append("product_id",JSON.stringify(this.product_id));
-         //  formData.append("quantity",JSON.stringify(this.quantity));
-        //   formData.append("unit_price", JSON.stringify(this.unit_price)); 
-  
-            
-
+          // formData.append("product_id",JSON.stringify(this.product_id));
+          // formData.append("quantity",JSON.stringify(this.quantity));
+          // formData.append("unit_price", JSON.stringify(this.unit_price)); 
             formData.append("product_id", this.product_id);
             formData.append("quantity", this.quantity);
             formData.append("unit_price", this.unit_price);  
@@ -428,8 +408,8 @@ export default {
             var cart = this.$store.state.cart
             for(let i = 0;i<=cart.length;i++ ){
             var payload = {
-             id : cart[i].id,
-             product_id : cart[i].product_id,
+            // id : cart[i].id,
+             product_id : cart[i].id,
              unit_price : cart[i].totalPrice,
              quantity : cart[i].quantity,
              invoice_id : this.form.number
@@ -450,14 +430,18 @@ export default {
                        status = "success"
                     } else {
                         console.log("error");
-                    }
+                    }  if (response.data.success) {
+                                window.location.href = "/Tablelist";
+                            }
             })
             .catch(function (error) {
                 this.errors.push(error.response);
             });
 
             }
-        }
+        },
+        
+     
       
     },
     mounted() {

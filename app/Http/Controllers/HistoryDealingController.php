@@ -20,7 +20,7 @@ class HistoryDealingController extends Controller
     );
 }
 
-   public function innerJoin(){
+     public function innerJoin(){
         $result = DB::table('products')
         ->join('history_dealings','products.id','=','history_dealings.product_id')
         ->select('products.product_name')
@@ -31,9 +31,8 @@ class HistoryDealingController extends Controller
              'message' => 'historyDealing',
              'code' => 200
         ]);
-
      }  
-
+    
      public function innerJoinhis(){
         $result = DB::table('history_dealings')
         ->join('users','users.id','=','history_dealings.user_id')
