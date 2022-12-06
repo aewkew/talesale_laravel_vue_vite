@@ -36,7 +36,7 @@
                                     :key="company.id">
                                     {{ company.company_name }} 
                                 </option>
-                                <option value=""> Null </option>
+                                
                                                    
                                       
                             </select>

@@ -15,12 +15,14 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('comapny_id')->nullable();
+          // $table->foreignId('company_id')->nullable();
+            $table->integer('company_id')->nullable();
             $table->string('customer_id')->nullable();
             $table->string('customer_name');
             $table->string('customer_address');
             $table->string('customer_phone');
             $table->timestamps();
+          // $table->foreign('company_id')->references('id')->on('companies');
         });
     }
 

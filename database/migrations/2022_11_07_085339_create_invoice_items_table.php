@@ -14,15 +14,16 @@ return new class extends Migration
     public function up()
     {
         Schema::create('invoice_items', function (Blueprint $table) {
-            $table->id();
-           // $table->unsignedBigInteger('invoice_id');
-            $table->integer('invoice_id');
+            $table->id();   
+            $table->unsignedBigInteger('invoice_id');
+
+           // $table->string('invoice_id');
             $table->integer('product_id');
             $table->double('unit_price');
             $table->integer('quantity');
             $table->timestamps();
-           // $table->foreign('invoice_id')->references('id')->on('invoices');
-          //  $table->foreign('invoice_id')->references('id')->on('invoices');
+            $table->foreign('invoice_id')->references('id')->on('invoices');
+
         });
     }
 
@@ -34,5 +35,6 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('invoice_items');
+       
     }
 };

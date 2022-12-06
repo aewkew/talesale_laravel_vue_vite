@@ -414,7 +414,7 @@ export default {
              product_id : cart[i].id,
              unit_price : cart[i].totalPrice,
              quantity : cart[i].quantity,
-             invoice_id : this.form.number
+             invoice_id : cart[i].id,
             }
             var config = {
             method: 'post',

@@ -18,7 +18,6 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
           // $table->foreignId('user_id')->constrained();
             $table->string('number')->unique();
-            
             $table->string('customer_id');
             $table->date('date');
             $table->date('due_date');
