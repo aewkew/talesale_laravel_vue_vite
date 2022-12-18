@@ -1,10 +1,10 @@
-<?php
-
+  <?php
+/*
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\historyDealing;
+//use App\Models\historyDealing;
 use App\Models\Product;
 
 class HistoryDealingController extends Controller
@@ -19,6 +19,7 @@ class HistoryDealingController extends Controller
         ]
     );
 }
+
 
      public function innerJoin(){
         $result = DB::table('products')
@@ -52,4 +53,4 @@ class HistoryDealingController extends Controller
     
 
 
-}
+}*/

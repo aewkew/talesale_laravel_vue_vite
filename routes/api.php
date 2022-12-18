@@ -68,11 +68,9 @@ Route::post('register_user', [UserController::class, 'register_user']);
 Route::post('logout', [UserController::class, 'logout'])->middleware('auth:sanctum'); 
 Route::post('editUser/{id}', [UserController::class,'editUser']);
 
-//Join
 
-Route::get('hisdeal',[HistoryDealingController::class,'hisdeal']);
-Route::get('iner-join',[HistoryDealingController::class,'innerJoin']);
-Route::get('iner-join_his',[HistoryDealingController::class,'innerJoinhis']);
+
+
 
 
 Route::middleware('auth:sanctum')->get('/', function (Request $request) {
