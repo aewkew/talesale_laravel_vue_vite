@@ -29,13 +29,12 @@ class InvoiceController extends Controller
           
     public function add_invoice(Request $request){
          try{
- 
             $invoice=new invoice();
             $invoice->number       = $request->number;
             $invoice->customer_id  = $request->customer_id;
             $invoice->date         = $request->date;
             $invoice->due_date     = $request->due_date;
-            $invoice->user_id       = $request->user_id;
+            $invoice->user_id      = $request->user_id;
             $invoice->terms_and_conditions  = $request->terms_and_conditions;
             $invoice->sub_total    = $request->sub_total;
             $invoice->tax_total    = $request->tax_total;
@@ -43,7 +42,6 @@ class InvoiceController extends Controller
             $invoice->save();
 
            //$invoices =invoice::orderBy('id','desc')->take(1)->get();  
-
                 /*
            $cart = json_decode(request('cart'));
             foreach($cart as $item){
@@ -76,9 +74,7 @@ class InvoiceController extends Controller
                 $itemdata['quantity'] = $item->quantity; 
                 invoiceItem::create($itemdata);
             }   
-
-           
-                
+   
             $invoiceitem=new invoiceItem; 
           //  $invoiceitem->invoice_id  = $request->$invoices[0]->id;
             //$invoiceitem->invoice_id  = $request->$invoice->id;  
@@ -86,19 +82,13 @@ class InvoiceController extends Controller
             $invoiceitem->unit_price = $request->unit_price; 
            $invoiceitem->quantity = $request->quantity;  
             $invoiceitem->save();     */
-             
-      
-      
-   
+
             $success = true;
             $message = "success" ;
 
-            
-            
            // $message = 'Invoice & itemId Success';
            //  echo("<script>Console.log($invoices)</script>");
              // echo("<script>Console.log($cart)</script>");
-    
 
         }catch (\Illuminate\Database\QueryException $ex) {
             $success = "false";

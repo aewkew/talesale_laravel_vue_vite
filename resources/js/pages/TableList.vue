@@ -20,33 +20,18 @@
                     </tr>
                 </thead>
 
-                <tbody v-for="item in invoices" :key="item.id">
+                <tbody >
                     <tr>
-                        <td>{{item.date }}</td>
-                        <td v-if="item.customer">{{ item.customer.customer_name}}</td>
-                        <td v-else></td>
-                        <td>{{item.number }}</td>
-                        
                         <td></td>
-                        <td>{{ item.created_at }}</td>
-                        <td>
-                            <button class="but-co btn" type="button">
-                                null
-                            </button>
-                        </td>
-                        <td>
-                            <router-link :to="{ name: 
-                            'editcustomer', params:{ id:item.id} }" class="but-co btn" ><i class="bi bi-pencil"></i></router-link>   
-
-                        </td>
-                        <td>
-                            <button
-                                class="but-co btn"
-                                @click.prevent="deleteCustomer(item.id)"
-                            >
-                                <i class="bi bi-trash"></i>
-                            </button>
-                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>    
+                        <td></td>  
                     </tr>
                 </tbody>
             </table>
@@ -56,42 +41,29 @@
 </template>
 <script>
 import axios from "axios";
-import Editcustomer from "./Customer/editcustomer.vue";
+
 import SeachTable from "./TableList/seachTable.vue";
 
 export default {
     name: "Tablelist",
-    components: { SeachTable, Editcustomer },
+    components: { SeachTable },
 
     data() {
         return {
-            customers: Array,
-        };
+           
+        }
     },
     created() {
-        this.getData();
+      
     },
 
     methods: {
-        async getData() {
-            let url = "/api/invoices";
-            await axios
-                .get(url)
-                .then((response) => {
-                    this.invoices = response.data.invoices;
-                    console.log(this.invoices);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        },
+        
 
-        
-        
     },
 
     mounted() {
-        console.log("Read Customer List Component Mounted");
+        console.log("Inviu");
     },
 };
 </script>

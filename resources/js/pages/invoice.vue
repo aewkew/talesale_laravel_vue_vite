@@ -16,7 +16,6 @@ const indexForm = async () => {
     form.value = response.data;
 };
 
-
 </script>
 
 <template>
@@ -103,6 +102,7 @@ const indexForm = async () => {
                                     </div>
                                     <div class="col-4">
                                         <div class="bill-data">
+                                            
                                             <select
                                                 class="form-select input form-control"
                                                 v-model="CustomerID"
@@ -110,20 +110,13 @@ const indexForm = async () => {
                                                 <option disabled value="">
                                                     Select customer
                                                 </option>
-                                                <option
-                                                    :value="customer.id"
+                                                <option  :value="customer.id"
                                                     v-for="customer in customers"
-                                                    :key="customer.id"
-                                                >
+                                                    :key="customer.id">
                                                     {{ customer.customer_name }}
                                                 </option>
                                             </select>
-
-                                            <!-- 
-                                    Tiger kung <br />
-                                    Jungti kung Comp <br />
-                                    Sansai Chaingmai 50210 <br />
-                                    06-46166415 , Jungti_ger_kung@hitmill.com-->
+                                            <br>
                                         </div>
                                     </div>
                                     <div class="col"></div>

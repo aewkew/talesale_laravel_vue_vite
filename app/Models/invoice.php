@@ -20,6 +20,7 @@ class invoice extends Model
                            'tax_total',
                            'discount',
                            'total',
+                           'status'
                             ];
    
     public function customer(){
