@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\invoice;
 use App\Models\Counter;
 use App\Models\invoiceItem;
+use App\Models\Customer;
+use App\Models\Product;
 use App\Models\User;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Console\View\Components\Alert;
 use Illuminate\Support\Facades\DB;
@@ -43,6 +46,14 @@ class InvoiceController extends Controller
             $invoice->save();
 
            //$invoices =invoice::orderBy('id','desc')->take(1)->get();  
+   
+           // $invoiceitem->invoice_id  = $request->$invoices[0]->id;
+           //$invoiceitem->invoice_id  = $request->$invoice->id;  
+           //$invoiceitem->user_id = $request->user_id;
+
+           
+
+      
                 /*
            $cart = json_decode(request('cart'));
             foreach($cart as $item){
@@ -106,12 +117,14 @@ class InvoiceController extends Controller
     }  
     public function add_multi_invoice(Request $request){
         try{
+                 $test =invoice::orderBy('id','desc')->take(1)->get();  
 
                 $invoiceitem=new invoiceItem; 
                 // $invoiceitem->invoice_id  = $request->$invoices[0]->id;
                 //$invoiceitem->invoice_id  = $request->$invoice->id;  
                 //$invoiceitem->user_id = $request->user_id;
-                $invoiceitem->invoice_id = $request->invoice_id;
+
+                $invoiceitem->invoice_id = $test[0]->id;
                 $invoiceitem->product_id = $request->product_id;
                 $invoiceitem->unit_price = $request->unit_price; 
                 $invoiceitem->quantity = $request->quantity;  
@@ -135,6 +148,13 @@ class InvoiceController extends Controller
       
        
    } 
+    
+   public function test_order(){
+     $test=invoice::orderBy('id','desc')->take(1)->get(); 
+     return response()->json( $test);
+   }
+    
+
 
     public function invoiceItem(Request $request){
        
@@ -203,10 +223,17 @@ class InvoiceController extends Controller
        
         $result = DB::table('customers')->orderBy('due_date','ASC')
         ->join('invoices','customers.id','=','invoices.customer_id')
-       
+        
         ->get();
+        $result2 = DB::table('invoice_items')
+        //->join('invoices','customers.id','=','invoices.customer_id')
+         ->join('invoices','invoices.id','=','invoice_items.invoice_id')
+         ->join('products','products.id','=','invoice_items.product_id')
+
+         ->get();
         return response()->json(
             [
+                'invoices2' => $result2,
              'invoices' => $result,
              'message' => 'invoicesDeal',
              'code' => 200
@@ -220,31 +247,63 @@ class InvoiceController extends Controller
             ->join('invoices','invoices.id','=','invoice_items.invoice_id')
             ->join('products','products.id','=','invoice_items.product_id')
             ->get();
-            $result2 = DB::table('customers')
-            ->join('invoices','customers.id','=','invoices.customer_id')
-            ->get();
+           
             return response()->json(
                 [
                  'invoices' => $result,
-                 'invoices2' => $result2,
+           
+                 'message' => 'invoicesDeal',
+                 'code' => 200
+            ]);
+            
+        }
+        public function group_item(){
+            $result = DB::table('invoice_items')
+           //->join('invoices','customers.id','=','invoices.customer_id')
+           // ->join('invoices','invoices.id','=','invoice_items.invoice_id')
+          // ->join('products','products.id','=','invoice_items.product_id')
+         //   ->select('invoice_id','products.product_name','invoice_items.quantity','invoice_items.unit_price')
+            ->get()->groupBy('invoice_id');
+           
+            return response()->json(
+                [
+                 'group_item' => $result,
+            
                  'message' => 'invoicesDeal',
                  'code' => 200
             ]);
             
         }
         public function get_all_invoice($id){
-            $invoices= invoice::find($id);
-            DB::table('invoice_items')
-           //->join('invoices','customers.id','=','invoices.customer_id')
+            $invoices= invoice::find($id); 
+          //  $invoices= Customer::find($id); 
+          //  $invoices= Product::find($id); 
+              
+             //->join('invoices','customers.id','=','invoices.customer_id')
+             
+          //  ->join('invoices','customers.id','=','invoices.customer_id')
+            
+           $result= DB::table('invoice_items')
             ->join('invoices','invoices.id','=','invoice_items.invoice_id')
             ->join('products','products.id','=','invoice_items.product_id')
             ->get();
-            DB::table('customers')
-            ->join('invoices','customers.id','=','invoices.customer_id')
-            ->get();
-            return response()->json($invoices);
+            return response()->json( $invoices );
+  
+         //   return response()->json();
             
         }
 
+
+
+        public function updateInvoice($id, Request $request){
+            $invoice= invoice::where('id', $id)->first();
+            //$product->product_id           = $request->product_id;
+            $invoice->status         = $request->status;
+            $invoice->save();
+            return response()->json([
+               'message' => 'product Update Success ',
+               'code' => 200
+           ]);
+        }
 
 }

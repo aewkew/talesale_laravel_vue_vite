@@ -407,8 +407,9 @@ export default {
              product_id : cart[i].id,
              unit_price : cart[i].totalPrice,
              quantity : cart[i].quantity,
-             invoice_id : cart[i].id,
+            //invoice_id : cart[i].'invoiceid',
             }
+
             var config = {
             method: 'post',
             url: '/api/add_multi_invoice',

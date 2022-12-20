@@ -64,15 +64,13 @@ const routes = [
             path: '/TableList',
             name: 'TableList',
             component: Tablelist,
-            children: [
-                
-                    {
-                        path: '/invoiceTs/:id?',
-                        name:'invoiceTs',
-                        component: invoiceTs ,
-                    }           
-               ]
+           
         },
+        {
+            path: '/TableList/invoiceTs/:id?',
+            name:'invoiceTs',
+            component: invoiceTs ,
+        } ,          
          {
             path: '/UserProfile',
             name: 'Userprofile',

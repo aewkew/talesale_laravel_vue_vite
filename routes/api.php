@@ -54,6 +54,12 @@ Route::get('invoices_join', [InvoiceController::class,'invoices_join']);
 Route::get('invoices_cus', [InvoiceController::class,'invoices_cus']);
 Route::get('all_invoice', [InvoiceController::class,'all_invoice']);
 Route::get('get_all_invoice/{id}', [InvoiceController::class,'get_all_invoice']);
+Route::post('updateInvoice/{id}', [InvoiceController::class,'updateInvoice']);
+Route::get('group_item', [InvoiceController::class,'group_item']);
+Route::get('test_order', [InvoiceController::class,'test_order']);
+
+
+
 
 
 Route::get('all_customer', [CustomerController::class,'all_customer']);
