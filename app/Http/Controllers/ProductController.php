@@ -25,7 +25,7 @@ class ProductController extends Controller
             [
              'products' => $product,
              'message' => 'Product',
-             'code' => 200
+             
         ]
     );
     }    
@@ -82,7 +82,7 @@ class ProductController extends Controller
 
     public function updateProduct($id, Request $request){
         $product= Product::where('id', $id)->first();
-        $product->product_id    = $request->product_id;
+        //$product->product_id           = $request->product_id;
         $product->product_name          = $request->product_name;
         $product->product_brand         = $request->product_brand;
         $product->product_color         = $request->product_color;

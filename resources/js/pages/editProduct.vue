@@ -17,7 +17,7 @@
                             <label  class="form-label text-white fs-3"> product</label>
                             <div class="form-group">
                                 <input type="text" class="form-control"
-                                    v-model="product.name"
+                                    v-model="product.product_name"
                                 />
                             </div>
                         </div>
@@ -25,7 +25,7 @@
                             <label  class="form-label text-white fs-3"> Brand</label>
                             <div class="form-group">
                                 <input type="text" class="form-control"
-                                    v-model="product.brand"
+                                    v-model="product.product_brand"
                                 />
                             </div>
                         </div>
@@ -34,7 +34,7 @@
                             <label  class="form-label text-white fs-3" > Color </label>
                             <div class="form-group">
                                 <input  type="text" class="form-control"
-                                    v-model="product.color"
+                                    v-model="product.product_color"
                                 />
                             </div>
                         </div>
@@ -43,7 +43,7 @@
                             <label  class="form-label text-white fs-3"> price </label>
                             <div class="form-group">
                                 <input class="form-control" 
-                                    v-model="product.price"
+                                    v-model="product.product_price"
                                 />
                             </div>
                         </div>
@@ -75,10 +75,10 @@ export default {
     data() {
         return {
             product: {},
-            name: '',
-            brand: '',
-            color: '',
-            price: '',
+            product_name: '',
+            product_brand: '',
+            product_color: '',
+            product_price: '',
             errors:[]
         };
     },
@@ -98,25 +98,25 @@ export default {
 
        async updateProduct() {
             this.errors =[];
-            if(!this.product.name){
+            if(!this.product.product_name){
                 this.errors.push("Name is required")
             }
-            if(!this.product.brand){
-                this.errors.push("Description is required")
+            if(!this.product.product_brand){
+                this.errors.push("Brand is required")
             }
-            if(!this.product.color){
-                this.errors.push("Price is required")
+            if(!this.product.product_color){
+                this.errors.push("Color is required")
             }
-            if(!this.product.price){
+            if(!this.product.product_price){
                 this.errors.push("Price is required")
             }
 
             if(!this.errors.length){
                 let formData = new FormData();
-                formData.append('name', this.product.name);
-                formData.append('brand', this.product.brand);
-                formData.append('color', this.product.color);
-                formData.append('price', this.product.price);
+                formData.append('product_name', this.product.product_name);
+                formData.append('product_brand', this.product.product_brand);
+                formData.append('product_color', this.product.product_color);
+                formData.append('product_price', this.product.product_price);
                 let url = `/api/updateProduct/${this.$route.params.id}`;
                 await axios.post(url, formData).then((response) =>{
                     console.log(response);

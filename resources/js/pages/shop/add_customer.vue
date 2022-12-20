@@ -126,10 +126,11 @@ export default {
         };
     },
     created() {
-        this.getData();
+
         this.getComp();
     },
     methods: {
+        /*
         async getData() {
             let url = "/api/customers";
             await axios
@@ -141,7 +142,7 @@ export default {
                 .catch((error) => {
                     console.log(error);
                 });
-        },
+        }, */
         async getComp() {
             let url = "/api/companies";
             await axios

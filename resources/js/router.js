@@ -26,7 +26,7 @@ import edit from './pages/edit.vue';
 import toedit from './pages/toedit.vue';
 import editProduct from './pages/editProduct.vue';
 import invoiceTs from './pages/invoiceTs.vue';
-import invoiceCart from './pages/invoiceCart.vue';
+
 
 
 const routes = [
@@ -63,7 +63,15 @@ const routes = [
         {
             path: '/TableList',
             name: 'TableList',
-            component: Tablelist
+            component: Tablelist,
+            children: [
+                
+                    {
+                        path: '/invoiceTs/:id?',
+                        name:'invoiceTs',
+                        component: invoiceTs ,
+                    }           
+               ]
         },
          {
             path: '/UserProfile',
@@ -151,20 +159,8 @@ const routes = [
             component: editcustomer ,
         },
 
-        {
-            path: '/invoiceTs',
-            name:'invoiceTs',
-            component: invoiceTs ,
-        },
-        {
-            path: '/invoiceCart',
-            name:'invoiceCart',
-            component: invoiceCart ,
-        },
        
        
-
-
     ];
 
 const router =  createRouter({

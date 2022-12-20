@@ -26,6 +26,7 @@ class InvoiceController extends Controller
         ]
     );
     }    
+
           
     public function add_invoice(Request $request){
          try{
@@ -162,11 +163,6 @@ class InvoiceController extends Controller
                 invoiceItem::create($itemdata);
 
             }
- 
-
-
-
-
     }
 
        
@@ -203,6 +199,52 @@ class InvoiceController extends Controller
         return response()->json($formData);
     }
 
+    public function invoices_join(){
+       
+        $result = DB::table('customers')->orderBy('due_date','ASC')
+        ->join('invoices','customers.id','=','invoices.customer_id')
+       
+        ->get();
+        return response()->json(
+            [
+             'invoices' => $result,
+             'message' => 'invoicesDeal',
+             'code' => 200
+        ]);
+        }
+
+
+        public function all_invoice(){
+            $result = DB::table('invoice_items')
+           //->join('invoices','customers.id','=','invoices.customer_id')
+            ->join('invoices','invoices.id','=','invoice_items.invoice_id')
+            ->join('products','products.id','=','invoice_items.product_id')
+            ->get();
+            $result2 = DB::table('customers')
+            ->join('invoices','customers.id','=','invoices.customer_id')
+            ->get();
+            return response()->json(
+                [
+                 'invoices' => $result,
+                 'invoices2' => $result2,
+                 'message' => 'invoicesDeal',
+                 'code' => 200
+            ]);
+            
+        }
+        public function get_all_invoice($id){
+            $invoices= invoice::find($id);
+            DB::table('invoice_items')
+           //->join('invoices','customers.id','=','invoices.customer_id')
+            ->join('invoices','invoices.id','=','invoice_items.invoice_id')
+            ->join('products','products.id','=','invoice_items.product_id')
+            ->get();
+            DB::table('customers')
+            ->join('invoices','customers.id','=','invoices.customer_id')
+            ->get();
+            return response()->json($invoices);
+            
+        }
 
 
 }

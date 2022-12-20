@@ -2,7 +2,7 @@
     <div id="sidebar" class="sidebar sidebar-blackground">
         <div class="sidebar-wrapper">
             <div class="logo">
-                <a href="/" class="simple-text text-white text-decoration-none">
+                <a href="/dashboard" class="simple-text text-white text-decoration-none">
                     <div class="logo-img">
                         <img
                             src="https://seeklogo.com/images/B/Burger_King-logo-67A54F414B-seeklogo.com.png"
@@ -48,12 +48,7 @@
                     </router-link>
                 </li>
 
-                <li class="nav-item">
-                    <router-link class="nav-link" to="/invoiceTs">
-                        <span> <i class="bi bi-receipt"></i> </span>
-                        <span class="text"> invoiceTs </span>
-                    </router-link>
-                </li>
+              
             </ul>
         
 

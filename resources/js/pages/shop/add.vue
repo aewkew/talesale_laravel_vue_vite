@@ -110,7 +110,7 @@ export default {
      
     data() {
         return {
-            product: {},
+           // product: {},
             product_id:'',
             name: '',
             brand: '',
@@ -120,21 +120,10 @@ export default {
         };
     },
     created() {
-        this.getData();
+   
     },
     methods: {
-         async getData() {
-            let url = "/api/products";
-            await axios
-                .get(url)
-                .then((response) => {
-                    this.products = response.data.products;
-                    console.log(this.products);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        },
+         
        async addproduct() {
 
             this.errors =[];

@@ -1,146 +1,4 @@
-<script >
-import axios from "axios";
 
-import Add from "./shop/add.vue";
-import Add_customer from "./shop/add_customer.vue";
-import Add_company from "./shop/add_company.vue";
-import { useRouter } from "vue-router";
-const router = useRouter();
-
-const newInvoice = async () => {
-    let form = await axios.get("/api/create_invoice");
-    //console.log("form", form.data);
-    router.push('invoice');
-};
-
-export default {
-    name: "Shop",
-    components: { Add, Add_customer, Add_company },
-    data() {
-        return {
-            products: {},
-            keyword_color: null,
-            keyword_brand: null,
-            keyword_id: null,
-            // se_color:'',
-        };
-    },
-
-    created() {
-        this.getData();
-
-        if (window.Laravel.user) {
-            this.name = window.Laravel.user.name;
-        }
-        if (window.Laravel.isLoggedin) {
-            this.isLoggedIn = true;
-        }
-        //this.getData();
-    },
-    watch: {
-        keyword_color() {
-            this.getColor();
-        },
-        keyword_brand() {
-            this.getBrand();
-        },
-        keyword_id() {
-            this.getId();
-        },
-    },
-
-    methods: {
-        async getData() {
-            let url = "/api/products";
-            await axios
-                .get(url)
-                .then((response) => {
-                    this.products = response.data.products;
-                    console.log(this.products);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        },
-
-        async addToCart(item) {
-            this.$store.commit("addToCart", item);
-        },
-        async removeFromCart(item) {
-            this.$store.commit("removeFromCart", item);
-        },
-        async sevecart() {
-            let data = {
-                cart: JSON.stringify(this.$store.state.cart),
-            };
-        },
-
-        async deleteProduct(id) {
-            let url = `/api/deleteProduct/${id}`;
-            await axios
-                .delete(url)
-                .then((response) => {
-                    if (response.data.code == 200) {
-                        alert(response.message);
-                        this.getData();
-                    }
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        },
-
-        async getColor() {
-            let url = "/api/search_color";
-            await axios
-                .get(url, { params: { keyword_color: this.keyword_color } })
-                .then((res) => (this.products = res.data))
-                .catch((error) => {});
-        },
-
-        async getBrand() {
-            let url = "/api/search_brand";
-            await axios
-                .get(url, { params: { keyword_brand: this.keyword_brand } })
-                .then((res) => (this.products = res.data))
-                .catch((error) => {});
-        },
-        async getId() {
-            let url = "/api/search_id";
-            await axios
-                .get(url, { params: { keyword_id: this.keyword_id } })
-                .then((res) => (this.products = res.data))
-                .catch((error) => {});
-        },
-        async newInvoice() {
-            let form = await axios.get("/api/create_invoice");
-             console.log("form", form.data);
-
-             let data = {
-                cart: JSON.stringify(this.$store.state.cart),
-            };
-            console.log("cart", data.cart);
-
-        }
-    },
-    computed: {
-        totalPrice() {
-            let total = 0;
-
-            for (let item of this.$store.state.cart) {
-                total += item.totalPrice;
-            }
-
-            return total.toFixed(2);
-        },
-    },
-
-    mounted() {
-        console.log("Product List Component Mounted");
-    },
-};
-</script>
-<style></style>
 
 <template>
     <div class="container">
@@ -340,3 +198,146 @@ export default {
         </div>
     </div>
 </template>
+<script >
+import axios from "axios";
+
+import Add from "./shop/add.vue";
+import Add_customer from "./shop/add_customer.vue";
+import Add_company from "./shop/add_company.vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
+/*
+const newInvoice = async () => {
+    let form = await axios.get("/api/create_invoice");
+    //console.log("form", form.data);
+    router.push('invoice');
+}; */
+
+export default {
+    name: "Shop",
+    components: { Add, Add_customer, Add_company },
+    data() {
+        return {
+            products: {},
+            keyword_color: null,
+            keyword_brand: null,
+            keyword_id: null,
+            // se_color:'',
+        };
+    },
+
+    created() {
+        this.getData();
+
+        if (window.Laravel.user) {
+            this.name = window.Laravel.user.name;
+        }
+        if (window.Laravel.isLoggedin) {
+            this.isLoggedIn = true;
+        }
+        //this.getData();
+    },
+    watch: {
+        keyword_color() {
+            this.getColor();
+        },
+        keyword_brand() {
+            this.getBrand();
+        },
+        keyword_id() {
+            this.getId();
+        },
+    },
+
+    methods: {
+        async getData() {
+            let url = "/api/products";
+            await axios
+                .get(url)
+                .then((response) => {
+                    this.products = response.data.products;
+                    console.log(this.products);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+
+        async addToCart(item) {
+            this.$store.commit("addToCart", item);
+        },
+        async removeFromCart(item) {
+            this.$store.commit("removeFromCart", item);
+        },
+        async sevecart() {
+            let data = {
+                cart: JSON.stringify(this.$store.state.cart),
+            };
+        },
+
+        async deleteProduct(id) {
+            let url = `/api/deleteProduct/${id}`;
+            await axios
+                .delete(url)
+                .then((response) => {
+                    if (response.data.code == 200) {
+                        alert(response.message);
+                        this.getData();
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+
+        async getColor() {
+            let url = "/api/search_color";
+            await axios
+                .get(url, { params: { keyword_color: this.keyword_color } })
+                .then((res) => (this.products = res.data))
+                .catch((error) => {});
+        },
+
+        async getBrand() {
+            let url = "/api/search_brand";
+            await axios
+                .get(url, { params: { keyword_brand: this.keyword_brand } })
+                .then((res) => (this.products = res.data))
+                .catch((error) => {});
+        },
+        async getId() {
+            let url = "/api/search_id";
+            await axios
+                .get(url, { params: { keyword_id: this.keyword_id } })
+                .then((res) => (this.products = res.data))
+                .catch((error) => {});
+        },
+        async newInvoice() {
+            let form = await axios.get("/api/create_invoice");
+             console.log("form", form.data);
+
+             let data = {
+                cart: JSON.stringify(this.$store.state.cart),
+            };
+            console.log("cart", data.cart);
+
+        }
+    },
+    computed: {
+        totalPrice() {
+            let total = 0;
+
+            for (let item of this.$store.state.cart) {
+                total += item.totalPrice;
+            }
+
+            return total.toFixed(2);
+        },
+    },
+
+    mounted() {
+        console.log("Product List Component Mounted");
+    },
+};
+</script>
+<style></style>

@@ -100,7 +100,6 @@ export default {
     data() {
         return {
             data: {
-           
             name: '',
             email: '',
             phone: '',

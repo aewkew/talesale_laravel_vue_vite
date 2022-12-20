@@ -6,7 +6,7 @@
                     <tr>
                         <th scope="col">Code</th>
                         <th scope="col">Product</th>
-                        <th scope="col">Description</th>
+                        <th scope="col">Brand</th>
                         <th scope="col">price</th>
                         <th scope="col">Create date</th>
                         <th scope="col">Update date</th>
@@ -19,14 +19,13 @@
                 <tbody v-for="item in products" :key="item.id">
                     <tr>
                         <td scope="row">{{ item.id }}</td>
-                        <td scope="row">{{ item.name }}</td>
-                        <td scope="row">{{ item.description }}</td>
-                        <td scope="row">{{ item.price }}</td>
+                        <td scope="row">{{ item.product_id }}</td>
+                        <td scope="row">{{ item.product_name}}</td>
+                        <td scope="row">{{ item.product_brand }}</td>
+                        <td scope="row">{{ item.product_price }}</td>
                         <td scope="row">{{ item.created_at }}</td>
                         <td scope="row">{{ item.updated_at }}</td>
-                        <td><button class="but-co btn" type="button">
-                                <i class="bi bi-plus"></i></button>
-                        </td>
+
                         <td> <router-link :to="{ name: 
                             'editProduct', params:{ id:item.id} }" class="but-co btn" ><i class="bi bi-pencil"></i></router-link>   
                         </td>
@@ -38,6 +37,7 @@
                                 <i class="bi bi-trash"></i>
                             </button>
                         </td>
+
                     </tr>
                 </tbody>
             </table>
