@@ -34,6 +34,37 @@
             
         </div> 
     </div>
+    <div class="tableContrainer">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Customer</th>
+                        <th scope="col">Employee</th>
+                        <th scope="col">Tel</th>
+                        <th scope="col">Details</th>
+                    </tr>
+                </thead>
+
+                <tbody v-for="inv in group_item" :key="inv.id">
+                    <tr>
+                        <th scope="row">{{inv.number}} </th>
+                        <td></td>
+                        <td> </td>
+                        <td>{{ }}</td>
+                        <td>
+                            <button
+                                class="but-co btn "
+                                type="button"
+                            >
+                           
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div> 
 
 </template>
 <script>
@@ -43,10 +74,12 @@ export default {
     data() {
         return {
             customers: Array,
+            group_item:[],
         };
     },
     created() {
         this.getData();
+        this.groupItem();
     },
 
     methods: {
@@ -61,6 +94,13 @@ export default {
                 .catch((error) => {
                     console.log(error);
                 });
+        },
+        async groupItem() {
+            let url = '/api/group_item';
+            await axios.get(url).then((response) => {
+                console.log(response);
+                this.group_item = response.data.group_item;
+            });
         },
 
         async deleteCustomer(id) {

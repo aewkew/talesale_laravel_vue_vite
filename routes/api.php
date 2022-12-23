@@ -60,19 +60,15 @@ Route::get('group_item', [InvoiceController::class,'group_item']);
 Route::get('test_order', [InvoiceController::class,'test_order']);
 Route::get('group_item_ch/{id}', [InvoiceController::class,'group_item_ch']);
 
+
 //invoice_Item
-Route::get('invoiceItem/{invoice_id}', [InvoiceItemController::class,'invoiceItem']);
-
-
-
-
-
+//Route::get('invoiceItem/{invoice_id}', [InvoiceItemController::class,'invoiceItem']);
 Route::get('all_customer', [CustomerController::class,'all_customer']);
 Route::post('test_invoice', [InvoiceController::class,'test_invoice']);
-
 Route::post('invoiceItem', [InvoiceController::class,'invoiceItem']);
-
 Route::post('add_multi_invoice', [InvoiceController::class,'add_multi_invoice']);
+Route::get('Inv_cus/{id}', [InvoiceController::class,'Inv_cus']);
+
 
 // user
 Route::get('user', [UserController::class,'user']);

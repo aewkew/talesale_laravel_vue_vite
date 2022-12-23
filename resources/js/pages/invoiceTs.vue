@@ -75,7 +75,6 @@
                                 <div class="invoice-number">
                                     <div>INVOICE</div>
                                     <div>{{ invoice.number }}</div>
-                                    <div></div>
                                 </div>
                             </div>
                         </div>
@@ -87,9 +86,11 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="bill-data">
-                                            
-                                            <br />
-                                        
+                                            {{ inv_customer[0].customer_name }},  {{ inv_customer[0].customer_phone }}
+                                            <br/>
+                                            {{ inv_customer[0].customer_address }}
+                                            <br/>
+                                           
                                         </div>
                                     </div>
                                     <div class="col"></div>
@@ -138,21 +139,21 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">Item</th>
+                                            <th scope="col">Product Name</th>
                                             <th scope="col">Product Id</th>
                                             <th scope="col">Unit</th>
                                             <th scope="col">Cost</th>
                                             <th scope="col">Total</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
+                                    <tbody v-for="(index) in group_item">
+                                        <tr v-for="inv in index">   
                                             <th scope="row"></th>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td>{{ inv.product_name }}</td>
+                                            <td>{{ inv.product_id}}</td>
+                                            <td>{{ inv.product_price }} </td>
+                                            <td>{{ inv.quantity }}</td>
+                                            <td>{{ inv.unit_price }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -212,14 +213,17 @@ export default {
         return {
             invoice: {},
             invoice_num: [],
-            invoice_item: [],
-            group_item: [],
+            inv_item: [],
+            group_item: {},
             status: "",
+           
+
         };
     },
     created() {
-        this.getAllInv(); 
-        this.getInvItem();
+        this.getAllInv( ); 
+        this.group_item_ch();
+        this.inv_cus();
     },
 
     methods: {
@@ -231,22 +235,23 @@ export default {
             });
         },
 
-        async getInvItem() {
-            let url = `/api/group_item`;
+        async group_item_ch() {
+            let url = `/api/group_item_ch/${this.$route.params.id}`;
             await axios.get(url).then((response) => {
                 console.log(response);
-                this.inv_item = response.data;
+                this.group_item = response.data.group_item;
             });
         },
-        async getInvItemCh($id) {
-            let url = `/api/group_item`;
+        async inv_cus() {
+            let url = `/api/Inv_cus/${this.$route.params.id}`;
             await axios.get(url).then((response) => {
                 console.log(response);
-                this.inv_item = response.data;
+                this.inv_customer = response.data;
             });
         },
 
 
+       
         async updateInvoice() {
             let formData = new FormData();
             formData.append("status", this.EditStatus);

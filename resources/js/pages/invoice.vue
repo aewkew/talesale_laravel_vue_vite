@@ -178,7 +178,7 @@ const indexForm = async () => {
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">Item</th>
+                                            <th scope="col">Product Name</th>
                                             <th scope="col">Product Id</th>
                                             <th scope="col">Unit</th>
                                             <th scope="col">Cost</th>
