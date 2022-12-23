@@ -103,10 +103,7 @@ const indexForm = async () => {
                                     <div class="col-4">
                                         <div class="bill-data">
                                             
-                                            <select
-                                                class="form-select input form-control"
-                                                v-model="CustomerID"
-                                            >
+                                            <select class="form-select input form-control"  v-model="CustomerID"  >
                                                 <option disabled value="">
                                                     Select customer
                                                 </option>

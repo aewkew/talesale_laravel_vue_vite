@@ -1,5 +1,5 @@
 <template>
-     <div>
+    <div>
         <div class="container">
             <!-- Hedeline -->
 
@@ -14,26 +14,32 @@
                         >
                             <i class="bi bi-printer"></i> Print
                         </button>
-
                         <button class="btn but-co" @click="downloadPDF">
                             <i class="bi bi-file-earmark-pdf"></i>Export
                         </button>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="invoice-title">
-                        <h2>Invoice</h2>
-                        <h3 class="pull-right">
-                            <form @submit.prevent="updateInvoice">     
-                            
-                            <input type="text"  class="form-control" v-model="invoice.status" placeholder='status'/>
-                             
-                             <button type="submit" class="btn but-co">Save</button>
-                            </form>
-                        
-                       
-                                                    
-                        </h3>
+                <div class="col-5">
+                    <div class="row">
+                        <div class="col-3  fs-3">Status: </div>
+                        <div class="col-3 fs-4"> 
+                              <span v-if="invoice.status == 'pending'" > <p class="text-warning fw-semibold">{{ invoice.status }}  </p></span>  
+                              <span v-else-if="invoice.status == 'success'"><p class="text-success fw-semibold">{{ invoice.status }}  </p></span>  
+                              <span v-else-if="invoice.status == 'cancelled'"><p class="text-danger fw-semibold"> {{ invoice.status }} </p></span> 
+                        </div>
+                        <div class="col">
+                            <div class="invoice-title">
+                                <form @submit.prevent="updateInvoice">
+                                    <div class="input-group mb-2">
+                                        <select  class="form-select" aria-label="Default select example" v-model="EditStatus" >
+                                            <option value="success"> success  </option>
+                                            <option value="cancelled"> cancelled </option> 
+                                        </select>
+                                        <button  class="btn but-co btn-outline-secondary" type="submit" id="button-addon2"> Edit Status</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -42,9 +48,9 @@
 
             <!-- Invoice   -->
 
-            <div class="invoice" id="invoice" >
+            <div class="invoice" id="invoice">
                 <div class="invoice-data">
-                    <form >
+                    <form>
                         <div class="row">
                             <div class="col">
                                 <div class="logo-invoice">
@@ -68,11 +74,8 @@
                             <div class="col">
                                 <div class="invoice-number">
                                     <div>INVOICE</div>
+                                    <div>{{ invoice.number }}</div>
                                     <div></div>
-                                    <div>
-                                     
-                                       
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -84,19 +87,20 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="bill-data">
-                                          
-                                       
-                                            <br>
+                                            
+                                            <br />
+                                        
                                         </div>
                                     </div>
                                     <div class="col"></div>
                                     <div class="col-4">
                                         <div class="data-invoice">
                                             <div class="row">
-                                                <label class="col-sm-2 col-form-label"
-                                                   
+                                                <label
+                                                    class="col-sm-2 col-form-label"
                                                     >Date:
                                                 </label>
+
                                                 <div class="col">
                                                     {{ invoice.date }}
                                                 </div>
@@ -109,7 +113,6 @@
                                                 </label>
                                                 <div class="col">
                                                     {{ invoice.due_date }}
-                                                    
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -118,8 +121,9 @@
                                                     >Terms:
                                                 </label>
                                                 <div class="col">
-                                                   {{ invoice.terms_and_conditions}}
-
+                                                    {{
+                                                        invoice.terms_and_conditions
+                                                    }}
                                                 </div>
                                             </div>
                                         </div>
@@ -142,24 +146,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                      
-                                        <tr   >
-                                          
-                                            <th scope="row"> 
-                                        
-                                            </th>
+                                        <tr>
+                                            <th scope="row"></th>
                                             <td></td>
                                             <td></td>
-                                            <td> 
-                                                <!--   <input type="text" id="quantity" class="form-control input" :value="quantity=item.quantity"/>-->  
-                                            </td>
                                             <td></td>
-                                            <td > 
-                                                <!--  <input type="text" id="unit_price" class="form-control input" :value="unit_price=item.totalPrice"/>    -->
-                                               
-                                            </td> 
-                                           
-                                        </tr> 
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                                 <div></div>
@@ -175,7 +169,9 @@
                                             Sub Total
                                         </div>
                                         <div class="col-5">
-                                            <span>฿ </span>
+                                            <span>
+                                                {{ invoice.sub_total }} ฿
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -185,7 +181,7 @@
                                         <div class="col-5">
                                             <span>
                                                 <div class="input">
-                                                    ฿
+                                                    {{ invoice.tax_total }} ฿
                                                 </div></span
                                             >
                                         </div>
@@ -195,15 +191,12 @@
                                             Total Amount
                                         </div>
                                         <div class="col-5">
-                                            ฿
+                                            ฿ {{ invoice.total }}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
-                      
-                                              
                     </form>
                 </div>
             </div>
@@ -211,72 +204,73 @@
     </div>
 </template>
 <script>
-import axios from 'axios';
-
+import axios from "axios";
 
 export default {
     name: "Tablelist",
-
-
     data() {
         return {
-            invoice:{},
-            invoice_num:[],
-            invoice_item:[],
-            group_item:[],
-
-            status:''
-        }
+            invoice: {},
+            invoice_num: [],
+            invoice_item: [],
+            group_item: [],
+            status: "",
+        };
     },
     created() {
-     this.getAllInv();
+        this.getAllInv(); 
+        this.getInvItem();
     },
 
     methods: {
-        async getAllInv(){
-             let url=`/api/get_all_invoice/${this.
-                $route.params.id}`;
-               await axios.get(url).then(response => {
+        async getAllInv() {
+            let url = `/api/get_all_invoice/${this.$route.params.id}`;
+            await axios.get(url).then((response) => {
                 console.log(response);
-                this.invoice_num= response.data; 
-                this.invoice_item= response.data; 
-               });
+                this.invoice = response.data;
+            });
         },
-        async getAllInv(){
-             let url='/api/group_item';
-               await axios.get(url).then(response => {
+
+        async getInvItem() {
+            let url = `/api/group_item`;
+            await axios.get(url).then((response) => {
                 console.log(response);
-                this.group_item = response.data; 
-               });
+                this.inv_item = response.data;
+            });
         },
-       
-        async updateInvoice(){
+        async getInvItemCh($id) {
+            let url = `/api/group_item`;
+            await axios.get(url).then((response) => {
+                console.log(response);
+                this.inv_item = response.data;
+            });
+        },
+
+
+        async updateInvoice() {
             let formData = new FormData();
-            formData.append('status', this.invoice.status);
-               let url = `/api/updateInvoice/${this.$route.params.id}`;
-               await axios.post(url, formData).then((response) =>{
+            formData.append("status", this.EditStatus);
+            let url = `/api/updateInvoice/${this.$route.params.id}`;
+            await axios
+                .post(url, formData)
+                .then((response) => {
                     console.log(response);
-                    if(response.status == 200){
-                       alert(response.data.message)
-                    }else {
-                        console.log('error');
+                    if (response.status == 200) {
+                        alert(response.data.message);
+                    } else {
+                        console.log("error");
                     }
-                }).catch(error=> {
+                })
+                .catch((error) => {
                     this.errors.push(error.response);
                 });
-
-        }
-        
+        },
     },
 
     mounted() {
         console.log("Invoice Edit");
     },
 };
-
-
 </script>
 
-<style >
-    
-</style>
+<style></style>

@@ -260,20 +260,39 @@ class InvoiceController extends Controller
         public function group_item(){
             $result = DB::table('invoice_items')
            //->join('invoices','customers.id','=','invoices.customer_id')
-           // ->join('invoices','invoices.id','=','invoice_items.invoice_id')
-          // ->join('products','products.id','=','invoice_items.product_id')
-         //   ->select('invoice_id','products.product_name','invoice_items.quantity','invoice_items.unit_price')
+            ->join('invoices','invoices.id','=','invoice_items.invoice_id')
+         //  ->join('products','products.id','=','invoice_items.product_id')
+            ->select('invoice_id','invoice_items.quantity','invoice_items.unit_price')
             ->get()->groupBy('invoice_id');
            
             return response()->json(
                 [
                  'group_item' => $result,
-            
                  'message' => 'invoicesDeal',
                  'code' => 200
             ]);
-            
         }
+        public function group_item_ch($id){
+           
+            $result = DB::table('invoice_items')
+     
+   
+           //->join('invoices','customers.id','=','invoices.customer_id')
+            ->join('invoices','invoices.id','=','invoice_items.invoice_id')
+         //  ->join('products','products.id','=','invoice_items.product_id')
+            ->select('invoice_id','invoice_items.quantity','invoice_items.unit_price')
+            ->get()->groupBy('invoice_id');
+           
+            return response()->json(
+                [
+                 'group_item' => $result,
+                 'message' => 'invoicesDeal',
+                 'code' => 200
+            ]);
+        }
+
+
+
         public function get_all_invoice($id){
             $invoices= invoice::find($id); 
           //  $invoices= Customer::find($id); 
@@ -283,14 +302,13 @@ class InvoiceController extends Controller
              
           //  ->join('invoices','customers.id','=','invoices.customer_id')
             
-           $result= DB::table('invoice_items')
+             DB::table('invoice_items')
             ->join('invoices','invoices.id','=','invoice_items.invoice_id')
-            ->join('products','products.id','=','invoice_items.product_id')
+           // ->join('products','products.id','=','invoice_items.product_id')
             ->get();
             return response()->json( $invoices );
   
          //   return response()->json();
-            
         }
 
 
