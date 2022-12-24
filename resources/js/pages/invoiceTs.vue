@@ -21,21 +21,47 @@
                 </div>
                 <div class="col-5">
                     <div class="row">
-                        <div class="col-3  fs-3">Status: </div>
-                        <div class="col-3 fs-4"> 
-                              <span v-if="invoice.status == 'pending'" > <p class="text-warning fw-semibold">{{ invoice.status }}  </p></span>  
-                              <span v-else-if="invoice.status == 'success'"><p class="text-success fw-semibold">{{ invoice.status }}  </p></span>  
-                              <span v-else-if="invoice.status == 'cancelled'"><p class="text-danger fw-semibold"> {{ invoice.status }} </p></span> 
+                        <div class="col-3 fs-3">Status:</div>
+                        <div class="col-3 fs-4">
+                            <span v-if="invoice.status == 'pending'">
+                                <p class="text-warning fw-semibold">
+                                    {{ invoice.status }}
+                                </p></span
+                            >
+                            <span v-else-if="invoice.status == 'success'"
+                                ><p class="text-success fw-semibold">
+                                    {{ invoice.status }}
+                                </p></span
+                            >
+                            <span v-else-if="invoice.status == 'cancelled'"
+                                ><p class="text-danger fw-semibold">
+                                    {{ invoice.status }}
+                                </p></span
+                            >
                         </div>
                         <div class="col">
                             <div class="invoice-title">
                                 <form @submit.prevent="updateInvoice">
                                     <div class="input-group mb-2">
-                                        <select  class="form-select" aria-label="Default select example" v-model="EditStatus" >
-                                            <option value="success"> success  </option>
-                                            <option value="cancelled"> cancelled </option> 
+                                        <select
+                                            class="form-select"
+                                            aria-label="Default select example"
+                                            v-model="EditStatus"
+                                        >
+                                            <option value="success">
+                                                success
+                                            </option>
+                                            <option value="cancelled">
+                                                cancelled
+                                            </option>
                                         </select>
-                                        <button  class="btn but-co btn-outline-secondary" type="submit" id="button-addon2"> Edit Status</button>
+                                        <button
+                                            class="btn but-co btn-outline-secondary"
+                                            type="submit"
+                                            id="button-addon2"
+                                        >
+                                            Edit Status
+                                        </button>
                                     </div>
                                 </form>
                             </div>
@@ -60,12 +86,11 @@
                                 </div>
                                 <div class="row">
                                     <div class="company">
-                                        Talesale cartridge Company
+                                        บริษัทเทเลย์เซล จำกัด
                                     </div>
                                     <div class="company-address">
-                                        2033/02 Rung Arun, <br />
-                                        HangDong, Chaing Mai 50230<br />
-                                        ,Thailand <br />
+                                        2033/2 , อเวนิวสันทราย ตึกสอง , <br />
+                                        อำเภอ สันทราย,อำเภอ สันทรายม ,ตำบล สันทราย ,จังหวัด เชียงใหม่ 50200<br />
                                         084-61061646
                                         ,Talesale_12@hotmille.com<br />
                                     </div>
@@ -86,46 +111,27 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="bill-data">
-                                            {{ inv_customer[0].customer_name }},  {{ inv_customer[0].customer_phone }}
-                                            <br/>
-                                            {{ inv_customer[0].customer_address }}
-                                            <br/>
-                                           
+                                            {{ InvCus[0].customer_name }}, {{ InvCus[0].customer_phone }}
+                                            <br>
+                                            {{ InvCus[0].customer_address }}
+ 
                                         </div>
                                     </div>
                                     <div class="col"></div>
                                     <div class="col-4">
                                         <div class="data-invoice">
                                             <div class="row">
-                                                <label
-                                                    class="col-sm-2 col-form-label"
-                                                    >Date:
-                                                </label>
-
-                                                <div class="col">
-                                                    {{ invoice.date }}
-                                                </div>
+                                                <label class="col-sm-2 col-form-label">วันที่:  </label>
+                                                <div class="col"> {{ invoice.date }}</div>
                                             </div>
 
                                             <div class="row">
-                                                <label
-                                                    class="col-sm-2 col-form-label"
-                                                    >Date_due:
-                                                </label>
-                                                <div class="col">
-                                                    {{ invoice.due_date }}
-                                                </div>
+                                                <label  class="col-sm-2 col-form-label">กำหนดชำระ:</label>
+                                                <div class="col"> {{ invoice.due_date }}   </div>
                                             </div>
                                             <div class="row">
-                                                <label
-                                                    class="col-sm-2 col-form-label"
-                                                    >Terms:
-                                                </label>
-                                                <div class="col">
-                                                    {{
-                                                        invoice.terms_and_conditions
-                                                    }}
-                                                </div>
+                                                <label class="col-sm-2 col-form-label">เงื่อนไข:  </label>
+                                                <div class="col">  {{invoice.terms_and_conditions }} </div>
                                             </div>
                                         </div>
                                     </div>
@@ -139,19 +145,19 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">Product Name</th>
+                                            <th scope="col">รายระเอียดสินค้า</th>
                                             <th scope="col">Product Id</th>
-                                            <th scope="col">Unit</th>
-                                            <th scope="col">Cost</th>
-                                            <th scope="col">Total</th>
+                                            <th scope="col">จำนวน</th>
+                                            <th scope="col">ราคา/หน่วย</th>
+                                            <th scope="col">จำนวนเงิน</th>
                                         </tr>
                                     </thead>
-                                    <tbody v-for="(index) in group_item">
-                                        <tr v-for="inv in index">   
+                                    <tbody v-for="index in group_item">
+                                        <tr v-for="inv in index">
                                             <th scope="row"></th>
                                             <td>{{ inv.product_name }}</td>
-                                            <td>{{ inv.product_id}}</td>
-                                            <td>{{ inv.product_price }} </td>
+                                            <td>{{ inv.product_id }}</td>
+                                            <td>{{ inv.product_price }}</td>
                                             <td>{{ inv.quantity }}</td>
                                             <td>{{ inv.unit_price }}</td>
                                         </tr>
@@ -215,13 +221,13 @@ export default {
             invoice_num: [],
             inv_item: [],
             group_item: {},
+            InvCus:{},
             status: "",
-           
-
+            
         };
     },
     created() {
-        this.getAllInv( ); 
+        this.getAllInv();
         this.group_item_ch();
         this.inv_cus();
     },
@@ -246,12 +252,10 @@ export default {
             let url = `/api/Inv_cus/${this.$route.params.id}`;
             await axios.get(url).then((response) => {
                 console.log(response);
-                this.inv_customer = response.data;
+                this.InvCus = response.data.InvCus;
             });
         },
 
-
-       
         async updateInvoice() {
             let formData = new FormData();
             formData.append("status", this.EditStatus);

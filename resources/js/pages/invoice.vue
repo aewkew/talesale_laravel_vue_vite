@@ -57,6 +57,7 @@ const indexForm = async () => {
 
             <div class="invoice" id="invoice">
                 <div class="invoice-data">
+                    <div class="row"></div>
                     <form @submit.prevent="saveCart()">
                         <div class="row">
                             <div class="col">
@@ -67,12 +68,11 @@ const indexForm = async () => {
                                 </div>
                                 <div class="row">
                                     <div class="company">
-                                        Talesale cartridge Company
+                                        บริษัทเทเลย์เซล จำกัด
                                     </div>
                                     <div class="company-address">
-                                        2033/02 Rung Arun, <br />
-                                        HangDong, Chaing Mai 50230<br />
-                                        ,Thailand <br />
+                                        2033/2 , อเวนิวสันทราย ตึกสอง , <br />
+                                        อำเภอ สันทราย,อำเภอ สันทรายม ,ตำบล สันทราย ,จังหวัด เชียงใหม่ 50200<br />
                                         084-61061646
                                         ,Talesale_12@hotmille.com<br />
                                     </div>
@@ -98,7 +98,7 @@ const indexForm = async () => {
                             <div class="bill">
                                 <div class="row">
                                     <div class="row">
-                                        <div class="bill-name">BILL TO</div>
+                                        <div class="bill-name">ลูกค้า</div>
                                     </div>
                                     <div class="col-4">
                                         <div class="bill-data">
@@ -120,28 +120,28 @@ const indexForm = async () => {
                                     <div class="col-4">
                                         <div class="data-invoice">
                                             <div class="row">
-                                                <label
-                                                    class="col-sm-2 col-form-label"
-                                                    >Date:
-                                                </label>
+                                                <label class="col-sm-3 col-form-label" >วันที่ :  </label>
+                                            
                                                 <div class="col">
+                                                
                                                     <input
                                                         id="date"
-                                                        placeholder="dd-mm-yyyy"
-                                                        type="date"
+                                                        type="hidden"
+                                                        :value="currentDate()"
                                                         class="form-control input"
-                                                        v-model="date"
+                                                        :v-model="date" 
                                                     />
+                                                     {{ currentDate2()}}
                                                 </div>
                                             </div>
 
                                             <div class="row">
                                                 <label
-                                                    class="col-sm-2 col-form-label"
-                                                    >Date_due:
+                                                    class="col-sm-3 col-form-label"
+                                                    >กำหนดชำระ:
                                                 </label>
                                                 <div class="col">
-                                                    
+                        
                                                     <input
                                                         id="due_date"
                                                         placeholder="dd-mm-yyyy"
@@ -153,7 +153,7 @@ const indexForm = async () => {
                                             </div>
                                             <div class="row">
                                                 <label
-                                                    class="col-sm-2 col-form-label"
+                                                    class="col-sm-3 col-form-label"
                                                     >Terms:
                                                 </label>
                                                 <div class="col">
@@ -178,11 +178,11 @@ const indexForm = async () => {
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">Product Name</th>
+                                            <th scope="col">รายระเอียดสินค้า</th>
                                             <th scope="col">Product Id</th>
-                                            <th scope="col">Unit</th>
-                                            <th scope="col">Cost</th>
-                                            <th scope="col">Total</th>
+                                            <th scope="col">จำนวน</th>
+                                            <th scope="col">ราคา/หน่วย</th>
+                                            <th scope="col">จำนวนเงิน</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -352,6 +352,16 @@ export default {
                     console.log(error);
                 });
         },
+        currentDate() {
+      const current = new Date();
+      const date = `${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}`;
+      return date;
+    },
+    currentDate2() {
+      const current = new Date();
+      const date = `${current.getFullYear()}/${current.getMonth()+1}/${current.getDate()}`;
+      return date;
+    },
 
         async saveCart() {
          //  let listcart = {cart: JSON.stringify(this.$store.state.cart)  }

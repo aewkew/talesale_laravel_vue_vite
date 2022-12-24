@@ -23,28 +23,28 @@
                 <li class="nav-item">
                     <router-link class="nav-link" to="/Shop">
                         <span> <i class="bi bi-shop"></i> </span>
-                        <span class="text"> Shop </span>
+                        <span class="text">  สินค้า</span>
                     </router-link>
                 </li>
 
                 <li class="nav-item">
                     <router-link class="nav-link" to="/Notifications">
                         <span> <i class="bi bi-bell"></i> </span>
-                        <span class="text"> Notifications </span>
+                        <span class="text"> ติดตามลูกค้า </span>
                     </router-link>
                 </li>
 
                 <li class="nav-item">
                     <router-link class="nav-link" to="/TableList">
                         <span> <i class="bi bi-list-task"></i> </span>
-                        <span class="text">Tablelist </span>
+                        <span class="text">สถานะการซื้อลูกค้า </span>
                     </router-link>
                 </li>
 
                 <li class="nav-item">
                     <router-link class="nav-link" to="/Userprofile">
                         <sapn> <i class="bi bi-person-circle"></i> </sapn>
-                        <span class="text"> Userprofile </span>
+                        <span class="text"> โปรไฟล์ </span>
                     </router-link>
                 </li>
 

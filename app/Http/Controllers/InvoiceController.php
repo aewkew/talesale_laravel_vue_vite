@@ -299,15 +299,19 @@ class InvoiceController extends Controller
             ->get();
             return response()->json($invoices);        
         }
+
         public function Inv_cus($id){
             $InvCus=DB::table('invoices')
             ->join('customers','customers.id','=','invoices.customer_id') 
             ->select('customers.id','customers.customer_name','customers.customer_address','customers.customer_phone')
             ->where('invoices.id','=',$id)
             ->get();
-            return response()->json($InvCus);
-               
-        }
+            return response()->json([
+                 'InvCus' => $InvCus ,
+                 'message' => 'invoicesDeal',
+                 'code' => 200
+            ]);
+         }
        
 
 
