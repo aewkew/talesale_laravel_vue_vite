@@ -57,7 +57,9 @@ const indexForm = async () => {
 
             <div class="invoice" id="invoice">
                 <div class="invoice-data">
-                    <div class="row"></div>
+                    <div class="row">
+                        <div class="col"></div> <div class="col"> ใบเสนอราคา</div>  <div class="col"></div>
+                    </div>
                     <form @submit.prevent="saveCart()">
                         <div class="row">
                             <div class="col">
