@@ -25,6 +25,7 @@ class ProductController extends Controller
             [
              'products' => $product,
              'message' => 'Product',
+             'code' => 200
              
         ]
     );

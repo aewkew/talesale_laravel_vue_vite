@@ -8,28 +8,24 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Id Customer</th>
-                        <th scope="col">Customer name</th>
-                        <th scope="col">Employee name</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Details</th>
+                        <th scope="col">ลูกค้า</th>
+                        <th scope="col">เบอร์</th>
+                        <th scope="col">Invoice number</th>
+                        <th scope="col">ขายเมื่อ</th>
+                        <th scope="col">พนักงาน</th>
+                        <th scope="col">รายระเอียด</th>
                     </tr>
                 </thead>
 
-                <tbody  v-for="item in history_dealings" :key="item.id">
+                <tbody  v-for="item in invoices" :key="item.id">
                     <tr >
-                        <th scope="row">{{ item.product_name}}</th>
-                        <td>{{ item.name  }}</td>
-                        <td>{{ item.customer_name }}</td>
-                        <td>{{ }}</td>
-              
+                        <th scope="row">{{item.customer_name }}</th>
+                        <td>{{ item.customer_phone}}</td>
+                        <td>{{ item.number}}</td>
+                        <td>{{ item.updated_at}}</td>
+                        <td>{{ item.user_id}}</td>
                         <td>
-                            <button
-                                class="but-co btn "
-                                type="button"
-                            >
-                                <i class="bi bi-plus"></i>
-                            </button>
+                            <button class="but-co btn " type="button"><i class="bi bi-plus"></i></button>
                         </td>
                     </tr>
                 </tbody>
@@ -46,7 +42,7 @@ export default {
     components: { UserCard },
     data() {
         return {
-         history_dealings: Array,
+            invoices:Array
         }
 
     },
@@ -57,35 +53,17 @@ export default {
         if (window.Laravel.isLoggedin) {
                 this.isLoggedIn = true
             }
-        //this.getData();
-        this.getJoin();
+
+        this.getInv();
     },
     methods: {
-       /* async getData() {
-            let url = "/api/hisdeal";
-            await axios
-                .get(url)
-                .then((response) => {
-                    this.history_dealings = response.data.history_dealings;
-                    console.log(this.history_dealings);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        },*/
-
-        async getJoin() {
-            let url ="/api/iner-join_his";
-            await axios
-            .get(url)
-            .then((response) => {
-                    this.history_dealings = response.data.history_dealings;
-                    console.log(this.history_dealings);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        }
+        async getInv(){
+            let url='/api/invoices_join';
+               await axios .get(url).then((response) =>{
+                this.invoices = response.data.invoices;
+                console.log(this.invoices);
+             }) 
+        },
     },
     mounted() {
         console.log("history_dealings List Component Mounted");

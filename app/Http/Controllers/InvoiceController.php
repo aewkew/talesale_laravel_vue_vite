@@ -233,13 +233,12 @@ class InvoiceController extends Controller
          ->get();
         return response()->json(
             [
-                'invoices2' => $result2,
+             'invoices2' => $result2,
              'invoices' => $result,
              'message' => 'invoicesDeal',
-             'code' => 200
+            
         ]);
         }
-
 
         public function all_invoice(){
             $result = DB::table('invoice_items')

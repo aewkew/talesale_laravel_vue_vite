@@ -13,21 +13,13 @@
                         <th scope="col">Details</th>
                     </tr>
                 </thead>
-
-                <tbody v-for="item in customers" :key="item.id">
+                <tbody >
                     <tr>
-                        <th scope="row">{{item.created_at}} </th>
-                        <td>{{ item.customer_name }}</td>
-                        <td> </td>
-                        <td>{{ item.customer_phone }}</td>
-                        <td>
-                            <button
-                                class="but-co btn "
-                                type="button"
-                            >
-                           
-                            </button>
-                        </td>
+                        <th scope="row"></th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><button class="but-co btn " type="button" > </button> </td>
                     </tr>
                 </tbody>
             </table>

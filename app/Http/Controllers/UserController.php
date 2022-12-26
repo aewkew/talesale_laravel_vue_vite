@@ -46,7 +46,6 @@ class UserController extends Controller
 
 
     public function register_user(Request $request){
-              
       try {
         $user = new User();
         $user->user_id = $request->user_id;
@@ -72,7 +71,6 @@ class UserController extends Controller
     return response()->json($response);
     }
     
-
        public function logout()
     {
          try{

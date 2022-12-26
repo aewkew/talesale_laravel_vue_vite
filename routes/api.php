@@ -80,12 +80,11 @@ Route::post('register_user', [UserController::class, 'register_user']);
 Route::post('logout', [UserController::class, 'logout'])->middleware('auth:sanctum'); 
 Route::post('editUser/{id}', [UserController::class,'editUser']);
 
-
-
-
+ Route::get('invoices_join', [InvoiceController::class,'invoices_join']);
 
 
 Route::middleware('auth:sanctum')->get('/', function (Request $request) {
+   
     return $request->user();
 });  
 

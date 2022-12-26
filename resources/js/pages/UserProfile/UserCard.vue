@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <div class="card align-self-center">
         <div class="card-body card-user">
             <div class="container">
                 <div class="row datapro">
@@ -22,12 +22,12 @@
                         <div class="dataname">{{ phone }}</div>
                     </div>
 
-                    <div class="col">
+                    <div class="col align-self-center">
                         <!-- Button trigger modal -->
                         <button
                         
                             type="button"
-                            class="btn btn-primary"
+                            class="btn btn-primary "
                             data-bs-toggle="modal"
                             data-bs-target="#exampleModal"
                         >

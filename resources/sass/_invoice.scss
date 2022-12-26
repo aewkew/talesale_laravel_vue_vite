@@ -15,33 +15,65 @@
     .but-co:hover {
         background-color: #fd6161;
     }
-
+    @media print {
+        display:none; 
+    }
 
 }
 
+    
 .invoice-title {
     text-align: right;
+    @media print {
+        display:none; 
+    }
+    
 }
 
 .invoice-title h2,
 .invoice-title h3 {
     display: inline-block;
-
+    @media print {
+        display:none;
+    }
 }
+ hr{
+    @media print {
+        display:none;
+    }
+ }
 
 
 
 .invoice {
-
+   
     min-height: 680px;
     background-color: white;
     position: relative;
-
+    @media print {
+   
+        min-height: 100%;
+        width:100%;
+        position: none;
+        margin-left: 0;
+    }
+  
     .invoice-data {
         padding: 60;
+        @media print {
+           
+       
+            width:100%;
+          
+    
+        }
+        
 
+    
         .logo-invoice {
+
             margin-bottom: 10;
+           
 
             img {
                 max-width: 70px;

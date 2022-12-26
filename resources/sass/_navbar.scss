@@ -1,6 +1,14 @@
-.navbar{
-  box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.15);
+
+.navbar {
+  background-color: #f2f4ff ;
+  box-shadow: 1px 10px 5px rgb(233, 233, 233);
+  font-size: 1rem;
+  
+    img {
+      max-width: 32px;
+    }
+    @media print {
+      display:none; 
+  }
+
 }
-
-
-

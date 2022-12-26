@@ -121,16 +121,16 @@
                                     <div class="col-4">
                                         <div class="data-invoice">
                                             <div class="row">
-                                                <label class="col-sm-2 col-form-label">วันที่:  </label>
+                                                <label class="col-sm-3 col-form-label">วันที่:</label>
                                                 <div class="col"> {{ invoice.date }}</div>
                                             </div>
 
                                             <div class="row">
-                                                <label  class="col-sm-2 col-form-label">กำหนดชำระ:</label>
+                                                <label  class="col-sm-3 col-form-label">กำหนดชำระ:</label>
                                                 <div class="col"> {{ invoice.due_date }}   </div>
                                             </div>
                                             <div class="row">
-                                                <label class="col-sm-2 col-form-label">เงื่อนไข:  </label>
+                                                <label class="col-sm-3 col-form-label">เงื่อนไข:</label>
                                                 <div class="col">  {{invoice.terms_and_conditions }} </div>
                                             </div>
                                         </div>
