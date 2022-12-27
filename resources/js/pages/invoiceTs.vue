@@ -6,16 +6,8 @@
             <div class="row">
                 <div class="col">
                     <div class="exprint">
-                        <button
-                            type="button"
-                            class="btn but-co"
-                            @click="printInvoice()"
-                            value="invoice"
-                        >
-                            <i class="bi bi-printer"></i> Print
-                        </button>
-                        <button class="btn but-co" @click="downloadPDF">
-                            <i class="bi bi-file-earmark-pdf"></i>Export
+                        <button class="btn but-co" onclick="window.print()">
+                            <i class="bi bi-printer"></i>Print Invoice
                         </button>
                     </div>
                 </div>
@@ -76,62 +68,97 @@
 
             <div class="invoice" id="invoice">
                 <div class="invoice-data">
+                    <div
+                        class="row d-flex justify-content-center header headin"
+                    >
+                        ใบเสนอราคา
+                    </div>
                     <form>
-                        <div class="row">
-                            <div class="col">
-                                <div class="logo-invoice">
-                                    <img
-                                        src="https://seeklogo.com/images/B/Burger_King-logo-67A54F414B-seeklogo.com.png"
-                                    />
-                                </div>
-                                <div class="row">
-                                    <div class="company">
-                                        บริษัทเทเลย์เซล จำกัด
+                        <div class="comnum">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="brandInv">
+                                        <div class="col">
+                                            <div class="logo-invoice">
+                                                <img
+                                                    src="https://seeklogo.com/images/B/Burger_King-logo-67A54F414B-seeklogo.com.png"
+                                                />
+                                            </div>
+                                            <div class="row">
+                                                <div class="company">
+                                                    บริษัทเทเลย์เซล จำกัด
+                                                </div>
+                                                <div class="company-address">
+                                                    2033/2 , อเวนิวสันทราย
+                                                    ตึกสอง ,
+                                                    <br />
+                                                    อำเภอ สันทราย ,ตำบล สันทราย
+                                                    ,จังหวัด เชียงใหม่ 50200<br />
+                                                    084-61061646
+                                                    ,Talesale_12@hotmille.com<br />
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="company-address">
-                                        2033/2 , อเวนิวสันทราย ตึกสอง , <br />
-                                        อำเภอ สันทราย,อำเภอ สันทรายม ,ตำบล สันทราย ,จังหวัด เชียงใหม่ 50200<br />
-                                        084-61061646
-                                        ,Talesale_12@hotmille.com<br />
-                                    </div>
                                 </div>
-                            </div>
-                            <div class="col">
-                                <div class="invoice-number">
-                                    <div>INVOICE</div>
-                                    <div>{{ invoice.number }}</div>
+
+                                <div class="col">
+                                    <div class="number">
+                                        <div class="col">
+                                            <div class="invoice-number">
+                                                <div>INVOICE</div>
+                                                <div>{{ invoice.number }}</div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="bill">
                                 <div class="row">
-                                    <div class="row">
-                                        <div class="bill-name">BILL TO</div>
-                                    </div>
-                                    <div class="col-4">
+                                    <div class="bill-name">ลูกค้า</div>
+                                 
+                                    <div class="col-6">
                                         <div class="bill-data">
-                                            {{ InvCus[0].customer_name }}, {{ InvCus[0].customer_phone }}
-                                            <br>
+                                            {{ InvCus[0].customer_name }},
+                                            {{ InvCus[0].customer_phone }}  <br />
                                             {{ InvCus[0].customer_address }}
- 
                                         </div>
                                     </div>
-                                    <div class="col"></div>
-                                    <div class="col-4">
+                                    
+                                    <div class="col">
                                         <div class="data-invoice">
                                             <div class="row">
-                                                <label class="col-sm-3 col-form-label">วันที่:</label>
-                                                <div class="col"> {{ invoice.date }}</div>
+                                                <label
+                                                    class="col-sm-3 col-form-label"
+                                                    >วันที่:</label
+                                                >
+                                                <div class="col">
+                                                    {{ invoice.date }}
+                                                </div>
                                             </div>
 
                                             <div class="row">
-                                                <label  class="col-sm-3 col-form-label">กำหนดชำระ:</label>
-                                                <div class="col"> {{ invoice.due_date }}   </div>
+                                                <label
+                                                    class="col-sm-3 col-form-label"
+                                                    >กำหนดชำระ:</label
+                                                >
+                                                <div class="col">
+                                                    {{ invoice.due_date }}
+                                                </div>
                                             </div>
                                             <div class="row">
-                                                <label class="col-sm-3 col-form-label">เงื่อนไข:</label>
-                                                <div class="col">  {{invoice.terms_and_conditions }} </div>
+                                                <label
+                                                    class="col-sm-3 col-form-label"
+                                                    >เงื่อนไข:</label
+                                                >
+                                                <div class="col">
+                                                    {{
+                                                        invoice.terms_and_conditions
+                                                    }}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -145,7 +172,9 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">รายระเอียดสินค้า</th>
+                                            <th scope="col">
+                                                รายระเอียดสินค้า
+                                            </th>
                                             <th scope="col">Product Id</th>
                                             <th scope="col">จำนวน</th>
                                             <th scope="col">ราคา/หน่วย</th>
@@ -221,9 +250,8 @@ export default {
             invoice_num: [],
             inv_item: [],
             group_item: {},
-            InvCus:{},
+            InvCus: {},
             status: "",
-            
         };
     },
     created() {

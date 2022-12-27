@@ -3,8 +3,6 @@ import axios from "axios";
 
 import { onMounted, ref } from "vue";
 
-
-
 let form = ref([]);
 
 onMounted(async () => {
@@ -26,6 +24,9 @@ const indexForm = async () => {
             <div class="row">
                 <div class="col">
                     <div class="exprint">
+                        <button class="btn but-co" onclick="window.print()">
+                            <i class="bi bi-printer"></i>Print Invoice
+                        </button>
                         <!-- 
 
                         <button
@@ -39,7 +40,6 @@ const indexForm = async () => {
                     </div>
                 </div>
                 <div class="col">
-
                     <div class="invoice-title">
                         <h2>Invoice</h2>
                         <h3 class="pull-right">
@@ -47,62 +47,74 @@ const indexForm = async () => {
                             {{ $store.state.cartCount }}
                         </h3>
                     </div>
-
                 </div>
             </div>
 
-            <hr  />
+            <hr />
 
-         
-
-            <div class="invoice" >
+            <div class="invoice">
                 <div class="invoice-data">
-                    <div class="row d-flex justify-content-center header">
+                    <div
+                        class="row d-flex justify-content-center header headin"
+                    >
                         ใบเสนอราคา
                     </div>
                     <form @submit.prevent="saveCart()">
-                        <div class="row">
-                            <div class="col">
-                                <div class="logo-invoice">
-                                    <img
-                                        src="https://seeklogo.com/images/B/Burger_King-logo-67A54F414B-seeklogo.com.png"
-                                    />
-                                </div>
-                                <div class="row">
-                                    <div class="company">
-                                        บริษัทเทเลย์เซล จำกัด
+                        <div class="comnum">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="brandInv">
+                                        <div class="col">
+                                            <div class="logo-invoice">
+                                                <img
+                                                    src="https://seeklogo.com/images/B/Burger_King-logo-67A54F414B-seeklogo.com.png"
+                                                />
+                                            </div>
+                                            <div class="row">
+                                                <div class="company">
+                                                    บริษัทเทเลย์เซล จำกัด
+                                                </div>
+                                                <div class="company-address">
+                                                    2033/2 , อเวนิวสันทราย
+                                                    ตึกสอง ,
+                                                    <br />
+                                                    อำเภอ สันทราย ,ตำบล สันทราย
+                                                    ,จังหวัด เชียงใหม่ 50200<br />
+                                                    084-61061646
+                                                    ,Talesale_12@hotmille.com<br />
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="company-address">
-                                        2033/2 , อเวนิวสันทราย ตึกสอง , <br />
-                                        อำเภอ สันทราย,อำเภอ สันทรายม ,ตำบล
-                                        สันทราย ,จังหวัด เชียงใหม่ 50200<br />
-                                        084-61061646
-                                        ,Talesale_12@hotmille.com<br />
-                                    </div>
                                 </div>
-                            </div>
-                            <div class="col">
-                                <div class="invoice-number">
-                                    <div>INVOICE</div>
-                                    <div>{{ form.number }}</div>
-                                    <div>
-                                        <input
-                                            id="number"
-                                            type="hidden"
-                                            class="form-control input"
-                                            v-model="form.number"
-                                        />
+
+                                <div class="col">
+                                    <div class="number">
+                                        <div class="col">
+                                            <div class="invoice-number">
+                                                <div>INVOICE</div>
+                                                <div>{{ form.number }}</div>
+                                                <div>
+                                                    <input
+                                                        id="number"
+                                                        type="hidden"
+                                                        class="form-control input"
+                                                        v-model="form.number"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="bill">
                                 <div class="row">
-                                    <div class="row">
-                                        <div class="bill-name">ลูกค้า</div>
-                                    </div>
-                                    <div class="col-4">
+                                    <div class="bill-name">ลูกค้า</div>
+
+                                    <div class="col-6">
                                         <div class="bill-data">
                                             <select
                                                 class="form-select input form-control"
@@ -112,30 +124,32 @@ const indexForm = async () => {
                                                     Select customer
                                                 </option>
                                                 <option
-                                                    :value="customer.id"
                                                     v-for="customer in customers"
                                                     :key="customer.id"
+                                                    v-bind:value="{
+                                                        id: customer.id,
+                                                        cus_add:
+                                                            customer.customer_address,
+                                                        cus_ph: customer.customer_phone,
+                                                        cus_nam:
+                                                            customer.customer_name,
+                                                    }"
                                                 >
-                                                    {{
-                                                        customer.customer_name
-                                                    }}
-                                                    <br />
-                                                    {{
-                                                        customer.customer_address
-                                                    }}
+                                                    {{ customer.customer_name }}
                                                 </option>
                                             </select>
-                                            <br />
+                                            {{ CustomerID.cus_nam }} ,
+                                            {{ CustomerID.cus_ph }} <br />
+                                            {{ CustomerID.cus_add }}
                                         </div>
                                     </div>
-                                    <div class="col"></div>
-                                    <div class="col-4">
+
+                                    <div class="col">
                                         <div class="data-invoice">
                                             <div class="row">
-                                                <label
-                                                    class="col-sm-3 col-form-label"
-                                                    >วันที่ :
-                                                </label>
+                                                <div class="col datefix">
+                                                    วันที่ :
+                                                </div>
 
                                                 <div class="col">
                                                     <input
@@ -149,16 +163,17 @@ const indexForm = async () => {
                                                         "
                                                         hidden
                                                     />
-                                                    {{ currentDate2() }}
+                                                    <span
+                                                        >{{ currentDate2() }}
+                                                    </span>
                                                 </div>
                                             </div>
 
                                             <div class="row">
-                                                <label
-                                                    class="col-sm-3 col-form-label"
-                                                    >กำหนดชำระ:
-                                                </label>
-                                                <div class="col">
+                                                <div class="col duedate">
+                                                    กำหนดชำระ :
+                                                </div>
+                                                <div class="col date_p">
                                                     <input
                                                         id="due_date"
                                                         placeholder="dd-mm-yyyy"
@@ -168,11 +183,11 @@ const indexForm = async () => {
                                                     />
                                                 </div>
                                             </div>
+
                                             <div class="row">
-                                                <label
-                                                    class="col-sm-3 col-form-label"
-                                                    >Terms:
-                                                </label>
+                                                <div class="col terms">
+                                                    Terms:
+                                                </div>
                                                 <div class="col">
                                                     <input
                                                         type="text"
@@ -271,17 +286,8 @@ const indexForm = async () => {
                     </form>
                 </div>
             </div>
-            <button onclick="window.print()">Print Invoice</button> 
         </div>
     </div>
-
-
-
- 
-
-
-
-
 </template>
 <script>
 export default {
@@ -292,6 +298,7 @@ export default {
             due_date: "",
             date: "",
             terms_and_conditions: "",
+            value2: "",
 
             item: {
                 product_id: "",
@@ -301,8 +308,6 @@ export default {
             errors: [],
             Prod: "",
             multi_cart: [],
-
-          
         };
     },
 
@@ -319,6 +324,7 @@ export default {
         //this.getData();
         this.getCus();
         this.$store.state.cart;
+
         /*
         this.$store.getters.cart;
         let data = JSON.stringify(this.$store.state.cart);
@@ -362,7 +368,6 @@ export default {
     },
 
     methods: {
-
         async getCus() {
             let url = "/api/all_customer";
             await axios
@@ -385,9 +390,9 @@ export default {
         },
         currentDate2() {
             const current = new Date();
-            const date = `${current.getFullYear()}/${
+            const date = `${
                 current.getMonth() + 1
-            }/${current.getDate()}`;
+            }/${current.getDate()}/${current.getFullYear()}`;
             return date;
         },
 
@@ -397,7 +402,7 @@ export default {
             // let toData =JSON.parse(data);
             let formData = new FormData();
             formData.append("number", this.form.number);
-            formData.append("customer_id", this.CustomerID);
+            formData.append("customer_id", this.CustomerID.id);
             formData.append("date", this.date);
             formData.append("due_date", this.due_date);
             formData.append("terms_and_conditions", this.terms_and_conditions);
@@ -479,6 +484,4 @@ export default {
     },
 };
 </script>
-<style scope>
-
-</style>
+<style scope></style>

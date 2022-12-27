@@ -15,82 +15,92 @@
     .but-co:hover {
         background-color: #fd6161;
     }
+
     @media print {
-        display:none; 
+        display: none;
     }
 
 }
 
-    
+
 .invoice-title {
     text-align: right;
+
     @media print {
-        display:none; 
+        display: none;
     }
-    
+
 }
 
 .invoice-title h2,
 .invoice-title h3 {
     display: inline-block;
+
     @media print {
-        display:none;
+        display: none;
     }
 }
- hr{
+
+hr {
     @media print {
-        display:none;
+        display: none;
     }
- }
+}
 
 
 
 .invoice {
-   
+
     min-height: 680px;
     background-color: white;
     position: relative;
+
     @media print {
-   
-        min-height: 100%;
-        width:100%;
-        position: none;
+
+        min-height: 680px;
+        width: 1200px;
         margin-left: 0;
     }
-  
+
     .invoice-data {
         padding: 60;
-        @media print {
-           
-       
-            width:100%;
-          
-    
+        .headin{
+           color: rgb(76, 76, 76);
+           font-size: 20px;
         }
-        
 
-    
-        .logo-invoice {
+        @media print {}
 
-            margin-bottom: 10;
-           
+        .comnum {
+            .brandInv {
+                .logo-invoice {
+                    margin-bottom: 10;
 
-            img {
-                max-width: 70px;
+                    img {
+                        max-width: 70px;
+                    }
+                }
+
+                .company {
+                    font-size: 1rem;
+
+                }
+
+                .company-address {}
+
+                @media print {}
             }
+
+            .invoice-number {
+                text-align: right;
+
+                @media print {
+                    margin-right: 110px;
+                }
+
+            }
+
         }
-
-        .company {
-            font-size: 1rem;
-            font-weight: 800;
-        }
-
-        .company-address {}
-
-        .invoice-number {
-            text-align: right;
-        }
-
 
         .bill {
             margin-top: 2rem;
@@ -100,17 +110,57 @@
                 margin-bottom: 0.5rem;
             }
 
-            .bill-data {}
+            .bill-data {
+                select {
+                    @media print {
+                        display: none;
+                    }
+                }
+            }
 
             .data-invoice {
-                margin-top: 1rem;
-                text-align: right;
+                margin-left: 12%;
+
+                .datefix {}
+
+                input {}
+
+                span {
+                    padding-left: 10px;
+                }
+
+                .duedate {}
+
+                .date_p {
+                    input {
+                        @media print {
+                            border: none;
+                        }
+                    }
+                }
+
+                input {
+                    @media print {
+                        border: none;
+                    }
+                }
+
             }
 
         }
 
         .table-invoice {
             margin-top: 1rem;
+            table{
+                tr{
+              
+                @media print {
+                    background-color: rgb(67, 67, 67);
+                    color: rgb(27, 27, 27);
+                }
+            }
+            }
+            
 
         }
 
@@ -137,11 +187,14 @@
 
         }
 
-
-
-
+        button{
+            @media print{
+                display: none;
+            }
+        }
     }
-
+  
+   
 
 
 }
