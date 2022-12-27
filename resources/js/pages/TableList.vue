@@ -1,6 +1,29 @@
 <template>
     <div class="container">
-        <div class="sale">History Dealing Customer  <p>{{currentDate()}}</p> </div>
+        <div> 
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link fs-3 active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">รออนุมัติ</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link fs-3" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">จ่ายแล้ว</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link fs-3" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">ยกเลิก</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link fs-3" id="all-tab" data-bs-toggle="tab" data-bs-target="#all-tab-pane" type="button" role="tab" aria-controls="all-tab-pane" aria-selected="false">ทั้งหมด</button>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active fs-3" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">1</div>
+  <div class="tab-pane fade fs-3" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">2</div>
+  <div class="tab-pane fade fs-3" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">3</div>
+  <div class="tab-pane fade fs-3" id="all-tab-pane" role="tabpanel" aria-labelledby="all-tab" tabindex="0">4</div>
+</div>
+        </div>
+        <div class="sale">History Dealing Customer  </div>
+
         <div class="tableContrainer">
             <table class="table">
                 <thead>

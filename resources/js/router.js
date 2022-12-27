@@ -18,7 +18,6 @@ import EditUser from './pages/UserProfile/EditUser.vue';
 import add from './pages/shop/add.vue';
 import search from './pages/shop/search.vue';
 import add_customer from './pages/shop/add_customer.vue';
-import add_company from './pages/shop/add_company.vue';
 import editcustomer from './pages/Customer/editcustomer.vue';
 //Test
 import create  from './pages/create.vue';
@@ -146,11 +145,7 @@ const routes = [
             name:'add_customer',
             component: add_customer ,
         },
-        {
-            path: '/add_company',
-            name:'add_company',
-            component: add_company ,
-        },
+    
         {
             path: '/TableList/editcustomer/:id?',
             name:'editcustomer',

@@ -39,68 +39,14 @@ class InvoiceController extends Controller
             $invoice->date         = $request->date;
             $invoice->due_date     = $request->due_date;
             $invoice->user_id      = $request->user_id;
-            $invoice->terms_and_conditions  = $request->terms_and_conditions;
             $invoice->sub_total    = $request->sub_total;
             $invoice->tax_total    = $request->tax_total;
             $invoice->total        = $request->total;
             $invoice->save();
 
-           //$invoices =invoice::orderBy('id','desc')->take(1)->get();  
-   
-           // $invoiceitem->invoice_id  = $request->$invoices[0]->id;
-           //$invoiceitem->invoice_id  = $request->$invoice->id;  
-           //$invoiceitem->user_id = $request->user_id;
-
-           
-
-      
-                /*
-           $cart = json_decode(request('cart'));
-            foreach($cart as $item){
-                $invoiceitem=new invoiceItem();
-                $invoiceitem->product_id = $request->$item['id'];
-                $invoiceitem->unit_price = $request->$item['totalPrice'];
-                $invoiceitem->quantity = $request->$item['quantity'];
-                $invoiceitem->save();
-            }  */
-
-             /*
-          // $invoiceitem->invoice_id  = $request->$invoices[0]->id;
-            $invoiceitem =  json_decode(request('product_id'));
-            $invoiceitem = json_decode(request('unit_price')); 
-            $invoiceitem =  json_decode(request('quantity'));
-            $invoiceitem->save();    */
-
-
-         /*   $invoiceitem = json_decode(request('cart'));
-            $invoiceitem->save();*/ 
-               
-            /*
-            
-            $invoiceitem= $request->input("invoice_item");
-
-            foreach (json_decode($invoiceitem) as $item){
-                $itemdata['product_id'] = $item->id;
-               // $itemdata['invoice_id'] = $item->$invoices[0]->id;
-                $itemdata['unit_price'] = $item->unit_price; 
-                $itemdata['quantity'] = $item->quantity; 
-                invoiceItem::create($itemdata);
-            }   
-   
-            $invoiceitem=new invoiceItem; 
-          //  $invoiceitem->invoice_id  = $request->$invoices[0]->id;
-            //$invoiceitem->invoice_id  = $request->$invoice->id;  
-           $invoiceitem->product_id = $request->product_id;
-            $invoiceitem->unit_price = $request->unit_price; 
-           $invoiceitem->quantity = $request->quantity;  
-            $invoiceitem->save();     */
-
             $success = true;
             $message = "success" ;
 
-           // $message = 'Invoice & itemId Success';
-           //  echo("<script>Console.log($invoices)</script>");
-             // echo("<script>Console.log($cart)</script>");
 
         }catch (\Illuminate\Database\QueryException $ex) {
             $success = "false";
@@ -120,10 +66,6 @@ class InvoiceController extends Controller
                  $test =invoice::orderBy('id','desc')->take(1)->get();  
 
                 $invoiceitem=new invoiceItem; 
-                // $invoiceitem->invoice_id  = $request->$invoices[0]->id;
-                //$invoiceitem->invoice_id  = $request->$invoice->id;  
-                //$invoiceitem->user_id = $request->user_id;
-
                 $invoiceitem->invoice_id = $test[0]->id;
                 $invoiceitem->product_id = $request->product_id;
                 $invoiceitem->unit_price = $request->unit_price; 
@@ -151,10 +93,21 @@ class InvoiceController extends Controller
     
    public function test_order(){
      $test=invoice::orderBy('id','desc')->take(1)->get(); 
-     return response()->json( $test);
+     return response()->json($test);
    }
     
-
+   public function where_sucess(){
+    $success=invoice::where('status','success')->get();
+    return response()->json($success);
+   }
+   public function where_pending(){
+    $pending=invoice::where('status','pending')->get();
+    return response()->json($pending);
+   }
+   public function where_cancelled(){
+    $cancelled=invoice::where('status','cancelled')->get();
+    return response()->json($cancelled);
+   }
 
     public function invoiceItem(Request $request){
        
@@ -166,7 +119,7 @@ class InvoiceController extends Controller
             $invoicedata['customer_id'] = $request->input("customer_id");
             $invoicedata['date'] = $request->input("date");
             $invoicedata['due_date'] = $request->input("due_date");
-            $invoicedata['terms_and_conditions'] = $request->input("terms_and_conditions");
+            
             $invoicedata['tax_total'] = $request->input("tax_total");
             $invoicedata['total'] = $request->input("total");
 

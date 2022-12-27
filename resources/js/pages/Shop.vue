@@ -1,5 +1,3 @@
-
-
 <template>
     <div class="container">
         <div class="card">
@@ -48,12 +46,11 @@
                     <div class="col-auto">
                         <div class="row">
                             <div class="col">
-                                <button
-                                    type="button"
+                                <button type="button"
                                     class="btn but-co"
                                     data-bs-toggle="modal"
-                                    data-bs-target="#CustomerModel"
-                                >
+                                    data-bs-target="#CustomerModel" >
+                               
                                     <i
                                         class="bi bi-person-plus-fill"
                                         style="font-size: 1.4rem"
@@ -73,20 +70,6 @@
                                     data-bs-target="#staticBackdrop"
                                 >
                                     Add
-                                </button>
-                            </div>
-
-                            <div class="col">
-                                <button
-                                    type="button"
-                                    class="btn but-co"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#CompanyModel"
-                                >
-                                    <i
-                                        class="bi bi-building"
-                                        style="font-size: 1.4rem"
-                                    ></i>
                                 </button>
                             </div>
 
@@ -151,7 +134,7 @@
         </div>
         <Add></Add>
         <Add_customer></Add_customer>
-        <Add_company></Add_company>
+      
 
         <div class="row">
             <div class="col"><div class="sale">List Product</div></div>
@@ -162,7 +145,6 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col-1">Code</th>
                         <th scope="col">Name</th>
                         <th scope="col">Brand</th>
                         <th scope="col">Color</th>
@@ -174,21 +156,13 @@
 
                 <tbody v-for="item in products" :key="item.id">
                     <tr>
-                        <th>{{ item.product_id }}</th>
                         <td>{{ item.product_name }}</td>
                         <td>{{ item.product_brand }}</td>
                         <td>{{ item.product_color }}</td>
                         <td>{{ item.product_price.toFixed(2) }}</td>
+                        <td> <button class="but-co btn" @click="addToCart(item)">  Add to Cart </button> </td>
                         <td>
-                            <button class="but-co btn" @click="addToCart(item)">
-                                Add to Cart
-                            </button>
-                        </td>
-                        <td>
-                            <button
-                                class="but-co btn"
-                                @click.prevent="deleteProduct(item.id)"
-                            >
+                            <button class="but-co btn" @click.prevent="deleteProduct(item.id)" >
                                 <i class="bi bi-trash"></i>
                             </button>
                         </td>
@@ -203,7 +177,6 @@ import axios from "axios";
 
 import Add from "./shop/add.vue";
 import Add_customer from "./shop/add_customer.vue";
-import Add_company from "./shop/add_company.vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
 /*
@@ -215,7 +188,7 @@ const newInvoice = async () => {
 
 export default {
     name: "Shop",
-    components: { Add, Add_customer, Add_company },
+    components: { Add, Add_customer},
     data() {
         return {
             products: {},

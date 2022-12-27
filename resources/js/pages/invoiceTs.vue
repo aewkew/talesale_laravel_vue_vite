@@ -4,14 +4,25 @@
             <!-- Hedeline -->
 
             <div class="row">
-                <div class="col">
+                
+                <div class="col-1">
                     <div class="exprint">
                         <button class="btn but-co" onclick="window.print()">
-                            <i class="bi bi-printer"></i>Print Invoice
+                            <i class="bi bi-printer"></i>Print 
                         </button>
                     </div>
                 </div>
+                <div class="col-6"> 
+                        <select class="form-select billprint" aria-label=".form-select example" v-model="bill">
+                            <option selected>Open this select menu</option>
+                             <option value="ใบแจ้งหนี้">ใบแจ้งหนี้</option>
+                             <option value="ใบเสร็จ">ใบเสร็จ</option>
+                        </select>
+                    </div>
+                 
+          
                 <div class="col-5">
+                    <div class="status">
                     <div class="row">
                         <div class="col-3 fs-3">Status:</div>
                         <div class="col-3 fs-4">
@@ -60,6 +71,8 @@
                         </div>
                     </div>
                 </div>
+                </div>
+
             </div>
 
             <hr />
@@ -68,10 +81,8 @@
 
             <div class="invoice" id="invoice">
                 <div class="invoice-data">
-                    <div
-                        class="row d-flex justify-content-center header headin"
-                    >
-                        ใบเสนอราคา
+                    <div class="row d-flex justify-content-center header headin"  >
+                       {{bill}}
                     </div>
                     <form>
                         <div class="comnum">
@@ -131,33 +142,29 @@
                                     <div class="col">
                                         <div class="data-invoice">
                                             <div class="row">
-                                                <label
-                                                    class="col-sm-3 col-form-label"
-                                                    >วันที่:</label
-                                                >
+                                                <div class="col datefix">
+                                                    วันที่ :
+                                                </div>
                                                 <div class="col">
                                                     {{ invoice.date }}
                                                 </div>
                                             </div>
 
                                             <div class="row">
-                                                <label
-                                                    class="col-sm-3 col-form-label"
-                                                    >กำหนดชำระ:</label
-                                                >
-                                                <div class="col">
+                                                <div class="col duedate">
+                                                    กำหนดชำระ :
+                                                </div>
+                                                <div class="col date_p">
                                                     {{ invoice.due_date }}
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <label
-                                                    class="col-sm-3 col-form-label"
-                                                    >เงื่อนไข:</label
-                                                >
+                                               
+                                                <div class="col terms">
+                                                   
+                                                </div>
                                                 <div class="col">
-                                                    {{
-                                                        invoice.terms_and_conditions
-                                                    }}
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -252,6 +259,7 @@ export default {
             group_item: {},
             InvCus: {},
             status: "",
+            bill:'',
         };
     },
     created() {

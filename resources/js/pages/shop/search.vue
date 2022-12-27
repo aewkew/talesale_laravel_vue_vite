@@ -84,19 +84,18 @@
 
         <Add></Add>
         <Add_customer></Add_customer>
-        <Add_company></Add_company>
       
     </div>
 </template>
 <script>
 import Add from "./add.vue";
 import Add_customer from "./add_customer.vue";
-import Add_company from "./add_company.vue";
+
 import axios from "axios";
 
 export default {
     name: "search",
-    components: { Add, Add_customer ,Add_company},
+    components: { Add, Add_customer },
     ata() {
         return {
             products: Array,

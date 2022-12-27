@@ -15,10 +15,10 @@ class invoice extends Model
                            'date',
                            'due_date',
                            'reference',
-                           'terms_and_conditions',
+                           'details',
                            'sub_total',
                            'tax_total',
-                           'discount',
+                           'follow',
                            'total',
                            'status'
                             ];

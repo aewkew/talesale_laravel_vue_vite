@@ -186,20 +186,15 @@ const indexForm = async () => {
 
                                             <div class="row">
                                                 <div class="col terms">
-                                                    Terms:
+                                      
                                                 </div>
                                                 <div class="col">
-                                                    <input
-                                                        type="text"
-                                                        class="form-control input"
-                                                        v-model="
-                                                            terms_and_conditions
-                                                        "
-                                                    />
+                                                   
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -297,7 +292,7 @@ export default {
             CustomerID: "",
             due_date: "",
             date: "",
-            terms_and_conditions: "",
+
             value2: "",
 
             item: {
@@ -405,7 +400,7 @@ export default {
             formData.append("customer_id", this.CustomerID.id);
             formData.append("date", this.date);
             formData.append("due_date", this.due_date);
-            formData.append("terms_and_conditions", this.terms_and_conditions);
+           // formData.append("terms_and_conditions", this.terms_and_conditions);
             formData.append("sub_total", this.SubTotal);
             formData.append("tax_total", this.TaxTotal);
             formData.append("total", this.TotalPrice);

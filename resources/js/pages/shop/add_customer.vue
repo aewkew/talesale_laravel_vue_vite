@@ -25,24 +25,6 @@
                 <div class="modal-body">
                     <form @submit.prevent="addcustomer">
                         <div class="row">
-                            <div class="form-group">
-                                <label for="exampleModalLabel" class="form-label">
-                                Selected Company
-                            </label> 
-                            <select  class="form-select input form-control" v-model="CompID">
-                              
-                                <option  :value="company.id"
-                                    v-for="company in companies"
-                                    :key="company.id">
-                                    {{ company.company_name }} 
-                                </option>
-                                
-                                                   
-                                      
-                            </select>
-                            </div>
-                        </div>
-                        <div class="row">
                             <label for="exampleModalLabel" class="form-label">
                                 Name Customer
                             </label>
