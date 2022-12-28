@@ -59,7 +59,10 @@ Route::post('updateInvoice/{id}', [InvoiceController::class,'updateInvoice']);
 Route::get('group_item', [InvoiceController::class,'group_item']);
 Route::get('test_order', [InvoiceController::class,'test_order']);
 Route::get('group_item_ch/{id}', [InvoiceController::class,'group_item_ch']);
+
 Route::get('where_sucess', [InvoiceController::class,'where_sucess']);
+Route::get('where_pending', [InvoiceController::class,'where_pending']);
+Route::get('where_cancelled', [InvoiceController::class,'where_cancelled']);
 
 
 //invoice_Item

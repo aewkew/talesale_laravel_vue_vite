@@ -95,23 +95,10 @@ class InvoiceController extends Controller
      $test=invoice::orderBy('id','desc')->take(1)->get(); 
      return response()->json($test);
    }
-    
-   public function where_sucess(){
-    $success=invoice::where('status','success')->get();
-    return response()->json($success);
-   }
-   public function where_pending(){
-    $pending=invoice::where('status','pending')->get();
-    return response()->json($pending);
-   }
-   public function where_cancelled(){
-    $cancelled=invoice::where('status','cancelled')->get();
-    return response()->json($cancelled);
-   }
+   
 
     public function invoiceItem(Request $request){
        
-
             $invoiceitem =$request->input("invoice_item");
 
             $invoicedata['subtotal'] = $request->input("subtotal");
@@ -171,18 +158,45 @@ class InvoiceController extends Controller
         ];
         return response()->json($formData);
     }
+     
+   public function where_sucess(){
+    $success = DB::table('customers')->orderBy('due_date','ASC')
+        ->join('invoices','customers.id','=','invoices.customer_id')
+        ->where('status','success')->get();
+    return response()->json([
+        'success_inv' => $success,
+        'message' => 'success_inv' 
+   ]);
+
+   }
+   public function where_pending(){
+    $pending = DB::table('customers')->orderBy('due_date','ASC')
+        ->join('invoices','customers.id','=','invoices.customer_id')
+        ->where('status','pending')->get();
+    return response()->json([
+        'pending_inv' => $pending,
+        'message' => 'pending_inv' 
+   ]);
+   }
+   public function where_cancelled(){
+    $cancelled = DB::table('customers')->orderBy('due_date','ASC')
+        ->join('invoices','customers.id','=','invoices.customer_id')
+        ->where('status','cancelled')->get();
+    return response()->json([
+        'cancel_inv' => $cancelled,
+        'message' => 'cancel_inv' 
+   ]);
+   }
+
 
     public function invoices_join(){
-       
         $result = DB::table('customers')->orderBy('due_date','ASC')
         ->join('invoices','customers.id','=','invoices.customer_id')
-        
         ->get();
         $result2 = DB::table('invoice_items')
         //->join('invoices','customers.id','=','invoices.customer_id')
          ->join('invoices','invoices.id','=','invoice_items.invoice_id')
          ->join('products','products.id','=','invoice_items.product_id')
-
          ->get();
         return response()->json(
             [
@@ -192,6 +206,7 @@ class InvoiceController extends Controller
             
         ]);
         }
+
 
         public function all_invoice(){
             $result = DB::table('invoice_items')
