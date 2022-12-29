@@ -26,7 +26,7 @@ import toedit from './pages/toedit.vue';
 import editProduct from './pages/editProduct.vue';
 import invoiceTs from './pages/invoiceTs.vue';
 
-
+import Bar from './pages/Bar/Bar.vue';
 
 const routes = [
     {   
@@ -37,7 +37,12 @@ const routes = [
         {
             path: '/dashboard',
             name: 'dashboard',
-            component: Dashboard
+            component: Dashboard,
+            children:[{
+                path:'/Bar/Bar',
+                name: 'BarChart',
+                component:Bar,
+            }]
         },
         {
             path: '/Shop',

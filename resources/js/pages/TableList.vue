@@ -191,12 +191,7 @@
                         <td> null</td>
                         <td>{{ cinv.customer_name }}</td>
                         <td>{{ cinv.customer_phone }}</td>
-                        <td>
-                          
-                            <span v-if=" cinv.date ==  currentDate()" class="text-warning"><strong> {{ cinv.date }}</strong> </span>
-                            <span v-else=" cinv.date == !currentDate()" class="text-success"><strong> {{ cinv.date }}</strong> </span>
-                        
-                        </td>
+                        <td> {{ cinv.date }} </td>
                         <td>{{ cinv.due_date }}</td>
                         <td > <span v-if="cinv.status == 'pending'" > <p class="text-warning"><strong>{{ cinv.status }} </strong></p> </span> 
                              <span v-else-if="cinv.status == 'success'" ><p class="text-success"> {{ cinv.status }} </p></span> 
