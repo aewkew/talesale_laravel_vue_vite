@@ -10,6 +10,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\InvoiceItemController;
+use App\Http\Controllers\ChartController;
 
 use App\Http\Controllers\HistoryDealingController;
 
@@ -72,6 +73,11 @@ Route::post('test_invoice', [InvoiceController::class,'test_invoice']);
 Route::post('invoiceItem', [InvoiceController::class,'invoiceItem']);
 Route::post('add_multi_invoice', [InvoiceController::class,'add_multi_invoice']);
 Route::get('Inv_cus/{id}', [InvoiceController::class,'Inv_cus']);
+
+Route::get('invoice_item', [ChartController ::class,'invoice_item']);
+Route::get('color_coute', [ChartController ::class,'color_coute']);
+Route::get('color_chrat', [ChartController ::class,'color_chrat']);
+
 
 
 // user

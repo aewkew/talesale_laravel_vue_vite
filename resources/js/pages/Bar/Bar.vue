@@ -1,11 +1,11 @@
 <template >
-    <div class="row"> 
-        <div class="col"><Bar
-    id="my-chart-id"
-    :options="chartOptions"
-    :data="chartData"
-  /> </div>
-        <div class="col"> </div>
+    <div > 
+       <Bar
+                            id="my-chart-id"
+                            :options="chartOptions"
+                            :data="chartData"
+  /> 
+      
     </div>
  
 </template>

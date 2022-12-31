@@ -26,8 +26,8 @@ import toedit from './pages/toedit.vue';
 import editProduct from './pages/editProduct.vue';
 import invoiceTs from './pages/invoiceTs.vue';
 
-import Bar from './pages/Bar/Bar.vue';
-
+import Bar from './pages/Bar/Bar.vue'; 
+import Doughnut from './pages/Bar/Doughtnut.vue';
 const routes = [
     {   
         path: '/',
@@ -42,7 +42,13 @@ const routes = [
                 path:'/Bar/Bar',
                 name: 'BarChart',
                 component:Bar,
-            }]
+                  },
+           {
+            path:'/Bar/Doughnut',
+            name: 'BarDoughnut',
+            component: Doughnut,
+           }    
+        ]
         },
         {
             path: '/Shop',

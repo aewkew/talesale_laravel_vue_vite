@@ -1,15 +1,22 @@
 <template>
     <div>
-       <BarChart />
+        <div class="row">
+            <div class="col"> <BarDoughtnut /></div>
+            <div class="col"> <BarChart /> </div>
+            
+             </div>
+      
   
     </div>
 </template>
 <script>
 import BarChart from "./Bar/Bar.vue"
+import BarDoughtnut from "./Bar/Doughtnut.vue"
 export default {
     name: "Dashboard",
     components: {
-        BarChart
+        BarChart,
+        BarDoughtnut 
   },
     data() {
         
