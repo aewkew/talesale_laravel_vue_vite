@@ -231,7 +231,7 @@
                 <tbody >
                     <tr v-for="item in invoices" :key="item.id">
                         <td>
-                          <span  > {{item.id}}</span>
+                          <span>{{item.id}}</span>
                         </td>
                         <td>{{ item.number}}</td>   
                         <td> null</td>

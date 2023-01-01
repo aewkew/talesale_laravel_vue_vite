@@ -41,17 +41,28 @@ class ChartController extends Controller
     );
     }
 
+    // public function color_chrat(){
+    //     $invoice_item = DB::table('invoice_items')
+    //     ->join('products','products.id','=','invoice_items.product_id')
+    //     ->select('products.product_name','products.product_brand','products.product_color')
+    //     ->get()->groupBy('');
+    //     return response()->json(
+    //         [
+    //          'invoice_item' => $invoice_item,
+    //          'message' => 'Invoice',
+    //          'code' => 200
+    //     ]
+    // );
+    // }
+
     public function color_chrat(){
         $invoice_item = DB::table('invoice_items')
         ->join('products','products.id','=','invoice_items.product_id')
-        ->select('products.product_name','products.product_brand','products.product_color')
-        ->get();
-        return response()->json(
-            [
-             'invoice_item' => $invoice_item,
-             'message' => 'Invoice',
-             'code' => 200
-        ]
-    );
+        ->select('products.product_color')
+        ->get()->groupBy('product_color');
+        return response()->json([
+            'invoice_item' => $invoice_item
+        ]);
+        
     }
 }
