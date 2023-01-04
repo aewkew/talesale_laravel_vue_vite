@@ -23,10 +23,13 @@ export default {
     components: { Doughnut },
     data()   {
         return {
+            props: ['chartData'],
             Doughnut_data:[],
-            count_color:Array,  
+            count_color:[],  
+            data:[],
+           
              chartData: {
-                labels: [this.load_data()],
+                labels: [],
                 
                 datasets: [
                     {
@@ -35,8 +38,9 @@ export default {
                             "#E46651",
                             "#00D8FF",
                             "#DD1B16",
+                            
                         ],
-                         data: [],
+                        data: [],
                     },
                 ],
             },
@@ -48,27 +52,31 @@ export default {
     },
    
    created(){ 
-    this.load_data();
-    
+    this.filterData();
+    },
+    computed: {
+        color_chart: function(){
+            this.filterData();
+            console.log('test_compu')
+            return  this.filterData()
+        }
     },
     methods:{
-        async load_data(){
+        async filterData(){
             let url = '/api/color_chrat'
             await axios .get(url).then((response) => {
                     // allcustomers.value = response.data.customers;
                     this.count_color = response.data;
                     console.log(this.count_color);
                 })
-                .catch((error) => {
-                    console.log(error);
-                });
+    
      
         }
           
     },
 
     mounted() {
-        this.load_data()
+       
     },
   
 };

@@ -24,9 +24,9 @@ export default {
             labels: [ 'January', 'February', 'March' ],
         datasets: [
             {         
-       
+             data: [40 ,  20,   12]  , 
                 backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
-                 data: [40 ,  20,   12]      
+                    
              } 
     ]
       },
@@ -34,7 +34,41 @@ export default {
         responsive: true
       }
     }
-  }
+  },
+  created(){ 
+    this.filterData();
+ 
+    },
+    computed: {
+        color_chart: function(){
+          this.count_color
+          this.chart_label = JSON.stringify(this.count_color.invoice_item)
+            console.log('test_compu',this.count_color)
+            console.log('test_compu20',this.chart_label )
+            return  this.count_color
+        }
+    },
+    methods:{
+        async filterData(){
+          var color_chart
+            let url = '/api/color_chrat'
+            await axios .get(url).then((response) => {
+                    // allcustomers.value = response.data.customers;
+                    this.count_color = response.data;
+                   
+                  
+                    console.log('test_bar',this.color_chart);
+                    console.log('test_data');
+                })
+           
+    
+     
+        }
+          
+    },
+    mounted(){
+      console.log('tt')
+    }
 }
 </script>
 <style >

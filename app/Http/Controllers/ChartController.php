@@ -61,7 +61,11 @@ class ChartController extends Controller
         ->select('products.product_color as color ',DB::raw("count(product_color)as count"))
         ->groupBy('product_color')
         ->get();
-        return response()->json(  $invoice_item);
+        return response()->json( [
+            'invoice_item' => $invoice_item,
+            'message' => 'Invoice',
+            'code' => 200
+       ]);
       
         
     }
