@@ -58,7 +58,7 @@ class ChartController extends Controller
     public function color_chrat(){
         $invoice_item = DB::table('invoice_items')
         ->join('products','products.id','=','invoice_items.product_id')
-        ->select('products.product_color as color ',DB::raw("count(product_color)as count"))
+        ->select('products.product_color as labels',DB::raw("count(product_color)as count"))
         ->groupBy('product_color')
         ->get();
         return response()->json( [
