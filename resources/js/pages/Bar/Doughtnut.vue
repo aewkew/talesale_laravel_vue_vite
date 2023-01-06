@@ -1,69 +1,21 @@
 <template>
     <div>
-        <Doughnut 
-        :options="chartoptions" 
-         :data="chartData" />
+      <canvas ref="myChart"></canvas>
     </div>
 
-    <div>
-        {{ this.labels }}
-        {{ color }}
-        <!-- 
-      <Doughnut 
-      :options="chartoptions"
-        :data="chartData"/>  -->
-    </div>
 </template>
-<script >
+<script>
 import axios from "axios";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "vue-chartjs";
 import Chart from "chart.js/auto";
 
-
 ChartJS.register(ArcElement, Tooltip, Legend);
 export default {
     name: "BarDoughnut",
-    components: { Doughnut },
-    type: 'doughnut',
-    data() {
-        return {
-            color:[],
-            labels:[],
-            data: [],
-
-            //props: ["chartData"],
-            get_label:[],
-            // data: [],
-            chartData: {
-                labels: this.labels ,
-                datasets: [
-                    {
-                        backgroundColor: [
-                            "#41B883",
-                            "#E46651",
-                            "#00D8FF",
-                            "#DD1B16",
-                        ],
-                        data: this.color,
-                    },
-                ],
-            },
-            chartoptions: {
-                responsive: true,
-                maintainAspectRatio: false,
-            },
-        };
-    },
-
+    computed: {},
     created() {
         this.get_Data();
-        console.log('bb')
-       
-      
-    },
-    computed: {
-       
     },
     methods: {
         async get_Data() {
@@ -73,23 +25,53 @@ export default {
                 this.labels = response.data.invoice_item.map((invoice_item) => {
                     return invoice_item.labels;
                 });
+
                 this.color = response.data.invoice_item.map((invoice_item) => {
                     return invoice_item.count;
                 });
-                
                 console.log("test_labels", this.labels);
                 console.log("test_color", this.color);
-                console.log("test_color2", );  
             });
         },
-        
     },
+    mounted() {
+        let url = "/api/color_chrat";
+        axios.get(url).then((response) => {
+            // allcustomers.value = response.data.customers;
+            this.labels = response.data.invoice_item.map((invoice_item) => {
+                return invoice_item.labels;
+            });
 
-    mounted(){
-        this.get_Data();
+            this.color = response.data.invoice_item.map((invoice_item) => {
+                return invoice_item.count;
+            });
+            console.log("test_labels", this.labels);
+            console.log("test_color", this.color);
+            new Chart(this.$refs.myChart, {
+                type: "doughnut",
+                data: {
+                    labels:this.labels,
+                    datasets: [
+                        { 
+                            backgroundColor: [
+                            "#3A3B3C",
+                            "#1974D2",
+                            "#E55451",
+                            "#FFDB58",
+                        ],
+                          
+                            data: this.color,
+                        },
+                    ],
+                },
+                options: {
+                responsive: true,
+                maintainAspectRatio: false,
+            },
+            });
 
-      
-
+            console.log("test_labels2", this.labels);
+        });
     },
 };
 </script>
