@@ -1,6 +1,6 @@
 <template>
   <div> 
-  <canvas ref="myChart" width="500" height="300"></canvas>
+  <canvas ref="myChart" ></canvas>
 </div>
 </template>
 
@@ -9,15 +9,17 @@ import Chart from "chart.js/auto";
 
 export default {
   name: 'monthly-sales-chart',
+  
   mounted() {
     new Chart(this.$refs.myChart, {
-      type: 'bar',
+      type: 'line',
       data: {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
         datasets: [
           {
-            label: '2018 Sales',
-            data: [300, 700, 450, 750, 450]
+            fill: false,
+            label: '2023 Sales',
+            data: [65, 59, 80, 81, 90]
           }
         ]
       }

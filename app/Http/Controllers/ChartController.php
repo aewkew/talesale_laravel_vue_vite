@@ -67,6 +67,21 @@ class ChartController extends Controller
             'code' => 200
        ]);
       
-        
+    }
+    
+    public function total_chart(){
+        $invoice = invoice::where('status','success')
+        ->select('invoices.updated_at','invoices.total')
+        //->select(DB::raw('SUM(invoices.total)as sum_tatol'))
+        //->select(DB::raw('MONTH(invoices.updated_at) month'))
+       // ->groupBy('month')
+      
+       //->select(DB::raw('SUM(invoices.total)as sum_tatol'))
+        ->get();
+        return response()->json([
+            'invoice_total' => $invoice,
+            'message' => 'Invoice',
+            'code' => 200
+        ]);
     }
 }
