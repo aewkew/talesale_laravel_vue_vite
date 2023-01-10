@@ -12,5 +12,9 @@ class InvoiceItemController extends Controller
           return response()->json($item_invoice);
 
     }
+    public function count_color($id){
+        $product_items = DB::table('products');
+            
+    }
 
 }

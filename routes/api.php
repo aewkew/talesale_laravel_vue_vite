@@ -42,6 +42,7 @@ Route::post('updateCustomer/{id}', [CustomerController::class,'updateCustomer'])
 Route::delete('deleteCustomer/{id}',[CustomerController::class,'deleteCustomer']);
 Route::get('searchCus_tel', [CustomerController::class,'searchCus_tel']);
 Route::get('invioce_cus/{id}', [InvoiceController::class,'invioce_cus']);
+Route::get('group_item_count/{id}', [InvoiceController::class,'group_item_count']);
 
 
 
@@ -64,6 +65,9 @@ Route::post('updateInvoice/{id}', [InvoiceController::class,'updateInvoice']);
 Route::get('group_item', [InvoiceController::class,'group_item']);
 Route::get('test_order', [InvoiceController::class,'test_order']);
 Route::get('group_item_ch/{id}', [InvoiceController::class,'group_item_ch']);
+Route::post('updateInv_follow/{id}', [InvoiceController::class,'updateInv_follow']);
+Route::get('groupInv_notti', [InvoiceController::class,'groupInv_notti']);
+
 
 Route::get('where_sucess', [InvoiceController::class,'where_sucess']);
 Route::get('where_pending', [InvoiceController::class,'where_pending']);

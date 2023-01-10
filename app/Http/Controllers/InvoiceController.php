@@ -241,10 +241,24 @@ class InvoiceController extends Controller
             ]);
         }
 
+        public function groupInv_notti(){
+            $result = DB::table('invoices')
+            ->where('details', '<>', '', 'and')
+            ->join('customers','customers.id','=','invoices.customer_id')
+            ->get();
+            return response()->json(
+                [
+                 'group_noti' => $result,
+                 'message' => 'invoicesDeal',
+                 'code' => 200
+            ]);
+        }
+
+
         public function group_item_ch($id){
             $invoice_items = DB::table('invoice_items')
           //  ->join('customers','customers.id','=','invoices.customer_id')
-             ->join('invoices','invoices.id','=','invoice_items.invoice_id')
+            ->join('invoices','invoices.id','=','invoice_items.invoice_id')
             ->join('products','products.id','=','invoice_items.product_id')
             ->select('invoices.id','invoice_items.invoice_id','invoice_items.quantity'
                      ,'invoice_items.unit_price','invoice_items.product_id',
@@ -258,6 +272,25 @@ class InvoiceController extends Controller
             'code' => 200 
             ]);      
         }
+
+        public function group_item_count($id){
+            $invoice_items = DB::table('invoice_items')
+          //  ->join('customers','customers.id','=','invoices.customer_id')
+            ->join('invoices','invoices.id','=','invoice_items.invoice_id')
+            ->join('products','products.id','=','invoice_items.product_id')
+            ->where('invoices.customer_id','=',$id)
+           ->groupBy('product_color','product_brand')
+             ->select(DB::raw('SUM(quantity)as sum_tatol'),'product_color','product_brand')
+             ->orderBy('sum_tatol','DESC')
+             ->get();
+            return response()->json([
+            'group_count' => $invoice_items,
+            'message' => 'Count_color',
+            'code' => 200 
+            ]);      
+        }
+
+        
         
        
         public function get_all_invoice($id){
@@ -300,7 +333,19 @@ class InvoiceController extends Controller
             $invoice->status         = $request->status;
             $invoice->save();
             return response()->json([
-               'message' => 'product Update Success ',
+               'message' => 'Invoice Update Success ',
+               'code' => 200
+           ]);
+        }
+
+        public function updateInv_follow($id, Request $request){
+            $invoice= invoice::where('id', $id)->first();
+            //$product->product_id           = $request->product_id;
+            $invoice->follow        = $request->follow;
+            $invoice->details         = $request->details;
+            $invoice->save();
+            return response()->json([
+               'message' => 'Notification success',
                'code' => 200
            ]);
         }

@@ -6,20 +6,20 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Date</th>
-                        <th scope="col">Customer</th>
-                        <th scope="col">Employee</th>
-                        <th scope="col">Tel</th>
-                        <th scope="col">Details</th>
+                        <th scope="col">วันแจ้งเตือน</th>
+                        <th scope="col">ลูกค้า</th>
+                        <th scope="col">เบอร์โทร</th>
+                        <th scope="col">รายระเอียดเสนอ</th>
+                        <th scope="col">ปิดการแจ้งเตือน</th>
                     </tr>
                 </thead>
                 <tbody >
-                    <tr>
-                        <th scope="row"></th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><button class="but-co btn " type="button" > </button> </td>
+                    <tr v-for="ino in group_noti" :key="ino.id">
+                        <th scope="row">{{ ino.follow }}</th>
+                        <td>{{ ino.customer_name }}</td>
+                        <td>{{ ino.customer_phone }}</td>
+                        <td>{{ ino.details}}</td>
+                        <td><button class="but-co btn" type="button" > </button> </td>
                     </tr>
                 </tbody>
             </table>
@@ -35,57 +35,34 @@ export default {
 
     data() {
         return {
-            customers: Array,
-            group_item:[],
+            group_noti:Array
         };
     },
     created() {
-        this.getData();
-        this.groupItem();
+       this.get_notifi();
     },
 
     methods: {
-        async getData() {
-            let url = "/api/customers";
-            await axios
-                .get(url)
-                .then((response) => {
-                    this.customers = response.data.customers;
-                    console.log(this.customers);
-                })
-                .catch((error) => {
+        async get_notifi(){
+            let url = "/api/groupInv_notti"
+            await axios.get(url).then((response) =>{
+                this.group_noti = response.data.group_noti;
+                console.log(this.group_noti);
+            })
+            .catch((error) => {
                     console.log(error);
                 });
-        },
-        async groupItem() {
-            let url = '/api/group_item';
-            await axios.get(url).then((response) => {
-                console.log(response);
-                this.group_item = response.data.group_item;
-            });
-        },
 
-        async deleteCustomer(id) {
-            let url = `/api/deleteCustomer/${id}`;
-            await axios
-                .delete(url)
-                .then((response) => {
-                    if (response.data.code == 200) {
-                        alert(response.message);
-                        this.getData();
-                    }
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        },
+        }
+       
 
+        
    
         
     },
 
     mounted() {
-        console.log("Read Customer List Component Mounted");
+        console.log("Read Nottify List Component Mounted");
     },
     
 }

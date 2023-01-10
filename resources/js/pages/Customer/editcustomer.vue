@@ -84,6 +84,7 @@ export default {
                this.customer = response.data;
             });
         },
+        
         async updateCustomer(){
             this.errors =[];
             if(!this.customer.customer_name){
