@@ -10,6 +10,7 @@ use App\Models\Customer;
 use App\Models\Product;
 use App\Models\User;
 
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Console\View\Components\Alert;
 use Illuminate\Support\Facades\DB;
@@ -279,7 +280,18 @@ class InvoiceController extends Controller
                  'code' => 200
             ]);
          }
-       
+
+         public function invioce_cus($id){
+            $invoice= invoice::where('customer_id', $id)
+            
+            ->get(); 
+            
+            return response()->json ([
+                'invoice_cus' => $invoice,
+                'message' => 'invoice_cus',
+                'code' => 200
+            ]);
+         }
 
 
         public function updateInvoice($id, Request $request){

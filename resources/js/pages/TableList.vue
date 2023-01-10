@@ -72,13 +72,12 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Invoice</th>
-                        <th scope="col">Company</th>
-                        <th scope="col">Customer</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">DueDate</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Edit</th>
+                        <th scope="col">ลูกค้า</th>
+                        <th scope="col">เบอร์โทร</th>
+                        <th scope="col">วันออกใบเสนอราคา</th>
+                        <th scope="col">วันครบกำหนดชำระ</th>
+                        <th scope="col">สถานะ</th>
+                        <th scope="col">แก้ไข</th>
                         <th scope="col">Delete</th>
                     </tr>
                 </thead>
@@ -86,7 +85,7 @@
                     <tr v-for="pinv in pending_inv" :key="pinv.id">
                         <td><span> {{pinv.id}}</span></td> 
                         <td>{{ pinv.number}}</td>   
-                        <td> null</td>
+                      
                         <td>{{ pinv.customer_name }}</td>
                         <td>{{ pinv.customer_phone }}</td>
                         <td>
@@ -121,13 +120,12 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Invoice</th>
-                        <th scope="col">Company</th>
-                        <th scope="col">Customer</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">DueDate</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Edit</th>
+                        <th scope="col">ลูกค้า</th>
+                        <th scope="col">เบอร์โทร</th>
+                        <th scope="col">วันออกใบเสนอราคา</th>
+                        <th scope="col">วันครบกำหนดชำระ</th>
+                        <th scope="col">สถานะ</th>
+                        <th scope="col">แก้ไข</th>
                         <th scope="col">Delete</th>
                     </tr>
                 </thead>
@@ -137,7 +135,7 @@
                           <span  > {{sinv.id}}</span>
                         </td>
                         <td>{{ sinv.number}}</td>   
-                        <td> null</td>
+                  
                         <td>{{ sinv.customer_name }}</td>
                         <td>{{ sinv.customer_phone }}</td>
                         <td>
@@ -170,25 +168,24 @@
                 <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col" >ID</th>
+                        <th scope="col">ID</th>
                         <th scope="col">Invoice</th>
-                        <th scope="col">Company</th>
-                        <th scope="col">Customer</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">DueDate</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Edit</th>
+                        <th scope="col">ลูกค้า</th>
+                        <th scope="col">เบอร์โทร</th>
+                        <th scope="col">วันออกใบเสนอราคา</th>
+                        <th scope="col">วันครบกำหนดชำระ</th>
+                        <th scope="col">สถานะ</th>
+                        <th scope="col">แก้ไข</th>
                         <th scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody >
                     <tr v-for="cinv in cancel_inv" :key="cinv.id">
                         <td>
-                          <span  > {{cinv.id}}</span>
+                          <span> {{cinv.id}}</span>
                         </td>
                         <td>{{ cinv.number}}</td>   
-                        <td> null</td>
+                    
                         <td>{{ cinv.customer_name }}</td>
                         <td>{{ cinv.customer_phone }}</td>
                         <td> {{ cinv.date }} </td>
@@ -218,13 +215,12 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Invoice</th>
-                        <th scope="col">Company</th>
-                        <th scope="col">Customer</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">DueDate</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Edit</th>
+                        <th scope="col">ลูกค้า</th>
+                        <th scope="col">เบอร์โทร</th>
+                        <th scope="col">วันออกใบเสนอราคา</th>
+                        <th scope="col">วันครบกำหนดชำระ</th>
+                        <th scope="col">สถานะ</th>
+                        <th scope="col">แก้ไข</th>
                         <th scope="col">Delete</th>
                     </tr>
                 </thead>
@@ -234,7 +230,7 @@
                           <span>{{item.id}}</span>
                         </td>
                         <td>{{ item.number}}</td>   
-                        <td> null</td>
+                  
                         <td>{{ item.customer_name }}</td>
                         <td>{{ item.customer_phone }}</td>
                         <td>

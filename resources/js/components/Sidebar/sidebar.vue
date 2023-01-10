@@ -42,16 +42,19 @@
                 </li>
 
                 <li class="nav-item">
+                    <router-link class="nav-link" to="/customer">
+                        <sapn> <i class="bi bi-file-person"></i></sapn>
+                        <span class="text"> ลูกค้า </span>
+                    </router-link>
+                </li>
+
+                <li class="nav-item">
                     <router-link class="nav-link" to="/Userprofile">
                         <sapn> <i class="bi bi-person-circle"></i> </sapn>
                         <span class="text"> โปรไฟล์ </span>
                     </router-link>
                 </li>
-
-              
             </ul>
-        
-
         </div>
     </div>
 </template>

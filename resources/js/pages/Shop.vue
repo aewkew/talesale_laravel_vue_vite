@@ -3,6 +3,7 @@
         <div class="card">
             <div class="card-body shopCard">
                 <div class="row">
+                    
                     <div class="col">
                         <input
                             type="text"
@@ -138,7 +139,7 @@
 
         <div class="row">
             <div class="col"><div class="sale">List Product</div></div>
-            <div class="col"></div>
+            
         </div>
         <!-- Shop -->
         <div class="tableContrainer">

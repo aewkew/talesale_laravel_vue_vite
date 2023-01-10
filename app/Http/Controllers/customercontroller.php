@@ -96,5 +96,10 @@ class CustomerController extends Controller
       return response()->json($customer);
      }
 
+     public function searchCus_tel(Request $request){
+        $customer = Customer::where('customer_phone','LIKE','%'.$request->keyword_custel.'%')->get();
+        return response()->json($customer);
+       }
+
  
 }

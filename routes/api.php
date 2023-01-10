@@ -40,6 +40,10 @@ Route::post('addcustomers', [CustomerController::class,'addcustomers']);
 Route::get('getcustomers/{id}', [CustomerController::class,'getcustomers']);
 Route::post('updateCustomer/{id}', [CustomerController::class,'updateCustomer']);
 Route::delete('deleteCustomer/{id}',[CustomerController::class,'deleteCustomer']);
+Route::get('searchCus_tel', [CustomerController::class,'searchCus_tel']);
+Route::get('invioce_cus/{id}', [InvoiceController::class,'invioce_cus']);
+
+
 
 //company
 Route::get('companies', [CompanyController::class,'companies']);

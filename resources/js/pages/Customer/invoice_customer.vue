@@ -10,8 +10,7 @@
                         </button>
                     </div>
                 </div>
-
-                <div class="col-4"> 
+                <div class="col-6"> 
                         <select class="form-select billprint" aria-label=".form-select example" v-model="bill">
                             <option selected>Open this select menu</option>
                              <option value="ใบแจ้งหนี้">ใบแจ้งหนี้</option>
@@ -20,10 +19,10 @@
                     </div>
                  
           
-                <div class="col">
+                <div class="col-5">
                     <div class="status">
                     <div class="row">
-                        <div class="col-2 fs-3">Status:</div>
+                        <div class="col-3 fs-3">Status:</div>
                         <div class="col-3 fs-4">
                             <span v-if="invoice.status == 'pending'">
                                 <p class="text-warning fw-semibold">
@@ -41,7 +40,7 @@
                                 </p></span
                             >
                         </div>
-                        <div class="col-5">
+                        <div class="col">
                             <div class="invoice-title">
                                 <form @submit.prevent="updateInvoice">
                                     <div class="input-group mb-2">
@@ -57,26 +56,21 @@
                                                 cancelled
                                             </option>
                                         </select>
-                                      
                                         <button
-                                            class="btn but-co "
+                                            class="btn but-co btn-outline-secondary"
                                             type="submit"
                                             id="button-addon2"
                                         >
-                                            แก้ไขสถานะ
+                                            Edit Status
                                         </button>
                                     </div>
                                 </form>
                             </div>
                         </div>
-                        <div class="col"> 
-                            <router-link  :to="{ name: 
-                               'fornotify', params:{ id:invoice.customer_id } }" class="btn but-co">แจ้งเตือน</router-link>       
-                        </div>
                     </div>
                 </div>
                 </div>
-               
+
             </div>
 
             <hr />
@@ -86,7 +80,7 @@
             <div class="invoice" id="invoice">
                 <div class="invoice-data">
                     <div class="row d-flex justify-content-center header headin"  >
-                       {{bill}}  
+                       {{bill}}
                     </div>
                     <form>
                         <div class="comnum">
@@ -254,7 +248,7 @@
 import axios from "axios";
 
 export default {
-    name: "Tablelist",
+    name: "invoice_customer",
     data() {
         return {
             invoice: {},

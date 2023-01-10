@@ -6,9 +6,15 @@ import Shop from './pages/Shop.vue';
 import Notifications from './pages/Notifications.vue';
 import Tablelist from './pages/TableList.vue';
 import Userprofile from './pages/UserProfile.vue';
+import customer from './pages/customer.vue';
+//customer 
+import detail_customer from './pages/Customer/detail_customer.vue';
+import invoice_customer from './pages/Customer/invoice_customer.vue';
 
 import Invoice from './pages/invoice.vue';
 import Inklist from './pages/Inklist.vue';
+import fornotify from './pages/fornotify.vue';
+
 //Login&Register
 import login from './pages/login.vue';
 import register from './pages/register.vue';
@@ -57,13 +63,7 @@ const routes = [
             
         },
 
-        {
-          
-            path: '/Shop/invoice',
-            name: 'invoice',
-            component: Invoice,
-            
-        },
+     
 
         {
             name: 'Notifications',
@@ -76,11 +76,54 @@ const routes = [
             component: Tablelist,
            
         },
+        
+          //Customer
+        {
+            path: '/customer',
+            name: 'customer',
+            component: customer,
+           
+        },
+        {
+            path: '/customer/editcustomer/:id?',
+            name:'editcustomer',
+            component: editcustomer ,
+        },
+        {
+            path: '/customer/detail_customer/:id?',
+            name:'detail_customer',
+            component: detail_customer ,
+        },
+        {
+            path: '/customer/detail_customer/:id?/invoice_customer/:id?',
+            name:'invoice_customer',
+            component:  invoice_customer ,
+        },
+
+       
+            //Invoice
         {
             path: '/TableList/invoiceTs/:id?',
             name:'invoiceTs',
             component: invoiceTs ,
-        } ,          
+        } ,  
+        {
+            path: '/TableList/invoiceTs/:id?/fornotify/:id?',
+            name:'fornotify',
+            component: fornotify ,
+        } ,
+
+        {
+          
+            path: '/Shop/invoice',
+            name: 'invoice',
+            component: Invoice,
+            
+        },
+
+
+        
+         //Profile
          {
             path: '/UserProfile',
             name: 'Userprofile',
@@ -96,6 +139,7 @@ const routes = [
             ]
         },
       
+
         {
             path: '/Inklist',
             name: 'Inklist',
@@ -157,11 +201,7 @@ const routes = [
             component: add_customer ,
         },
     
-        {
-            path: '/TableList/editcustomer/:id?',
-            name:'editcustomer',
-            component: editcustomer ,
-        },
+       
 
        
        
