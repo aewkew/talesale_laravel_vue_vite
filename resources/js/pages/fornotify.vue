@@ -9,7 +9,7 @@
                                 class="input-group-text bgsp fs-6 text-white"
                                 id="inputGroup-sizing-default"
                             >
-                                วันที่จะแจ้งเตือน
+                                วันที่จะแจ้งเตือน 
                             </span>
                             <input
                                 placeholder="dd-mm-yyyy"
@@ -107,6 +107,13 @@ export default {
         this.get_count();
     },
     methods: {
+        currentDate() {
+            const current = new Date();
+            const date = `${current.getFullYear()}-${
+                current.getMonth() + 1
+            }-${current.getDate()}`;
+            return date;
+        },
         async get_inv() {
             let url = `/api/invioce_cus/${this.$route.params.id}`;
             await axios.get(url).then((response) => {

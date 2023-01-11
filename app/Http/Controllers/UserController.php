@@ -22,6 +22,7 @@ class UserController extends Controller
     ]
 );
 } 
+
     
     public function login(Request $request)
     {
@@ -29,15 +30,17 @@ class UserController extends Controller
         'name' => $request->name,
         'password' => $request->password
        ];
-       if(Auth::attempt($credentials)) {
-         $succes = true;
+       if(Auth::attempt($credentials)) 
+       {
+         $success = true;
          $message = "User login successfully";
-       }else {
-        $succes = false;
+       }
+       else {
+        $success = false;
         $message = "Unautorised";
        }
        $response = [
-         'success' => $succes,
+         'success' => $success,
          'message' => $message
        ];
         
@@ -55,21 +58,24 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        $success = true;
+        $succes = true;
         $message = "User register successfully";
 
     } catch (\Illuminate\Database\QueryException $ex) {
-        $success = false;
-        $message = $ex->getMessage();
+      $succes  = false;
+      $message = $ex->getMessage();
     }
 
     $response = [
-        'success' => $success,
-        'message' => $message
+      'success' => $succes,
+      'message' => $message
     ];
 
     return response()->json($response);
     }
+    
+
+
     
        public function logout()
     {

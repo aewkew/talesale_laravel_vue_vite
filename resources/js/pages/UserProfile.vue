@@ -18,7 +18,7 @@
                 </thead>
 
                 <tbody  v-for="item in invoices" :key="item.id">
-                    <tr >
+                    <tr v-if="item.user_id == id">
                         <th scope="row">{{item.customer_name }}</th>
                         <td>{{ item.customer_phone}}</td>
                         <td>{{ item.number}}</td>
@@ -48,6 +48,7 @@ export default {
     },
     created() {
         if (window.Laravel.user) {
+            this.id = window.Laravel.user.id;
             this.name = window.Laravel.user.name
         } 
         if (window.Laravel.isLoggedin) {

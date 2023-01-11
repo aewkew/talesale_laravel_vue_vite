@@ -1,6 +1,6 @@
 <template>
   <div> 
-  <canvas ref="myChart" ></canvas>
+  <canvas ref="myChart_Bar" ></canvas>
 </div>
 </template>
 
@@ -8,20 +8,51 @@
 import Chart from "chart.js/auto";
 
 export default {
-  name: 'monthly-sales-chart',
-  
+  name: 'BarChart',
+  computed: {},
+    created() {
+      
+    },
+    methods:{
+      
+    },
+
   mounted() {
-    new Chart(this.$refs.myChart, {
-      type: 'line',
+    let url = "/api/total_chart";
+             axios.get(url).then((response) => {
+                // allcustomers.value = response.data.customers;
+                this.month = response.data.month_item.map((month_item) => {
+                    return month_item.month;
+                });
+
+                this.sum_tatol = response.data.month_item.map((month_item) => {
+                    return month_item.sum_tatol;
+                });
+                console.log("test_month", this.month);
+                console.log("test_sum_tatol", this.sum_tatol);
+            });
+            var yValues = [55, 49, 44, 24, 15];
+            var xValues =  Utils.months({count: 7})
+            var barColors = ["red", "green","blue","orange","brown"];
+
+    new Chart(this.$refs.myChart_Bar, {
+      type: 'bar',
       data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+        labels: this.month,
         datasets: [
           {
-            fill: false,
-            label: '2023 Sales',
-            data: [65, 59, 80, 81, 90]
+            backgroundColor: barColors,
+            //label: '2022 Sales',
+            data: this.sum_tatol,
           }
         ]
+      },options:{
+        responsive: true,
+        scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
       }
     });
   }

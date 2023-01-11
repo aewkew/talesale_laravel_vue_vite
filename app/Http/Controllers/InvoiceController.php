@@ -16,6 +16,12 @@ use Illuminate\Console\View\Components\Alert;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\Console\Input\Input;
 
+// Get the currently authenticated user...
+$user = Auth::user();
+ 
+// Get the currently authenticated user's ID...
+$id = Auth::id();
+
 class InvoiceController extends Controller
 {
     // 
@@ -191,6 +197,7 @@ class InvoiceController extends Controller
 
 
     public function invoices_join(){
+    
         $result = DB::table('customers')->orderBy('due_date','ASC')
         ->join('invoices','customers.id','=','invoices.customer_id')
         ->get();
@@ -207,6 +214,7 @@ class InvoiceController extends Controller
             
         ]);
         }
+        
 
 
         public function all_invoice(){
@@ -245,6 +253,7 @@ class InvoiceController extends Controller
             $result = DB::table('invoices')
             ->where('details', '<>', '', 'and')
             ->join('customers','customers.id','=','invoices.customer_id')
+            ->orderBy('follow','DESC')
             ->get();
             return response()->json(
                 [

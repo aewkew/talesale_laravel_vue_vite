@@ -144,7 +144,7 @@ export default {
                 await axios.post('/api/addproduct', formData).then((response) =>{
                     console.log(response);
                     if(response.status == 200){
-                      
+                    
                        alert(response.data.message)
                     }else {
                         console.log('error');

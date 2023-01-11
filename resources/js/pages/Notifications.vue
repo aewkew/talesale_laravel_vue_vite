@@ -1,6 +1,6 @@
 <template >
     <div class="container">
-        <div class="sale">Notifications</div>
+        <div class="sale">Notifications {{ currentDate()  }}</div>
          
         <div class="tableContrainer">
             <table class="table">
@@ -14,8 +14,9 @@
                     </tr>
                 </thead>
                 <tbody >
-                    <tr v-for="ino in group_noti" :key="ino.id">
-                        <th scope="row">{{ ino.follow }}</th>
+                    <tr v-for="ino in group_noti" :key="ino.id" >
+                        <th scope="row" v-if="ino.follow == currentDate()"  class="text-danger ">{{ ino.follow }}</th>
+                        <th scope="row" v-else="ino.follow == !currentDate() ">{{ ino.follow }}</th>
                         <td>{{ ino.customer_name }}</td>
                         <td>{{ ino.customer_phone }}</td>
                         <td>{{ ino.details}}</td>
@@ -43,6 +44,13 @@ export default {
     },
 
     methods: {
+        currentDate() {
+            const current = new Date();
+            const date = `${current.getFullYear()}-${
+                current.getMonth() + 1
+            }-${current.getDate()}`;
+            return date;
+        },
         async get_notifi(){
             let url = "/api/groupInv_notti"
             await axios.get(url).then((response) =>{
@@ -53,12 +61,7 @@ export default {
                     console.log(error);
                 });
 
-        }
-       
-
-        
-   
-        
+        }     
     },
 
     mounted() {

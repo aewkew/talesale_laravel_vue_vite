@@ -9,12 +9,12 @@
 
                              <div class="form-group">
                               <label for="email" > Name User </label>
-                              <input type="text" class="form-control" name="name" v-model="name" placeholder="Enter Name User" required >
+                              <input type="text" class="form-control" name="name" v-model="name" placeholder="Enter Name User" >
                               </div>
 
                               <div class="form-group">
                               <label for="password" > Password </label>
-                              <input type="password" class="form-control" name="password"  v-model="password" placeholder="Enter Password" required>
+                              <input type="password" class="form-control" name="password"  v-model="password" placeholder="Enter Password" >
                               </div>
                               
                               <div class="row"> 
@@ -37,30 +37,30 @@
 <script>
 import axios from "axios";
 export default {
-
     data() {
         return{
                 name: "",
                 password: "",
                 error: null
-       
         }
     },
     methods:{
         async handleSubmit(e) {
-                e.preventDefault()
-                alert(JSON.stringify(this.form))
+                e.preventDefault();
                 if(this.password.length > 0) {
-                    await axios.get('/sanctum/csrf-cookie').then(response => {
-                        axios.post('/api/login', {
+                    await axios.get('/sanctum/csrf-cookie').then((response)=> {
+                        axios.post('/api/login',{
                             name: this.name,
                             password: this.password
                         })
-                        .then(response => {
+                        .then((response) => {
                             if (response.data.success) {
-                                this.$router.go('/dashboard')
+                                window.location.href = "/dashboard";
+                                //this.$router.go('/dashboard')
                             } else {
-                                this.error = response.data.message
+                                this.error = response.data.message;
+                               // alert(response.data.message)
+                                //this.error = response.data.message
                             }
                         })
                         .catch(function (error) {
