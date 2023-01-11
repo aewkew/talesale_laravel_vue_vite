@@ -7,6 +7,8 @@ import Notifications from './pages/Notifications.vue';
 import Tablelist from './pages/TableList.vue';
 import Userprofile from './pages/UserProfile.vue';
 import customer from './pages/customer.vue';
+import Addmin from './pages/Addmin.vue';
+
 //customer 
 import detail_customer from './pages/Customer/detail_customer.vue';
 import invoice_customer from './pages/Customer/invoice_customer.vue';
@@ -39,6 +41,12 @@ const routes = [
         path: '/',
         name: 'home',
         component: home
+    },
+    {
+        path: '/Addmin',
+        name: 'Addmin',
+        component: Addmin
+     
     },
         {
             path: '/dashboard',

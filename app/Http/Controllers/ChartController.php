@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\invoice;
 use App\Models\invoiceItem;
 use App\Models\Chart;
+use Carbon\Carbon;
+
 
 class ChartController extends Controller
 {      
@@ -80,4 +82,13 @@ class ChartController extends Controller
         ]);
          
     }
+    
+    public function comis_total(){
+        $comis = invoice::all();
+        return response()->json([
+         'total_comis' => $comis,
+         'message' => 'total_commission',
+        ]);
+    }
+
 }

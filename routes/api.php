@@ -68,6 +68,9 @@ Route::get('group_item_ch/{id}', [InvoiceController::class,'group_item_ch']);
 Route::post('updateInv_follow/{id}', [InvoiceController::class,'updateInv_follow']);
 Route::get('groupInv_notti', [InvoiceController::class,'groupInv_notti']);
 
+Route::get('comis_total', [ChartController::class,'comis_total']);
+
+
 
 Route::get('where_sucess', [InvoiceController::class,'where_sucess']);
 Route::get('where_pending', [InvoiceController::class,'where_pending']);

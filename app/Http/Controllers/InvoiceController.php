@@ -250,6 +250,7 @@ class InvoiceController extends Controller
         }
 
         public function groupInv_notti(){
+            
             $result = DB::table('invoices')
             ->where('details', '<>', '', 'and')
             ->join('customers','customers.id','=','invoices.customer_id')
