@@ -1,8 +1,10 @@
 <template>
     <div>
+        <div class="container">
         <div class="row">
             <div class="col"><BarDoughtnut /></div>
             <div class="col"><BarChart /></div>
+        </div>
         </div>
     </div>
 </template>

@@ -70,6 +70,7 @@
                             </div>
                         </div>
                         <div class="col"> 
+                            {{ invoice.customer_id}}
                             <router-link  :to="{ name: 
                                'fornotify', params:{ id:invoice.customer_id } }" class="btn but-co">แจ้งเตือน</router-link>       
                         </div>

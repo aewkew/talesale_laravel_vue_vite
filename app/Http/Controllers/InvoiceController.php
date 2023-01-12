@@ -300,9 +300,6 @@ class InvoiceController extends Controller
             ]);      
         }
 
-        
-        
-       
         public function get_all_invoice($id){
             $invoices= invoice::find($id); 
              DB::table('invoice_items')

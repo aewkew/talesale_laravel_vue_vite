@@ -69,7 +69,7 @@ Route::post('updateInv_follow/{id}', [InvoiceController::class,'updateInv_follow
 Route::get('groupInv_notti', [InvoiceController::class,'groupInv_notti']);
 
 Route::get('comis_total', [ChartController::class,'comis_total']);
-
+Route::get('test_date', [ChartController::class,'test_date']);
 
 
 Route::get('where_sucess', [InvoiceController::class,'where_sucess']);

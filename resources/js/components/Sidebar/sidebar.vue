@@ -55,9 +55,9 @@
                     </router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/Addmin">
-                        <sapn> <i class="bi bi-person-circle"></i> </sapn>
-                        <span class="text"> Addmin </span>
+                    <router-link class="nav-link" to="/Admin">
+                        <sapn> <i class="bi bi-person"></i> </sapn>
+                        <span class="text"> Admin </span>
                     </router-link>
                 </li>
             </ul>

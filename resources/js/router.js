@@ -7,7 +7,7 @@ import Notifications from './pages/Notifications.vue';
 import Tablelist from './pages/TableList.vue';
 import Userprofile from './pages/UserProfile.vue';
 import customer from './pages/customer.vue';
-import Addmin from './pages/Addmin.vue';
+import Admin from './pages/Admin.vue';
 
 //customer 
 import detail_customer from './pages/Customer/detail_customer.vue';
@@ -43,9 +43,9 @@ const routes = [
         component: home
     },
     {
-        path: '/Addmin',
-        name: 'Addmin',
-        component: Addmin
+        path: '/Admin',
+        name: 'Admin',
+        component: Admin
      
     },
         {

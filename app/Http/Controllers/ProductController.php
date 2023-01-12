@@ -17,7 +17,6 @@ class ProductController extends Controller
         return $result;
 
      }  */
-
      
     public function products(){
         $product = Product::all();

@@ -8,7 +8,11 @@ use Illuminate\Support\Facades\DB;
 use App\Models\invoice;
 use App\Models\invoiceItem;
 use App\Models\Chart;
-use Carbon\Carbon;
+use Carbon\Carbon ;
+
+
+
+
 
 
 class ChartController extends Controller
@@ -84,11 +88,44 @@ class ChartController extends Controller
     }
     
     public function comis_total(){
-        $comis = invoice::all();
-        return response()->json([
+       
+        $comis = DB::table('invoices')
+       
+        ->join('customers','customers.id','=','invoices.customer_id')
+        ->select('invoices.customer_id','customers.customer_name','invoices.sub_total')
+         
+      //  ->select('customer_name')
+         ->groupBy('customer_name')
+        ->select('customer_name',DB::raw('SUM(sub_total)as sum_tatol'))
+         ->get();
+        return response()->json([  
          'total_comis' => $comis,
-         'message' => 'total_commission',
+         'message' => 'commission',
         ]);
     }
+    
+    public function test_date(){
+        $month = Carbon::now()->format('m');
+        $year = Carbon::now()->format('Y');
+        $comis = DB::table('invoices')->where('status','success')
+        ->join('users','users.id','=','invoices.user_id')
+        ->select('invoices.customer_id','invoices.sub_total','invoices.updated_at','users.name')
+        ->whereYear('invoices.updated_at','=', $year)
+        ->whereMonth('invoices.updated_at','=', $month)
+        ->groupBy('users.name')
+        ->select('users.name',DB::raw('SUM(invoices.sub_total)as sum_tatol'))->get();
+       // ->groupBy('customer_name')
+       // ->select('customer_name',DB::raw('SUM(sub_total)as sum_tatol'))
+      // ->select('')
+      // 
+       // 
+
+        return response()->json([  
+         'total_comis' => $comis,
+         'message' =>  $month,
+        ]);
+        
+    }
+
 
 }
