@@ -9,7 +9,7 @@
                             type="text"
                             v-model="keyword_id"
                             class="form-control"
-                            placeholder="Search ID"
+                            placeholder="Search Product"
                         />
                     </div>
 

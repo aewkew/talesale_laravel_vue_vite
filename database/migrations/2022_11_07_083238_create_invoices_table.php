@@ -21,9 +21,7 @@ return new class extends Migration
             $table->string('customer_id');
             $table->date('date');
             $table->date('due_date');
-            $table->date('follow')->nullable();
             $table->string('reference')->nullable();
-            $table->text('details')->nullable();
             $table->double('sub_total');
             $table->double('tax_total');
             $table->double('total');
