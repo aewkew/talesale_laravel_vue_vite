@@ -11,7 +11,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\InvoiceItemController;
 use App\Http\Controllers\ChartController;
-
+use App\Http\Controllers\FollowCustomerController;
 use App\Http\Controllers\HistoryDealingController;
 
 //get 
@@ -45,6 +45,10 @@ Route::get('invioce_cus/{id}', [InvoiceController::class,'invioce_cus']);
 Route::get('group_item_count/{id}', [InvoiceController::class,'group_item_count']);
 
 
+Route::get('follow_customer', [FollowCustomerController::class,'follow_customer']);
+Route::post('add_follow', [FollowCustomerController::class,'add_follow']);
+Route::get('join_follow', [FollowCustomerController::class,'join_follow']);
+Route::delete('delete_follow/{id}', [FollowCustomerController::class,'delete_follow']);
 
 //company
 Route::get('companies', [CompanyController::class,'companies']);

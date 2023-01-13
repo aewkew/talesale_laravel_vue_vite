@@ -54,7 +54,7 @@
                         <span class="text"> โปรไฟล์ </span>
                     </router-link>
                 </li>
-                <li class="nav-item">
+                <li v-if="id == 1" class="nav-item">
                     <router-link class="nav-link" to="/Admin">
                         <sapn> <i class="bi bi-person"></i> </sapn>
                         <span class="text"> Admin </span>
@@ -72,6 +72,17 @@ export default {
             default: "Telesell Comp",
         },
     },
+    created() {
+        if (window.Laravel.user) {
+            this.id = window.Laravel.user.id;
+            this.name = window.Laravel.user.name
+        } 
+        if (window.Laravel.isLoggedin) {
+                this.isLoggedIn = true
+            }
+
+      
+    }
 };
 </script>
 <style></style>

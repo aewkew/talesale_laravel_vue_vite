@@ -14,13 +14,20 @@
                     </tr>
                 </thead>
                 <tbody >
-                    <tr v-for="ino in group_noti" :key="ino.id" >
+                    <tr v-for="ino in follow_join" :key="ino.id" >
+                        
                         <th scope="row" v-if="ino.follow == currentDate()"  class="text-danger ">{{ ino.follow }}</th>
                         <th scope="row" v-else="ino.follow == !currentDate() ">{{ ino.follow }}</th>
                         <td>{{ ino.customer_name }}</td>
                         <td>{{ ino.customer_phone }}</td>
                         <td>{{ ino.details}}</td>
-                        <td><button class="but-co btn" type="button" > </button> </td>
+                        <td><button
+                                type="button" 
+                                class="but-co btn"
+                                @click="deleteFollow(ino.id)">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                         </td>
                     </tr>
                 </tbody>
             </table>
@@ -31,12 +38,14 @@
 
 </template>
 <script>
+import axios from 'axios';
+
 export default {
     name: "Notifications",
 
     data() {
         return {
-            group_noti:Array
+            follow_join:Array
         };
     },
     created() {
@@ -52,16 +61,29 @@ export default {
             return date;
         },
         async get_notifi(){
-            let url = "/api/groupInv_notti"
+            let url = "/api/join_follow"
             await axios.get(url).then((response) =>{
-                this.group_noti = response.data.group_noti;
+                this.follow_join = response.data.follow_join;
                 console.log(this.group_noti);
             })
             .catch((error) => {
                     console.log(error);
                 });
 
-        }     
+        } ,   
+        async deleteFollow(id){
+          let url = `/api/delete_follow/${id}`;
+           await axios.delete(url).then(response =>{
+            if(response.data.code == 200){
+                alert(response.data.message);
+                
+            }else {
+                        console.log("error");
+                    }
+           }).catch(error =>{
+                console.log(error);
+            });
+        }
     },
 
     mounted() {

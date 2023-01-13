@@ -73,16 +73,15 @@ export default {
                 });
         },
         async deleteProduct(id) {
-      
             let url = `http://127.0.0.1:8000/api/deleteProduct/${id}`;
             await axios.delete(url).then(response =>{
                 if(response.data.code == 200) {
                      alert(response.message);
-                     this.getData();
+                  
                 }  
             }).catch(error =>{
                 console.log(error);
-            } );
+            });
         },
 
   

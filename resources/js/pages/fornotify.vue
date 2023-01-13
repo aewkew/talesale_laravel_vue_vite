@@ -19,6 +19,7 @@
                                 aria-describedby="inputGroup-sizing-default"
                             />
                         </div>
+                 
                     </div>
 
                     <div class="col">
@@ -103,6 +104,14 @@ export default {
         };
     },
     created() {
+        if (window.Laravel.user) {
+            this.id = window.Laravel.user.id;
+            this.name = window.Laravel.user.name;
+        }
+        if (window.Laravel.isLoggedin) {
+            this.isLoggedIn = true;
+        }
+
         this.get_inv();
         this.get_count();
     },
@@ -131,9 +140,11 @@ export default {
 
         async updateInvoice() {
             let formData = new FormData();
+            formData.append("follow_user_id", this.id);
+            formData.append("follow_customer_id", this.$route.params.id );
             formData.append("follow", this.follow);
             formData.append("details", this.details);
-            let url = `/api/updateInv_follow/${this.$route.params.id}`;
+            let url = '/api/add_follow';
             await axios
                 .post(url, formData)
                 .then((response) => {
