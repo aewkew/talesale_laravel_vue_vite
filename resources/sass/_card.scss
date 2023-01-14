@@ -8,7 +8,7 @@
     border: none;
     background-color: #2f5be0;
     text-align: center;
-
+   
 
        .date{
         font-weight: 200;
@@ -95,6 +95,25 @@
 
 }
 
+.card_login{
+    .card{
+        box-shadow: 0 2px 2px rgba(204, 197, 185, 0.5);
+        .card-header{
+            background-color: #3b66e7;
+           
+        }
+        .card-body{
+            background-color: #4770ed;
+            label{
+                padding: 5;
+            }
+        }
+        .login{
+            margin-top: 15;
+        }
+    }
+
+}
 
   
 
