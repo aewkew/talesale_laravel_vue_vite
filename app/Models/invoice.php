@@ -18,7 +18,7 @@ class invoice extends Model
                            'details',
                            'sub_total',
                            'tax_total',
-                           'follow',
+                          
                            'total',
                            'status'
                             ];

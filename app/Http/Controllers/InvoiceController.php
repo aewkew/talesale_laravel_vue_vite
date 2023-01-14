@@ -152,8 +152,8 @@ class InvoiceController extends Controller
             'date' => date('Y-m-d'),
             'due-date'=> null,
             'reference'=>null,
-            'discount' => 0,
-            'term_and_conditions' => 'Default Terms and Conditions',
+          //  'discount' => 0,
+      //      'term_and_conditions' => 'Default Terms and Conditions',
             'items' => [
                 [
                     'product_id' => null,
