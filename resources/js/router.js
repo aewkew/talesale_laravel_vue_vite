@@ -18,7 +18,7 @@ import Inklist from './pages/Inklist.vue';
 import fornotify from './pages/fornotify.vue';
 
 //Login&Register
-import login from './pages/login.vue';
+import login from './pages/Login.vue';
 import register from './pages/register.vue';
 import home from './pages/Home.vue';
 import EditUser from './pages/UserProfile/EditUser.vue';
@@ -183,7 +183,7 @@ const routes = [
         },
 
         {
-            path: '/login',
+            path: '/Login',
             name:'login',
             component: login ,
         },

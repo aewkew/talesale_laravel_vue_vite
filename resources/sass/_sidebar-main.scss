@@ -10,10 +10,11 @@
     top: 0;
     bottom: 0;
     left: 0;
+
     @media print {
-      //display:none; 
-      background-color: $bg-side;
-  }
+        //display:none; 
+        background-color: $bg-side;
+    }
 
 
 
@@ -30,7 +31,7 @@
         background-size: cover;
         background-position: center center;
 
-       
+
 
 
         .sidebar-wrapper {
@@ -41,7 +42,7 @@
             width: 260px;
             z-index: 2;
 
-           
+
 
 
         }
@@ -120,9 +121,10 @@
         }
 
     }
+
     @media print {
-      display:none; 
-  }
+        display: none;
+    }
 
 }
 
@@ -133,10 +135,11 @@
     float: right;
     width: $sidebar-width;
     min-height: 100%;
+
     @media print {
-      min-height: 100%;
-      width: 100%;
-  }
+        min-height: 100%;
+        width: 100%;
+    }
 
 
     >.content {
@@ -144,10 +147,10 @@
         min-height: calc(100% - 123px);
 
         @media print {
-         padding:0;
-          min-height: 100%;
-          width: 100%;
-      }
+            padding: 0;
+            min-height: 100%;
+            width: 100%;
+        }
     }
 
     >.footer {

@@ -1,107 +1,120 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card">
-                        <div class="card-header">Regiseter</div>
-                        <div class="card-body">
-                            
-                                <div class="form-group row">
-                                    <label for="name" class="col-sm-4 col-form-label text-md-right" >Name</label >           
-                                     <div class="col-md-8">
-                                        <input
-                                        class="form-control" name="name" v-model="name"
-                                        />
-                                    </div>
+    
+
+    <section class="vh-100 gradient-custom">
+        <div class="container py-5 h-100">
+            <div
+                class="row d-flex justify-content-center align-items-center h-100"
+            >
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div
+                        class="card text-white"
+                        style="border-radius: 1rem; background-color: #4b74f0"
+                    >
+                        <div class="card-body p-5 text-center">
+                            <div class="mb-md-6 mt-md-4 pb-5">
+                                <h2 class="fw-bold mb-4 text-uppercase">
+                                    Register
+                                </h2>
+
+                                <div class="form-outline form-white mb-0">
+                                    <input
+                                        type="text"
+                                        class="form-control form-control-lg"
+                                        name="name"
+                                        v-model="name"
+                                        id="typeEmailX"
+                                    />
+                                    <label class="form-label" for="typeEmailX"
+                                        >Name</label
+                                    >
+                                </div>
+                                <div class="form-outline form-white mb-0">
+                                    <input
+                                        type="number"
+                                        class="form-control form-control-lg"
+                                        name="name"
+                                        v-model="phone"
+                                        id="typeEmailX"
+                                    />
+                                    <label class="form-label" for="typeEmailX"
+                                        >Phone</label
+                                    >
+                                </div>
+                                <div class="form-outline form-white mb-0">
+                                    <input
+                                        type="text"
+                                        class="form-control form-control-lg"
+                                        name="name"
+                                        v-model="email"
+                                        id="typeEmailX"
+                                    />
+                                    <label class="form-label" for="typeEmailX"
+                                        >Email</label
+                                    >
                                 </div>
 
-                                <div class="form-group row">
-                                    <label for="name" class="col-sm-4 col-form-label text-md-right" >Phone</label >           
-                                     <div class="col-md-8">
-                                        <input
-                                        class="form-control" name="phone" v-model="phone"
-                                        />
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group row mt-1">
-                                    <label class="col-sm-4 col-form-label text-md-right" for="email">E-Mail Address</label >                                   
-                                    <div class="col-md-8">
-                                        <input name="email"                          
-                                            type="text"
-                                            class="form-control"
-                                            v-model="email"
-                                           
-                                        />
-                                    </div>
-                                </div>
-
-                                <div class="form-group row mt-1">
+                                <div class="form-outline form-white mb-2">
+                                    <input
+                                        type="password"
+                                        id="typePasswordX"
+                                        class="form-control form-control-lg"
+                                        name="password"
+                                        v-model="password"
+                                    />
                                     <label
-                                        for="password"
-                                        class="col-md-4 col-form-label text-md-right"
+                                        class="form-label"
+                                        for="typePasswordX"
                                         >Password</label
                                     >
-                                    <div class="col-md-8">
-                                        <input type="password" class="form-control" name="password" v-model=" password"/>  
-                                    </div>
                                 </div>
+                                <button
+                                    class="btn btn-outline-light btn-lg px-5"
+                                    type="submit"
+                                    @click="handleSubmit"
+                                >
+                                    Register
+                                </button>
+                            </div>
 
-                                <div class="form-group row mt-1 mb-0">
-                                    <div class="col-md-8 offset-md-4">
-                                        <button
-                                            class="btn btn-success"
-                                            @click="handleSubmit"
-                                        >
-                                            Register
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <div class="row mt-1">
-                                    <div class="col-md-8 offset-md-4">
-                                        <small class="text-muted">
-                                            Have an account? Please
-                                            <router-link to="/login"
-                                                >login</router-link
-                                            >
-                                        </small>
-                                    </div>
-                                </div>
-                          
+                            <div>
+                                <p class="mb-0">
+                                    Have an account? Please
+                                    <router-link to="/login" class="text-danger fs-6 fw-normal">login</router-link>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </template>
+
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
     data() {
         return {
-                name: "",
-                phone:"",
-                email: "",
-                password: "",
-                error: null
+            name: "",
+            phone: "",
+            email: "",
+            password: "",
+            error: null,
         };
-        
     },
     methods: {
         async handleSubmit(e) {
             e.preventDefault();
-            if(this.password.length > 0) {
-                await axios.get('/sanctum/csrf-cookie').then((response) => {
-                     axios.post('/api/register_user',{
+            if (this.password.length > 0) {
+                await axios.get("/sanctum/csrf-cookie").then((response) => {
+                    axios
+                        .post("/api/register_user", {
                             name: this.name,
                             phone: this.phone,
                             email: this.email,
-                            password: this.password
+                            password: this.password,
                         })
                         .then((response) => {
                             if (response.data.success) {

@@ -96,14 +96,19 @@
 }
 
 .card_login{
+  background-color: #ffffff;
+  box-shadow: 0 2px 2px rgba(204, 197, 185, 0.5);
+  border-radius: $border-radius-extreme;
+  align-items: center;
+  width: 400px;
     .card{
         box-shadow: 0 2px 2px rgba(204, 197, 185, 0.5);
         .card-header{
-            background-color: #3b66e7;
+            background-color: #6b8beb;
            
         }
         .card-body{
-            background-color: #4770ed;
+            background-color: #4d72e3;
             label{
                 padding: 5;
             }
