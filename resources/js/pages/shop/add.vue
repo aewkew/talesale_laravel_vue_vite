@@ -1,14 +1,13 @@
 <template>
-    <div class="modal fade add"
+    <div class="modal fade"
         id="staticBackdrop"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
         tabindex="-1"
-     
         aria-hidden="true" >
         <div class="modal-dialog">
-
             <div class="modal-content">
+
                 <div class="modal-header">
                     <h1 class="modal-title " id="staticBackdropLabel">
                         Add Product

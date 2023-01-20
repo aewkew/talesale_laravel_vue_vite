@@ -10,8 +10,8 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">
-                        Modal title
+                    <h1 class="modal-title " id="exampleModalLabel">
+                        Edit Profile
                     </h1>
                     <button
                         type="button"
@@ -21,11 +21,10 @@
                     ></button>
                 </div>
                 <div class="modal-body">
-               
 
                     <form @submit.prevent="updateUser">
                         <div class="row">
-                            <label class="form-label text-black fs-3">
+                            <label class="form-label ">
                                 NickName</label
                             >
                             <div class="form-group">
@@ -37,7 +36,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <label class="form-label text-black fs-3">
+                            <label class="form-label">
                                Email</label
                             >
                             <div class="form-group">
@@ -50,7 +49,7 @@
                         </div>
 
                         <div class="row">
-                            <label class="form-label text-black fs-3">
+                            <label class="form-label">
                                 Tel
                             </label>
                             <div class="form-group">
@@ -84,9 +83,6 @@
                         data-bs-dismiss="modal"
                     >
                         Close
-                    </button>
-                    <button type="button" class="btn btn-primary">
-                        Save changes
                     </button>
                 </div>
             </div>

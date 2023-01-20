@@ -50,7 +50,7 @@ const routes = [
     },
         {
             path: '/dashboard',
-            name: 'dashboard',
+            name: 'Dashboard',
             component: Dashboard,
             children:[{
                 path:'/Bar/Bar',
@@ -88,7 +88,7 @@ const routes = [
           //Customer
         {
             path: '/customer',
-            name: 'customer',
+            name: 'Customer',
             component: customer,
            
         },

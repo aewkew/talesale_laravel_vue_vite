@@ -26,34 +26,30 @@ export default {
             console.log("test_month", this.month);
             console.log("test_sum_tatol", this.sum_tatol);
             var xValues = this.month;
-        var yValues = this.sum_tatol;
-        var barColors = ["red", "green", "blue", "orange", "brown"];
+            var yValues = this.sum_tatol;
+            var barColors = ["red", "green", "blue", "orange", "brown"];
 
-        new Chart(this.$refs.myChart_Bar, {
-            type: "bar",
-            data: {
-                labels: xValues,
-                datasets: [
-                    {
-                        backgroundColor: barColors,
-                        data: yValues,
-                    },
-                ],
-            },
-            options: {
-                legend: { display: false },
-                title: {
-                    display: true,
-                    text: "World Wine Production 2018",
+            new Chart(this.$refs.myChart_Bar, {
+                type: "bar",
+                data: {
+                    labels: xValues,
+                    datasets: [
+                        {
+                            backgroundColor: barColors,
+                            data: yValues,
+                        },
+                    ],
                 },
-            },
+                options: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: "World Wine Production 2018",
+                    },
+                },
+            });
         });
-
-
-        });
-
-       
-        
     },
+   
 };
 </script>
