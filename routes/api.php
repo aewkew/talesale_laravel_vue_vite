@@ -71,6 +71,8 @@ Route::get('test_order', [InvoiceController::class,'test_order']);
 Route::get('group_item_ch/{id}', [InvoiceController::class,'group_item_ch']);
 Route::post('updateInv_follow/{id}', [InvoiceController::class,'updateInv_follow']);
 Route::get('groupInv_notti', [InvoiceController::class,'groupInv_notti']);
+Route::get('sum_month', [InvoiceController::class,'sum_month']);
+Route::get('sum_employee', [InvoiceController::class,'sum_employee']);
 
 Route::get('comis_total', [ChartController::class,'comis_total']);
 Route::get('test_date', [ChartController::class,'test_date']);

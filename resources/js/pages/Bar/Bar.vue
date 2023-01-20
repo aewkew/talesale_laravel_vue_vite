@@ -25,9 +25,10 @@ export default {
             });
             console.log("test_month", this.month);
             console.log("test_sum_tatol", this.sum_tatol);
-            var xValues = this.month;
+            var xValues = /*this.month;*/ ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"] ;
+            var month_value = /*this.month;*/ ["Jan"];
             var yValues = this.sum_tatol;
-            var barColors = ["red", "green", "blue", "orange", "brown"];
+            var barColors = ["#1E90FF", "#8EEBEC", "#78C7C7", "#AAF0D1", "#50C878","#FED8B1","#FBE7A1","#FFA07A","#F98B88","#E799A3","#CCCCFF","#E6A9EC"];
 
             new Chart(this.$refs.myChart_Bar, {
                 type: "bar",
@@ -35,6 +36,7 @@ export default {
                     labels: xValues,
                     datasets: [
                         {
+                            label: ["First month"],
                             backgroundColor: barColors,
                             data: yValues,
                         },
@@ -44,7 +46,7 @@ export default {
                     legend: { display: false },
                     title: {
                         display: true,
-                        text: "World Wine Production 2018",
+                       
                     },
                 },
             });
