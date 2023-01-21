@@ -6,7 +6,7 @@
                     <div
                         class="card-header text-start fs-6 fw-semibold py-2 text-black"
                     >
-                        ยอดขายสีปีที่ผ่านมา
+                        ยอดความนิยมของแต่ละสี 
                     </div>
                     <div class="card-body">
                         <BarDoughtnut />

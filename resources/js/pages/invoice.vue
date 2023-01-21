@@ -208,23 +208,21 @@ const indexForm = async () => {
                                             <th scope="col">
                                                 รายระเอียดสินค้า
                                             </th>
-                                            <th scope="col">Product Id</th>
                                             <th scope="col">จำนวน</th>
                                             <th scope="col">ราคา/หน่วย</th>
                                             <th scope="col">จำนวนเงิน</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr
-                                            v-for="item in $store.state.cart"
-                                            :key="item.id"
-                                        >
+                                       
+                                        <tr v-for="(item,index) in $store.state.cart" >
+                                         
                                             <th scope="row">
-                                                {{ item.id }}
+                                                {{ index + 1 }}
                                                 <!--     <input type="text" id="product_id" class="form-control input" :value="product_id=item.id" />-->
                                             </th>
                                             <td>{{ item.product_name }}</td>
-                                            <td>{{ item.product_id }}</td>
+                                           
                                             <td>
                                                 {{ item.quantity }}
                                                 <!--   <input type="text" id="quantity" class="form-control input" :value="quantity=item.quantity"/>-->
@@ -234,7 +232,9 @@ const indexForm = async () => {
                                                 {{ item.totalPrice }}
                                                 <!--  <input type="text" id="unit_price" class="form-control input" :value="unit_price=item.totalPrice"/>    -->
                                             </td>
+                                             
                                         </tr>
+                                   
                                     </tbody>
                                 </table>
                                 <div></div>

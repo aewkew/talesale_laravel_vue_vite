@@ -187,8 +187,8 @@
                                         </tr>
                                     </thead>
                                     <tbody v-for="index in group_item">
-                                        <tr v-for="inv in index">
-                                            <th scope="row"></th>
+                                        <tr v-for="(inv,indexs) in index">
+                                            <th scope="row">{{ indexs + 1  }}</th>
                                             <td>{{ inv.product_name }}</td>
                                             <td>{{ inv.product_id }}</td>
                                             <td>{{ inv.product_price }}</td>

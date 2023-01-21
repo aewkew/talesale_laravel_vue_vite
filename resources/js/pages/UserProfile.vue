@@ -20,12 +20,14 @@
                 <tbody  v-for="item in invoices" :key="item.id">
                     <tr v-if="item.user_id == id">
                         <th scope="row">{{item.customer_name }}</th>
+                     
                         <td>{{ item.customer_phone}}</td>
                         <td>{{ item.number}}</td>
                         <td>{{ item.updated_at}}</td>
                         <td>{{ item.user_id}}</td>
                         <td>
-                            <button class="but-co btn " type="button"><i class="bi bi-plus"></i></button>
+                            <router-link :to="{ name: 
+                            'detail_customer', params:{ id:item.customer_id} }" class="but-co btn">รายระเอียด</router-link>
                         </td>
                     </tr>
                 </tbody>

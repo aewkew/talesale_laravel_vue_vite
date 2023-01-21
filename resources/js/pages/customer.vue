@@ -41,7 +41,6 @@
                             <td>
                                 <router-link :to="{ name: 
                             'detail_customer', params:{ id:item.id} }" class="but-co btn">รายระเอียด</router-link>
-                          
                             </td>
                         </tr>
                     </tbody>

@@ -79,7 +79,7 @@
                                 <th scope="col">วันครบกำหนดชำระ</th>
                                 <th scope="col">สถานะ</th>
                                 <th scope="col">แก้ไข</th>
-                                <th scope="col">Delete</th>
+                            
                             </tr>
                         </thead>
                         <tbody>
@@ -132,11 +132,7 @@
                                         ><i class="bi bi-pencil"></i>
                                     </router-link>
                                 </td>
-                                <td>
-                                    <button class="but-co btn">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </td>
+                                
                             </tr>
                         </tbody>
                     </table>
@@ -161,7 +157,7 @@
                                 <th scope="col">วันครบกำหนดชำระ</th>
                                 <th scope="col">สถานะ</th>
                                 <th scope="col">แก้ไข</th>
-                                <th scope="col">Delete</th>
+                            
                             </tr>
                         </thead>
                         <tbody>
@@ -214,11 +210,7 @@
                                         ><i class="bi bi-pencil"></i>
                                     </router-link>
                                 </td>
-                                <td>
-                                    <button class="but-co btn">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </td>
+                              
                             </tr>
                         </tbody>
                     </table>
@@ -243,7 +235,7 @@
                                 <th scope="col">วันครบกำหนดชำระ</th>
                                 <th scope="col">สถานะ</th>
                                 <th scope="col">แก้ไข</th>
-                                <th scope="col">Delete</th>
+                               
                             </tr>
                         </thead>
                         <tbody>
@@ -294,11 +286,7 @@
                                         ><i class="bi bi-pencil"></i>
                                     </router-link>
                                 </td>
-                                <td>
-                                    <button class="but-co btn">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </td>
+                              
                             </tr>
                         </tbody>
                     </table>
@@ -324,7 +312,7 @@
                                     <th scope="col">วันครบกำหนดชำระ</th>
                                     <th scope="col">สถานะ</th>
                                     <th scope="col">แก้ไข</th>
-                                    <th scope="col">Delete</th>
+                             
                                 </tr>
                             </thead>
                             <tbody>
@@ -391,11 +379,7 @@
                                             ><i class="bi bi-pencil"></i>
                                         </router-link>
                                     </td>
-                                    <td>
-                                        <button class="but-co btn">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </td>
+                                   
                                 </tr>
                             </tbody>
                         </table>

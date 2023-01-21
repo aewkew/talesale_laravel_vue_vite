@@ -97,7 +97,6 @@ class ProductController extends Controller
     public function search_color(Request $request){
         $product = Product::where('product_color','LIKE','%'.$request->keyword_color.'%')->get();
         return response()->json($product);
-    
     }
     public function search_brand(Request $request){
         $product = Product::where('product_brand','LIKE','%'.$request->keyword_brand.'%')->get();

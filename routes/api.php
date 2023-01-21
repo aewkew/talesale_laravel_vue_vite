@@ -76,7 +76,10 @@ Route::get('sum_employee', [InvoiceController::class,'sum_employee']);
 
 Route::get('comis_total', [ChartController::class,'comis_total']);
 Route::get('test_date', [ChartController::class,'test_date']);
+Route::get('color_select', [ChartController::class,'color_select']);
+Route::get('selcet_chart', [ChartController::class,'selcet_chart']);
 
+Route::get('total_chart', [ChartController::class,'total_chart']);
 
 Route::get('where_sucess', [InvoiceController::class,'where_sucess']);
 Route::get('where_pending', [InvoiceController::class,'where_pending']);

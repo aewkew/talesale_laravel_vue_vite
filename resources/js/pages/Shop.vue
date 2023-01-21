@@ -151,7 +151,6 @@
                         <th scope="col">Color</th>
                         <th scope="col">price</th>
                         <th scope="col">Add</th>
-                        <th scope="col">Delete</th>
                     </tr>
                 </thead>
 
@@ -162,11 +161,7 @@
                         <td>{{ item.product_color }}</td>
                         <td>{{ item.product_price.toFixed(2) }}</td>
                         <td> <button class="but-co btn" @click="addToCart(item)">  Add to Cart </button> </td>
-                        <td>
-                            <button class="but-co btn" @click.prevent="deleteProduct(item.id)" >
-                                <i class="bi bi-trash"></i>
-                            </button>
-                        </td>
+
                     </tr>
                 </tbody>
             </table>
