@@ -49,6 +49,7 @@ Route::get('follow_customer', [FollowCustomerController::class,'follow_customer'
 Route::post('add_follow', [FollowCustomerController::class,'add_follow']);
 Route::get('join_follow', [FollowCustomerController::class,'join_follow']);
 Route::delete('delete_follow/{id}', [FollowCustomerController::class,'delete_follow']);
+Route::get('follow_month', [FollowCustomerController::class,'follow_month']);
 
 //company
 Route::get('companies', [CompanyController::class,'companies']);
@@ -84,6 +85,8 @@ Route::get('total_chart', [ChartController::class,'total_chart']);
 Route::get('where_sucess', [InvoiceController::class,'where_sucess']);
 Route::get('where_pending', [InvoiceController::class,'where_pending']);
 Route::get('where_cancelled', [InvoiceController::class,'where_cancelled']);
+Route::get('month_where_pending', [InvoiceController::class,'month_where_pending']);
+
 
 
 //invoice_Item

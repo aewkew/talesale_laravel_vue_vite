@@ -13,7 +13,7 @@
                         aria-controls="home-tab-pane"
                         aria-selected="true"
                     >
-                        รออนุมัติ
+                        รออนุมัติ 
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
@@ -59,6 +59,7 @@
                     </button>
                 </li>
             </ul>
+            
             <!-- Pedding -->
             <div class="tab-content" id="myTabContent">
                 <div
@@ -71,7 +72,7 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">ID</th>
+                                <th scope="col">ID </th>
                                 <th scope="col">Invoice</th>
                                 <th scope="col">ลูกค้า</th>
                                 <th scope="col">เบอร์โทร</th>
@@ -94,17 +95,19 @@
                                 <td>
                                     {{ pinv.date }}
                                 </td>
-                                <td>
+                                
+                                <td> 
                                     <span
                                         v-if="pinv.due_date == currentDate()"
                                         class="text-danger"
-                                        ><strong> {{ pinv.due_date }}</strong>
+                                        ><strong> {{ pinv.due_date }} </strong>
                                     </span>
                                     <span
                                         v-else="pinv.due_date == !currentDate()"
                                         ><strong> {{ pinv.due_date }}</strong>
                                     </span>
                                 </td>
+
                                 <td>
                                     <span v-if="pinv.status == 'pending'">
                                         <p class="text-warning">
@@ -416,11 +419,16 @@ export default {
 
     methods: {
         currentDate() {
-            const current = new Date();
-            const date = `${current.getFullYear()}-${
-                current.getMonth() + 1
-            }-${current.getDate()}`;
-            return date;
+            const today = new Date();
+            const yyyy = today.getFullYear();
+            let mm = today.getMonth() + 1; // Months start at 0!
+            let dd = today.getDate();
+
+            if (dd < 10) dd = "0" + dd;
+            if (mm < 10) mm = "0" + mm;
+
+            const Today =  yyyy  + "-" + mm + "-" + dd ;
+            return Today;
         },
 
         async getInv() {

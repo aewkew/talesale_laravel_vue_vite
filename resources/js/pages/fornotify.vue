@@ -54,13 +54,13 @@
                             <thead>
                                 <tr>
                                     <th>invoice</th>
-                                    <th>วันเสนอราคา</th>
+                                    <th>วันที่ชำระ</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="inc in invoice_cus" :key="inc.id">
                                     <td>{{ inc.number }}</td>
-                                    <td>{{ inc.date }}</td>
+                                    <td>{{ inc.updated_at }}</td>
                                 </tr>
                             </tbody>
                         </table>

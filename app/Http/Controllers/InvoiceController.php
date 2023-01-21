@@ -9,7 +9,7 @@ use App\Models\invoiceItem;
 use App\Models\Customer;
 use App\Models\Product;
 use App\Models\User;
-use Carbon\Carbon ;
+use Carbon\Carbon;
 
 
 use Illuminate\Support\Facades\Auth;
@@ -196,6 +196,22 @@ class InvoiceController extends Controller
    ]);
    }
 
+   public function month_where_pending(){
+    $month = Carbon::now()->format('m');
+    $year = Carbon::now()->format('Y');
+    $pending = DB::table('customers')->orderBy('due_date','ASC')
+        ->join('invoices','customers.id','=','invoices.customer_id')  
+        ->where('status','pending')
+        ->whereYear('due_date','=', $year)
+        ->whereMonth('due_date','=', $month)
+        ->get();
+    return response()->json([
+        'pending_month' => $pending,
+        'message' => 'pending_inv' 
+   ]);
+   }
+   
+
 
     public function invoices_join(){
     
@@ -324,9 +340,9 @@ class InvoiceController extends Controller
 
          public function invioce_cus($id){
             $invoice= invoice::where('customer_id', $id)
-            
+         
+            ->where('status','success')
             ->get(); 
-            
             return response()->json ([
                 'invoice_cus' => $invoice,
                 'message' => 'invoice_cus',
@@ -362,35 +378,38 @@ class InvoiceController extends Controller
         $month = Carbon::now()->format('m');
         $year = Carbon::now()->format('Y');
         $invoice= invoice::where('status','success')
+        ->whereYear('invoices.updated_at','=', $year)
         ->whereMonth('invoices.updated_at','=', $month)
        // ->groupBy('total')
          ->select(DB::raw('SUM(sub_total)as sum_sub'),DB::raw('SUM(tax_total)as sum_tax'),DB::raw('SUM(total)as sum_total'))
         // ->select(DB::raw('ROUND(sum_sub,2)as sum_sub'),DB::raw('ROUND(tax_total)as sum_tax'),DB::raw('ROUND(total)as sum_total'))
         ->get(); 
-        return response()->json([
-           'sum Of month' => $invoice,
-           'code' => 200
-        ]);
+        return response()->json($invoice
+          );
        }
+
 
        public function sum_employee(){
         $month = Carbon::now()->format('m');
         $year = Carbon::now()->format('Y');
         $inv_cus=DB::table('invoices')
            ->join('users','users.id','=','invoices.user_id')
-           ->select('users.name','invoices.total','invoices.status','invoices.updated_at') 
+           ->select('users.name','invoices.total','invoices.status','invoices.updated_at','invoices.user_id') 
          // ->get()
             ->where('status','success')
             ->whereYear('invoices.updated_at','=', $year)
             ->whereMonth('invoices.updated_at','=', $month)
             ->groupBy('name')
-            ->select(DB::raw('SUM(total*5/100)as sum_total '),'name')
+            ->select(DB::raw('SUM(total)as sum_total'),DB::raw('SUM(total*5/100)as sum_com '),'name')
+            ->orderBy('sum_com','DESC')
             ->get() 
             ;
         return response()->json([
-           'sum Of employee' => $inv_cus,
+           'sum_employee' => $inv_cus,
            'code' => 200
         ]);
        }
+       
+      
 
 }

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\follow_customer;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+
 
 class FollowCustomerController extends Controller
 {
@@ -35,13 +37,30 @@ class FollowCustomerController extends Controller
             'code' => 200
         ]);
     }
+    public function follow_month(){
+        $month = Carbon::now()->format('m');
+        $year = Carbon::now()->format('Y');
+        $follow = DB::table('follow_customers')
+        ->whereYear('follow','=', $year)
+        ->whereMonth('follow','=', $month)
+        ->join('users','users.id','=','follow_customers.follow_user_id')
+        ->join('customers','customers.id','=','follow_customers.follow_customer_id')
+        ->select('users.name','users.phone','customers.customer_name','customers.customer_phone','details','follow_customers.id','follow_customers.follow')
+        ->orderBy('follow','ASC')
+        ->get();
+        return response()->json([
+            'follow_month' => $follow,
+            'message' => 'follow_customer',
+            'code' => 200
+        ]);
+    }
+
     public function delete_follow($id){
        $follow = follow_customer::find($id);
         try{
-            
             $follow->delete();
             $success = true;
-            $message = "Add Follow successfully";
+            $message = "Delete Follow successfully";
         }catch (\Illuminate\Database\QueryException $ex){
             $success = false;
             $message = $ex->getMessage();
