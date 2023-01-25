@@ -12,7 +12,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title" id="exampleModalLabel">
-                        Add Customer
+                        เพิ่มลูกค้า
                     </h1>
                     <button
                         type="button"
@@ -26,7 +26,7 @@
                     <form @submit.prevent="addcustomer">
                         <div class="row">
                             <label for="exampleModalLabel" class="form-label">
-                                Name Customer
+                                ชื่อลูกค้า
                             </label>
                             <div class="form-group">
                                 <input
@@ -38,7 +38,7 @@
                         </div>
                         <div class="row">
                             <label for="exampleModalLabel" class="form-label">
-                                Address
+                                ที่อยู่ลูกค้า
                             </label>
                             <div class="input-group">
                                 <input
@@ -51,7 +51,7 @@
 
                         <div class="row">
                             <label for="inputGroupSelect01" class="form-label">
-                                Phone
+                                เบอร์โทร
                             </label>
                             <div class="input-group">
                                 <div class="form-group">

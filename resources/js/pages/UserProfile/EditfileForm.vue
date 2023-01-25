@@ -25,7 +25,7 @@
                     <form @submit.prevent="updateUser">
                         <div class="row">
                             <label class="form-label ">
-                                NickName</label
+                                ชื่อ</label
                             >
                             <div class="form-group">
                                 <input
@@ -37,7 +37,7 @@
                         </div>
                         <div class="row">
                             <label class="form-label">
-                               Email</label
+                               อีเมล</label
                             >
                             <div class="form-group">
                                 <input
@@ -50,7 +50,7 @@
 
                         <div class="row">
                             <label class="form-label">
-                                Tel
+                                เบอร์โทร
                             </label>
                             <div class="form-group">
                                 <input

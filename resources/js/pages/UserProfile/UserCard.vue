@@ -4,21 +4,21 @@
             <div class="container">
                 <div class="row datapro">
                     <div class="col-2">
-                        <div class="headname">ID Employee</div>
+                        <div class="headname">รหัสพนักงาน</div>
                         <div class="dataname">{{ id }}</div>
                     </div>
                     <div class="col-2">
-                        <div class="headname">NickName</div>
+                        <div class="headname">ชื่อพนักงาน</div>
                         <div class="dataname">{{ name }}</div>
                     </div>
 
                     <div class="col">
-                        <div class="headname">Email</div>
+                        <div class="headname">อีเมล</div>
                         <div class="dataname">{{ email }}</div>
                     </div>
 
                     <div class="col">
-                        <div class="headname">Tel.</div>
+                        <div class="headname">เบอร์โทร</div>
                         <div class="dataname">{{ phone }}</div>
                     </div>
 

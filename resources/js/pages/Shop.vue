@@ -3,7 +3,6 @@
         <div class="card">
             <div class="card-body shopCard">
                 <div class="row">
-                    
                     <div class="col">
                         <input
                             type="text"
@@ -16,7 +15,7 @@
                     <div class="col">
                         <div class="input-group">
                             <label class="input-group-text" for="product"
-                                >Color</label
+                                >สีสินค้า</label
                             >
                             <select class="form-select" v-model="keyword_color" aria-label="Default select example">
                                 <option  selected value="" >All Color</option>
@@ -31,7 +30,7 @@
 
                     <div class="col">
                         <div class="input-group">
-                            <label class="input-group-text" for="product">Brand</label >
+                            <label class="input-group-text" for="product">แบรนด์</label >
                             <select class="form-select" v-model="keyword_brand">
                           
                                 <option  selected value="">All Brand</option>
@@ -146,11 +145,11 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Brand</th>
-                        <th scope="col">Color</th>
-                        <th scope="col">price</th>
-                        <th scope="col">Add</th>
+                        <th scope="col">ชื่อสินค้า</th>
+                        <th scope="col">แบรนด์</th>
+                        <th scope="col">สีสินค้า</th>
+                        <th scope="col">ราคาสินค้า</th>
+                        <th scope="col">ใส่สินค้า</th>
                     </tr>
                 </thead>
 
@@ -160,7 +159,7 @@
                         <td>{{ item.product_brand }}</td>
                         <td>{{ item.product_color }}</td>
                         <td>{{ item.product_price.toFixed(2) }}</td>
-                        <td> <button class="but-co btn" @click="addToCart(item)">  Add to Cart </button> </td>
+                        <td> <button class="but-co btn" @click="addToCart(item)">ใส่ตะกร้า</button> </td>
 
                     </tr>
                 </tbody>

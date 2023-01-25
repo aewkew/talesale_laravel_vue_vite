@@ -57,6 +57,11 @@ export default {
     created() {
         this.get_notifi();
     },
+    watch:{
+        follow_join(){
+            this.get_notifi();
+        }
+    },
 
     methods: {
         currentDate() {
@@ -93,6 +98,7 @@ export default {
                     } else {
                         console.log("error");
                     }
+                    
                 })
                 .catch((error) => {
                     console.log(error);

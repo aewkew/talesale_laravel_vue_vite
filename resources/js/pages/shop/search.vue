@@ -19,7 +19,7 @@
                 <div class="col-auto">
                     <div class="input-group">
                         <label class="input-group-text" for="product"
-                            >Color</label >                     
+                            >สี</label >                     
                         <select  class="form-select" id="inputGroupSelect01">
                             <option selected>Choose...</option>
                             <option >Red</option>

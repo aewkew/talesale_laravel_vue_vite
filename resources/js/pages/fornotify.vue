@@ -60,7 +60,7 @@
                             <tbody>
                                 <tr v-for="inc in invoice_cus" :key="inc.id">
                                     <td>{{ inc.number }}</td>
-                                    <td>{{ inc.updated_at }}</td>
+                                    <td>{{ moment (inc.updated_at ).format("DD-MM-YYYY") }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -92,6 +92,7 @@
 </template>
 <script>
 import axios from "axios";
+import moment from 'moment';
 
 export default {
     name: "fornotify",
@@ -101,6 +102,7 @@ export default {
             details: "",
             invoice_cus: Array,
             group_count: Array,
+            moment: moment
         };
     },
     created() {

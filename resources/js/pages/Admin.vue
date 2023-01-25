@@ -16,7 +16,7 @@
                                             ยอดรวม
                                         </div>
                                         <div class="col fs-5 fw-light">
-                                            {{ sum.sum_total }}
+                                            {{ sum.sum_total.toFixed(2) }}
                                         </div>
                                     </div>
                                     <div class="row">
@@ -32,7 +32,7 @@
                                             ภาษี
                                         </div>
                                         <div class="col fs-5 fw-light">
-                                            {{ sum.sum_tax }}
+                                            {{ sum.sum_tax.toFixed(2) }}
                                         </div>
                                     </div>
                                 </div>
@@ -57,8 +57,8 @@
                             <tbody v-for="emp in sum_employee">
                                 <tr>
                                     <td>{{ emp.name }}</td>
-                                    <td>{{ emp.sum_total }}</td>
-                                    <td>{{ emp.sum_com }}</td>
+                                    <td>{{ emp.sum_total.toFixed(2) }}</td>
+                                    <td>{{ emp.sum_com.toFixed(2) }}</td>
                                 </tr>
                             </tbody>
                         </table>

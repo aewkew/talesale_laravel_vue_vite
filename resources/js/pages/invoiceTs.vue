@@ -214,7 +214,7 @@
                                 <div class="total-invoice">
                                     <div class="row">
                                         <div class="col-7 data-total">
-                                            Sub Total
+                                            รวมเงิน
                                         </div>
                                         <div class="col-5">
                                             <span>
@@ -224,7 +224,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-7 data-sub">
-                                            Tax(7%)
+                                            ภาษีมูลค่าเพิ่ม(7%)
                                         </div>
                                         <div class="col-5">
                                             <span>
@@ -236,7 +236,7 @@
                                     </div>
                                     <div class="row sum-total">
                                         <div class="col-7 sum-total-head">
-                                            Total Amount
+                                            ยอดรวมทั้งสิ้น
                                         </div>
                                         <div class="col-5">
                                             ฿ {{ invoice.total }}
@@ -272,6 +272,7 @@ export default {
         this.group_item_ch();
         this.inv_cus();
     },
+   
 
     methods: {
         async getAllInv() {

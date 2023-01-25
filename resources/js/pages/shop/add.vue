@@ -10,7 +10,7 @@
 
                 <div class="modal-header">
                     <h1 class="modal-title " id="staticBackdropLabel">
-                        Add Product
+                        เพิ่มสินค้า
                     </h1>
                     <button
                         type="button"
@@ -23,14 +23,14 @@
                 <div class="modal-body">
                     <form @submit.prevent="addproduct">
                     <div class="row ">
-                        <label for="staticBackdropLabel" class="form-label" > Name product</label>
+                        <label for="staticBackdropLabel" class="form-label" > ชื่อสินค้า </label>
                             <div class="form-group">
                                 <input type="text" class="form-control"  v-model="name"  />
                             </div>
                     </div>
                     
                     <div class="row ">
-                        <label for="staticBackdropLabel" class="form-label" > Brand </label>
+                        <label for="staticBackdropLabel" class="form-label" > แบรนด์ </label>
                         <div class="form-group">
                              <select class="form-select" v-model="brand">
                                 <option value="Canon">Canon</option>
@@ -47,7 +47,7 @@
                     </div>
 
                     <div class="row">
-                        <label for="inputGroupSelect01" class="form-label" > Color </label>
+                        <label for="inputGroupSelect01" class="form-label" > สีสินค้า </label>
                         <div class="form-group"> 
                              <select class="form-select" v-model="color">
                             <option value="Blue">Blue</option>
@@ -66,7 +66,7 @@
                     </div>
 
                     <div class="row"> 
-                        <label for="inputprice" class="form-label" > Price </label>
+                        <label for="inputprice" class="form-label" > ราคา </label>
                         <div class="form-group">
                                 <input class="form-control" v-model="price" />                                  
                             </div>
