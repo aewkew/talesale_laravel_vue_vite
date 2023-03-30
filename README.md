@@ -1,3 +1,16 @@
+**
+#install composer -> composer --version
+#open file
+#npm install
+#create database php my admin name talesale_comp
+#php artisan db:seed
+#open terminal two window 
+  - terminal 1 -> npm run dev 
+  - terminal 2 -> php artisan serve
+   * click -> Server running on ***click -> [http://127.0.0.1:8000] *** /* terminal 1 or terminal 2   */
+   
+
+**
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
